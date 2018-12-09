@@ -30540,6 +30540,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     },
 
     methods: {
+        //https://sandbox.wizaplace.com/api/v1/catalog/search/products?filters[categories]=${this.categoryId}
         displayResults: function () {
             var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
                 var results;
@@ -30549,7 +30550,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                             case 0:
                                 _context.prev = 0;
                                 _context.next = 3;
-                                return __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get('https://sandbox.wizaplace.com/api/v1/catalog/search/products?filters[categories]=' + this.categoryId);
+                                return __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get('/api/search/products?filters[categories]=' + this.categoryId);
 
                             case 3:
                                 results = _context.sent;

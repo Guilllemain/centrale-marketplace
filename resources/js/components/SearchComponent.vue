@@ -44,9 +44,10 @@
             this.displayResults();
         },
         methods: {
+            //https://sandbox.wizaplace.com/api/v1/catalog/search/products?filters[categories]=${this.categoryId}
             async displayResults() {
                 try {
-                    const results = await axios.get(`https://sandbox.wizaplace.com/api/v1/catalog/search/products?filters[categories]=${this.categoryId}`)
+                    const results = await axios.get(`/api/search/products?filters[categories]=${this.categoryId}`)
                     this.products = results.data.results;
                 } catch (error) {
                     console.log(error);

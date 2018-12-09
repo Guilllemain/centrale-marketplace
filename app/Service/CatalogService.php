@@ -4,6 +4,7 @@ namespace App\Service;
 
 use App\Category;
 use GuzzleHttp\Client;
+use GuzzleHttp\RequestOptions;
 
 class CatalogService
 {
@@ -19,7 +20,7 @@ class CatalogService
 	    return $client;
 	}
 
-	private function get($endpoint)
+	private function get($endpoint, $options = [])
 	{
 		return json_decode(
 			$this->initClient()
@@ -61,5 +62,12 @@ class CatalogService
     public function getProductById($id)
     {
         return $this->get("catalog/products/{$id}");
+    }
+
+    public function search($query)
+    {
+    	return $this->get('catalog/search/products', [
+                RequestOptions::QUERY => $query,
+            ]);
     }
 }

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -14,7 +13,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        // $this->middleware('auth');
+        $this->middleware('auth');
     }
 
     /**
@@ -24,9 +23,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $categories = $this->getCategoriesTree();
-
-        // dd($categories);
-        return view('welcome', compact('categories'));
+        return view('home');
     }
 }

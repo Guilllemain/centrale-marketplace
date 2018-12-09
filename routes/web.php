@@ -11,10 +11,7 @@
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
 Auth::routes();
 
-Route::get('/', 'HomeController@index')->name('home');
+Route::get('/', 'CategoriesController@index');
+Route::get('/search', 'CategoriesController@search');

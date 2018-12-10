@@ -2,7 +2,8 @@
 
 namespace App\Http\ViewComposers;
 
-use App\Service\CatalogService;
+use App\Services\CatalogService;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\View\View;
 
 class CategoriesComposer
@@ -34,6 +35,11 @@ class CategoriesComposer
      */
     public function compose(View $view)
     {
-        $view->with('categories', $this->catalog->getCategoriesTree());
+        if (!Cache::has('categories')) {
+            $categories = $this->catalog->getCategoriesTree();
+            Cache::add('categories', $categories, 240);
+        }
+        $categories = Cache::get('categories');
+        $view->with('categories', $categories);
     }
 }

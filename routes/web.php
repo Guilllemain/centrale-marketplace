@@ -15,3 +15,5 @@ Auth::routes();
 
 Route::get('/', 'CategoriesController@index');
 Route::get('/search', 'CategoriesController@search');
+
+Route::get('/product/{id}', 'ProductsController@show');

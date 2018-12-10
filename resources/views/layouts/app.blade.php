@@ -37,7 +37,7 @@
                                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                                 </li>
                                 @if (Route::has('register'))
-                                    <li class="">
+                                    <li class="mr-3">
                                         <a class="" href="{{ route('register') }}">{{ __('Register') }}</a>
                                     </li>
                                 @endif
@@ -60,6 +60,9 @@
                                     </div>
                                 </li>
                             @endguest
+                            <li>
+                                <a href="">Mon panier</a>
+                            </li>
                         </ul>
                     </div>
                 </div>  

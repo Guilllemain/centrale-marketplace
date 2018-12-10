@@ -2,7 +2,7 @@
     <div class="mx-3 my-6 w-64">
         <img :src="getImage()" class="w-full">
         <h3 class="text-center mt-3">
-            <a href="">{{ product.name }}</a>
+            <a :href="`/product/${product.productId}`">{{ product.name }}</a>
         </h3>
     </div>
 </template>

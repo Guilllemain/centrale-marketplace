@@ -30540,7 +30540,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     },
 
     methods: {
-        //https://sandbox.wizaplace.com/api/v1/catalog/search/products?filters[categories]=${this.categoryId}
         displayResults: function () {
             var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
                 var results;
@@ -30555,22 +30554,23 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                             case 3:
                                 results = _context.sent;
 
+                                console.log(results.data.results);
                                 this.products = results.data.results;
-                                _context.next = 10;
+                                _context.next = 11;
                                 break;
 
-                            case 7:
-                                _context.prev = 7;
+                            case 8:
+                                _context.prev = 8;
                                 _context.t0 = _context['catch'](0);
 
                                 console.log(_context.t0);
 
-                            case 10:
+                            case 11:
                             case 'end':
                                 return _context.stop();
                         }
                     }
-                }, _callee, this, [[0, 7]]);
+                }, _callee, this, [[0, 8]]);
             }));
 
             function displayResults() {
@@ -31456,7 +31456,9 @@ var render = function() {
     _c("img", { staticClass: "w-full", attrs: { src: _vm.getImage() } }),
     _vm._v(" "),
     _c("h3", { staticClass: "text-center mt-3" }, [
-      _c("a", { attrs: { href: "" } }, [_vm._v(_vm._s(_vm.product.name))])
+      _c("a", { attrs: { href: "/product/" + _vm.product.productId } }, [
+        _vm._v(_vm._s(_vm.product.name))
+      ])
     ])
   ])
 }

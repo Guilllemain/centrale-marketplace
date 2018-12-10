@@ -8,15 +8,15 @@ use Illuminate\Http\Request;
 
 class SearchController extends Controller
 {
-	public function __construct(CatalogService $catalog)
-	{
-		$this->catalog = $catalog;
-	}
+    public function __construct(CatalogService $catalog)
+    {
+        $this->catalog = $catalog;
+    }
 
     public function index(Request $request)
     {
-    	$filters = $request->query->get('filters');
-    	$results = $this->catalog->search($filters);
-    	return json_encode($results);
+        $filters = $request->query->get('filters');
+        $results = $this->catalog->search($filters);
+        return json_encode($results);
     }
 }

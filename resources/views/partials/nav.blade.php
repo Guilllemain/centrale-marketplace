@@ -7,12 +7,12 @@
                     <div class="megamenu__category-children text-xs font-bold mt-6">
                         @foreach($category->children as $subcategory)
                             <div class="@if($subcategory->children) mb-3 @endif">
-                                <a href="/search?category={{ $category->category->id }}">{{ $subcategory->category->name }}</a>
+                                <a href="/search?category={{ $subcategory->category->id }}">{{ $subcategory->category->name }}</a>
                                 @if($subcategory->children)
                                     <div>
                                         @foreach($subcategory->children as $subcategory)
                                             <div class="ml-3 font-normal">
-                                                <a href="search?category={{ $category->category->id }}">{{ $subcategory->category->name }}</a>
+                                                <a href="search?category={{ $subcategory->category->id }}">{{ $subcategory->category->name }}</a>
                                             </div>
                                         @endforeach
                                     </div>

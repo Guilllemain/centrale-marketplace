@@ -62,6 +62,7 @@
                             @endguest
                             <li>
                                 <a href="">Mon panier</a>
+                                <basket-component></basket-component>
                             </li>
                         </ul>
                     </div>

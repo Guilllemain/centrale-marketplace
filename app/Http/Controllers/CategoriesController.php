@@ -18,8 +18,6 @@ class CategoriesController extends Controller
 
     public function index()
     {
-        dd($this->catalog->createBasket());
-        dd(session()->all());
         return view('home');
     }
 

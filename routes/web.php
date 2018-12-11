@@ -17,3 +17,6 @@ Route::get('/', 'CategoriesController@index');
 Route::get('/search', 'CategoriesController@search');
 
 Route::get('/product/{id}', 'ProductsController@show');
+
+Route::get('/basket/add', 'BasketController@addProduct');
+Route::get('/basket', 'BasketController@index');

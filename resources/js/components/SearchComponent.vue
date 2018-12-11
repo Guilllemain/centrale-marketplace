@@ -47,7 +47,6 @@
             async displayResults() {
                 try {
                     const results = await axios.get(`/api/search/products?filters[categories]=${this.categoryId}`)
-                    console.log(results.data.results);
                     this.products = results.data.results;
                 } catch (error) {
                     console.log(error);

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Service\CatalogService;
+use App\Services\CatalogService;
 use Illuminate\Http\Request;
 
 class SearchController extends Controller

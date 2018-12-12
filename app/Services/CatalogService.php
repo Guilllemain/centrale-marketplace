@@ -27,11 +27,9 @@ class CatalogService
     /**
      * @return category by id
      */
-    public function getCategory($id)
+    public function getCategory(int $id)
     {
-        $category = $this->client->get("catalog/categories/{$id}");
-
-        return new Category($category);
+        return $this->client->get("catalog/categories/{$id}");
     }
 
     /**

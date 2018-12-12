@@ -25,7 +25,7 @@ class ApiClient
                  ->request('GET', $endpoint, $options)
                  ->getBody()
                  ->getContents()
-            );
+            , true);
     }
 
     public function post($endpoint, $options = [])

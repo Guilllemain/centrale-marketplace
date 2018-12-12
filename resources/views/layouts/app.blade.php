@@ -23,10 +23,12 @@
     <div id="app">
         <header class="m-6">
             <div class="container">
-                <div class="flex justify-between">
+                <div class="flex justify-between items-center">
                     <a class="" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+                        <img src="{{ asset('logo.png') }}">
                     </a>
+
+                    <search-box-component></search-box-component>
 
                     <div class="">
                         <!-- Right Side Of Navbar -->
@@ -72,7 +74,7 @@
 
         @include('partials.nav')
 
-        <main class="py-4">
+        <main class="">
             @yield('content')
         </main>
     </div>

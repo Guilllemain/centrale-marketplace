@@ -27,12 +27,15 @@ class BasketService
     private function createEmptyBasket()
     {
         $id = $this->create();
-
         return new Basket(['id' => $id]);
     }
 
     public function getBasket($basketId)
     {
+        //create empty basket if there is no ID
+        if (!$basketId) {
+            $basketId = $this->getBasketId();
+        }
         $response = $this->client->get("basket/{$basketId}");
         $attributes = (array) $response;
         return new Basket($attributes);
@@ -75,7 +78,7 @@ class BasketService
 
         if ($basketId === null) {
             $this->basket = $this->createEmptyBasket();
-            $basketId = $this->basket->getId();
+            $basketId = $this->basket->id;
             $this->setCurrentBasketId($basketId);
         }
         return $basketId;

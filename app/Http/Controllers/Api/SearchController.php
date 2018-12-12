@@ -15,8 +15,12 @@ class SearchController extends Controller
 
     public function index(Request $request)
     {
+        $query = $request->query->get('query');
         $filters = $request->query->get('filters');
-        $results = $this->catalog->search($filters);
-        return json_encode($results);
+        $results = $this->catalog->search($query, $filters);
+        if ($request->wantsJson()) {
+            return json_encode($results);
+        }
+        return view('search', compact('results'));
     }
 }

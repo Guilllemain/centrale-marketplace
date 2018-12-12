@@ -50,11 +50,15 @@ class CatalogService
         return $this->client->get("catalog/products/{$id}");
     }
 
-    public function search($filters)
+    public function search($query = '', $filters = [])
     {
+        $query = [
+            'query' => $query,
+            'filters' => $filters,
+        ];
         return $this->client->get(
             'catalog/search/products',
-            [RequestOptions::QUERY => ['filters' => $filters]]
+            [RequestOptions::QUERY => $query]
         );
     }
 }

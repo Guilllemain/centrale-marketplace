@@ -13,8 +13,11 @@
 
 Auth::routes();
 
-Route::get('/', 'CategoriesController@index');
+Route::get('/', 'HomeController@index');
+
 Route::get('/search', 'CategoriesController@search');
+
+Route::get('/searchbox', 'Api\SearchController@index');
 
 Route::get('/product/{id}', 'ProductsController@show');
 

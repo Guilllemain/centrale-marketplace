@@ -24,7 +24,6 @@
             async getBasket() {
                 const response = await axios.get('/basket');
                 this.basket = response.data;
-                console.log(response.data);
                 await this.getItems()
             },
             getItems() {

@@ -16,13 +16,17 @@
 
     export default {
         props: {
-            category: Number,
+            // category: {
+            //     type: Number,
+            //     required: false
+            // },
             categories: String
         },
         components: {ProductComponent, FiltersComponent},
         data() {
             return {
                 categoryId: '',
+                query: '',
                 products: {},
                 categoriesList: ''
             }
@@ -35,18 +39,18 @@
             });
         },
         mounted() {
-             if (this.category) this.categoryId = this.category;
-
-            // const urlParams = new URLSearchParams(window.location.search);
-            // this.categoryId = urlParams.get('category');
-            // console.log(urlParams.get('category'));
+            const urlParams = new URLSearchParams(window.location.search);
+            this.categoryId = urlParams.get('category');
+            this.query = urlParams.get('query');
+            console.log(urlParams.get('category'));
+             // if (this.category) this.categoryId = this.category;
 
             this.displayResults();
         },
         methods: {
             async displayResults() {
                 try {
-                    const results = await axios.get(`/api/search/products?filters[categories]=${this.categoryId}`)
+                    const results = await axios.get(`/api/search/products?query=${this.query}&filters[categories]=${this.categoryId}`)
                     this.products = results.data.results;
                 } catch (error) {
                     console.log(error);

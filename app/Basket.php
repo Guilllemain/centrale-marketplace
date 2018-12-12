@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Basket extends Model
 {
+    protected $casts = ['id' => 'string'];
+    public $incrementing = false;
     // private $id;
     // private $coupons;
     // private $subtotal;

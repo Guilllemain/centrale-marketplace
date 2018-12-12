@@ -18,23 +18,15 @@ class CategoriesController extends Controller
 
     public function index()
     {
-        return view('home');
     }
 
     public function search(Request $request)
     {
-        $selectedCategoryId = $request->query->getInt("category");
-        $selectedCategory = $selectedCategoryId ? $this->catalog->getCategory($selectedCategoryId) : null;
+        // $selectedCategoryId = $request->query->getInt("category");
+        // $selectedCategory = $selectedCategoryId ? $this->catalog->getCategory($selectedCategoryId) : null;
 
         // dd($selectedCategoryId);
 
-        return view('search', compact('selectedCategoryId'));
-
-        // return $this->render('@App/search/search.html.twig', [
-        //     'searchQuery' => $request->query->get('q'),
-        //     'filters' => $filters,
-        //     'selectedCategory' => $selectedCategory,
-        //     'userFavoriteIds' => $userFavoriteIds,
-        // ]);
+        return view('search');
     }
 }

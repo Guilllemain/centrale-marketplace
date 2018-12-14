@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Services\CatalogService;
 use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
 
 class ProductsController extends Controller
 {
@@ -14,10 +15,10 @@ class ProductsController extends Controller
         $this->catalog = $catalog;
     }
 
-    public function show($id)
+    public function show($category = null, $id)
     {
         $product = $this->catalog->getProductById($id);
-        dd($product);
+        // dd($product);
         return view('product.show', compact('product'));
     }
 }

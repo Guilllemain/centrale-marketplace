@@ -30511,6 +30511,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
 
 
 
@@ -30518,41 +30520,63 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
-        // category: {
-        //     type: Number,
-        //     required: false
+        category: {
+            type: Object,
+            required: false
+        },
+        company: {
+            type: Object,
+            required: false
+        }
+        // categories: {
+        //     type: Array,
+        //     required: true
         // },
-        categories: String
     },
     components: { ProductComponent: __WEBPACK_IMPORTED_MODULE_2__ProductComponent___default.a, FiltersComponent: __WEBPACK_IMPORTED_MODULE_3__FiltersComponent___default.a },
     data: function data() {
         return {
             categoryId: '',
+            companyId: '',
             query: '',
-            products: {},
-            categoriesList: ''
+            products: []
         };
     },
     created: function created() {
         var _this = this;
 
-        this.categoriesList = JSON.parse(this.categories);
         Event.$on('update-results', function (categoryId) {
             _this.categoryId = categoryId;
             _this.displayResults();
         });
     },
     mounted: function mounted() {
+        // const slug = window.location.pathname.replace('/', '');
         var urlParams = new URLSearchParams(window.location.search);
-        this.categoryId = urlParams.get('category');
-        this.query = urlParams.get('query');
-        console.log(urlParams.get('category'));
-        // if (this.category) this.categoryId = this.category;
+        this.query = urlParams.get('query') === null ? '' : urlParams.get('query');
+
+        if (this.category) this.categoryId = this.category.id;
+        if (this.company) this.companyId = this.company.id;
 
         this.displayResults();
+
+        // this.categoryId = urlParams.get('category');
+        // console.log(urlParams.get('category'));
+        // if (this.category) thicategoryId = this.category;
     },
 
     methods: {
+        // async getCategoryId(slug) {
+        //     try {
+        //         const results = await axios.get(`/${slug}?slug=${slug}`);
+        //         this.category = results.data;
+        //         this.categoryId = results.data.id;
+        //         this.displayResults();
+        //     }
+        //     catch (error) {
+        //         console.log(error);
+        //     }
+        // },
         displayResults: function () {
             var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
                 var results;
@@ -30562,27 +30586,28 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                             case 0:
                                 _context.prev = 0;
                                 _context.next = 3;
-                                return __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get('/api/search/products?query=' + this.query + '&filters[categories]=' + this.categoryId);
+                                return __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get('/api/search/products?query=' + this.query + '&filters[categories]=' + this.categoryId + '&filters[companies]=' + this.companyId);
 
                             case 3:
                                 results = _context.sent;
 
-                                this.products = results.data.results;
-                                _context.next = 10;
+                                console.log(results);
+                                this.products = results.data;
+                                _context.next = 11;
                                 break;
 
-                            case 7:
-                                _context.prev = 7;
+                            case 8:
+                                _context.prev = 8;
                                 _context.t0 = _context['catch'](0);
 
                                 console.log(_context.t0);
 
-                            case 10:
+                            case 11:
                             case 'end':
                                 return _context.stop();
                         }
                     }
-                }, _callee, this, [[0, 7]]);
+                }, _callee, this, [[0, 8]]);
             }));
 
             function displayResults() {
@@ -31439,6 +31464,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
 
 
 
@@ -31453,7 +31480,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     methods: {
         getImage: function getImage() {
             if (this.product.mainImage) {
-                return 'https://sandbox.wizaplace.com/api/v1/image/' + this.product.mainImage.id;
+                return 'https://back.vegan-place.com/api/v1/image/' + this.product.mainImage + '?w=256&h=256';
             }
             return 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg';
         },
@@ -31509,27 +31536,38 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "mx-3 my-6 w-64" }, [
-    _c("img", { staticClass: "w-full", attrs: { src: _vm.getImage() } }),
-    _vm._v(" "),
-    _c("h3", { staticClass: "text-center mt-3" }, [
+  return _c(
+    "div",
+    {
+      staticClass:
+        "mx-8 mt-3 mb-12 w-64 flex flex-col items-center justify-center"
+    },
+    [
+      _c("img", { staticClass: "w-full", attrs: { src: _vm.getImage() } }),
+      _vm._v(" "),
+      _c("div", { staticClass: "my-2 border-b border-grey-light w-5/6" }),
+      _vm._v(" "),
       _c("a", { attrs: { href: "/product/" + _vm.product.productId } }, [
-        _vm._v(_vm._s(_vm.product.name))
-      ])
-    ]),
-    _vm._v(" "),
-    _c(
-      "button",
-      {
-        on: {
-          click: function($event) {
-            _vm.addToCart()
+        _c("h3", { staticClass: "mb-2" }, [_vm._v(_vm._s(_vm.product.name))])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "mb-2" }, [
+        _vm._v(_vm._s(_vm.product.minimumPrice) + "€")
+      ]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          on: {
+            click: function($event) {
+              _vm.addToCart()
+            }
           }
-        }
-      },
-      [_vm._v("Add to cart")]
-    )
-  ])
+        },
+        [_vm._v("Ajouter au panier")]
+      )
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -31778,43 +31816,16 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("h3", [_vm._v("Categories")]),
-      _vm._v(" "),
-      _vm._l(_vm.categories, function(category) {
-        return _c(
-          "category-filters-component",
-          { key: category.category.id, attrs: { category: category } },
-          _vm._l(category.children, function(category) {
-            return category.children
-              ? _c(
-                  "category-filters-component",
-                  {
-                    key: category.category.id,
-                    staticClass: "ml-4",
-                    attrs: { category: category }
-                  },
-                  _vm._l(category.children, function(category) {
-                    return category.children
-                      ? _c("category-filters-component", {
-                          key: category.category.id,
-                          staticClass: "ml-4",
-                          attrs: { category: category }
-                        })
-                      : _vm._e()
-                  })
-                )
-              : _vm._e()
-          })
-        )
-      })
-    ],
-    2
-  )
+  return _vm._m(0)
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [_c("h3", [_vm._v("Categories")])])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -31832,24 +31843,37 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container flex" }, [
-    _c(
-      "div",
-      { staticClass: "w-1/6" },
-      [_c("filters-component", { attrs: { categories: _vm.categoriesList } })],
-      1
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "flex flex-wrap items-start flex-1" },
-      _vm._l(_vm.products, function(product) {
-        return _c("product-component", {
-          key: product.productId,
-          attrs: { product: product }
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "flex" }, [
+      _c(
+        "div",
+        { staticClass: "w-1/6" },
+        [
+          _c("filters-component", {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: _vm.products,
+                expression: "products"
+              }
+            ]
+          })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "flex flex-wrap items-start flex-1" },
+        _vm._l(_vm.products, function(product) {
+          return _c("product-component", {
+            key: product.productId,
+            attrs: { product: product }
+          })
         })
-      })
-    )
+      )
+    ])
   ])
 }
 var staticRenderFns = []
@@ -31972,7 +31996,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             this.getResults();
         },
         // how long to wait for user to stop typing (in ms)
-        200),
+        300),
         getResults: function () {
             var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
                 var results;
@@ -31981,7 +32005,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                         switch (_context.prev = _context.next) {
                             case 0:
                                 _context.next = 2;
-                                return __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get('https://sandbox.wizaplace.com/api/v1/catalog/search/products/autocomplete', {
+                                return __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get('https://back.vegan-place.com/api/v1/catalog/search/products/autocomplete', {
                                     params: {
                                         query: this.query
                                     }
@@ -32031,7 +32055,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "form",
-    { attrs: { action: "/searchbox", method: "GET", autocomplete: "off" } },
+    { attrs: { action: "/search", method: "GET", autocomplete: "off" } },
     [
       _c(
         "div",
@@ -32082,7 +32106,7 @@ var render = function() {
               }
             }),
             _vm._v(" "),
-            _vm.productSuggestions.length > 0
+            _vm.productSuggestions.length > 0 && _vm.query.length > 3
               ? _c("div", { staticClass: "z-50" }, [
                   _c(
                     "ul",
@@ -32220,6 +32244,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
 
 
 
@@ -32288,16 +32314,24 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    _vm._l(_vm.items, function(item) {
-      return _c("div", { staticClass: "flex items-center" }, [
-        _c("h3", { staticClass: "mr-3" }, [_vm._v(_vm._s(item.productName))]),
-        _vm._v(" "),
-        _c("div", [_vm._v(_vm._s(item.quantity))])
-      ])
-    })
-  )
+  return _vm.items.length > 0
+    ? _c(
+        "div",
+        _vm._l(_vm.items, function(item) {
+          return _c("div", { staticClass: "flex items-center" }, [
+            _c("h3", { staticClass: "mr-3" }, [
+              _vm._v(_vm._s(item.productName))
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "mr-3" }, [_vm._v(_vm._s(item.quantity))]),
+            _vm._v(" "),
+            _c("div", { staticClass: "ml-auto" }, [
+              _vm._v(_vm._s(item.totalPrice.priceWithTaxes) + " €")
+            ])
+          ])
+        })
+      )
+    : _c("div", [_vm._v("Votre panier est vide")])
 }
 var staticRenderFns = []
 render._withStripped = true

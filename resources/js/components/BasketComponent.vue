@@ -1,10 +1,12 @@
 <template>
-    <div>
+    <div v-if="items.length > 0">
         <div class="flex items-center" v-for="item in items">
             <h3 class="mr-3">{{ item.productName }}</h3>
-            <div>{{ item.quantity }}</div>
+            <div class="mr-3">{{ item.quantity }}</div>
+            <div class="ml-auto">{{ item.totalPrice.priceWithTaxes }} €</div>
         </div>
     </div>
+    <div v-else>Votre panier est vide</div>
 </template>
 
 <script>

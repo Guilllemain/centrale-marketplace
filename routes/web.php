@@ -17,11 +17,13 @@ Route::get('/', 'HomeController@index');
 
 // Route::get('/search', 'CategoriesController@search');
 
-Route::get('/searchbox', 'Api\SearchController@index');
+Route::get('/search', 'Api\SearchController@index');
 
-Route::get('/product/{id}', 'ProductsController@show');
+Route::get('/product/{category?}/{id}', 'ProductsController@show');
 
 Route::get('/basket/add', 'BasketController@addProduct');
 Route::get('/basket', 'BasketController@index');
+
+Route::get('company/{company}', 'CompaniesController@show');
 
 Route::get('/{category}', 'CategoriesController@show');

@@ -21,7 +21,7 @@
 </head>
 <body>
     <div id="app">
-        <header class="m-6">
+        <header class="p-6 bg-grey-lightest">
             <div class="container">
                 <div class="flex justify-between items-center">
                     <a class="" href="{{ url('/') }}">
@@ -36,13 +36,19 @@
                             <!-- Authentication Links -->
                             @guest
                                 <li class="mr-3">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+
+                                    <a class="flex flex-col items-center" href="{{ route('login') }}">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 24 24">
+                                            <use class="text-orange-dark fill-current" href="{{asset('icons/icons.svg#login')}}"></use>
+                                        </svg>
+                                        <h4 class="font-normal">{{ __('Se connecter') }}</h4>
+                                    </a>
                                 </li>
-                                @if (Route::has('register'))
+                                {{-- @if (Route::has('register'))
                                     <li class="mr-3">
                                         <a class="" href="{{ route('register') }}">{{ __('Register') }}</a>
                                     </li>
-                                @endif
+                                @endif --}}
                             @else
                                 <li class="">
                                     <a class="" href="#" role="button" >
@@ -62,9 +68,16 @@
                                     </div>
                                 </li>
                             @endguest
-                            <li>
-                                <a href="">Mon panier</a>
-                                <basket-component></basket-component>
+                            <li class="basket">
+                                <a class="flex flex-col items-center" href="">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 24 24">
+                                        <use class="text-orange-dark fill-current" href="{{asset('icons/icons.svg#basket')}}"></use>
+                                    </svg>
+                                    <h4 class="font-normal">Mon panier</h4>
+                                </a>
+                                <div class="basket__content">
+                                    <basket-component></basket-component>
+                                </div>
                             </li>
                         </ul>
                     </div>

@@ -48,14 +48,55 @@ a {
     left: 0;
     transform: scaleY(0);
     transform-origin: top;
-    @apply invisible opacity-0 absolute w-full z-50 bg-grey-light px-12 py-4;
+    @apply invisible opacity-0 absolute w-full z-30 bg-white px-12 py-4 flex flex-wrap;
     box-shadow: 0 0px 8px 0 rgba(0,0,0,0.12), 0 0px 4px 0 rgba(0,0,0,0.08);
     transition: transform .4s;
+
+    &-children {
+        font-size: 0.6rem;
+    }
 }
 
 .megamenu__category:hover .megamenu__category-children {
     @apply visible opacity-100;
     transform: scaleY(1);
+}
+
+.title--horizontal-bar {
+    overflow: hidden;
+    text-align: center;
+
+    &::before, &::after {
+        box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+        content: "";
+        display: inline-block;
+        height: 1px;
+        position: relative;
+        vertical-align: middle;
+        width: 50%;
+    }
+    &::before {
+        right: 0.5em;
+        margin-left: -50%;
+    }
+    &::after {
+        left: 0.5em;
+        margin-right: -50%;
+    }
+}
+
+.basket{
+    position: relative;
+
+    &__content {
+        @apply absolute invisible opacity-0 z-50 bg-grey-lightest p-6 rounded shadow-md w-48 pin-r;
+        transition: all .3s;
+    }
+    
+    &:hover &__content {
+        visibility: visible;
+        opacity: 1;
+    }
 }
 
 

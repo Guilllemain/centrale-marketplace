@@ -75,7 +75,6 @@ class BasketService
     private function getBasketId()
     {
         $basketId = $this->getCurrentBasketId();
-
         if ($basketId === null) {
             $this->basket = $this->createEmptyBasket();
             $basketId = $this->basket->id;

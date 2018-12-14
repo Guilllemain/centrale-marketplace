@@ -22,6 +22,7 @@ class SeoService
         $slugs = array_map('strval', $slugs);
 
         $results = $this->client->get('seo/slugs', ['query' => ['slugs' => $slugs]]);
+        $results = json_decode(json_encode($results), true);
 
         return $results;
     }

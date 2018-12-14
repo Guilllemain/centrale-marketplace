@@ -17,12 +17,8 @@ class BasketController extends Controller
 
     public function index()
     {
-        if (!Cache::has('basket')) {
-            $id = session('_basket_id');
-            $basket = $this->basketService->getBasket($id);
-            Cache::add('basket', $basket, 3240);
-        }
-        $basket = Cache::get('basket');
+        $id = session('_basket_id');
+        $basket = $this->basketService->getBasket($id);
         return $basket->toJson();
     }
 
@@ -30,7 +26,6 @@ class BasketController extends Controller
     {
         $declinationId = $request->declinationId;
         $quantity = $request->quantity;
-
         $this->basketService->sendProductToBasket($declinationId, $quantity);
     }
 }

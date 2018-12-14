@@ -578,12 +578,17 @@ a:hover {
   opacity: 0;
   position: absolute;
   width: 100%;
-  z-index: 50;
-  background-color: #dae1e7;
+  z-index: 30;
+  background-color: #fff;
   padding-left: 3rem;
   padding-right: 3rem;
   padding-top: 1rem;
   padding-bottom: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   -webkit-box-shadow: 0 0px 8px 0 rgba(0, 0, 0, .12), 0 0px 4px 0 rgba(0, 0, 0, .08);
           box-shadow: 0 0px 8px 0 rgba(0, 0, 0, .12), 0 0px 4px 0 rgba(0, 0, 0, .08);
   -webkit-transition: -webkit-transform .4s;
@@ -592,11 +597,67 @@ a:hover {
   transition: transform .4s, -webkit-transform .4s;
 }
 
+.megamenu__category-children-children {
+  font-size: .6rem;
+}
+
 .megamenu__category:hover .megamenu__category-children {
   visibility: visible;
   opacity: 1;
   -webkit-transform: scaleY(1);
           transform: scaleY(1);
+}
+
+.title--horizontal-bar {
+  overflow: hidden;
+  text-align: center;
+}
+
+.title--horizontal-bar::before,
+.title--horizontal-bar::after {
+  -webkit-box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, .2);
+          box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, .2);
+  content: "";
+  display: inline-block;
+  height: 1px;
+  position: relative;
+  vertical-align: middle;
+  width: 50%;
+}
+
+.title--horizontal-bar::before {
+  right: .5em;
+  margin-left: -50%;
+}
+
+.title--horizontal-bar::after {
+  left: .5em;
+  margin-right: -50%;
+}
+
+.basket {
+  position: relative;
+}
+
+.basket__content {
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+  z-index: 50;
+  background-color: #f8fafc;
+  padding: 1.5rem;
+  border-radius: .25rem;
+  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .12), 0 2px 4px 0 rgba(0, 0, 0, .08);
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .12), 0 2px 4px 0 rgba(0, 0, 0, .08);
+  width: 12rem;
+  right: 0;
+  -webkit-transition: all .3s;
+  transition: all .3s;
+}
+
+.basket:hover .basket__content {
+  visibility: visible;
+  opacity: 1;
 }
 
 /**
@@ -6303,7 +6364,6 @@ body {
   font-family: 'Lato', sans-serif;
   font-size: .7rem;
   line-height: 1.6;
-  background-color: #f8fafc;
   color: #3d4852;
   font-weight: 400;
 }

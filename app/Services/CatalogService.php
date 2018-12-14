@@ -4,6 +4,10 @@ namespace App\Services;
 
 use App\ApiClient;
 use App\Category;
+use App\CategoryTree;
+use App\Company;
+use App\Product;
+use App\SearchResult;
 use GuzzleHttp\Client;
 use GuzzleHttp\RequestOptions;
 
@@ -21,7 +25,8 @@ class CatalogService
      */
     public function getCategoriesTree()
     {
-        return $this->client->get('catalog/categories/tree');
+        $categoriesTree = $this->client->get('catalog/categories/tree');
+        return CategoryTree::buildCollection($categoriesTree);
     }
 
     /**
@@ -29,7 +34,8 @@ class CatalogService
      */
     public function getCategory(int $id)
     {
-        return $this->client->get("catalog/categories/{$id}");
+        $category = $this->client->get("catalog/categories/{$id}");
+        return new Category($category);
     }
 
     /**
@@ -37,7 +43,10 @@ class CatalogService
      */
     public function getCategories(): array
     {
-        return $this->client->get('catalog/categories');
+        $categories = $this->client->get('catalog/categories');
+        return array_map(static function ($category) {
+            return new Category($category);
+        }, $categories);
     }
 
     /**
@@ -45,18 +54,38 @@ class CatalogService
      */
     public function getProductById($id)
     {
-        return $this->client->get("catalog/products/{$id}");
+        $product = $this->client->get("catalog/products/{$id}");
+        return new Product($product);
     }
 
-    public function search($query = '', $filters = [])
+    public function search($query = '', $filters = [], $sorting = [], $resultsPerPage = 12)
     {
         $query = [
             'query' => $query,
             'filters' => $filters,
+            'sorting' => $sorting,
+            'resultsPerPage' => $resultsPerPage,
         ];
-        return $this->client->get(
+        $results = $this->client->get(
             'catalog/search/products',
             [RequestOptions::QUERY => $query]
         );
+
+        return new SearchResult($results);
+    }
+
+    public function getCompanyById($id)
+    {
+        try {
+            $response = $this->client->get("catalog/companies/{$id}");
+        } catch (ClientException $exception) {
+            if ($exception->getResponse()->getStatusCode() === 404) {
+                throw new NotFound("Company #{$id} not found.", $exception);
+            }
+
+            throw $exception;
+        }
+
+        return new Company($response);
     }
 }

@@ -6,27 +6,35 @@ use Illuminate\Database\Eloquent\Model;
 
 class CategoryTree extends Model
 {
-	private $category;
-	private $children;
-	protected $guarded = [];
+    private $category;
+    private $children;
 
-	public function __construct($data = [])
+    public function __construct($data)
     {
-    	parent::__construct($data);
-        $this->category = new Category((array) $data['category']);
-        $this->children = self::buildCollection((array) $data['children']);
+        $this->category = new Category($data['category']);
+        $this->children = self::buildCollection($data['children']);
     }
 
-    public static function buildCollection($categories)
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    public function getChildren()
+    {
+        return $this->children;
+    }
+
+    public static function buildCollection($data)
     {
         $collection = array_map(static function ($category) {
-            return new self((array) $category);
-        }, $categories);
+            return new self($category);
+        }, $data);
 
         // usort($collection, static function (CategoryTree $itemA, CategoryTree $itemB): int {
         //     return $itemA->getCategory()->getPosition() <=> $itemB->getCategory()->getPosition();
         // });
 
-        // return $collection;
+        return $collection;
     }
 }

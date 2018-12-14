@@ -25,7 +25,7 @@ class CategoriesController extends Controller
 
     public function search($category)
     {
-    	dd($category);
+        dd($category);
         // $selectedCategoryId = $request->query->getInt("category");
         // $selectedCategory = $selectedCategoryId ? $this->catalog->getCategory($selectedCategoryId) : null;
 
@@ -36,23 +36,20 @@ class CategoriesController extends Controller
 
     public function show($slug)
     {
-    	$currentCategory = $this->getCategoryFromSlug($slug);
-    	dd($currentCategory);
-        if (!$currentCategory) {
-            throw $this->createNotFoundException("Category '${slug}' Not Found");
-        }
+        // if (!$currentCategory) {
+        //     throw $this->createNotFoundException("Category '${slug}' Not Found");
+        // }
+        // if ($request->wantsJson()) {
+        // $slug = $request->get('slug');
+        $currentCategory = $this->getCategoryFromSlug($slug);
+        // return json_encode($currentCategory);
+        // }
 
         // $filters = [
         //     'categories' => $currentCategory->getId(),
         // ];
 
-        // $userFavoriteIds = $this->favoriteService->getFavoriteIds();
-
-        // return $this->render('@WizaplaceFront/search/search.html.twig', [
-        //     'currentCategory' => $currentCategory,
-        //     'filters' => $filters,
-        //     'userFavoriteIds' => $userFavoriteIds,
-        // ]);
+        return view('search', compact('currentCategory'));
     }
 
     protected function getCategoryFromSlug($slug)
@@ -61,7 +58,6 @@ class CategoriesController extends Controller
         if (is_null($slugTarget)) {
             return null;
         }
-
         $categoryId = (int) $slugTarget['id'];
 
         return $this->catalog->getCategory($categoryId);

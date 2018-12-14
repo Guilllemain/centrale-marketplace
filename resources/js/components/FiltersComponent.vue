@@ -1,7 +1,7 @@
 <template>
     <div>
         <h3>Categories</h3>
-        <category-filters-component 
+        <!-- <category-filters-component 
             v-for="category in categories"
             :key="category.category.id"
             :category="category">
@@ -19,7 +19,7 @@
                     :category="category">
                 </category-filters-component>
             </category-filters-component>
-        </category-filters-component>
+        </category-filters-component> -->
     </div>
 </template>
 

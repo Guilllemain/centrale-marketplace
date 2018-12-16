@@ -15,7 +15,7 @@ class ProductsController extends Controller
         $this->catalog = $catalog;
     }
 
-    public function show($category = null, $id)
+    public function show($id)
     {
         $product = $this->catalog->getProductById($id);
         // dd($product);

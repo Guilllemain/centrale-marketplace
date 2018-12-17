@@ -70,7 +70,9 @@ class CatalogService
             'catalog/search/products',
             [RequestOptions::QUERY => $query]
         );
-
+        if (request()->wantsJson()) {
+            return $results;
+        }
         return new SearchResult($results);
     }
 

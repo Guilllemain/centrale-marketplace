@@ -34,14 +34,25 @@ class CategoriesController extends Controller
         return view('search');
     }
 
-    public function show($slug)
+    public function show($slug, $subCategory = null, $finalCategory = null, $product = null)
     {
-        // if (!$currentCategory) {
-        //     throw $this->createNotFoundException("Category '${slug}' Not Found");
-        // }
-        // if ($request->wantsJson()) {
-        // $slug = $request->get('slug');
-        $currentCategory = $this->getCategoryFromSlug($slug);
+        if ($subCategory) {
+            $slug = $subCategory;
+            if ($finalCategory) {
+                $slug = $finalCategory;
+            }
+        }
+
+        if (!Cache::has($slug)) {
+            $currentCategory = $this->getCategoryFromSlug($slug);
+            Cache::add($slug, $currentCategory, 3240);
+        }
+        $currentCategory = Cache::get($slug);
+        
+        if (!$currentCategory) {
+            throw $this->createNotFoundException("Category '${slug}' Not Found");
+        }
+
         // return json_encode($currentCategory);
         // }
 

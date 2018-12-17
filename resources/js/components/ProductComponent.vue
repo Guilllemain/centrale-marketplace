@@ -2,7 +2,7 @@
     <div class="mx-8 mt-3 mb-12 w-64 flex flex-col items-center justify-center">
         <img :src="getImage()" class="w-full">
         <div class="my-2 border-b border-grey-light w-5/6"></div>
-        <a :href="`/product/${product.productId}`">
+        <a :href="productPath()">
             <h3 class="mb-2">{{ product.name }}</h3>
         </a>
         <div class="mb-2">{{ product.minimumPrice }}€</div>
@@ -24,9 +24,12 @@
         methods: {
             getImage() {
                 if (this.product.mainImage) {
-                    return `https://back.vegan-place.com/api/v1/image/${this.product.mainImage}?w=256&h=256`
+                    return `https://back.vegan-place.com/api/v1/image/${this.product.mainImage['id']}?w=256&h=256`
                 }
                 return 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg'
+            },
+            productPath() {
+                return `/${this.product.categoryPath[0]['slug']}/${this.product.categoryPath[1]['slug']}/${this.product.categoryPath[2]['slug']}/${this.product.slug}`;
             },
             async addToCart() {
                 try {

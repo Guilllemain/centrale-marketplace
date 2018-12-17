@@ -18,10 +18,8 @@ class SearchController extends Controller
         $query = $request->query->get('query');
         $filters = $request->query->get('filters');
         $results = $this->catalog->search($query, $filters);
-        if ($request->wantsJson()) {
-            return json_encode($results->getProducts());
-        }
-        return view('search');
+        return $results;
+        // return view('search');
     }
 
     public function category(Request $request)

@@ -40,7 +40,6 @@ class CategoriesComposer
             Cache::add('categories', $categories, 3240);
         }
         $categories = Cache::get('categories');
-        // dd(collect($categories));
         $view->with('categories', $categories);
     }
 }

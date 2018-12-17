@@ -31,6 +31,14 @@ Vue.component('basket-component', require('./components/BasketComponent.vue'));
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+var mixin = {
+  methods: {
+    route: route
+  }
+}
+
+
 const app = new Vue({
+    mixins: [mixin],
     el: '#app'
 });

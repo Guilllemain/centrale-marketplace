@@ -1,12 +1,20 @@
 @extends('layouts.app')
 
+@section('css')
+@endsection
+
 @section('content')
     <div class="container mt-16">
         <div class="flex">
             <div class="flex flex-col">
-                @foreach ($product->images as $image)
-                    <img class="mr-12" src="https://back.vegan-place.com/api/v1/image/{{ $image['id'] }}?w=420&h=420">
-                @endforeach
+                <img class="mr-12" src="https://back.vegan-place.com/api/v1/image/{{ $product->images[0]['id'] }}?w=420&h=420">
+                <div class="flex flex-start mt-2">
+                    @foreach ($product->images as $image)
+                        <div class="mr-1 border border-grey-light">
+                            <img class="w-full" src="https://back.vegan-place.com/api/v1/image/{{ $image['id'] }}?w=100&h=100">
+                        </div>
+                    @endforeach
+                </div>
             </div>
             <div>
                 <h3 class="text-lg tracking-wide">{{ $product->name }}</h3>
@@ -21,4 +29,7 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('script')
 @endsection

@@ -6,12 +6,18 @@
             <div class="flex flex-col w-64">
                 <input class="w-128 appearance-none block text-grey-darker py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-grey" type="text" placeholder="Rechercher un produit" name="query" v-model="query" @keyup.esc="query = ''" @keyup="productAutocomplete()">
 
-                <div v-if="productSuggestions.length > 0 && query.length > 3" class="z-50">
-                    <ul class="list-reset absolute bg-white border border-grey-lighter">
+                <div v-if="productSuggestions.length > 0 && query.length > 3" class="search__results z-50 bg-white absolute w-64">
+                   <!--  <ul class="list-reset absolute bg-white border border-grey-lighter">
                         <li v-for="product in productSuggestions">
                             <a :href="`/product/${product.productId}`">{{ product.name }}</a>
                         </li>
-                    </ul>
+                    </ul> -->
+                    <div class="" v-for="product in productSuggestions" class="flex items-center">
+                        <div class="w-1/6 mr-2">
+                            <img class="w-full" :src="getImage(product)">
+                        </div>
+                        <a class="w-5/6" :href="productPath(product)">{{ product.name }}</a>
+                    </div>
                 </div>
             </div>
 
@@ -42,6 +48,19 @@
 
         },
         methods: {
+            getImage(product) {
+                if (product) {
+                    return `https://back.vegan-place.com/api/v1/image/${product.mainImage['id']}?w=256&h=256`
+                }
+                return 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg'
+            },
+            productPath(product) {
+                if(product.categoryPath.length > 2) {
+                    return `/${product.categoryPath[0]['slug']}/${product.categoryPath[1]['slug']}/${product.categoryPath[2]['slug']}/${product.slug}`;
+                } else {
+                    return `/${product.categoryPath[0]['slug']}/${product.categoryPath[1]['slug']}`;
+                }
+            },
             productAutocomplete: _.debounce(function () {
                     this.getResults();
                 },
@@ -68,3 +87,8 @@
         }
     }
 </script>
+<style>
+    .search__results {
+        top: 5rem;
+    }
+</style>

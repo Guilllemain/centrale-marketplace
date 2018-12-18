@@ -22,7 +22,7 @@
 </head>
 <body>
     <div id="app">
-        <header class="p-6 bg-grey-lightest">
+        <header class="p-6">
             <div class="container">
                 <div class="flex justify-between items-center">
                     <a class="" href="{{ url('/') }}">
@@ -88,7 +88,7 @@
 
         @include('partials.nav')
 
-        <main class="">
+        <main>
             @yield('content')
         </main>
     </div>

@@ -4,7 +4,7 @@
 
     <div class="container">
         @isset($currentCategory)
-            <div class="my-4">
+            <div class="py-6">
                 <h1 class="text-center">{{ $currentCategory->name }}</h1>
             </div>
         @endisset

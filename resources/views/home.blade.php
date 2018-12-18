@@ -10,7 +10,7 @@
         <div class="flex mt-6 items-end">
             @foreach($latestProducts as $product)
             {{-- {{dd($product->mainImage)}} --}}
-                <div class="flex flex-col w-1/6 items-center mx-8">
+                <div class="flex flex-col pb-4 w-1/6 items-center mx-8 bg-white shadow">
                     <img class="" src="https://back.vegan-place.com/api/v1/image/{{ $product->mainImage }}?w=230&h=230">
                     <div class="my-2 border-b border-grey-light w-5/6"></div>
                     <a href="{{ route('product.show', [

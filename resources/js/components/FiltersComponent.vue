@@ -1,41 +1,25 @@
 <template>
-    <div>
-        <h3>Categories</h3>
-        <!-- <category-filters-component 
-            v-for="category in categories"
-            :key="category.category.id"
-            :category="category">
-            <category-filters-component
-                class="ml-4"
-                v-if="category.children"
-                v-for="category in category.children"
-                :key="category.category.id"
-                :category="category">
-                <category-filters-component
-                    class="ml-4"
-                    v-if="category.children"
-                    v-for="category in category.children"
-                    :key="category.category.id"
-                    :category="category">
-                </category-filters-component>
-            </category-filters-component>
-        </category-filters-component> -->
-    </div>
+    <el-select v-model="sortingValue" @change="addSorting" placeholder="Trier par..." class="m-3">
+        <el-option value="&sorting[price]=asc" label="Prix croissant">Prix croissant</el-option>
+        <el-option value="&sorting[price]=desc" label="Prix décroissant">Prix décroissant</el-option>
+        <el-option value="&sorting[createdAt]=asc" label="Les plus récents">Les plus récents</el-option>
+        <el-option value="&sorting[createdAt]=desc" label="Les plus anciens">Les plus anciens</el-option>
+    </el-select>
 </template>
 
 <script>
-    import CategoryFiltersComponent from './CategoryFiltersComponent';
-
     export default {
         props: {
-            categories: Array
         },
-        components: {CategoryFiltersComponent},
         data() {
             return {
+                sortingValue: ''
             }
         },
         methods: {
+            addSorting() {
+                this.$emit('addSorting', this.sortingValue);
+            }
         }
     }
 </script>

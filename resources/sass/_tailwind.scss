@@ -99,6 +99,13 @@ a {
     }
 }
 
+.search__products {
+    display: grid;
+    align-content: start;
+    justify-items: start;
+    grid-template-columns: 25% 25% 25% 25%;
+}
+
 
 /**
  * This injects all of Tailwind's utility classes, generated based on your

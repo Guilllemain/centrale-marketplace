@@ -58,12 +58,13 @@ class CatalogService
         return new Product($product);
     }
 
-    public function search($query = '', $filters = [], $sorting = [], $resultsPerPage = 12)
+    public function search($query = '', $filters = [], $sorting = [], $page = 1, $resultsPerPage = 12)
     {
         $query = [
             'query' => $query,
             'filters' => $filters,
             'sorting' => $sorting,
+            'page' => $page,
             'resultsPerPage' => $resultsPerPage,
         ];
         $results = $this->client->get(

@@ -4,11 +4,15 @@
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
-
 require('./bootstrap');
+
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
 
 window.Vue = require('vue');
 window.Event = new Vue();
+window.Vue.use(ElementUI);
+
 
 /**
  * The following block of code may be used to automatically register your
@@ -21,9 +25,9 @@ window.Event = new Vue();
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key)))
 
-Vue.component('search-component', require('./components/SearchComponent.vue'));
-Vue.component('search-box-component', require('./components/SearchBoxComponent.vue'));
-Vue.component('basket-component', require('./components/BasketComponent.vue'));
+Vue.component('search-component', require('./components/SearchComponent.vue').default);
+Vue.component('search-box-component', require('./components/SearchBoxComponent.vue').default);
+Vue.component('basket-component', require('./components/BasketComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

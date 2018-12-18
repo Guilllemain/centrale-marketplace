@@ -15,11 +15,16 @@ class SearchController extends Controller
 
     public function index(Request $request)
     {
-        $query = $request->query->get('query');
-        $filters = $request->query->get('filters');
-        $results = $this->catalog->search($query, $filters);
-        return $results;
-        // return view('search');
+        if ($request->wantsJson()) {
+            $query = $request->query->get('query');
+            $filters = $request->query->get('filters');
+            $sorting = $request->query->get('sorting');
+            $page = $request->query->get('page');
+            $resultsPerPage = $request->query->get('resultsPerPage');
+            $results = $this->catalog->search($query, $filters, $sorting, $page, $resultsPerPage);
+            return $results;
+        }
+        return view('search');
     }
 
     public function category(Request $request)

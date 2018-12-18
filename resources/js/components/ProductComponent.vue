@@ -1,9 +1,9 @@
 <template>
-    <div class="mx-8 mt-3 mb-12 w-64 flex flex-col items-center justify-center">
+    <div class="list-product m-3 flex flex-col items-center justify-center bg-white pb-4 shadow">
         <img :src="getImage()" class="w-full">
         <div class="my-2 border-b border-grey-light w-5/6"></div>
-        <a :href="productPath()">
-            <h3 class="mb-2">{{ product.name }}</h3>
+        <a :href="productPath()" class="px-2 mb-2">
+            <h3>{{ product.name }}</h3>
         </a>
         <div class="mb-2">{{ product.minimumPrice }}€</div>
         <button @click="addToCart()">Ajouter au panier</button>
@@ -15,7 +15,10 @@
 
     export default {
         props: {
-            product: Object
+            product: {
+                type: Object,
+                required: true
+            }
         },
         data() {
             return {
@@ -29,7 +32,11 @@
                 return 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg'
             },
             productPath() {
-                return `/${this.product.categoryPath[0]['slug']}/${this.product.categoryPath[1]['slug']}/${this.product.categoryPath[2]['slug']}/${this.product.slug}`;
+                if(this.product.categoryPath.length > 2) {
+                    return `/${this.product.categoryPath[0]['slug']}/${this.product.categoryPath[1]['slug']}/${this.product.categoryPath[2]['slug']}/${this.product.slug}`;
+                } else {
+                    return `/${this.product.categoryPath[0]['slug']}/${this.product.categoryPath[1]['slug']}`;
+                }
             },
             async addToCart() {
                 try {
@@ -47,3 +54,13 @@
         }
     }
 </script>
+
+<style scoped>
+    .list-product {
+        transition: all .3s;
+    }
+
+    .list-product:hover {
+        transform: scale(1.05);
+    }
+</style>

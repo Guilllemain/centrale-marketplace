@@ -3,7 +3,13 @@
         <div class="flex">
             <div class="w-1/5">
                 <!-- <filters-component v-show="products"></filters-component> -->
-                <facets-component v-for="(facet, index) in facets" :facet="facet" :key="index" @addFacet="addFacet"></facets-component>
+                <facets-component v-for="(facet, index) in facets"
+                                :facet="facet"
+                                :key="index"
+                                @addFacet="addFacet"
+                                @deleteFacet="deleteFacet"
+                                @updatePriceRange="updatePrice">
+                </facets-component>
             </div>
             <div class="w-4/5">
                 <div class="flex justify-end items-center">
@@ -47,6 +53,7 @@
                 facets: [],
                 pagination: {},
                 page: 1,
+                price: '',
                 resultsPerPage: 12,
                 selectedFacets: [],
                 selectedSorting: ''
@@ -80,19 +87,29 @@
                 if(this.selectedSorting) url.push(this.selectedSorting);
 
                 if(this.selectedFacets.length > 0) {
-                    this.selectedFacets.forEach(facet => url.push(`&filters[${facet.name}]=${facet.value}`))
+                    this.selectedFacets.forEach(facet => url.push(`&filters[${facet.name}][]=${facet.value}`))
                 }
+
+                if(this.price) url.push(`&filters[price][min]=${this.price.min}&filters[price][max]=${this.price.max}`)
 
                 return url.join('');
             }
         },
         methods: {
+            updatePrice(event) {
+                this.price = event;
+                this.displayResults();
+            },
             updatePage(event) {
                 this.page = event;
                 this.displayResults();
             },
             addFacet(event) {
                 this.selectedFacets.push(event);
+                this.displayResults();
+            },
+            deleteFacet(event) {
+                this.selectedFacets.splice(event);
                 this.displayResults();
             },
             addSorting(event) {
@@ -102,7 +119,6 @@
             async displayResults() {
                 try {
                     const results = await axios.get(this.baseUri);
-                    console.log(results.data)
                     this.products = results.data.results;
                     this.filterFacets(results.data.facets);
                     this.pagination = results.data.pagination;

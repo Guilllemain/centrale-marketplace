@@ -4301,6 +4301,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     facet: {
@@ -4314,11 +4320,24 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    addFacet: function addFacet(index) {
-      this.$emit('addFacet', {
-        name: this.facet.name,
-        value: index
+    changePrice: function changePrice(event) {
+      this.$emit('updatePriceRange', {
+        min: event[0],
+        max: event[1]
       });
+    },
+    addFacet: function addFacet(index) {
+      if (this.$refs["checkbox-".concat(index)][0].checked) {
+        this.$emit('addFacet', {
+          name: this.facet.name,
+          value: index
+        });
+      } else {
+        this.$emit('deleteFacet', {
+          name: this.facet.name,
+          value: index
+        });
+      }
     }
   }
 });
@@ -4740,6 +4759,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -4771,6 +4796,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       facets: [],
       pagination: {},
       page: 1,
+      price: '',
       resultsPerPage: 12,
       selectedFacets: [],
       selectedSorting: ''
@@ -4804,20 +4830,29 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       if (this.selectedFacets.length > 0) {
         this.selectedFacets.forEach(function (facet) {
-          return url.push("&filters[".concat(facet.name, "]=").concat(facet.value));
+          return url.push("&filters[".concat(facet.name, "][]=").concat(facet.value));
         });
       }
 
+      if (this.price) url.push("&filters[price][min]=".concat(this.price.min, "&filters[price][max]=").concat(this.price.max));
       return url.join('');
     }
   },
   methods: {
+    updatePrice: function updatePrice(event) {
+      this.price = event;
+      this.displayResults();
+    },
     updatePage: function updatePage(event) {
       this.page = event;
       this.displayResults();
     },
     addFacet: function addFacet(event) {
       this.selectedFacets.push(event);
+      this.displayResults();
+    },
+    deleteFacet: function deleteFacet(event) {
+      this.selectedFacets.splice(event);
       this.displayResults();
     },
     addSorting: function addSorting(event) {
@@ -4839,24 +4874,23 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 3:
                 results = _context.sent;
-                console.log(results.data);
                 this.products = results.data.results;
                 this.filterFacets(results.data.facets);
                 this.pagination = results.data.pagination;
-                _context.next = 13;
+                _context.next = 12;
                 break;
 
-              case 10:
-                _context.prev = 10;
+              case 9:
+                _context.prev = 9;
                 _context.t0 = _context["catch"](0);
                 console.log(_context.t0);
 
-              case 13:
+              case 12:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, this, [[0, 10]]);
+        }, _callee, this, [[0, 9]]);
       }));
 
       function displayResults() {
@@ -69765,109 +69799,105 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _vm.facet.label !== "Prix"
-      ? _c("div", { staticClass: "mt-4 mb-4" }, [
-          _c("div", { staticClass: "flex items-center" }, [
-            _c(
-              "h3",
-              {
-                staticClass: "mb-1 cursor-pointer",
-                on: {
-                  click: function($event) {
-                    _vm.showFacet = !_vm.showFacet
-                  }
-                }
-              },
-              [_vm._v(_vm._s(_vm.facet.label))]
-            ),
-            _vm._v(" "),
-            _c("span", [
-              _c(
-                "svg",
-                {
-                  staticClass: "h-4 w-4",
-                  attrs: {
-                    xmlns: "http://www.w3.org/2000/svg",
-                    viewBox: "0 0 24 24"
-                  }
-                },
-                [
-                  !_vm.showFacet
-                    ? _c("use", { attrs: { href: "/svg/icons.svg#arrow-up" } })
-                    : _c("use", {
-                        attrs: { href: "/svg/icons.svg#arrow-down" }
-                      })
-                ]
-              )
-            ])
-          ]),
-          _vm._v(" "),
+    _c("div", { staticClass: "mt-4 mb-4" }, [
+      _c("div", { staticClass: "flex items-center" }, [
+        _c(
+          "h3",
+          {
+            staticClass: "mb-1 cursor-pointer",
+            on: {
+              click: function($event) {
+                _vm.showFacet = !_vm.showFacet
+              }
+            }
+          },
+          [_vm._v(_vm._s(_vm.facet.label))]
+        ),
+        _vm._v(" "),
+        _c("span", [
           _c(
-            "div",
+            "svg",
             {
-              directives: [
-                {
-                  name: "show",
-                  rawName: "v-show",
-                  value: _vm.showFacet,
-                  expression: "showFacet"
-                }
-              ],
-              staticClass: "mx-2"
+              staticClass: "h-4 w-4",
+              attrs: {
+                xmlns: "http://www.w3.org/2000/svg",
+                viewBox: "0 0 24 24"
+              }
             },
+            [
+              !_vm.showFacet
+                ? _c("use", { attrs: { href: "/svg/icons.svg#arrow-up" } })
+                : _c("use", { attrs: { href: "/svg/icons.svg#arrow-down" } })
+            ]
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _vm.facet.name !== "price"
+        ? _c(
+            "div",
             _vm._l(_vm.facet.values, function(value, index) {
               return _c(
-                "a",
+                "div",
                 {
-                  key: index,
-                  staticClass: "block",
-                  on: {
-                    click: function($event) {
-                      _vm.addFacet(index)
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.showFacet,
+                      expression: "showFacet"
                     }
-                  }
+                  ],
+                  key: index,
+                  staticClass: "mx-2"
                 },
                 [
-                  _vm._v(_vm._s(value.label) + "\n                "),
-                  _c("span", { staticClass: "pl-1" }, [
-                    _vm._v("(" + _vm._s(value.count) + ")")
+                  _c("label", { staticClass: "cursor-pointer" }, [
+                    _c("input", {
+                      ref: "checkbox-" + index,
+                      refInFor: true,
+                      staticClass: "mr-1",
+                      attrs: { type: "checkbox" },
+                      on: {
+                        change: function($event) {
+                          _vm.addFacet(index)
+                        }
+                      }
+                    }),
+                    _vm._v(_vm._s(value.label)),
+                    _c("span", { staticClass: "pl-1" }, [
+                      _vm._v("(" + _vm._s(value.count) + ")")
+                    ])
                   ])
                 ]
               )
             }),
             0
           )
-        ])
-      : _c(
-          "div",
-          [
-            _c(
-              "h3",
-              {
-                staticClass: "mb-1 cursor-pointer",
-                on: {
-                  click: function($event) {
-                    _vm.showFacet = !_vm.showFacet
+        : _c(
+            "div",
+            { staticClass: "mx-2" },
+            [
+              _c("el-slider", {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: _vm.showFacet,
+                    expression: "showFacet"
                   }
-                }
-              },
-              [_vm._v(_vm._s(_vm.facet.label))]
-            ),
-            _vm._v(" "),
-            _c("el-slider", {
-              directives: [
-                {
-                  name: "show",
-                  rawName: "v-show",
-                  value: _vm.showFacet,
-                  expression: "showFacet"
-                }
-              ],
-              attrs: { range: "", max: _vm.facet.values.max }
-            })
-          ],
-          1
-        )
+                ],
+                attrs: {
+                  range: "",
+                  min: _vm.facet.values.min,
+                  max: _vm.facet.values.max
+                },
+                on: { change: _vm.changePrice }
+              })
+            ],
+            1
+          )
+    ])
   ])
 }
 var staticRenderFns = []
@@ -70228,7 +70258,11 @@ var render = function() {
             return _c("facets-component", {
               key: index,
               attrs: { facet: facet },
-              on: { addFacet: _vm.addFacet }
+              on: {
+                addFacet: _vm.addFacet,
+                deleteFacet: _vm.deleteFacet,
+                updatePriceRange: _vm.updatePrice
+              }
             })
           }),
           1
@@ -82194,8 +82228,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/yann/code/centrale-marketplace/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/yann/code/centrale-marketplace/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/yguillemain/Desktop/code/centrale-marketplace/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/yguillemain/Desktop/code/centrale-marketplace/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

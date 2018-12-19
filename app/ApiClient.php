@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\ApiKey;
 use GuzzleHttp\Client;
 
 class ApiClient
@@ -16,6 +17,38 @@ class ApiClient
         ]);
 
         return $client;
+    }
+
+    public function authenticate(string $email, string $password): ApiKey
+    {
+        try {
+            $apiKeyData = $this->get(
+                'users/authenticate',
+                [
+                    'auth' => [$email, $password],
+                ]
+            );
+        } catch (ClientException $error) {
+            if ($error->getResponse()->getStatusCode() === 401) {
+                throw new BadCredentials($error);
+            }
+            throw $error;
+        }
+
+        $apiKey = new ApiKey($apiKeyData);
+        $this->setApiKey($apiKey);
+
+        return $apiKey;
+    }
+
+    public function setApiKey(?ApiKey $apiKey = null): void
+    {
+        $this->apiKey = $apiKey;
+    }
+
+    public function getApiKey(): ?ApiKey
+    {
+        return $this->apiKey;
     }
 
     public function get($endpoint, $options = [])

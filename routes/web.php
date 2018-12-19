@@ -10,6 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+// Route::post('/authenticate', 'Auth\LoginController@authenticate');
 
 Auth::routes();
 

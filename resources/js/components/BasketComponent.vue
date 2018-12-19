@@ -20,7 +20,7 @@
             }
         },
         mounted() {
-            this.getBasket();
+            // this.getBasket();
         },
         methods: {
             async getBasket() {

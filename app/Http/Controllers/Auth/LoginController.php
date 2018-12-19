@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Services\AuthService;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -20,6 +23,7 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
+    protected $authService;
     /**
      * Where to redirect users after login.
      *
@@ -32,8 +36,30 @@ class LoginController extends Controller
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(AuthService $authService)
     {
         $this->middleware('guest')->except('logout');
+        $this->authService = $authService;
+    }
+
+    public function login(Request $request)
+    {
+        $this->validateLogin($request);
+
+        $email = $request->email;
+        $password = $request->password;
+        $credentials = $request->only('email', 'password');
+        $this->authService->authenticateUser($email, $password);
+        if (Auth::guard()->attempt($credentials)) {
+            dd('hello');
+        }
+    }
+
+    protected function validateLogin(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|string',
+            'password' => 'required|string',
+        ]);
     }
 }

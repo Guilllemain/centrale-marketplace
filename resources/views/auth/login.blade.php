@@ -5,13 +5,14 @@
     <div class="flex">
         <div class="w-1/2 m-8">
             <h1 class="text-grey-darkest text-2xl pb-6">Déjà inscrit ?</h1>
-            <form method="post" action="{{ route('login') }}">
+            <form method="POST" action="{{ route('login') }}">
+                @csrf
                 <div class="pb-4">
-                    <input type="email" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:shadow-outline" placeholder="Votre adresse email" required>
+                    <input type="email" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:shadow-outline" name="email" placeholder="Votre adresse email" required>
                 </div>
 
                 <div class="pb-2">
-                    <input type="password" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:shadow-outline" placeholder="Votre mot de passe" required>
+                    <input type="password" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:shadow-outline" name="password" placeholder="Votre mot de passe" required>
                 </div>
 
                 <div class="pb-4">
@@ -26,7 +27,7 @@
         <div class="my-8 border-r border-grey-light"></div>
         <div class="w-1/2 m-8">
             <h1 class="text-grey-darkest text-2xl pb-6">Pas encore inscrit ?</h1>
-            <form method="post" action="{{ route('register') }}">
+            <form method="POST" action="{{ route('register') }}">
                 <div class="pb-4">
                     <input type="email" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:shadow-outline" placeholder="Votre adresse email" required>
                 </div>

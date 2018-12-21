@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use Illuminate\Auth\Events\Registered;
 use App\Services\UserService;
+use App\Services\AuthService;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
@@ -21,10 +24,12 @@ class RegisterController extends Controller
     | provide this functionality without requiring any additional code.
     |
     */
-
+   
+    use RedirectsUsers;
     use RegistersUsers;
 
     protected $userService;
+    protected $authService;
 
     /**
      * Where to redirect users after registration.
@@ -38,10 +43,11 @@ class RegisterController extends Controller
      *
      * @return void
      */
-    public function __construct(UserService $userService)
+    public function __construct(UserService $userService, AuthService $authService)
     {
         $this->userService = $userService;
         $this->middleware('guest');
+        $this->authService = $authService;
     }
 
     /**
@@ -67,11 +73,8 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
+        $user = new User($data);
+        return $user;
     }
 
     public function register(Request $request)
@@ -83,8 +86,16 @@ class RegisterController extends Controller
 
         $this->userService->register($email, $password);
 
-        $this->guard()->login($email, $password);
+        $key = $this->authService->authenticateUser($email, $password);
 
-        return redirect($this->redirectPath());
+        event(new Registered($user = $this->create([
+            'id' => $key->id,
+            'apiKey'=> $key->apiKey,
+            'email' => $email,
+        ])));
+
+        $this->guard()->login($user);
+
+        return $this->registered($request, $user) ?: redirect($this->redirectPath());
     }
 }

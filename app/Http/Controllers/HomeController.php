@@ -29,6 +29,8 @@ class HomeController extends Controller
      */
     public function index()
     {
+        // session()->flush();
+        dd(session());
         if (!Cache::has('latestProducts')) {
             $latestProducts = $this->getLatestProducts()->getProducts();
             Cache::add('latestProducts', $latestProducts, 3240);
@@ -43,6 +45,6 @@ class HomeController extends Controller
             return [];
         }
 
-        return $this->catalog->search('', [], ['createdAt' => 'desc'], $maxProductCount);
+        return $this->catalog->search('', [], ['createdAt' => 'desc'], '', $maxProductCount);
     }
 }

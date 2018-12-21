@@ -31,8 +31,8 @@ class UserService
                     RequestOptions::FORM_PARAMS => [
                         'email' => $email,
                         'password' => $password,
-                        'firstName' => $firstName,
-                        'lastName' => $lastName,
+                        // 'firstName' => $firstName,
+                        // 'lastName' => $lastName,
                     ],
                 ]
             );
@@ -40,6 +40,6 @@ class UserService
             throw $error;
         }
 
-        return $userData['id'];
+        return $userData->id;
     }
 }

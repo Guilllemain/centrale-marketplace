@@ -62,4 +62,13 @@ class LoginController extends Controller
             'password' => 'required|string',
         ]);
     }
+
+    public function logout(Request $request)
+    {
+        $this->guard()->logout();
+
+        $request->session()->invalidate();
+
+        return redirect('/');
+    }
 }

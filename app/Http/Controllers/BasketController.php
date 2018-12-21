@@ -17,9 +17,9 @@ class BasketController extends Controller
 
     public function index()
     {
-        $id = session('_basket_id');
-        $basket = $this->basketService->getBasket($id);
-        return $basket->toJson();
+        // $id = session('_basket_id');
+        // $basket = $this->basketService->getBasket($id);
+        // return $basket->toJson();
     }
 
     public function addProduct(Request $request)

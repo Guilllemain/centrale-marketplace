@@ -7,6 +7,9 @@ use GuzzleHttp\Client;
 
 class ApiClient
 {
+    private $apiKey;
+    private $applicationToken;
+
     private function initClient()
     {
         $client = new Client([
@@ -54,8 +57,7 @@ class ApiClient
     public function get($endpoint, $options = [])
     {
         return json_decode(
-            $this->initClient()
-                 ->request('GET', $endpoint, $options)
+            $this->rawRrequest('GET', $endpoint, $options)
                  ->getBody()
                  ->getContents(),
             true
@@ -65,10 +67,37 @@ class ApiClient
     public function post($endpoint, $options = [])
     {
         return json_decode(
-            $this->initClient()
-                 ->request('POST', $endpoint, $options)
+            $this->rawRrequest('POST', $endpoint, $options)
                  ->getBody()
                  ->getContents()
             );
+    }
+
+    public function rawRequest(string $method, $uri, array $options = [])
+    {
+        $options[RequestOptions::HEADERS]['User-Agent'] = 'Wizaplace-PHP-SDK/';
+
+        try {
+            return $this->initClient()->request($method, $uri, $this->addAuth($options));
+        } catch (BadResponseException $e) {
+            $domainError = $this->extractDomainErrorFromGuzzleException($e);
+            if ($domainError !== null) {
+                throw $domainError;
+            }
+
+            throw $e;
+        }
+    }
+
+    private function addAuth(array $options): array
+    {
+        if (!is_null($this->apiKey)) {
+            $options['headers']['Authorization'] = 'token '.$this->apiKey->getKey();
+        }
+        if (!is_null($this->applicationToken)) {
+            $options['headers']['Application-Token'] = $this->applicationToken;
+        }
+
+        return $options;
     }
 }

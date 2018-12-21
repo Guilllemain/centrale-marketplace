@@ -16,8 +16,6 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 
-// Route::get('/search', 'CategoriesController@search');
-
 Route::get('/search', 'Api\SearchController@index');
 
 Route::get('/product/{id}', 'ProductsController@show')->name('test.show');

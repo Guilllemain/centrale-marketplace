@@ -94,7 +94,7 @@ class RegisterController extends Controller
             'email' => $email,
         ])));
 
-        $this->guard()->login($user);
+        Auth::login($user);
 
         return $this->registered($request, $user) ?: redirect($this->redirectPath());
     }

@@ -49,10 +49,18 @@ class LoginController extends Controller
         $email = $request->email;
         $password = $request->password;
         $credentials = $request->only('email', 'password');
-        $this->authService->authenticateUser($email, $password);
-        if (Auth::guard()->attempt($credentials)) {
-            dd('hello');
+        $apiKey = $this->authService->authenticateUser($email, $password);
+
+        if($apiKey) {
+            $request->session()->put('authenticated', time());
         }
+
+        dd(session());
+
+        return redirect()->intended('/');
+        // if ($this->attemptLogin($request)) {
+        //     return $this->sendLoginResponse($request);
+        // }
     }
 
     protected function validateLogin(Request $request)

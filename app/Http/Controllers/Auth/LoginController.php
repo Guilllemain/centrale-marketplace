@@ -29,7 +29,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -51,11 +51,9 @@ class LoginController extends Controller
         $credentials = $request->only('email', 'password');
         $apiKey = $this->authService->authenticateUser($email, $password);
 
-        if($apiKey) {
-            $request->session()->put('authenticated', time());
+        if ($apiKey) {
+            $request->session()->put('authenticated', $apiKey->apiKey);
         }
-
-        dd(session());
 
         return redirect()->intended('/');
         // if ($this->attemptLogin($request)) {

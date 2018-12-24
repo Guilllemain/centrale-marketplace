@@ -34,8 +34,10 @@
             productPath() {
                 if(this.product.categoryPath.length > 2) {
                     return `/${this.product.categoryPath[0]['slug']}/${this.product.categoryPath[1]['slug']}/${this.product.categoryPath[2]['slug']}/${this.product.slug}`;
-                } else {
+                } else if (this.product.categoryPath.length > 1){
                     return `/${this.product.categoryPath[0]['slug']}/${this.product.categoryPath[1]['slug']}`;
+                } else {
+                    return `/${this.product.categoryPath[0]['slug']}`;
                 }
             },
             async addToCart() {

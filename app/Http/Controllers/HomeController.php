@@ -29,7 +29,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // session()->flush();
         // dd(session());
         if (!Cache::has('latestProducts')) {
             $latestProducts = $this->getLatestProducts()->getProducts();

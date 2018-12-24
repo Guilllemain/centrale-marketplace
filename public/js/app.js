@@ -4527,8 +4527,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     productPath: function productPath() {
       if (this.product.categoryPath.length > 2) {
         return "/".concat(this.product.categoryPath[0]['slug'], "/").concat(this.product.categoryPath[1]['slug'], "/").concat(this.product.categoryPath[2]['slug'], "/").concat(this.product.slug);
-      } else {
+      } else if (this.product.categoryPath.length > 1) {
         return "/".concat(this.product.categoryPath[0]['slug'], "/").concat(this.product.categoryPath[1]['slug']);
+      } else {
+        return "/".concat(this.product.categoryPath[0]['slug']);
       }
     },
     addToCart: function () {

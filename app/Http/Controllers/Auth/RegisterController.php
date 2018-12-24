@@ -11,6 +11,7 @@ use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {
@@ -25,7 +26,6 @@ class RegisterController extends Controller
     |
     */
    
-    use RedirectsUsers;
     use RegistersUsers;
 
     protected $userService;
@@ -36,7 +36,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -88,14 +88,15 @@ class RegisterController extends Controller
 
         $key = $this->authService->authenticateUser($email, $password);
 
-        event(new Registered($user = $this->create([
+        $user = $this->create([
             'id' => $key->id,
             'apiKey'=> $key->apiKey,
             'email' => $email,
-        ])));
+        ]);
 
-        Auth::login($user);
+        session('authenticated', $user->apiKey);
 
+        // return redirect('/');
         return $this->registered($request, $user) ?: redirect($this->redirectPath());
     }
 }

@@ -11,17 +11,16 @@ class ApiClient
 {
     private $apiKey;
     private $applicationToken;
+    // private $client;
+
+    // public function __construct(Client $client)
+    // {
+    //     $this->client = new Client(['base_uri' => config('marketplace.base_uri')]);
+    // }
 
     private function initClient()
     {
-        $client = new Client([
-            // Base URI is used with relative requests
-            'base_uri' => config('marketplace.base_uri'),
-            // You can set any number of default request options.
-            'timeout'  => 4.0,
-        ]);
-
-        return $client;
+        return new Client(['base_uri' => config('marketplace.base_uri')]);
     }
 
     public function authenticate(string $email, string $password): ApiKey
@@ -77,7 +76,6 @@ class ApiClient
 
     public function rawRequest(string $method, $uri, array $options = [])
     {
-
         $options[RequestOptions::HEADERS]['User-Agent'] = 'Wizaplace-PHP-SDK';
 
         try {

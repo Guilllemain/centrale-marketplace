@@ -2,7 +2,7 @@
 
 @section('content')
 <div>
-    <img class="w-full" src="{{ asset('main.jpg') }}">
+    <img class="w-full" src="{{ asset('main.jpg') }}" style="margin-top: -4rem;">
     
     <div class="my-16 mx-32">
         <h1 class="title--horizontal-bar uppercase">Nouveautés</h1>

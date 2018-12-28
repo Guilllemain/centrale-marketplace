@@ -11,16 +11,11 @@ class ApiClient
 {
     private $apiKey;
     private $applicationToken;
-    // private $client;
+    private $client;
 
-    // public function __construct(Client $client)
-    // {
-    //     $this->client = new Client(['base_uri' => config('marketplace.base_uri')]);
-    // }
-
-    private function initClient()
+    public function __construct(Client $client)
     {
-        return new Client(['base_uri' => config('marketplace.base_uri')]);
+        $this->client = $client;
     }
 
     public function authenticate(string $email, string $password): ApiKey
@@ -70,6 +65,16 @@ class ApiClient
         return json_decode(
             $this->rawRequest('POST', $endpoint, $options)
                  ->getBody()
+                 ->getContents(),
+            true
+            );
+    }
+
+    public function put($endpoint, $options = [])
+    {
+        return json_decode(
+            $this->rawRequest('PUT', $endpoint, $options)
+                 ->getBody()
                  ->getContents()
             );
     }
@@ -79,7 +84,7 @@ class ApiClient
         $options[RequestOptions::HEADERS]['User-Agent'] = 'Wizaplace-PHP-SDK';
 
         try {
-            return $this->initClient()->request($method, $uri, $this->addAuth($options));
+            return $this->client->request($method, $uri, $this->addAuth($options));
         } catch (BadResponseException $e) {
             $domainError = $this->extractDomainErrorFromGuzzleException($e);
             if ($domainError !== null) {
@@ -92,9 +97,12 @@ class ApiClient
 
     private function addAuth(array $options): array
     {
-        if ($this->apiKey) {
-            $options['headers']['Authorization'] = 'token '.$this->apiKey->getKey();
+        if (session('authenticated')) {
+            $options['headers']['Authorization'] = 'token '. session()->get('authenticated')['key'];
         }
+        // if ($this->apiKey) {
+        //     $options['headers']['Authorization'] = 'token '.$this->apiKey->getKey();
+        // }
         if ($this->applicationToken) {
             $options['headers']['Application-Token'] = $this->applicationToken;
         }

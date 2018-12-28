@@ -52,7 +52,7 @@ class LoginController extends Controller
         $apiKey = $this->authService->authenticateUser($email, $password);
 
         if ($apiKey) {
-            $request->session()->put('authenticated', $apiKey->apiKey);
+            $request->session()->put('authenticated', ['id' => $apiKey->id, 'key' => $apiKey->apiKey]);
         }
 
         return redirect()->intended('/');
@@ -71,8 +71,6 @@ class LoginController extends Controller
 
     public function logout(Request $request)
     {
-        $this->guard()->logout();
-
         $request->session()->invalidate();
 
         return redirect('/');

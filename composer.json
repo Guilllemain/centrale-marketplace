@@ -12,8 +12,10 @@
         "fideloper/proxy": "^4.0",
         "guzzlehttp/guzzle": "~6.0",
         "intervention/image": "^2.4",
+        "kevinrob/guzzle-cache-middleware": "^3.2",
         "laravel/framework": "5.7.*",
         "laravel/tinker": "^1.0",
+        "symfony/cache": "^4.2",
         "tightenco/ziggy": "^0.6.9"
     },
     "require-dev": {

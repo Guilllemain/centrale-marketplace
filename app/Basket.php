@@ -114,4 +114,9 @@ class Basket extends Model
     //         'isPickupPointsShipping' => false,
     //     ]);
     // }
+
+    public function getCompanies()
+    {
+        return $this->companyGroups;
+    }
 }

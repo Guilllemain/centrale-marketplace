@@ -4204,6 +4204,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -4212,7 +4213,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       items: []
     };
   },
-  mounted: function mounted() {// this.getBasket();
+  mounted: function mounted() {
+    this.getBasket(); // Event.$on('addItemToCart', () => this.getBasket());
   },
   methods: {
     getBasket: function () {
@@ -69760,20 +69762,34 @@ var render = function() {
   return _vm.items.length > 0
     ? _c(
         "div",
-        _vm._l(_vm.items, function(item) {
-          return _c("div", { staticClass: "flex items-center" }, [
-            _c("h3", { staticClass: "mr-3" }, [
-              _vm._v(_vm._s(item.productName))
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "mr-3" }, [_vm._v(_vm._s(item.quantity))]),
-            _vm._v(" "),
-            _c("div", { staticClass: "ml-auto" }, [
-              _vm._v(_vm._s(item.totalPrice.priceWithTaxes) + " €")
+        [
+          _vm._l(_vm.items, function(item) {
+            return _c("div", { staticClass: "flex items-center" }, [
+              _c("h3", { staticClass: "mr-3" }, [
+                _vm._v(_vm._s(item.productName))
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "mr-3" }, [
+                _vm._v(_vm._s(item.quantity))
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "ml-auto" }, [
+                _vm._v(_vm._s(item.totalPrice.priceWithTaxes) + " €")
+              ])
             ])
-          ])
-        }),
-        0
+          }),
+          _vm._v(" "),
+          _c(
+            "a",
+            {
+              staticClass:
+                "mt-2 block text-center bg-blue hover:bg-blue-dark hover:text-white text-white font-bold py-3 px-4 rounded",
+              attrs: { href: "/basket" }
+            },
+            [_vm._v("Voir mon panier")]
+          )
+        ],
+        2
       )
     : _c("div", [_vm._v("Votre panier est vide")])
 }
@@ -70060,17 +70076,9 @@ var render = function() {
         _vm._v(_vm._s(_vm.product.minimumPrice) + "€")
       ]),
       _vm._v(" "),
-      _c(
-        "button",
-        {
-          on: {
-            click: function($event) {
-              _vm.addToCart()
-            }
-          }
-        },
-        [_vm._v("Ajouter au panier")]
-      )
+      _c("button", { on: { click: _vm.addToCart } }, [
+        _vm._v("Ajouter au panier")
+      ])
     ]
   )
 }

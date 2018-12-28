@@ -1,4 +1,4 @@
-<nav class="megamenu relative bg-grey px-6">
+<nav class="megamenu relative bg-grey px-6 mb-12">
     <div class="flex uppercase justify-around tracking-wide">
         @foreach($categories as $category)
             <div class="megamenu__category py-4 px-3">

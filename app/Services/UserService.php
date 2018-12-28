@@ -3,18 +3,13 @@
 namespace App\Services;
 
 use App\ApiClient;
+use App\User;
+use App\Services\AbstractService;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\RequestOptions;
 
-class UserService
+class UserService extends AbstractService
 {
-    protected $client;
-
-    public function __construct(ApiClient $client)
-    {
-        $this->client = $client;
-    }
-
     /**
      * Register to create a user account.
      *
@@ -41,5 +36,53 @@ class UserService
         }
 
         return $userData->id;
+    }
+
+    public function getProfileFromId(int $id): User
+    {
+        // $this->client->mustBeAuthenticated();
+        try {
+            $user = new User($this->client->get("users/{$id}"));
+        } catch (ClientException $error) {
+            if ($error->getResponse()->getStatusCode() === 404) {
+                throw "User profile #{$id} not found";
+            }
+            throw $error;
+        }
+
+        return $user;
+    }
+
+    /**
+     * Update the information of a user profile.
+     */
+    public function updateUser($id)
+    {
+        // $this->client->mustBeAuthenticated();
+
+        $this->client->put(
+            "users/{$id}",
+            [
+                RequestOptions::FORM_PARAMS => [
+                    'email' => request()->email,
+                    'firstName' => request()->firstName,
+                    'lastName' => request()->lastName,
+                ],
+            ]
+        );
+    }
+
+    /**
+     * @param int $userId
+     * @param string $newPassword
+     */
+    public function changePassword(int $userId, string $newPassword)
+    {
+        // $this->client->mustBeAuthenticated();
+        $this->client->put("users/$userId/password", [
+            RequestOptions::JSON => [
+                'password' => $newPassword,
+            ],
+        ]);
     }
 }

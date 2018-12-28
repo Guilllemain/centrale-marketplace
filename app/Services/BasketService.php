@@ -4,20 +4,15 @@ namespace App\Services;
 
 use App\ApiClient;
 use App\Basket;
+use App\Services\AbstractService;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\RequestOptions;
 
-class BasketService
+class BasketService extends AbstractService
 {
     private const ID_SESSION_KEY = '_basket_id';
-    protected $client;
     protected $basket;
-
-    public function __construct(ApiClient $client)
-    {
-        $this->client = $client;
-    }
 
     private function create()
     {
@@ -68,7 +63,7 @@ class BasketService
 
             throw $exception;
         }
-        return $responseData->quantity;
+        return $responseData['quantity'];
     }
 
     private function getBasketId()
@@ -80,6 +75,50 @@ class BasketService
             $this->setCurrentBasketId($basketId);
         }
         return $basketId;
+    }
+
+    public function updateProductQuantity(string $basketId, $declinationId, int $quantity): int
+    {
+        if ($quantity < 1) {
+            throw '"quantity" must be greater than 0';
+        }
+
+        try {
+            $responseData = $this->client->post("basket/{$basketId}/modify", [
+                RequestOptions::FORM_PARAMS => [
+                    'declinationId' => $declinationId,
+                    'quantity' => $quantity,
+                ],
+            ]);
+        } catch (ClientException $ex) {
+            $code = $ex->getResponse()->getStatusCode();
+
+            if (404 === $code) {
+                throw 'Basket not found';
+            }
+
+            throw $ex;
+        }
+        return $responseData['quantity'];
+    }
+
+    public function removeProductFromBasket(string $basketId, string $declinationId)
+    {
+        try {
+            $this->client->post("basket/{$basketId}/remove", [
+                RequestOptions::FORM_PARAMS => [
+                    'declinationId' => $declinationId,
+                ],
+            ]);
+        } catch (ClientException $ex) {
+            $code = $ex->getResponse()->getStatusCode();
+
+            if (404 === $code) {
+                throw 'Basket not found';
+            }
+
+            throw $ex;
+        }
     }
 
     private function getCurrentBasketId()

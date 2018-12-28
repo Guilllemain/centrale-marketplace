@@ -36,7 +36,7 @@
                         <!-- Right Side Of Navbar -->
                         <ul class="flex list-reset">
                             <!-- Authentication Links -->
-                            @guest
+                            @if(!session('authenticated'))
                                 <li class="mr-3">
 
                                     <a class="flex flex-col items-center" href="{{ route('login') }}">
@@ -52,19 +52,19 @@
                                     </li>
                                 @endif --}}
                             @else
-                                <li class="">
-                                    <a class="" href="#" role="button" >
-                                        {{ Auth::user() }} <span class="caret"></span>
-                                    </a>
-
+                                <li class="mr-3">
                                     <div class="">
-                                        <a class="" href="{{ route('logout') }}"
-                                           onclick="event.preventDefault();
+                                        <a class="flex flex-col items-center" href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
                                                          document.getElementById('logout-form').submit();">
-                                            {{ __('Logout') }}
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 24 24">
+                                                <use class="text-orange-dark fill-current" href="{{asset('icons/icons.svg#login')}}"></use>
+                                            </svg>
+                                            <h4 class="font-normal">{{ __('Se déconnecter') }}</h4>
                                         </a>
+                                        <a class="block mt-2" href="{{ route('user.show') }}">Mon profil</a>
 
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        <form id="logout-form" class="hidden" action="{{ route('logout') }}" method="POST">
                                             @csrf
                                         </form>
                                     </div>
@@ -91,6 +91,15 @@
 
         <main>
             @yield('content')
+            @if ($errors->any())
+                <div class="alert alert-danger text-center">
+                    <ul class="list-reset text-red">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
         </main>
     </div>
     {{-- <script src="//code.tidio.co/tfbpqyj9ssgdjacgc4oguz3ftbhgmz83.js"></script> --}}

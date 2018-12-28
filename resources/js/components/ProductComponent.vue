@@ -6,7 +6,7 @@
             <h3>{{ product.name }}</h3>
         </a>
         <div class="mb-2">{{ product.minimumPrice }}€</div>
-        <button @click="addToCart()">Ajouter au panier</button>
+        <button @click="addToCart">Ajouter au panier</button>
     </div>
 </template>
 
@@ -42,13 +42,13 @@
             },
             async addToCart() {
                 try {
-                    // Event.$emit('add-to-cart');
                     const response = await axios.get('/basket/add', {
                         params: {
                             declinationId: this.product.productId,
                             quantity: 1
                         }
                     });
+                    // Event.$emit('addItemToCart');
                 } catch (error) {
                     console.log(error);
                 }

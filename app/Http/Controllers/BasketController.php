@@ -24,7 +24,7 @@ class BasketController extends Controller
             return $basket->toJson();
         }
 
-        return view('basket', compact('basket'));
+        return view('basket.index', compact('basket'));
     }
 
     public function addProduct(Request $request)
@@ -39,12 +39,27 @@ class BasketController extends Controller
         $declinationId = $request->declinationId;
         $updatedQuantity = $request->item_qty;
         $this->basketService->updateProductQuantity($id, $declinationId, $updatedQuantity);
-        return redirect()->back();
+        return back();
     }
 
     public function destroy($id, $declinationId)
     {
         $this->basketService->removeProductFromBasket($id, $declinationId);
-        return redirect()->back();
+        return back();
+    }
+
+    public function updateShipping(Request $request, $id)
+    {
+        // dd($request);
+        $shippingGroup = [
+            $request->shippingGroup => $request->shipping_method_id
+        ];
+        $this->basketService->selectShippings($id, $shippingGroup);
+        return back();
+    }
+
+    public function updateAddress()
+    {
+        return view('basket.addresses');
     }
 }

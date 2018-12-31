@@ -1,11 +1,17 @@
 <template>
     <div v-if="items.length > 0">
-        <div class="flex items-center" v-for="item in items">
-            <h3 class="mr-3">{{ item.productName }}</h3>
-            <div class="mr-3">{{ item.quantity }}</div>
-            <div class="ml-auto">{{ item.totalPrice.priceWithTaxes }} €</div>
+        <div class="my-2 flex items-center" v-for="item in items">
+            <div class="flex flex-1">
+                <h4>{{ item.productName }}</h4>
+            </div>
+            <div class="w-1/5">
+                <p class="mx-4">{{ item.quantity }}</p>
+            </div>
+            <div class="w-1/5 text-right">
+                <p>{{ item.totalPrice.priceWithTaxes }} €</p>
+            </div>
         </div>
-        <a href="/basket" class="mt-2 block text-center bg-blue hover:bg-blue-dark hover:text-white text-white font-bold py-3 px-4 rounded">Voir mon panier</a>
+        <a href="/basket" class="mt-4 block text-center bg-blue hover:bg-blue-dark hover:text-white text-white font-bold py-2 px-4 rounded">Voir mon panier</a>
     </div>
     <div v-else>Votre panier est vide</div>
 </template>

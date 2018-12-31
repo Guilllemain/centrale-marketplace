@@ -102,6 +102,15 @@ class BasketService extends AbstractService
         return $responseData['quantity'];
     }
 
+    public function selectShippings(string $basketId, array $selections)
+    {
+        $this->client->post("basket/$basketId/shippings", [
+            RequestOptions::JSON => [
+                'shippingGroups' => $selections,
+            ],
+        ]);
+    }
+
     public function removeProductFromBasket(string $basketId, string $declinationId)
     {
         try {

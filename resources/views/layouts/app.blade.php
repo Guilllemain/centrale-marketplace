@@ -25,7 +25,7 @@
     <div id="app">
         <header class="p-6">
             <div class="container">
-                <div class="flex justify-between items-center">
+                <div class="flex justify-between items-center relative">
                     <a class="" href="{{ url('/') }}">
                         <img src="{{ asset('logo.png') }}">
                     </a>
@@ -71,7 +71,7 @@
                                 </li>
                             @endguest
                             <li class="basket">
-                                <a class="flex flex-col items-center" href="">
+                                <a class="flex flex-col items-center" href="/basket">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 24 24">
                                         <use class="text-orange-dark fill-current" href="{{asset('icons/icons.svg#basket')}}"></use>
                                     </svg>

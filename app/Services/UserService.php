@@ -73,6 +73,23 @@ class UserService extends AbstractService
     }
 
     /**
+     * Update the user's addresses.
+     */
+    public function updateUserAdresses($id, $address)
+    {
+        // $this->client->mustBeAuthenticated();
+        $this->client->put(
+            "users/{$id}/addresses",
+            [
+                RequestOptions::FORM_PARAMS => [
+                    'billing' => $address,
+                    'shipping' => $address
+                ],
+            ]
+        );
+    }
+
+    /**
      * @param int $userId
      * @param string $newPassword
      */

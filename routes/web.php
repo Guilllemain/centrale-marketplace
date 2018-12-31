@@ -22,11 +22,14 @@ Route::get('/product/{id}', 'ProductsController@show')->name('test.show');
 
 Route::get('/basket/add', 'BasketController@addProduct');
 Route::get('/basket', 'BasketController@index');
+Route::get('/basket/address', 'BasketController@updateAddress');
 Route::post('/basket/update/{id}', 'BasketController@updateQuantity')->name('basket.update-qty');
+Route::post('/basket/shipping/{id}', 'BasketController@updateShipping')->name('basket.update-shipping');
 Route::delete('/basket/{id}/{declinationId}', 'BasketController@destroy')->name('basket.delete');
 
 Route::get('/users/show', 'UsersController@show')->name('user.show');
 Route::patch('/users/{id}', 'UsersController@update')->name('user.update');
+Route::patch('/users/address/{user}', 'UsersController@updateAddress')->name('user.update.address');
 
 Route::get('company/{company}', 'CompaniesController@show');
 

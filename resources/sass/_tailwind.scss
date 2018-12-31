@@ -86,10 +86,8 @@ a {
 }
 
 .basket{
-    position: relative;
-
     &__content {
-        @apply absolute invisible opacity-0 z-50 bg-grey-lightest p-6 rounded shadow-md w-48 pin-r;
+        @apply absolute invisible opacity-0 z-50 bg-grey-lightest p-6 rounded shadow-md pin-r;
         transition: all .3s;
     }
     

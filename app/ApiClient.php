@@ -82,7 +82,7 @@ class ApiClient
     public function rawRequest(string $method, $uri, array $options = [])
     {
         $options[RequestOptions::HEADERS]['User-Agent'] = 'Wizaplace-PHP-SDK';
-
+        // dd($options);
         try {
             return $this->client->request($method, $uri, $this->addAuth($options));
         } catch (BadResponseException $e) {

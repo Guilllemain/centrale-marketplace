@@ -28,6 +28,7 @@ window.Vue.use(ElementUI);
 Vue.component('search-component', require('./components/SearchComponent.vue').default);
 Vue.component('search-box-component', require('./components/SearchBoxComponent.vue').default);
 Vue.component('basket-component', require('./components/BasketComponent.vue').default);
+Vue.component('address-component', require('./components/AddressComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

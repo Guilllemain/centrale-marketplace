@@ -18,7 +18,7 @@ class UsersController extends Controller
     {
         $id = session('authenticated')['id'];
         $user = $this->userService->getProfileFromId($id);
-        dd($user);
+        // dd($user);
         return view('profile', compact('user'));
     }
 
@@ -40,6 +40,7 @@ class UsersController extends Controller
 
     public function updateAddress(Request $request, $user)
     {
+        dd($request);
         $billing_address = array_filter([
             'title' => $request->billing_title,
             'firstname' => $request->billing_firstName,

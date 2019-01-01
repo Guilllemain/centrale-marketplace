@@ -58,7 +58,7 @@
                 
                 <div>
                     <label>Titre</label>
-                    <select name="billing_title">
+                    <select name="billing_address[title]">
                         <option value="M.">M.</option>
                         <option value="Mme">Mme</option>
                     </select>
@@ -66,33 +66,25 @@
 
                 <label>Nom</label>
                 <div class="pb-4">
-                    <input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:shadow-outline" name="billing_lastName" placeholder="Votre nom">
+                    <input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:shadow-outline" name="billing_address[lastName]" placeholder="Votre nom">
                 </div>
                 
                 <label>Prénom</label>
                 <div class="pb-4">
-                    <input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:shadow-outline" name="billing_firstName" placeholder="Votre prénom">
+                    <input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:shadow-outline" name="billing_address[firstName]" placeholder="Votre prénom">
                 </div>
 
                 <label>Téléphone</label>
                 <div class="pb-4">
-                    <input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:shadow-outline" name="billing_phone" placeholder="Votre téléphone">
+                    <input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:shadow-outline" name="billing_address[phone]" placeholder="Votre téléphone">
                 </div>
 
                 <label>Adresse</label>
                 <div class="pb-4">
-                    <input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:shadow-outline" name="billing_address" placeholder="Votre adresse">
+                    <input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:shadow-outline" name="billing_address[address]" placeholder="Votre adresse">
                 </div>
 
-                <label>Code postal</label>
-                <div class="pb-4">
-                    <input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:shadow-outline" name="billing_zipcode" placeholder="Votre code postal">
-                </div>
-
-                <label>Ville</label>
-                <div class="pb-4">
-                    <input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:shadow-outline" name="billing_city" placeholder="Votre ville">
-                </div>
+                <address-component city-input-name="billing_address[city]" zip-code-input-name="billing_address[zipcode]"></address-component>
 
                 <button type="submit" name="user_address" class="w-full bg-blue hover:bg-blue-dark text-white font-bold py-3 px-4 rounded">
                     Mettre à jour
@@ -103,7 +95,7 @@
                 
                 <div>
                     <label>Titre</label>
-                    <select name="delivery_title">
+                    <select name="delivery_address[title]">
                         <option value="M.">M.</option>
                         <option value="Mme">Mme</option>
                     </select>
@@ -111,33 +103,25 @@
 
                 <label>Nom</label>
                 <div class="pb-4">
-                    <input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:shadow-outline" name="delivery_lastName" placeholder="Votre nom" required>
+                    <input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:shadow-outline" name="delivery_address[lastName]" placeholder="Votre nom" required>
                 </div>
                 
                 <label>Prénom</label>
                 <div class="pb-4">
-                    <input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:shadow-outline" name="delivery_firstName" placeholder="Votre prénom" required>
+                    <input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:shadow-outline" name="delivery_address[lastName]" placeholder="Votre prénom" required>
                 </div>
 
                 <label>Téléphone</label>
                 <div class="pb-4">
-                    <input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:shadow-outline" name="delivery_phone" placeholder="Votre téléphone" required>
+                    <input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:shadow-outline" name="delivery_address[phone]" placeholder="Votre téléphone" required>
                 </div>
 
                 <label>Adresse</label>
                 <div class="pb-4">
-                    <input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:shadow-outline" name="delivery_address" placeholder="Votre adresse" required>
+                    <input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:shadow-outline" name="delivery_address[address]" placeholder="Votre adresse" required>
                 </div>
-
-                <label>Code postal</label>
-                <div class="pb-4">
-                    <input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:shadow-outline" name="delivery_zipcode" placeholder="Votre code postal" required>
-                </div>
-
-                <label>Ville</label>
-                <div class="pb-4">
-                    <input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:shadow-outline" name="delivery_city" placeholder="Votre ville" required>
-                </div>
+                
+                <address-component city-input-name="delivery_address[city]" zip-code-input-name="delivery_address[zipcode]"></address-component>
 
                 <button type="submit" name="user_address" class="w-full bg-blue hover:bg-blue-dark text-white font-bold py-3 px-4 rounded">
                     Mettre à jour

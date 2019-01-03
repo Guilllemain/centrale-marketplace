@@ -10,6 +10,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
+    <script src="https://js.stripe.com/v3/"></script>
     @routes
     <script src="{{ asset('js/app.js') }}" defer></script>
 
@@ -19,7 +20,9 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
     @yield('css')
+
 </head>
 <body>
     <div id="app">
@@ -34,10 +37,10 @@
 
                     <div class="">
                         <!-- Right Side Of Navbar -->
-                        <ul class="flex list-reset">
+                        <div class="flex items-end">
                             <!-- Authentication Links -->
                             @if(!session('authenticated'))
-                                <li class="mr-3">
+                                <div class="">
 
                                     <a class="flex flex-col items-center" href="{{ route('login') }}">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 24 24">
@@ -45,43 +48,36 @@
                                         </svg>
                                         <h4 class="font-normal">{{ __('Se connecter') }}</h4>
                                     </a>
-                                </li>
+                                </div>
                                 {{-- @if (Route::has('register'))
                                     <li class="mr-3">
                                         <a class="" href="{{ route('register') }}">{{ __('Register') }}</a>
                                     </li>
                                 @endif --}}
                             @else
-                                <li class="mr-3">
-                                    <div class="">
+                                <div class="profile">
+                                    <a class="block flex flex-col items-center" href="{{ route('user.show') }}">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 24 24">
+                                            <use class="text-orange-dark fill-current" href="{{asset('icons/icons.svg#login')}}"></use>
+                                        </svg>
+                                        <h4 class="font-normal">Mon compte</h4>
+                                    </a>
+                                    <div class="profile__content">
+                                        <a class="block mt-2 flex flex-col items-center" href="{{ route('user.show') }}">Voir mon profil</a>
+                                        <div class="h-bar"></div>
                                         <a class="flex flex-col items-center" href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                          document.getElementById('logout-form').submit();">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 24 24">
-                                                <use class="text-orange-dark fill-current" href="{{asset('icons/icons.svg#login')}}"></use>
-                                            </svg>
                                             <h4 class="font-normal">{{ __('Se déconnecter') }}</h4>
                                         </a>
-                                        <a class="block mt-2" href="{{ route('user.show') }}">Mon profil</a>
-
                                         <form id="logout-form" class="hidden" action="{{ route('logout') }}" method="POST">
                                             @csrf
                                         </form>
                                     </div>
-                                </li>
-                            @endguest
-                            <li class="basket">
-                                <a class="flex flex-col items-center" href="/basket">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 24 24">
-                                        <use class="text-orange-dark fill-current" href="{{asset('icons/icons.svg#basket')}}"></use>
-                                    </svg>
-                                    <h4 class="font-normal">Mon panier</h4>
-                                </a>
-                                <div class="basket__content">
-                                    <basket-component></basket-component>
                                 </div>
-                            </li>
-                        </ul>
+                            @endguest
+                            <basket-component></basket-component>
+                        </div>
                     </div>
                 </div>  
             </div>
@@ -91,6 +87,7 @@
 
         <main>
             @yield('content')
+            
             @if ($errors->any())
                 <div class="alert alert-danger text-center">
                     <ul class="list-reset text-red">
@@ -103,5 +100,8 @@
         </main>
     </div>
     <script src="//code.tidio.co/tfbpqyj9ssgdjacgc4oguz3ftbhgmz83.js"></script>
+
+    @yield('scripts')
+
 </body>
 </html>

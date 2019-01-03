@@ -27,7 +27,7 @@
                 if (this.zipcode.length > 4) {
                     const response = await axios.get(`https://geo.api.gouv.fr/communes?codePostal=${this.zipcode}`);
                     // console.log(response.data[0].nom);
-                    this.$emit('updateCityName', response.data[0].nom);
+                    this.$emit('updateCityName', response.data);
                 }
             }
         }

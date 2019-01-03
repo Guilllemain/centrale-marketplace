@@ -29,6 +29,8 @@ Vue.component('search-component', require('./components/SearchComponent.vue').de
 Vue.component('search-box-component', require('./components/SearchBoxComponent.vue').default);
 Vue.component('basket-component', require('./components/BasketComponent.vue').default);
 Vue.component('address-component', require('./components/AddressComponent.vue').default);
+Vue.component('checkout-component', require('./components/CheckoutComponent.vue').default);
+Vue.component('stars-component', require('./components/StarsComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

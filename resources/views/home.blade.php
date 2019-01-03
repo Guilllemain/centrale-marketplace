@@ -2,7 +2,13 @@
 
 @section('content')
 <div>
-    <img class="w-full" src="{{ asset('main.jpg') }}" style="margin-top: -4rem;">
+    {{-- <img class="w-full" src="{{ asset('main.jpg') }}" style="margin-top: -4rem;"> --}}
+
+    <el-carousel :interval="5000" style="margin-top: -3rem;">
+        <el-carousel-item><img class="w-full" src="main.jpg"></el-carousel-item>
+        <el-carousel-item><img class="w-full" src="main2.jpg"></el-carousel-item>
+        <el-carousel-item><img class="w-full" src="main3.jpg"></el-carousel-item>
+    </el-carousel>
     
     <div class="my-16 mx-32">
         <h1 class="title--horizontal-bar uppercase">Nouveautés</h1>

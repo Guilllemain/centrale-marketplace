@@ -1,8 +1,8 @@
 <template>
     <div class="container">
         <div class="flex">
-            <div class="w-1/5">
-                <!-- <filters-component v-show="products"></filters-component> -->
+            <div class="w-1/5 pr-8">
+                <h2 class="text-grey-darker">Affiner par</h2>
                 <facets-component v-for="(facet, index) in facets"
                                 :facet="facet"
                                 :key="index"
@@ -10,9 +10,10 @@
                                 @deleteFacet="deleteFacet"
                                 @updatePriceRange="updatePrice">
                 </facets-component>
+                <div class="my-2 border-b border-grey-light w-full"></div>
             </div>
             <div class="w-4/5">
-                <div class="flex justify-end items-center">
+                <div class="flex justify-end items-center mb-2">
                     <div class="text-right mx-4">{{ pagination.nbResults }} article(s)</div>
                     <filters-component @addSorting="addSorting"></filters-component>    
                 </div>
@@ -137,7 +138,14 @@
                         });
                     }
                 });
-                this.facets = facets;
+                this.facets = facets.filter(facet => !this.isEmpty(facet.values));
+            },
+            isEmpty(obj) {
+                for(var key in obj) {
+                    if(obj.hasOwnProperty(key))
+                        return false;
+                }
+                return true;
             }
         }
     }

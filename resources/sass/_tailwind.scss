@@ -85,6 +85,19 @@ a {
     }
 }
 
+.profile{
+    &__content {
+        @apply absolute invisible w-1/6 opacity-0 z-50 bg-grey-lightest p-3 rounded shadow-md;
+        right: 30px;
+        transition: all .3s;
+    }
+
+    &:hover &__content {
+        visibility: visible;
+        opacity: 1;
+    }
+}
+
 .basket{
     &__content {
         @apply absolute invisible opacity-0 z-50 bg-grey-lightest p-6 rounded shadow-md pin-r;
@@ -102,6 +115,10 @@ a {
     align-content: start;
     justify-items: start;
     grid-template-columns: 25% 25% 25% 25%;
+}
+
+.h-bar {
+    @apply my-2 border-b border-grey-light w-full;
 }
 
 

@@ -1,18 +1,18 @@
 <template>
     <div class="flex-1">
         <label>Ville</label>
-        <div class="pb-4">
-            <input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:shadow-outline" :name="inputName" placeholder="Votre ville" :value="cityName" required>
-        </div>
+        <select class="w-full block appearance-none bg-white border border-grey-light hover:border-grey px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline" :name="inputName">
+            <option v-for="city in cities" :value="city.nom">{{ city.nom }}</option>
+        </select>
     </div>
 </template>
 
 <script>
     export default {
         props: {
-            cityName: {
+            cities: {
                 required: true,
-                type: String
+                type: Array
             },
             inputName: {
                 required: true,
@@ -22,6 +22,6 @@
         data() {
             return {
             }
-        }
+        },
     }
 </script>

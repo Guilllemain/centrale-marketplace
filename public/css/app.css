@@ -638,6 +638,25 @@ a:hover {
   margin-right: -50%;
 }
 
+.profile__content {
+  position: absolute;
+  visibility: hidden;
+  width: 16.66667%;
+  opacity: 0;
+  z-index: 50;
+  background-color: #f8fafc;
+  padding: .75rem;
+  border-radius: .25rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .12), 0 2px 4px 0 rgba(0, 0, 0, .08);
+  right: 30px;
+  transition: all .3s;
+}
+
+.profile:hover .profile__content {
+  visibility: visible;
+  opacity: 1;
+}
+
 .basket__content {
   position: absolute;
   visibility: hidden;
@@ -661,6 +680,14 @@ a:hover {
   align-content: start;
   justify-items: start;
   grid-template-columns: 25% 25% 25% 25%;
+}
+
+.h-bar {
+  margin-top: .5rem;
+  margin-bottom: .5rem;
+  border-bottom-width: 1px;
+  border-color: #dae1e7;
+  width: 100%;
 }
 
 /**
@@ -3803,6 +3830,10 @@ a:hover {
 
 .min-w-0 {
   min-width: 0;
+}
+
+.min-w-64 {
+  min-width: 16rem;
 }
 
 .min-w-full {
@@ -9418,6 +9449,10 @@ body {
     min-width: 0;
   }
 
+  .sm\:min-w-64 {
+    min-width: 16rem;
+  }
+
   .sm\:min-w-full {
     min-width: 100%;
   }
@@ -14990,6 +15025,10 @@ body {
 
   .md\:min-w-0 {
     min-width: 0;
+  }
+
+  .md\:min-w-64 {
+    min-width: 16rem;
   }
 
   .md\:min-w-full {
@@ -20566,6 +20605,10 @@ body {
     min-width: 0;
   }
 
+  .lg\:min-w-64 {
+    min-width: 16rem;
+  }
+
   .lg\:min-w-full {
     min-width: 100%;
   }
@@ -26138,6 +26181,10 @@ body {
 
   .xl\:min-w-0 {
     min-width: 0;
+  }
+
+  .xl\:min-w-64 {
+    min-width: 16rem;
   }
 
   .xl\:min-w-full {

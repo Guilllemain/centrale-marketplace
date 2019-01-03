@@ -130,6 +130,57 @@ class BasketService extends AbstractService
         }
     }
 
+    public function checkout(string $basketId, int $paymentId, bool $acceptTerms, string $redirectUrl)
+    {
+        // $this->client->mustBeAuthenticated();
+        try {
+            $result = $this->client->post(
+                "basket/{$basketId}/order",
+                [
+                    RequestOptions::FORM_PARAMS => [
+                        'paymentId' => $paymentId,
+                        "acceptTermsAndConditions" => $acceptTerms,
+                        'redirectUrl' => $redirectUrl,
+                    ],
+                ]
+            );
+        } catch (ClientException $ex) {
+            $code = $ex->getResponse()->getStatusCode();
+
+            if (404 === $code) {
+                throw 'Basket not found';
+            }
+            if (400 === $code) {
+                // throw new SomeParametersAreInvalid($ex->getMessage(), $ex->getCode(), $ex);
+            }
+
+            throw $ex;
+        }
+
+        return $result;
+    }
+
+    public function getPayments(string $basketId): array
+    {
+        // $this->client->mustBeAuthenticated();
+        try {
+            $payments = $this->client->get("basket/{$basketId}/payments");
+        } catch (ClientException $ex) {
+            $code = $ex->getResponse()->getStatusCode();
+
+            if (404 === $code) {
+                throw 'Basket not found';
+            }
+
+            throw $ex;
+        }
+        $payments = array_map(static function (array $payment) {
+            return $payment;
+        }, $payments);
+
+        return $payments;
+    }
+
     private function getCurrentBasketId()
     {
         return session(self::ID_SESSION_KEY);

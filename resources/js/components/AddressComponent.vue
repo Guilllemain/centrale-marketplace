@@ -1,7 +1,7 @@
 <template>
     <div class="flex">
         <zipcode-component @updateCityName="updateCity" :inputName="zipCodeInputName"></zipcode-component>
-        <city-component :cityName="cityName" :inputName="cityInputName"></city-component>
+        <city-component :cities="cities" :inputName="cityInputName"></city-component>
     </div>
 </template>
 
@@ -23,12 +23,12 @@
         },
         data() {
             return {
-                cityName: ''
+                cities: []
             }
         },
         methods: {
             updateCity(event) {
-                this.cityName = event;
+                this.cities = event;
             }
         }
     }

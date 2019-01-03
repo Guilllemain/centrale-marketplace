@@ -18,18 +18,23 @@
             </div>
             <div>
                 <h3 class="text-lg tracking-wide">{{ $product->name }}</h3>
+                <stars-component></stars-component>
+                <div class="my-2 border-b border-grey-light w-full"></div>
                 <p class="text-lg mb-6">{{ $product->minPrice }}€</p>
                 <div class="mb-3 text-base tracking-tight font-light">{!! $product->shortDescription !!}</div>
                 <p>Code EAN : {{ $product->code }}</p>
                 <div class="mr-6">Vendu par 
-                    <a href="/company/{{ $product->companies[0]['slug'] }}">
-                        {{ $product->companies[0]['name'] }}
-                    </a>
+                    @if(count($product->companies) === 1)
+                        <a href="/company/{{ $product->companies[0]['slug'] }}">
+                            {{ $product->companies[0]['name'] }}
+                        </a>
+                    @else
+                        <a href="">
+                            {{ count($product->companies) }} vendeurs
+                        </a>
+                    @endif
                 </div>
             </div>
         </div>
     </div>
-@endsection
-
-@section('script')
 @endsection

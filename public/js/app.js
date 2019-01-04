@@ -4347,7 +4347,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     getImage: function getImage(image) {
       if (image) {
-        return "https://back.vegan-place.com/api/v1/image/".concat(image.id, "?w=100&h=100");
+        return "https://back.vegan-place.com/api/v1/image/".concat(image.id, "?w=200&h=200");
       }
 
       return 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg';
@@ -4837,11 +4837,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 _context.prev = 0;
                 _context.next = 3;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/basket/add', {
-                  params: {
-                    declinationId: this.product.productId,
-                    quantity: 1
-                  }
+                return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/basket/add', {
+                  declinationId: this.product.productId,
+                  quantity: 1
                 });
 
               case 3:
@@ -4894,6 +4892,8 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
 //
 //
 //
@@ -70300,7 +70300,7 @@ var render = function() {
             },
             [
               _c("path", {
-                staticClass: "text-orange-dark fill-current",
+                staticClass: "text-white fill-current",
                 attrs: {
                   d:
                     "M17.21 9l-4.38-6.56c-.19-.28-.51-.42-.83-.42-.32 0-.64.14-.83.43L6.79 9H2c-.55 0-1 .45-1 1 0 .09.01.18.04.27l2.54 9.27c.23.84 1 1.46 1.92 1.46h13c.92 0 1.69-.62 1.93-1.46l2.54-9.27L23 10c0-.55-.45-1-1-1h-4.79zM9 9l3-4.4L15 9H9zm3 8c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"
@@ -70311,7 +70311,9 @@ var render = function() {
             ]
           ),
           _vm._v(" "),
-          _c("h4", { staticClass: "font-normal" }, [_vm._v("Mon panier")])
+          _c("h4", { staticClass: "font-normal text-white opacity-75" }, [
+            _vm._v("Mon panier")
+          ])
         ]
       )
     ]),
@@ -70363,7 +70365,7 @@ var render = function() {
                 _vm._v(" "),
                 _c("p", [
                   _vm._v(
-                    "à partir de " + _vm._s(_vm.basket.totalShipping) + "€"
+                    "à partir de " + _vm._s(_vm.basket.totalShipping) + " €"
                   )
                 ])
               ]),
@@ -70371,7 +70373,7 @@ var render = function() {
               _c("div", { staticClass: "flex justify-between font-bold" }, [
                 _c("p", [_vm._v("Total")]),
                 _vm._v(" "),
-                _c("p", [_vm._v(_vm._s(_vm.basket.total) + "€")])
+                _c("p", [_vm._v(_vm._s(_vm.basket.total) + " €")])
               ]),
               _vm._v(" "),
               _c(
@@ -70922,129 +70924,128 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "form",
-    { attrs: { action: "/search", method: "GET", autocomplete: "off" } },
+    "div",
+    { staticClass: "border border-grey-light rounded bg-white" },
     [
       _c(
-        "div",
-        {
-          staticClass:
-            "flex items-center justify-content border border-grey-light rounded"
-        },
+        "form",
+        { attrs: { action: "/search", method: "GET", autocomplete: "off" } },
         [
-          _c("div", { staticClass: "flex flex-col w-64" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.query,
-                  expression: "query"
-                }
-              ],
-              staticClass:
-                "w-128 appearance-none block text-grey-darker py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-grey",
-              attrs: {
-                type: "text",
-                placeholder: "Rechercher un produit",
-                name: "query"
-              },
-              domProps: { value: _vm.query },
-              on: {
-                keyup: [
-                  function($event) {
-                    if (
-                      !("button" in $event) &&
-                      _vm._k($event.keyCode, "esc", 27, $event.key, [
-                        "Esc",
-                        "Escape"
-                      ])
-                    ) {
-                      return null
-                    }
-                    _vm.query = ""
-                  },
-                  function($event) {
-                    _vm.productAutocomplete()
+          _c("div", { staticClass: "flex items-center justify-content" }, [
+            _c("div", { staticClass: "flex flex-col w-64" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.query,
+                    expression: "query"
                   }
                 ],
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.query = $event.target.value
-                }
-              }
-            }),
-            _vm._v(" "),
-            _vm.productSuggestions.length > 0 && _vm.query.length > 3
-              ? _c(
-                  "div",
-                  {
-                    staticClass: "search__results z-50 bg-white absolute w-64"
-                  },
-                  _vm._l(_vm.productSuggestions, function(product) {
-                    return _c(
-                      "div",
-                      {
-                        staticClass: "flex items-center",
-                        attrs: { class: "flex items-center" }
-                      },
-                      [
-                        _c("div", { staticClass: "w-1/6 mr-2" }, [
-                          _c("img", {
-                            staticClass: "w-full",
-                            attrs: { src: _vm.getImage(product) }
-                          })
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "a",
-                          {
-                            staticClass: "w-5/6",
-                            attrs: { href: _vm.productPath(product) }
-                          },
-                          [_vm._v(_vm._s(product.name))]
-                        )
-                      ]
-                    )
-                  }),
-                  0
-                )
-              : _vm._e()
-          ]),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass:
-                "focus:outline-none border-l border-grey-light pt-1 px-2"
-            },
-            [
-              _c(
-                "svg",
-                {
-                  attrs: {
-                    xmlns: "http://www.w3.org/2000/svg",
-                    width: "36",
-                    height: "36",
-                    viewBox: "0 0 24 24"
-                  }
+                staticClass:
+                  "w-128 appearance-none block text-grey-darker py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-grey",
+                attrs: {
+                  type: "text",
+                  placeholder: "Rechercher un produit",
+                  name: "query"
                 },
-                [
-                  _c("path", {
-                    staticClass: "text-orange-dark fill-current",
-                    attrs: {
-                      d:
-                        "M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+                domProps: { value: _vm.query },
+                on: {
+                  keyup: [
+                    function($event) {
+                      if (
+                        !("button" in $event) &&
+                        _vm._k($event.keyCode, "esc", 27, $event.key, [
+                          "Esc",
+                          "Escape"
+                        ])
+                      ) {
+                        return null
+                      }
+                      _vm.query = ""
+                    },
+                    function($event) {
+                      _vm.productAutocomplete()
                     }
-                  }),
-                  _vm._v(" "),
-                  _c("path", { attrs: { d: "M0 0h24v24H0z", fill: "none" } })
-                ]
-              )
-            ]
-          )
+                  ],
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.query = $event.target.value
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _vm.productSuggestions.length > 0 && _vm.query.length > 3
+                ? _c(
+                    "div",
+                    {
+                      staticClass: "search__results z-50 bg-white absolute w-64"
+                    },
+                    _vm._l(_vm.productSuggestions, function(product) {
+                      return _c(
+                        "div",
+                        {
+                          staticClass: "flex items-center",
+                          attrs: { class: "flex items-center" }
+                        },
+                        [
+                          _c("div", { staticClass: "w-1/6 mr-2" }, [
+                            _c("img", {
+                              staticClass: "w-full",
+                              attrs: { src: _vm.getImage(product) }
+                            })
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "a",
+                            {
+                              staticClass: "w-5/6",
+                              attrs: { href: _vm.productPath(product) }
+                            },
+                            [_vm._v(_vm._s(product.name))]
+                          )
+                        ]
+                      )
+                    }),
+                    0
+                  )
+                : _vm._e()
+            ]),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass:
+                  "focus:outline-none border-l border-grey-light pt-1 px-2"
+              },
+              [
+                _c(
+                  "svg",
+                  {
+                    attrs: {
+                      xmlns: "http://www.w3.org/2000/svg",
+                      width: "36",
+                      height: "36",
+                      viewBox: "0 0 24 24"
+                    }
+                  },
+                  [
+                    _c("path", {
+                      staticClass: "text-orange-dark fill-current",
+                      attrs: {
+                        d:
+                          "M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("path", { attrs: { d: "M0 0h24v24H0z", fill: "none" } })
+                  ]
+                )
+              ]
+            )
+          ])
         ]
       )
     ]

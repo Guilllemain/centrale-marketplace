@@ -2,9 +2,10 @@
 
 @section('content')
 <div class="container">
-    <div class="flex">
-        <div class="w-1/2 m-8">
-            <h1 class="text-grey-darkest text-2xl pb-6">Déjà inscrit ?</h1>
+    <div class="flex mt-8">
+        <div class="w-1/2 mx-16 my-8">
+            <h1 class="text-grey-darkest text-2xl mb-2">Déjà inscrit ?</h1>
+            <div class="border-b border-grey-light w-1/3 mb-6"></div>
             <form method="POST" action="{{ route('login') }}">
                 @csrf
                 <div class="pb-4">
@@ -15,18 +16,18 @@
                     <input type="password" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:shadow-outline" name="password" placeholder="Votre mot de passe" required>
                 </div>
 
-                <div class="pb-4">
-                    <a href="" class="mb-4 text-xs">Mot de passe oublié ?</a>
+                <div class="mt-4 flex justify-between items-center">
+                    <button type="submit" class="bg-blue hover:bg-blue-dark text-white font-bold py-3 px-4 rounded">
+                        Se connecter
+                    </button>
+                    <a href="{{ route('password_reset') }}" class="text-blue">Mot de passe oublié ?</a>
                 </div>
-                
-                <button type="submit" class="w-full bg-blue hover:bg-blue-dark text-white font-bold py-3 px-4 rounded">
-                    Valider
-                </button>
             </form>
         </div>
         <div class="my-8 border-r border-grey-light"></div>
-        <div class="w-1/2 m-8">
-            <h1 class="text-grey-darkest text-2xl pb-6">Pas encore inscrit ?</h1>
+        <div class="w-1/2 mx-16 my-8">
+            <h1 class="text-grey-darkest text-2xl mb-2">Pas encore inscrit ?</h1>
+            <div class="border-b border-grey-light w-1/3 mb-6"></div>
             <form method="POST" action="{{ route('register') }}">
                 @csrf
                 <div class="pb-4">

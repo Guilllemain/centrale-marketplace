@@ -25,67 +25,71 @@
 
 </head>
 <body>
-    <div id="app">
-        <header class="p-6">
-            <div class="container">
-                <div class="flex justify-between items-center relative">
-                    <a class="" href="{{ url('/') }}">
-                        <img src="{{ asset('logo.png') }}">
-                    </a>
+    <div id="app" class="flex-col flex h-full">
+        <div class="header-bg">
+            <header class="p-6">
+                <div class="container">
+                    <div class="flex justify-between items-center relative">
+                        <a href="{{ url('/') }}">
+                            <img src="{{ asset('logo.png') }}">
+                        </a>
 
-                    <search-box-component></search-box-component>
+                        <search-box-component></search-box-component>
 
-                    <div class="">
-                        <!-- Right Side Of Navbar -->
-                        <div class="flex items-end">
-                            <!-- Authentication Links -->
-                            @if(!session('authenticated'))
-                                <div class="">
+                        <div class="">
+                            <!-- Right Side Of Navbar -->
+                            <div class="flex items-end">
+                                <!-- Authentication Links -->
+                                @if(!session('authenticated'))
+                                    <div class="">
 
-                                    <a class="flex flex-col items-center" href="{{ route('login') }}">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 24 24">
-                                            <use class="text-orange-dark fill-current" href="{{asset('icons/icons.svg#login')}}"></use>
-                                        </svg>
-                                        <h4 class="font-normal">{{ __('Se connecter') }}</h4>
-                                    </a>
-                                </div>
-                                {{-- @if (Route::has('register'))
-                                    <li class="mr-3">
-                                        <a class="" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                    </li>
-                                @endif --}}
-                            @else
-                                <div class="profile">
-                                    <a class="block flex flex-col items-center" href="{{ route('user.show') }}">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 24 24">
-                                            <use class="text-orange-dark fill-current" href="{{asset('icons/icons.svg#login')}}"></use>
-                                        </svg>
-                                        <h4 class="font-normal">Mon compte</h4>
-                                    </a>
-                                    <div class="profile__content">
-                                        <a class="block mt-2 flex flex-col items-center" href="{{ route('user.show') }}">Voir mon profil</a>
-                                        <div class="h-bar"></div>
-                                        <a class="flex flex-col items-center" href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                         document.getElementById('logout-form').submit();">
-                                            <h4 class="font-normal">{{ __('Se déconnecter') }}</h4>
+                                        <a class="flex flex-col items-center" href="{{ route('login') }}">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 24 24">
+                                                <use class="text-white fill-current" href="{{asset('icons/icons.svg#login')}}"></use>
+                                            </svg>
+                                            <h4 class="text-white opacity-75 font-normal">{{ __('Se connecter') }}</h4>
                                         </a>
-                                        <form id="logout-form" class="hidden" action="{{ route('logout') }}" method="POST">
-                                            @csrf
-                                        </form>
                                     </div>
-                                </div>
-                            @endguest
-                            <basket-component></basket-component>
+                                    {{-- @if (Route::has('register'))
+                                        <li class="mr-3">
+                                            <a class="" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                        </li>
+                                    @endif --}}
+                                @else
+                                    <div class="profile">
+                                        <a class="block flex flex-col items-center" href="{{ route('user.show') }}">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 24 24">
+                                                <use class="text-white fill-current" href="{{asset('icons/icons.svg#login')}}"></use>
+                                            </svg>
+                                            <h4 class="text-white opacity-75 font-normal">Mon compte</h4>
+                                        </a>
+                                        <div class="profile__content">
+                                            <a class="block mt-2 flex flex-col items-center" href="{{ route('user.show') }}">Mon profil</a>
+                                            <div class="h-bar"></div>
+                                            <a class="block mt-2 flex flex-col items-center" href="">Mes commandes</a>
+                                            <div class="h-bar"></div>
+                                            <a class="flex flex-col items-center" href="{{ route('logout') }}"
+                                                onclick="event.preventDefault();
+                                                             document.getElementById('logout-form').submit();">
+                                                <h4 class="font-normal">{{ __('Me déconnecter') }}</h4>
+                                            </a>
+                                            <form id="logout-form" class="hidden" action="{{ route('logout') }}" method="POST">
+                                                @csrf
+                                            </form>
+                                        </div>
+                                    </div>
+                                @endguest
+                                <basket-component></basket-component>
+                            </div>
                         </div>
-                    </div>
-                </div>  
-            </div>
-        </header>
+                    </div>  
+                </div>
+            </header>
 
-        @include('partials.nav')
+            @include('partials.nav')
+        </div>
 
-        <main>
+        <main class="flex-1">
             @yield('content')
             
             @if ($errors->any())
@@ -98,6 +102,8 @@
                 </div>
             @endif
         </main>
+
+        @include('footer')
     </div>
     <script src="//code.tidio.co/tfbpqyj9ssgdjacgc4oguz3ftbhgmz83.js"></script>
 

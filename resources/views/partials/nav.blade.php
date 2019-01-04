@@ -1,11 +1,14 @@
-<nav class="megamenu relative bg-grey px-6 mb-12">
+<nav class="megamenu relative px-6">
     <div class="flex uppercase justify-around tracking-wide">
         @foreach($categories as $category)
             <div class="megamenu__category py-4 px-3">
-                <a href="{{ route('category.show', ['category' => $category->getCategory()->slug]) }}"
-                    class="megamenu__category-link">
-                    {{ $category->getCategory()->name }}
-                </a>
+                <div class="megamenu__category-active relative">
+                    <a href="{{ route('category.show', ['category' => $category->getCategory()->slug]) }}"
+                        class="megamenu__category-link">
+                        {{ $category->getCategory()->name }}
+                    </a>
+                    <div class="b-rounded-bar"></div>
+                </div>
                 @if($category->getChildren())
                     <div class="megamenu__category-children font-bold mt-4 shadow-md justify-center">
                         @foreach($category->getChildren() as $subcategory)

@@ -20,8 +20,8 @@ Route::get('/search', 'Api\SearchController@index');
 
 Route::get('/product/{id}', 'ProductsController@show')->name('test.show');
 
-Route::get('/basket/add', 'BasketController@addProduct');
 Route::get('/basket', 'BasketController@index');
+Route::post('/basket/add', 'BasketController@addProduct')->name('product.add');
 Route::get('/basket/address', 'BasketController@showAddress');
 Route::get('/checkout', 'BasketController@checkout');
 Route::patch('/basket/address/{userId}', 'BasketController@updateAddress')->name('basket.update-address');
@@ -31,6 +31,8 @@ Route::post('/basket/shipping/{id}', 'BasketController@updateShipping')->name('b
 Route::delete('/basket/{id}/{declinationId}', 'BasketController@destroy')->name('basket.delete');
 
 Route::get('/users/show', 'UsersController@show')->name('user.show');
+Route::get('/users/password/reset', 'UsersController@resetPassword')->name('password_reset');
+Route::post('/users/password', 'UsersController@forgotPassword')->name('forgot_password');
 Route::patch('/users/{id}', 'UsersController@update')->name('user.update');
 Route::patch('/users/address/{userId}', 'UsersController@updateAddress')->name('user.update.address');
 

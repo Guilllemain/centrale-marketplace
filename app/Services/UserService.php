@@ -102,4 +102,21 @@ class UserService extends AbstractService
             ],
         ]);
     }
+    
+    /**
+     * send an email to recover the password
+     */
+    public function recoverPassword(string $email)
+    {
+        $data = [
+            'email' => $email,
+        ];
+
+        $this->client->post(
+            'users/password/recover',
+            [
+                RequestOptions::FORM_PARAMS => $data,
+            ]
+        );
+    }
 }

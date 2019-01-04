@@ -44,6 +44,10 @@ a {
     }
 }
 
+.header-bg {
+    background-image: linear-gradient(90deg,#cacaca, #b7b7b7);
+}
+
 .megamenu__category-children {
     left: 0;
     transform: scaleY(0);
@@ -54,6 +58,20 @@ a {
 
     &-children {
         font-size: 0.6rem;
+    }
+}
+
+.megamenu__category-link {
+    @apply text-white opacity-75;
+
+    &:hover {
+        @apply text-white opacity-100;
+    }
+}
+
+.megamenu__category-active{
+    &:hover .b-rounded-bar {
+        @apply block;
     }
 }
 
@@ -119,6 +137,11 @@ a {
 
 .h-bar {
     @apply my-2 border-b border-grey-light w-full;
+}
+
+.b-rounded-bar {
+    @apply border-t-8 border-white w-full rounded hidden absolute;
+    bottom: -20px;
 }
 
 

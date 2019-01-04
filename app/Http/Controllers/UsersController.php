@@ -57,4 +57,16 @@ class UsersController extends Controller
         
         return back();
     }
+
+    public function resetPassword()
+    {
+        return view('auth.passwords.email');
+    }
+
+    public function forgotPassword(Request $request)
+    {
+        $this->userService->recoverPassword($request->email);
+
+        return redirect('/');
+    }
 }

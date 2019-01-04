@@ -577,6 +577,10 @@ a:hover {
   color: #22292f;
 }
 
+.header-bg {
+  background-image: linear-gradient(90deg, #cacaca, #b7b7b7);
+}
+
 .megamenu__category-children {
   left: 0;
   -webkit-transform: scaleY(0);
@@ -603,6 +607,20 @@ a:hover {
 
 .megamenu__category-children-children {
   font-size: .6rem;
+}
+
+.megamenu__category-link {
+  color: #fff;
+  opacity: .75;
+}
+
+.megamenu__category-link:hover {
+  color: #fff;
+  opacity: 1;
+}
+
+.megamenu__category-active:hover .b-rounded-bar {
+  display: block;
 }
 
 .megamenu__category:hover .megamenu__category-children {
@@ -688,6 +706,16 @@ a:hover {
   border-bottom-width: 1px;
   border-color: #dae1e7;
   width: 100%;
+}
+
+.b-rounded-bar {
+  border-top-width: 8px;
+  border-color: #fff;
+  width: 100%;
+  border-radius: .25rem;
+  display: none;
+  position: absolute;
+  bottom: -20px;
 }
 
 /**
@@ -6314,7 +6342,13 @@ a:hover {
  * @import "utilities/skew-transforms";
  */
 
+html,
 body {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
   font-family: "Lato", sans-serif;
   font-size: .8rem;
   line-height: 1.6;

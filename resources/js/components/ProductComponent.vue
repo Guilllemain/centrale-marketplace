@@ -42,11 +42,9 @@
             },
             async addToCart() {
                 try {
-                    const response = await axios.get('/basket/add', {
-                        params: {
-                            declinationId: this.product.productId,
-                            quantity: 1
-                        }
+                    const response = await axios.post('/basket/add', {
+                        declinationId: this.product.productId,
+                        quantity: 1
                     });
                     // Event.$emit('addItemToCart');
                 } catch (error) {

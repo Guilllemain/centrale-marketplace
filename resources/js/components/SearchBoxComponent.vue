@@ -1,7 +1,8 @@
 <template>
+    <div class="border border-grey-light rounded bg-white">
     <form action="/search" class="" method="GET" autocomplete="off">
 
-        <div class="flex items-center justify-content border border-grey-light rounded">
+        <div class="flex items-center justify-content">
 
             <div class="flex flex-col w-64">
                 <input class="w-128 appearance-none block text-grey-darker py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-grey" type="text" placeholder="Rechercher un produit" name="query" v-model="query" @keyup.esc="query = ''" @keyup="productAutocomplete()">
@@ -31,6 +32,7 @@
         
 
     </form>
+</div>
 </template>
 
 <script>

@@ -1,7 +1,7 @@
 <template>
     <div class="flex">
-        <zipcode-component @updateCityName="updateCity" :inputName="zipCodeInputName"></zipcode-component>
-        <city-component :cities="cities" :inputName="cityInputName"></city-component>
+        <zipcode-component :old-zipcode="zipcode" @updateCityName="updateCity" :inputName="zipCodeInputName"></zipcode-component>
+        <city-component :city-name="cityName" :cities="cities" :inputName="cityInputName"></city-component>
     </div>
 </template>
 
@@ -12,6 +12,14 @@
     export default {
         components: {ZipcodeComponent, CityComponent},
         props: {
+            zipcode: {
+                required: false,
+                type: String
+            },
+            cityName: {
+                required: false,
+                type: String
+            },
             zipCodeInputName: {
                 required: true,
                 type: String

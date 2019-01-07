@@ -26,6 +26,8 @@ class AppServiceProvider extends ServiceProvider
             '*',
             'App\Http\ViewComposers\CategoriesComposer'
         );
+        setLocale(LC_TIME, 'fr_FR');
+        \Carbon\Carbon::setLocale('fr');
     }
 
     /**

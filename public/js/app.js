@@ -4200,6 +4200,14 @@ __webpack_require__.r(__webpack_exports__);
     CityComponent: _CityComponent__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   props: {
+    zipcode: {
+      required: false,
+      type: String
+    },
+    cityName: {
+      required: false,
+      type: String
+    },
     zipCodeInputName: {
       required: true,
       type: String
@@ -4420,37 +4428,30 @@ var stripe = Stripe('pk_test_urL29gD8B9Z4XWHunuMswDKk');
       var _handleForm = _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(event) {
-        var result;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                console.log(event);
-                event.preventDefault();
-                _context.next = 4;
-                return stripe.createToken('account', {
-                  legal_entity: {
-                    first_name: document.querySelector('.inp-first-name').value,
-                    last_name: document.querySelector('.inp-last-name').value,
-                    address: {
-                      line1: document.querySelector('.inp-street-address1').value,
-                      city: document.querySelector('.inp-city').value,
-                      postal_code: document.querySelector('.inp-zip').value
-                    }
-                  },
-                  tos_shown_and_accepted: true
-                });
+                event.target.submit(); // event.preventDefault();
+                // const result = await stripe.createToken('account', {
+                //     legal_entity: {
+                //         first_name: document.querySelector('.inp-first-name').value,
+                //         last_name: document.querySelector('.inp-last-name').value,
+                //         address: {
+                //             line1: document.querySelector('.inp-street-address1').value,
+                //             city: document.querySelector('.inp-city').value,
+                //             postal_code: document.querySelector('.inp-zip').value,
+                //         },
+                //     },
+                //     tos_shown_and_accepted: true,
+                // });
+                // console.log(result);
+                // if (result.token) {
+                //     document.querySelector('#token').value = result.token.id;
+                //     event.target.submit();
+                // }
 
-              case 4:
-                result = _context.sent;
-                console.log(result);
-
-                if (result.token) {
-                  document.querySelector('#token').value = result.token.id;
-                  event.target.submit();
-                }
-
-              case 7:
+              case 1:
               case "end":
                 return _context.stop();
             }
@@ -4487,8 +4488,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
+    cityName: {
+      required: false,
+      type: String
+    },
     cities: {
       required: true,
       type: Array
@@ -5285,6 +5296,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
+    oldZipcode: {
+      required: false,
+      type: String
+    },
     inputName: {
       required: true,
       type: String
@@ -5294,6 +5309,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     return {
       zipcode: ''
     };
+  },
+  mounted: function mounted() {
+    if (this.oldZipcode) {
+      this.zipcode = this.oldZipcode;
+    }
   },
   methods: {
     getZipCode: function () {
@@ -70230,12 +70250,16 @@ var render = function() {
     { staticClass: "flex" },
     [
       _c("zipcode-component", {
-        attrs: { inputName: _vm.zipCodeInputName },
+        attrs: { "old-zipcode": _vm.zipcode, inputName: _vm.zipCodeInputName },
         on: { updateCityName: _vm.updateCity }
       }),
       _vm._v(" "),
       _c("city-component", {
-        attrs: { cities: _vm.cities, inputName: _vm.cityInputName }
+        attrs: {
+          "city-name": _vm.cityName,
+          cities: _vm.cities,
+          inputName: _vm.cityInputName
+        }
       })
     ],
     1
@@ -70428,7 +70452,7 @@ var render = function() {
       "form",
       {
         staticClass: "my-form",
-        attrs: { action: "/payment", method: "post" },
+        attrs: { action: "/checkout", method: "post" },
         on: {
           submit: function($event) {
             $event.preventDefault()
@@ -70550,7 +70574,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "flex-1" }, [
+  return _c("div", { staticClass: "flex-1 relative" }, [
     _c("label", [_vm._v("Ville")]),
     _vm._v(" "),
     _c(
@@ -70560,12 +70584,63 @@ var render = function() {
           "w-full block appearance-none bg-white border border-grey-light hover:border-grey px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline",
         attrs: { name: _vm.inputName }
       },
-      _vm._l(_vm.cities, function(city) {
-        return _c("option", { domProps: { value: city.nom } }, [
-          _vm._v(_vm._s(city.nom))
-        ])
-      }),
-      0
+      [
+        _c(
+          "option",
+          {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: _vm.cityName,
+                expression: "cityName"
+              }
+            ],
+            domProps: { value: _vm.cityName }
+          },
+          [_vm._v(_vm._s(_vm.cityName))]
+        ),
+        _vm._v(" "),
+        _vm._l(_vm.cities, function(city) {
+          return _c("option", { domProps: { value: city.nom } }, [
+            _vm._v(_vm._s(city.nom))
+          ])
+        })
+      ],
+      2
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: _vm.cities.length > 1,
+            expression: "cities.length > 1"
+          }
+        ],
+        staticClass:
+          "pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker"
+      },
+      [
+        _c(
+          "svg",
+          {
+            staticClass: "fill-current h-4 w-4",
+            attrs: { xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 20 20" }
+          },
+          [
+            _c("path", {
+              attrs: {
+                d:
+                  "M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+              }
+            })
+          ]
+        )
+      ]
     )
   ])
 }

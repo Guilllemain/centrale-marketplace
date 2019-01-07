@@ -14,14 +14,6 @@ class UsersController extends Controller
         $this->userService = $userService;
     }
 
-    public function show()
-    {
-        $id = session('authenticated')['id'];
-        $user = $this->userService->getProfileFromId($id);
-        // dd($user);
-        return view('profile', compact('user'));
-    }
-
     public function update(Request $request, $id)
     {
         if ($request->has('user_passsword')) {

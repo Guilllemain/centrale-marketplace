@@ -12,6 +12,10 @@
 
     export default {
         props: {
+            oldZipcode: {
+                required: false,
+                type: String
+            },
             inputName: {
                 required: true,
                 type: String
@@ -20,6 +24,11 @@
         data() {
             return {
                 zipcode: ''
+            }
+        },
+        mounted() {
+            if(this.oldZipcode) {
+                this.zipcode = this.oldZipcode;
             }
         },
         methods: {

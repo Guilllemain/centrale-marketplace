@@ -1,19 +1,19 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="container mt-16">
         <form method="POST" action="{{ route('basket.update-address', $user->id) }}">
         @csrf
         @method('PATCH')
-            <div class="flex">
+            <div class="flex justify-center">
                 <div class="w-1/2 mr-8">
                     <h3>Adresse de facturation</h3>
                     
                     <div class="my-4">
                         <label class="mr-2" for="mister">Monsieur</label>
-                        <input type="radio" id="mister" name="billing_address[title]" value="M." @if($user->addresses['billing']['title'] === 'M.') checked @endif>
+                        <input type="radio" id="mister" name="billing_address[title]" value="mr" @if($user->addresses['billing']['title'] === 'mr') checked @endif>
                         <label class="ml-8 mr-2" for="miss">Madame</label>
-                        <input type="radio" id="miss" name="billing_address[title]" value="Mme" @if($user->addresses['billing']['title'] === 'Mme') checked @endif>
+                        <input type="radio" id="miss" name="billing_address[title]" value="mrs" @if($user->addresses['billing']['title'] === 'mrs') checked @endif>
                     </div>
 
                     <label>Nom</label>
@@ -36,7 +36,14 @@
                         <input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:shadow-outline" name="billing_address[address]" placeholder="Votre adresse" value="@if($user->addresses['billing']['address']) {{ $user->addresses['billing']['address'] }} @endif">
                     </div>
 
-                    <address-component city-input-name="billing_address[city]" zip-code-input-name="billing_address[zipcode]"></address-component>
+                    <address-component
+                        @if($user->addresses['billing']) 
+                            zipcode="{{ $user->addresses['billing']['zipcode'] }}"
+                            city-name="{{ $user->addresses['billing']['city'] }}"
+                        @endif
+                        city-input-name="billing_address[city]"
+                        zip-code-input-name="billing_address[zipcode]">
+                    </address-component>
 
                     <button type="submit" name="addresses" class="w-full bg-blue hover:bg-blue-dark text-white font-bold py-3 px-4 rounded">
                         Procéder au paiement

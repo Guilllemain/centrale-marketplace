@@ -20,17 +20,20 @@ Route::get('/search', 'Api\SearchController@index');
 
 Route::get('/product/{id}', 'ProductsController@show')->name('test.show');
 
+Route::get('/profile/show/{userId?}', 'ProfileController@show')->name('profile.show');
+Route::get('/profile/addresses/{userId}', 'ProfileController@showAddresses')->name('profile.addresses');
+Route::get('/profile/orders/{userId}', 'ProfileController@showOrders')->name('profile.orders');
+
 Route::get('/basket', 'BasketController@index');
 Route::post('/basket/add', 'BasketController@addProduct')->name('product.add');
 Route::get('/basket/address', 'BasketController@showAddress');
 Route::get('/checkout', 'BasketController@checkout');
+Route::post('/checkout', 'BasketController@turnIntoOrder');
 Route::patch('/basket/address/{userId}', 'BasketController@updateAddress')->name('basket.update-address');
 Route::post('/basket/update/{id}', 'BasketController@updateQuantity')->name('basket.update-qty');
-Route::post('/payment', 'BasketController@payment')->name('basket.payment');
 Route::post('/basket/shipping/{id}', 'BasketController@updateShipping')->name('basket.update-shipping');
 Route::delete('/basket/{id}/{declinationId}', 'BasketController@destroy')->name('basket.delete');
 
-Route::get('/users/show', 'UsersController@show')->name('user.show');
 Route::get('/users/password/reset', 'UsersController@resetPassword')->name('password_reset');
 Route::post('/users/password', 'UsersController@forgotPassword')->name('forgot_password');
 Route::patch('/users/{id}', 'UsersController@update')->name('user.update');

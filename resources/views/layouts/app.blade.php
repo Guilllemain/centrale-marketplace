@@ -57,14 +57,14 @@
                                     @endif --}}
                                 @else
                                     <div class="profile">
-                                        <a class="block flex flex-col items-center" href="{{ route('user.show') }}">
+                                        <a class="block flex flex-col items-center" href="{{ route('profile.show') }}">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 24 24">
                                                 <use class="text-white fill-current" href="{{asset('icons/icons.svg#login')}}"></use>
                                             </svg>
                                             <h4 class="text-white opacity-75 font-normal">Mon compte</h4>
                                         </a>
                                         <div class="profile__content">
-                                            <a class="block mt-2 flex flex-col items-center" href="{{ route('user.show') }}">Mon profil</a>
+                                            <a class="block mt-2 flex flex-col items-center" href="{{ route('profile.show') }}">Mon profil</a>
                                             <div class="h-bar"></div>
                                             <a class="block mt-2 flex flex-col items-center" href="">Mes commandes</a>
                                             <div class="h-bar"></div>
@@ -108,6 +108,6 @@
     <script src="//code.tidio.co/tfbpqyj9ssgdjacgc4oguz3ftbhgmz83.js"></script>
 
     @yield('scripts')
-
+    @stack('scripts')
 </body>
 </html>

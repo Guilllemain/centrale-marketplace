@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-use App\ApiClient;
 use App\Basket;
 use App\Services\AbstractService;
 use GuzzleHttp\Client;
@@ -130,36 +129,6 @@ class BasketService extends AbstractService
         }
     }
 
-    public function checkout(string $basketId, int $paymentId, bool $acceptTerms, string $redirectUrl)
-    {
-        // $this->client->mustBeAuthenticated();
-        try {
-            $result = $this->client->post(
-                "basket/{$basketId}/order",
-                [
-                    RequestOptions::FORM_PARAMS => [
-                        'paymentId' => $paymentId,
-                        "acceptTermsAndConditions" => $acceptTerms,
-                        'redirectUrl' => $redirectUrl,
-                    ],
-                ]
-            );
-        } catch (ClientException $ex) {
-            $code = $ex->getResponse()->getStatusCode();
-
-            if (404 === $code) {
-                throw 'Basket not found';
-            }
-            if (400 === $code) {
-                // throw new SomeParametersAreInvalid($ex->getMessage(), $ex->getCode(), $ex);
-            }
-
-            throw $ex;
-        }
-
-        return $result;
-    }
-
     public function getPayments(string $basketId): array
     {
         // $this->client->mustBeAuthenticated();
@@ -179,6 +148,40 @@ class BasketService extends AbstractService
         }, $payments);
 
         return $payments;
+    }
+
+    /**
+     * Checkout the basket to create an order.
+     */
+    public function checkout(string $basketId, int $paymentId, bool $acceptTerms, string $redirectUrl)
+    {
+        // $this->client->mustBeAuthenticated();
+        try {
+            $result = $this->client->post(
+                "basket/{$basketId}/order",
+                [
+                    RequestOptions::FORM_PARAMS => [
+                        'paymentId' => $paymentId,
+                        "acceptTermsAndConditions" => $acceptTerms,
+                        'redirectUrl' => $redirectUrl,
+                    ],
+                ]
+            );
+        } catch (ClientException $ex) {
+            dd($ex);
+            $code = $ex->getResponse()->getStatusCode();
+
+            if (404 === $code) {
+                throw 'Basket not found';
+            }
+            if (400 === $code) {
+                throw $ex->getMessage();
+            }
+
+            throw $ex;
+        }
+
+        return $result;
     }
 
     private function getCurrentBasketId()

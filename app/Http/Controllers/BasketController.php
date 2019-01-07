@@ -86,19 +86,23 @@ class BasketController extends Controller
         return view('basket.payment', compact('payment_types'));
     }
 
+    public function turnIntoOrder()
+    {
+        $basketId = session('_basket_id');
+        $result = $this->basketService->checkout($basketId, 1, true, 'http://centrale-marketplace.test/checkout');
+    }
+
     public function payment(Request $request)
     {
-        // Set your secret key: remember to change this to your live secret key in production
-        // See your keys here: https://dashboard.stripe.com/account/apikeys
-        \Stripe\Stripe::setApiKey("sk_test_gTpJcxuDkfeXDxAZ95zomrvT");
+        // \Stripe\Stripe::setApiKey("sk_test_gTpJcxuDkfeXDxAZ95zomrvT");
 
-        $token = $request->token;
+        // $token = $request->token;
 
-        $account = \Stripe\Account::create([
-            "country" => "US",
-            "type" => "custom",
-            "account_token" => $token,
-        ]);
+        // $account = \Stripe\Account::create([
+        //     "country" => "US",
+        //     "type" => "custom",
+        //     "account_token" => $token,
+        // ]);
 
         dd($account);
     }

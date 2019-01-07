@@ -1,6 +1,6 @@
 <template>
     <div class="flex">
-        <form @submit.prevent="handleForm" class="my-form" action="/payment" method="post">
+        <form @submit.prevent="handleForm" class="my-form" action="/checkout" method="post">
             <input type="hidden" name="_token" :value="csrf">
             <input type="hidden" name="token" id="token">
             <label>
@@ -43,26 +43,26 @@
         },
         methods: {
             async handleForm(event) {
-                console.log(event);
-                event.preventDefault();
+                event.target.submit();
+                // event.preventDefault();
 
-                const result = await stripe.createToken('account', {
-                    legal_entity: {
-                        first_name: document.querySelector('.inp-first-name').value,
-                        last_name: document.querySelector('.inp-last-name').value,
-                        address: {
-                            line1: document.querySelector('.inp-street-address1').value,
-                            city: document.querySelector('.inp-city').value,
-                            postal_code: document.querySelector('.inp-zip').value,
-                        },
-                    },
-                    tos_shown_and_accepted: true,
-                });
-                console.log(result);
-                if (result.token) {
-                    document.querySelector('#token').value = result.token.id;
-                    event.target.submit();
-                }
+                // const result = await stripe.createToken('account', {
+                //     legal_entity: {
+                //         first_name: document.querySelector('.inp-first-name').value,
+                //         last_name: document.querySelector('.inp-last-name').value,
+                //         address: {
+                //             line1: document.querySelector('.inp-street-address1').value,
+                //             city: document.querySelector('.inp-city').value,
+                //             postal_code: document.querySelector('.inp-zip').value,
+                //         },
+                //     },
+                //     tos_shown_and_accepted: true,
+                // });
+                // console.log(result);
+                // if (result.token) {
+                //     document.querySelector('#token').value = result.token.id;
+                //     event.target.submit();
+                // }
             }
         }
     }

@@ -8,17 +8,12 @@ use App\CategoryTree;
 use App\Company;
 use App\Product;
 use App\SearchResult;
+use App\Services\AbstractService;
 use GuzzleHttp\Client;
 use GuzzleHttp\RequestOptions;
 
-class CatalogService
+class CatalogService extends AbstractService
 {
-    protected $client;
-
-    public function __construct(ApiClient $client)
-    {
-        $this->client = $client;
-    }
 
     /**
      * @return an array of all categories as a tree

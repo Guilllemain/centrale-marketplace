@@ -5,16 +5,19 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Services\UserService;
 use App\Services\OrderService;
+use App\Services\FavoriteService;
 
 class ProfileController extends Controller
 {
     private $userService;
     private $orderService;
+    private $favoriteService;
 
-    public function __construct(UserService $userService, OrderService $orderService)
+    public function __construct(UserService $userService, OrderService $orderService, FavoriteService $favoriteService)
     {
         $this->userService = $userService;
         $this->orderService = $orderService;
+        $this->favoriteService = $favoriteService;
     }
 
     public function show($userId = null)
@@ -40,5 +43,13 @@ class ProfileController extends Controller
         $orders = $this->orderService->getOrders();
         // dd($orders);
         return view('profile.orders', compact('orders', 'user'));
+    }
+
+    public function showFavorites($userId)
+    {
+        $user = $this->userService->getProfileFromId($userId);
+        $favorites = $this->favoriteService->getAll();
+
+        return view('profile.favorites', compact('favorites', 'user'));
     }
 }

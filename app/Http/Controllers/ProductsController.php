@@ -22,7 +22,7 @@ class ProductsController extends Controller
     {
         $product = $this->getProductFromSlug($slug);
         if (!$product) {
-            throw $this->createNotFoundException("Product '${slug}' Not Found");
+            throw "Product '${slug}' Not Found";
         }
         return view('product.show', compact('product'));
     }

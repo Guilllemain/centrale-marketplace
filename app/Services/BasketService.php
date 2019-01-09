@@ -35,6 +35,34 @@ class BasketService extends AbstractService
         return new Basket($attributes);
     }
 
+    /**
+     * Get the currently authenticated user's basket ID
+     */
+    public function getUserBasketId($userId): ?string
+    {
+        // $this->client->mustBeAuthenticated();
+        $response = $this->client->get("users/$userId/basket");
+
+        $id = $response['id'];
+        if ($id === '') {
+            $id = null;
+        }
+
+        return $id;
+    }
+
+    /**
+     * Merge baskets ($sourceBasketId into $targetBasketId).
+     */
+    public function mergeBaskets(string $targetBasketId, string $sourceBasketId)
+    {
+        $this->client->post("basket/$targetBasketId/merge", [
+            RequestOptions::JSON => [
+                'basketId' => $sourceBasketId,
+            ],
+        ]);
+    }
+
     public function sendProductToBasket($declinationId, $quantity)
     {
         return $this->addProductToBasket($this->getBasketId(), $declinationId, $quantity);

@@ -1,5 +1,5 @@
 <template>
-    <div class="list-product m-3 flex flex-col items-center justify-center bg-white pb-4 shadow">
+    <div class="list-product m-3 flex flex-col items-center justify-center bg-white pb-4 shadow rounded">
         <img :src="getImage()" class="w-full">
         <div class="my-2 border-b border-grey-light w-5/6"></div>
         <a :href="productPath()" class="px-2 mb-2">
@@ -35,9 +35,9 @@
                 if(this.product.categoryPath.length > 2) {
                     return `/${this.product.categoryPath[0]['slug']}/${this.product.categoryPath[1]['slug']}/${this.product.categoryPath[2]['slug']}/${this.product.slug}`;
                 } else if (this.product.categoryPath.length > 1){
-                    return `/${this.product.categoryPath[0]['slug']}/${this.product.categoryPath[1]['slug']}`;
+                    return `/${this.product.categoryPath[0]['slug']}/${this.product.categoryPath[1]['slug']}/${this.product.slug}`;
                 } else {
-                    return `/${this.product.categoryPath[0]['slug']}`;
+                    return `/${this.product.categoryPath[0]['slug']}/${this.product.slug}`;
                 }
             },
             async addToCart() {

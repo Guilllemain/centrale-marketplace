@@ -60,7 +60,7 @@
                 if(product.categoryPath.length > 2) {
                     return `/${product.categoryPath[0]['slug']}/${product.categoryPath[1]['slug']}/${product.categoryPath[2]['slug']}/${product.slug}`;
                 } else {
-                    return `/${product.categoryPath[0]['slug']}/${product.categoryPath[1]['slug']}`;
+                    return `/${product.categoryPath[0]['slug']}/${product.categoryPath[1]['slug']}/${product.slug}`;
                 }
             },
             productAutocomplete: _.debounce(function () {

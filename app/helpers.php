@@ -13,3 +13,13 @@ if (! function_exists('utf8ize')) {
         return $data;
     }
 }
+
+function getProductPath($product)
+{
+    $productPath = [];
+    for ($i = 0; $i < 3; $i++) {
+        array_push($productPath, $product['categoryPath'][$i]['slug']);
+    }
+    $finalPath = '/' . implode('/', $productPath) . '/' . $product['slug'];
+    return $finalPath;
+}

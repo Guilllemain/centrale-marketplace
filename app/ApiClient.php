@@ -79,10 +79,18 @@ class ApiClient
             );
     }
 
+    public function delete(string $endpoint, array $options = [])
+    {
+        return json_decode(
+            $this->rawRequest('DELETE', $endpoint, $options)
+                ->getBody()
+                ->getContents()
+        );
+    }
+
     public function rawRequest(string $method, $uri, array $options = [])
     {
         $options[RequestOptions::HEADERS]['User-Agent'] = 'Wizaplace-PHP-SDK';
-        // dd($options);
         try {
             return $this->client->request($method, $uri, $this->addAuth($options));
         } catch (BadResponseException $e) {

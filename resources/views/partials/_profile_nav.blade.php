@@ -10,6 +10,9 @@
             <a class="uppercase hover:border-b hover:border-black font-light" href="{{ route('profile.addresses', $user->id) }}">Mes adresses</a>
         </div>
         <div class="mb-4">
+            <a class="uppercase hover:border-b hover:border-black font-light" href="{{ route('profile.favorites', $user->id) }}">Mes articles préférés</a>
+        </div>
+        <div class="mb-4">
             <a class="uppercase hover:border-b hover:border-black font-light" href="/profile/newsletter">Newsletter</a>
         </div>
         <div>

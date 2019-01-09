@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Services\AuthService;
+use App\Services\BasketService;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -24,6 +25,7 @@ class LoginController extends Controller
     use AuthenticatesUsers;
 
     protected $authService;
+    private $basketService;
     /**
      * Where to redirect users after login.
      *
@@ -36,10 +38,11 @@ class LoginController extends Controller
      *
      * @return void
      */
-    public function __construct(AuthService $authService)
+    public function __construct(BasketService $basketService, AuthService $authService)
     {
         $this->middleware('guest')->except('logout');
         $this->authService = $authService;
+        $this->basketService = $basketService;
     }
 
     public function login(Request $request)
@@ -53,6 +56,15 @@ class LoginController extends Controller
 
         if ($apiKey) {
             $request->session()->put('authenticated', ['id' => $apiKey->id, 'key' => $apiKey->apiKey]);
+        }
+
+        //retrieve current basket if there is any and merge it with the last user's basket
+        $userBasketId = $this->basketService->getUserBasketId($apiKey->id);
+        $currentBasketId = session('_basket_id');
+        if ($currentBasketId) {
+            $this->basketService->mergeBaskets($currentBasketId, $userBasketId);
+        } else {
+            session(['_basket_id' => $userBasketId]);
         }
 
         return redirect()->intended('/');

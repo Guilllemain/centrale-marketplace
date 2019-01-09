@@ -52,7 +52,7 @@
     export default {
         data() {
             return {
-                basket: {},
+                basket: '',
                 items: []
             }
         },
@@ -64,7 +64,7 @@
             async getBasket() {
                 const response = await axios.get('/basket');
                 this.basket = response.data;
-                await this.getItems()
+                if(this.basket) this.getItems()
             },
             getItems() {
                 this.basket.companyGroups.forEach(company => 

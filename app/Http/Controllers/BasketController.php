@@ -21,6 +21,10 @@ class BasketController extends Controller
     public function index()
     {
         $id = session('_basket_id');
+        if (!$id) {
+            return;
+        }
+
         $basket = $this->basketService->getBasket($id);
 
         if (request()->wantsJson()) {

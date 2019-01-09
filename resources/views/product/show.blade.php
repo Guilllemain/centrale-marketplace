@@ -7,7 +7,7 @@
     <div class="container mt-16">
         <div class="flex">
             <div class="flex flex-col">
-                <img class="mr-12" src="https://back.vegan-place.com/api/v1/image/{{ $product->images[0]['id'] }}?w=420&h=420">
+                <img class="mr-12" @if($product->images) src="https://back.vegan-place.com/api/v1/image/{{ $product->images[0]['id'] }}?w=420&h=420" @else src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" @endif>
                 <div class="flex flex-start mt-2">
                     @foreach ($product->images as $image)
                         <div class="mr-1 border border-grey-light">
@@ -17,7 +17,17 @@
                 </div>
             </div>
             <div>
-                <h3 class="text-lg tracking-wide">{{ $product->name }}</h3>
+                <div class="flex">
+                    <h3 class="text-lg tracking-wide mr-16">{{ $product->name }}</h3>
+                    <favorite-component :product-id="{{ $product->id }}"></favorite-component>
+                    {{-- <form action="{{ route('favorite.add', $product) }}">
+                        <a class="flex items-center" href="">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6">
+                                <use class="text-orange-dark fill-current" href="{{asset('svg/icons.svg#favorite')}}"></use>
+                            </svg>
+                        </a>
+                    </form> --}}
+                </div>
                 <stars-component></stars-component>
                 <div class="my-2 border-b border-grey-light w-full"></div>
                 <p class="text-lg mb-6">{{ $product->minPrice }}€</p>
@@ -25,7 +35,7 @@
                 <p>Code EAN : {{ $product->code }}</p>
                 <div class="flex items-center">
                     <span>Quantité :</span>
-                    <form class="ml-2 flex items-center" action="{{ route('product.add') }}" method="POST">
+                    <form class="ml-2 flex items-center" action="{{ route('basket.add') }}" method="POST">
                         @csrf
                         <input type="hidden" name="declinationId" value="{{$product->declinations[0]['id']}}">
                         <div class="relative mr-8">

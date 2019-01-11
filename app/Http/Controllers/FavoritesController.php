@@ -23,13 +23,13 @@ class FavoritesController extends Controller
 
     public function isFavorited(Request $request)
     {
-        $declinationId = (string)$request->declinationId . '_0';
-        return response()->json($this->favoriteService->isInFavorites($declinationId));
+        // $declinationId = (string)$request->declinationId . '_0';
+        return response()->json($this->favoriteService->isInFavorites($request->declinationId));
     }
 
     public function removeFavorite(Request $request)
     {
-        $declinationId = (string)$request->declinationId . '_0';
+        // $declinationId = (string)$request->declinationId . '_0';
         $this->favoriteService->removeDeclinationToUserFavorites($declinationId);
     }
 }

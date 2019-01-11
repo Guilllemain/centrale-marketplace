@@ -36,6 +36,7 @@ class BasketController extends Controller
 
     public function addProduct(Request $request)
     {
+        // if($userService)
         $declinationId = $request->declinationId;
         $quantity = $request->quantity;
         $this->basketService->sendProductToBasket($declinationId, $quantity);

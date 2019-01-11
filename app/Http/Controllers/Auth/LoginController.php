@@ -61,10 +61,12 @@ class LoginController extends Controller
         //retrieve current basket if there is any and merge it with the last user's basket
         $userBasketId = $this->basketService->getUserBasketId($apiKey->id);
         $currentBasketId = session('_basket_id');
-        if ($currentBasketId) {
+        if ($currentBasketId && !$userBasketId) {
+            dd('hi');
+        }
+        // dd($userBasketId, $currentBasketId);
+        if ($currentBasketId && $userBasketId) {
             $this->basketService->mergeBaskets($currentBasketId, $userBasketId);
-        } else {
-            session(['_basket_id' => $userBasketId]);
         }
 
         return redirect()->intended('/');

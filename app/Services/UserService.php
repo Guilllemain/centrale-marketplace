@@ -35,7 +35,7 @@ class UserService extends AbstractService
             throw $error;
         }
 
-        return $userData->id;
+        return $userData['id'];
     }
 
     public function getProfileFromId(int $id): User

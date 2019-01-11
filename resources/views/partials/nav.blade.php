@@ -1,4 +1,4 @@
-<nav class="megamenu relative px-6">
+<nav class="megamenu relative px-6 bg-orange-dark">
     <div class="flex uppercase justify-around tracking-wide">
         @foreach($categories as $category)
             @if($category->getCategory()->productCount)

@@ -19,7 +19,7 @@
             <div>
                 <div class="flex">
                     <h3 class="text-lg tracking-wide mr-16">{{ $product->name }}</h3>
-                    <favorite-component :product-id="{{ $product->id }}"></favorite-component>
+                    <favorite-component @if(session('authenticated')) :auth="{{ true }}" @endif :product="{{ $product }}"></favorite-component>
                     {{-- <form action="{{ route('favorite.add', $product) }}">
                         <a class="flex items-center" href="">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6">

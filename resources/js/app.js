@@ -32,6 +32,7 @@ Vue.component('address-component', require('./components/AddressComponent.vue').
 Vue.component('checkout-component', require('./components/CheckoutComponent.vue').default);
 Vue.component('stars-component', require('./components/StarsComponent.vue').default);
 Vue.component('favorite-component', require('./components/FavoriteComponent.vue').default);
+Vue.component('carousel-component', require('./components/CarouselComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

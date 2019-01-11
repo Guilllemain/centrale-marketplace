@@ -18,21 +18,27 @@
 
     export default {
         props: {
-            productId: {
+            product: {
                 required: true,
+                type: Object
+            },
+            auth: {
+                required: false,
                 type: Number
             }
         },
         data() {
             return {
-                favorite: false
+                favorite: 0
             }
         },
         async mounted() {
-            const result = await axios.post(`/favorites/isFavorited`, {
-                declinationId: this.productId
-            });
-            this.favorite = result.data;
+            if (this.auth) {
+                const result = await axios.post(`/favorites/isFavorited`, {
+                    declinationId: this.product.declinations[0].id
+                });
+                this.favorite = result.data;
+            }
         },
         // computed: {
         //     async isFavorited() {
@@ -43,13 +49,13 @@
         methods: {
             async addToFavorite() {
                 await axios.post('/favorites/addToFavorites', {
-                        declinationId: this.productId
+                        declinationId: this.product.declinations[0].id
                     })
                 this.favorite = true;
             },
             async removeFavorite() {
                 await axios.post('/favorites/removeFavorite', {
-                        declinationId: this.productId
+                        declinationId: this.this.product.declinations[0].id
                     })
                 this.favorite = false;
             }

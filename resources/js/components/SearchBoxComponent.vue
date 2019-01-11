@@ -6,8 +6,8 @@
 
             <div class="flex flex-col w-64">
                 <input class="w-128 appearance-none block text-grey-darker py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-grey" type="text" placeholder="Rechercher un produit" name="query" v-model="query" @keyup.esc="query = ''" @keyup="productAutocomplete()">
-
-                <div v-if="productSuggestions.length > 0 && query.length > 3" class="search__results z-50 bg-white absolute w-64">
+                
+                <div v-if="productSuggestions.length > 0 && query.length > 3" class="pt-2 search__results z-50 bg-white rounded-b absolute shadow-md w-64">
                    <!--  <ul class="list-reset absolute bg-white border border-grey-lighter">
                         <li v-for="product in productSuggestions">
                             <a :href="`/product/${product.productId}`">{{ product.name }}</a>
@@ -91,6 +91,6 @@
 </script>
 <style>
     .search__results {
-        top: 5rem;
+        top: 3.3rem;
     }
 </style>

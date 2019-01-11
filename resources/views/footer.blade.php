@@ -1,5 +1,5 @@
 <div class="mt-16 w-full">
-    <div class="py-8 bg-grey text-black flex justify-center">
+    <div class="py-8 bg-orange-lightest text-black flex justify-center">
         <div class="flex flex-col mr-8">
             <h2 class="text-sm uppercase mb-6">Aide</h2>
             <a href="">Questions fréquentes</a>

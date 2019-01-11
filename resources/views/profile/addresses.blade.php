@@ -23,12 +23,12 @@
 
                             <label>Nom</label>
                             <div class="pb-4">
-                                <input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:shadow-outline" name="billing_address[lastName]" placeholder="Votre nom" value="@if($user->addresses['billing']['lastname']) {{ $user->addresses['billing']['lastname'] }} @endif">
+                                <input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:shadow-outline" name="billing_address[lastname]" placeholder="Votre nom" value="@if($user->addresses['billing']['lastname']) {{ $user->addresses['billing']['lastname'] }} @endif">
                             </div>
                             
                             <label>Prénom</label>
                             <div class="pb-4">
-                                <input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:shadow-outline" name="billing_address[firstName]" placeholder="Votre prénom" value="@if($user->addresses['billing']['firstname']) {{ $user->addresses['billing']['firstname'] }} @endif">
+                                <input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:shadow-outline" name="billing_address[firstname]" placeholder="Votre prénom" value="@if($user->addresses['billing']['firstname']) {{ $user->addresses['billing']['firstname'] }} @endif">
                             </div>
 
                             <label>Téléphone</label>
@@ -50,7 +50,7 @@
                                 zip-code-input-name="billing_address[zipcode]">
                             </address-component>
 
-                            <button type="submit" name="addresses" class="w-full bg-blue hover:bg-blue-dark text-white font-bold py-3 px-4 rounded">
+                            <button type="submit" name="addresses" class="w-full bg-orange-dark hover:bg-orange text-white font-bold py-3 px-4 rounded">
                                 Mettre à jour
                             </button>
                         </div>

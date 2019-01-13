@@ -5810,7 +5810,7 @@ module.exports = function (it) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-var core = module.exports = { version: '2.6.0' };
+var core = module.exports = { version: '2.6.1' };
 if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
 
 
@@ -70958,21 +70958,11 @@ var render = function() {
         attrs: { name: _vm.inputName }
       },
       [
-        _c(
-          "option",
-          {
-            directives: [
-              {
-                name: "show",
-                rawName: "v-show",
-                value: _vm.cityName,
-                expression: "cityName"
-              }
-            ],
-            domProps: { value: _vm.cityName }
-          },
-          [_vm._v(_vm._s(_vm.cityName))]
-        ),
+        _vm.cityName && _vm.cities.length === 0
+          ? _c("option", { domProps: { value: _vm.cityName } }, [
+              _vm._v(_vm._s(_vm.cityName))
+            ])
+          : _vm._e(),
         _vm._v(" "),
         _vm._l(_vm.cities, function(city) {
           return _c("option", { domProps: { value: city.nom } }, [
@@ -84284,8 +84274,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/yguillemain/Desktop/code/centrale-marketplace/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/yguillemain/Desktop/code/centrale-marketplace/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/yann/code/centrale-marketplace/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/yann/code/centrale-marketplace/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

@@ -43,3 +43,15 @@
         @endforeach
     </div>
 </nav>
+
+@push('scripts')
+    <script>
+        const path = window.location.href;
+        const links = document.querySelectorAll('.megamenu__category-link');
+        links.forEach(link => {
+            if (window.location.href.startsWith(link.href)) {
+                link.classList.add('megamenu__category-link--active');
+            }
+        })
+    </script>
+@endpush

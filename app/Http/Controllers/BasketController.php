@@ -36,10 +36,18 @@ class BasketController extends Controller
 
     public function addProduct(Request $request)
     {
-        // if($userService)
+        $currentbasketId = $this->basketService->getCurrentBasketId();
         $declinationId = $request->declinationId;
         $quantity = $request->quantity;
         $this->basketService->sendProductToBasket($declinationId, $quantity);
+        
+        if(session('authenticated') && !$currentbasketId) {
+            $this->basketService->setUserBasketId(
+                $this->userService->getUserIdFromSession(),
+                $this->basketService->getCurrentBasketId()
+            );
+        }
+        
         return back();
     }
 

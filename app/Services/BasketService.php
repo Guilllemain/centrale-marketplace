@@ -225,12 +225,12 @@ class BasketService extends AbstractService
         return $result;
     }
 
-    private function getCurrentBasketId()
+    public function getCurrentBasketId()
     {
         return session(self::ID_SESSION_KEY);
     }
 
-    private function setCurrentBasketId($basketId)
+    public function setCurrentBasketId($basketId)
     {
         session([self::ID_SESSION_KEY => $basketId]);
     }

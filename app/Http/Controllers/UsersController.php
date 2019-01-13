@@ -27,7 +27,7 @@ class UsersController extends Controller
             $this->userService->updateUser($id);
         }
 
-        return redirect('/');
+        return back();
     }
 
     public function updateAddress(Request $request, $userId)

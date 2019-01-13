@@ -38,6 +38,14 @@ class UserService extends AbstractService
         return $userData['id'];
     }
 
+    /**
+     * Retrieve user ID from session.
+     */
+    public function getUserIdFromSession()
+    {
+        return session('authenticated')['id'];
+    }
+
     public function getProfileFromId(int $id): User
     {
         // $this->client->mustBeAuthenticated();

@@ -615,6 +615,11 @@ a:hover {
   opacity: 1;
 }
 
+.megamenu__category-link--active {
+  opacity: 1;
+  font-weight: 700;
+}
+
 .megamenu__category-active:hover .b-rounded-bar {
   display: block;
 }

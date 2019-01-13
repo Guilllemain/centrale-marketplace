@@ -67,6 +67,10 @@ a {
     &:hover {
         @apply text-white opacity-100;
     }
+
+    &--active {
+        @apply opacity-100 font-bold;
+    }
 }
 
 .megamenu__category-active{

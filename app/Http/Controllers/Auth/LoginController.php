@@ -54,17 +54,21 @@ class LoginController extends Controller
         $credentials = $request->only('email', 'password');
         $apiKey = $this->authService->authenticateUser($email, $password);
 
-        if ($apiKey) {
-            $request->session()->put('authenticated', ['id' => $apiKey->id, 'key' => $apiKey->apiKey]);
+        if (!$apiKey) {
+            return back();
+        }
+
+        $request->session()->put('authenticated', ['id' => $apiKey->id, 'key' => $apiKey->apiKey]);
+
+        $userBasketId = $this->basketService->getUserBasketId($apiKey->id);
+        $currentBasketId = session('_basket_id');
+
+        //set the current basket ID if the user has none
+        if ($currentBasketId && !$userBasketId) {
+            $this->basketService->setUserBasketId($apiKey->id, $this->basketService->getCurrentBasketId());
         }
 
         //retrieve current basket if there is any and merge it with the last user's basket
-        $userBasketId = $this->basketService->getUserBasketId($apiKey->id);
-        $currentBasketId = session('_basket_id');
-        if ($currentBasketId && !$userBasketId) {
-            dd('hi');
-        }
-        // dd($userBasketId, $currentBasketId);
         if ($currentBasketId && $userBasketId) {
             $this->basketService->mergeBaskets($currentBasketId, $userBasketId);
         }

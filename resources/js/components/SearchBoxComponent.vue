@@ -13,11 +13,11 @@
                             <a :href="`/product/${product.productId}`">{{ product.name }}</a>
                         </li>
                     </ul> -->
-                    <div class="" v-for="product in productSuggestions" class="flex items-center">
-                        <div class="w-1/6 mr-2">
+                    <div class="" v-for="product in productSuggestions" class="flex items-center hover:bg-grey-lighter">
+                        <div class="w-1/6 flex items-center mr-2">
                             <img class="w-full" :src="getImage(product)">
                         </div>
-                        <a class="w-5/6" :href="productPath(product)">{{ product.name }}</a>
+                        <a class="w-5/6 mr-2" :href="productPath(product)">{{ product.name }}</a>
                     </div>
                 </div>
             </div>

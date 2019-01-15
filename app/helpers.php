@@ -23,3 +23,9 @@ function getProductPath($product)
     $finalPath = '/' . implode('/', $productPath) . '/' . $product['slug'];
     return $finalPath;
 }
+
+function formatPrice($price)
+{
+    $price = number_format($price, 2, ',', ' ');
+    return $price;
+}

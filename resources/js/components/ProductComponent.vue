@@ -5,7 +5,7 @@
         <a :href="productPath()" class="px-2 mb-2">
             <h3>{{ product.name }}</h3>
         </a>
-        <div class="mb-2">{{ product.minimumPrice }}€</div>
+        <div class="mb-2">{{ formatPrice(product.minimumPrice) }} €</div>
         <button @click="addToCart">Ajouter au panier</button>
     </div>
 </template>
@@ -40,10 +40,14 @@
                     return `/${this.product.categoryPath[0]['slug']}/${this.product.slug}`;
                 }
             },
+            formatPrice(price) {
+                price = price.toFixed(2) + '';
+                return price.replace('.', ',');
+            },
             async addToCart() {
                 try {
                     const response = await axios.post('/basket/add', {
-                        declinationId: this.product.productId,
+                        declinationId: this.product.mainDeclination.id,
                         quantity: 1
                     });
                     // Event.$emit('addItemToCart');

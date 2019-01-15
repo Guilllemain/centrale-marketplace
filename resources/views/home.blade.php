@@ -29,7 +29,7 @@
                     ]) }}">
                         <h3 class="mb-2">{{ $product->name }}</h3>
                     </a>
-                    <div class="text-base">{{ $product->minimumPrice }}€</div>
+                    <div class="text-base">{{ formatPrice($product->minimumPrice) }} €</div>
                 </div>
             @endforeach
         </div>

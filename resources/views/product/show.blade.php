@@ -1,36 +1,20 @@
 @extends('layouts.app')
 
-@section('css')
-@endsection
-
 @section('content')
     <div class="container mt-16">
         <div class="flex">
-            <div class="flex flex-col">
-                <img class="mr-12" @if($product->images) src="https://back.vegan-place.com/api/v1/image/{{ $product->images[0]['id'] }}?w=420&h=420" @else src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" @endif>
-                <div class="flex flex-start mt-2">
-                    @foreach ($product->images as $image)
-                        <div class="mr-1 border border-grey-light">
-                            <img class="w-full" src="https://back.vegan-place.com/api/v1/image/{{ $image['id'] }}?w=100&h=100">
-                        </div>
-                    @endforeach
-                </div>
+            <div class="w-1/2">
+                <product-images-component name="{{ $product->name }}" :images="{{ $product->getImages() }}"></product-images-component>
             </div>
-            <div>
+            
+            <div class="ml-12">
                 <div class="flex">
                     <h3 class="text-lg tracking-wide mr-16">{{ $product->name }}</h3>
                     <favorite-component @if(session('authenticated')) :auth="{{ true }}" @endif :product="{{ $product }}"></favorite-component>
-                    {{-- <form action="{{ route('favorite.add', $product) }}">
-                        <a class="flex items-center" href="">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6">
-                                <use class="text-orange-dark fill-current" href="{{asset('svg/icons.svg#favorite')}}"></use>
-                            </svg>
-                        </a>
-                    </form> --}}
                 </div>
                 <stars-component></stars-component>
                 <div class="my-2 border-b border-grey-light w-full"></div>
-                <p class="text-lg mb-6">{{ $product->minPrice }}€</p>
+                <p class="text-lg mb-6">{{ formatPrice($product->minPrice) }} €</p>
                 <div class="mb-3 text-base tracking-tight font-light">{!! $product->shortDescription !!}</div>
                 <p>Code EAN : {{ $product->code }}</p>
                 <div class="flex items-center">

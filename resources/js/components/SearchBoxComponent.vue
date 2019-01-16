@@ -1,37 +1,36 @@
 <template>
-    <div class="border border-grey-light rounded">
-    <form action="/search" class="" method="GET" autocomplete="off">
+    <div class="w-1/3 border border-grey-light rounded">
+        <form action="/search" method="GET" autocomplete="off">
+            <div class="flex items-center justify-content">
 
-        <div class="flex items-center justify-content">
-
-            <div class="w-64">
-                <input class="appearance-none text-grey-darker px-4 leading-tight focus:outline-none focus:bg-white focus:border-grey" type="text" placeholder="Rechercher un produit" name="query" v-model="query" @keyup.esc="query = ''" @keyup="productAutocomplete()">
-                
-                <div v-if="productSuggestions.length > 0 && query.length > 3" class="pt-2 search__results z-50 bg-white rounded-b absolute shadow-md w-64">
-                   <!--  <ul class="list-reset absolute bg-white border border-grey-lighter">
-                        <li v-for="product in productSuggestions">
-                            <a :href="`/product/${product.productId}`">{{ product.name }}</a>
-                        </li>
-                    </ul> -->
-                    <div class="" v-for="product in productSuggestions" class="flex items-center hover:bg-grey-lighter">
-                        <div class="w-1/6 flex items-center mr-2">
-                            <img class="w-full" :src="getImage(product)">
+                <div class="flex-1">
+                    <input class="w-full appearance-none text-grey-darker px-4 leading-tight focus:outline-none focus:bg-white focus:border-grey" type="text" placeholder="Rechercher un produit" name="query" v-model="query" @keyup.esc="query = ''" @keyup="productAutocomplete()">
+                    
+                    <transition name="fade">
+                        <div v-if="productSuggestions.length > 0 && query.length > 3" class="search__results z-50 bg-white rounded-b absolute shadow-md w-29 overflow-hidden">
+                            <div v-for="product in productSuggestions" class="flex items-center hover:bg-grey-lighter pr-2">
+                                <div class="w-1/6 flex items-center mr-2">
+                                    <img class="w-full" :src="getImage(product)">
+                                </div>
+                                <div>
+                                    <a class="" :href="productPath(product)">{{ limitLength(product.name) }}</a>
+                                    <div class="text-xs text-grey-dark">{{ product.price }} €</div>
+                                </div>
+                            </div>
                         </div>
-                        <a class="w-5/6 mr-2" :href="productPath(product)">{{ product.name }}</a>
-                    </div>
+                    </transition>
                 </div>
+
+                <button class="search-button focus:outline-none border-l border-grey-light pt-1 px-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 search-icon">
+                        <use class="text-orange-dark fill-current" href="/svg/icons.svg#search"></use>
+                    </svg>
+                </button>
             </div>
+            
 
-            <button class="focus:outline-none border-l border-grey-light pt-1 px-2">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 search-icon">
-                    <use class="text-orange-dark fill-current" href="/svg/icons.svg#search"></use>
-                </svg>
-            </button>
-        </div>
-        
-
-    </form>
-</div>
+        </form>
+    </div>
 </template>
 
 <script>
@@ -49,6 +48,12 @@
 
         },
         methods: {
+            limitLength(string) {
+                if (string.length > 44) {
+                    return string.substring(0, 45) + '...';
+                }
+                return string;
+            },
             getImage(product) {
                 if (product) {
                     return `https://back.vegan-place.com/api/v1/image/${product.mainImage['id']}?w=256&h=256`
@@ -83,19 +88,27 @@
 
                 // fill suggestions
                 this.productSuggestions = results.data;
-                console.log(results.data);
             },
         }
     }
 </script>
-<style>
+<style scoped>
+    .w-29 {
+        width: 29%;    
+    }
     .search__results {
         top: 3.3rem;
     }
     .search-icon {
         transition: all .3s;
     }
-    .search-icon:hover {
+    .search-button:hover .search-icon {
         transform: scale(1.1);
+    }
+    .fade-enter-active, .fade-leave-active {
+        transition: all .3s;
+    }
+    .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+        opacity: 0;
     }
 </style>

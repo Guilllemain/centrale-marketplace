@@ -49,12 +49,11 @@ a {
 // }
 
 .megamenu__category-children {
-    top: 1.65rem;
+    top: 2.6rem;
     left: 0;
     transform: scaleY(0);
     transform-origin: top;
-    @apply invisible opacity-0 absolute w-full z-30 bg-white px-12 py-4 flex flex-wrap;
-    box-shadow: 0 0px 8px 0 rgba(0,0,0,0.12), 0 0px 4px 0 rgba(0,0,0,0.08);
+    @apply invisible opacity-0 absolute w-full z-30 bg-white pl-16 pr-12 py-4 flex flex-wrap;
     transition: transform .4s;
 
     &-children {

@@ -2,7 +2,7 @@
     <div class="flex uppercase justify-around tracking-wide">
         @foreach($categories as $category)
             @if($category->getCategory()->productCount)
-                <div class="megamenu__category py-3 px-3">
+                <div class="megamenu__category p-3">
                     <div class="megamenu__category-active relative">
                         <a href="{{ route('category.show', ['category' => $category->getCategory()->slug]) }}"
                             class="megamenu__category-link">
@@ -11,18 +11,18 @@
                         <div class="b-rounded-bar"></div>
                     </div>
                     @if($category->getChildren())
-                        <div class="megamenu__category-children font-bold mt-4 shadow-md justify-center">
+                        <div class="megamenu__category-children shadow-md">
                             @foreach($category->getChildren() as $subcategory)
-                                <div class="@if($subcategory->getChildren()) mb-3 @endif mx-12">
-                                    <a href="{{ route('category.show',[
+                                <div class="@if($subcategory->getChildren()) mb-6 @endif w-1/6">
+                                    <a class="font-bold" href="{{ route('category.show',[
                                         'category' => $subcategory->getCategory()->categoryPath[0]['slug'],
                                         'subcategory' => $subcategory->getCategory()->slug
                                     ])}}">{{ $subcategory->getCategory()->name }}</a>
                                     @if($subcategory->getChildren())
-                                        <div class="my-2 border-b border-grey-light w-5/6"></div>
+                                        <div class="my-2 border-b border-grey-light w-2/3"></div>
                                         <div class="megamenu__category-children-children">
                                             @foreach($subcategory->getChildren() as $subcategory)
-                                                <div class="font-normal">
+                                                <div class="hover:font-bold">
                                                     <a href="{{ route('category.show',[
                                                         'category' => $subcategory->getCategory()->categoryPath[0]['slug'],
                                                         'subCategory' => $subcategory->getCategory()->categoryPath[1]['slug'],

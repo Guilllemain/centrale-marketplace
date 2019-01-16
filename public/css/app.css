@@ -578,7 +578,7 @@ a:hover {
 }
 
 .megamenu__category-children {
-  top: 1.65rem;
+  top: 2.6rem;
   left: 0;
   -webkit-transform: scaleY(0);
           transform: scaleY(0);
@@ -590,13 +590,12 @@ a:hover {
   width: 100%;
   z-index: 30;
   background-color: #fff;
-  padding-left: 3rem;
+  padding-left: 4rem;
   padding-right: 3rem;
   padding-top: 1rem;
   padding-bottom: 1rem;
   display: flex;
   flex-wrap: wrap;
-  box-shadow: 0 0px 8px 0 rgba(0, 0, 0, .12), 0 0px 4px 0 rgba(0, 0, 0, .08);
   transition: -webkit-transform .4s;
   transition: transform .4s;
   transition: transform .4s, -webkit-transform .4s;

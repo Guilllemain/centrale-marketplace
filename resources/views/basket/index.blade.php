@@ -117,8 +117,9 @@
             </div>
         </div>
     @else
-        <h2 class="mb-8">Mon panier</h2>
-        <div>Votre basket est vide</div>
+        <h2 class="mt-12 mb-8">Mon panier</h2>
+        <div class="mb-8">Votre basket est vide</div>
+        <a href="/search" class="text-center mt-4 bg-orange-dark w-full hover:bg-orange hover:text-white text-white font-bold py-2 px-4 rounded">Continuer votre shopping</a>
     @endif
 </div>
 @endsection

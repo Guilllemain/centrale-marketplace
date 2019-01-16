@@ -121,7 +121,7 @@
     .modal-content {
       position: relative;
       margin: auto;
-      width: 90vh;
+      width: 88vh;
       max-width: 1200px;
     }
     .thumbnail__image {

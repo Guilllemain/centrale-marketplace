@@ -24,7 +24,8 @@ class SearchController extends Controller
             $results = $this->catalog->search($query, $filters, $sorting, $page, $resultsPerPage);
             return $results;
         }
-        return view('search');
+        $result = 'Résultats de recherche';
+        return view('search', compact('result'));
     }
 
     public function category(Request $request)

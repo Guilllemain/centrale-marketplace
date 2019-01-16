@@ -2,7 +2,7 @@
     <div class="flex uppercase justify-around tracking-wide">
         @foreach($categories as $category)
             @if($category->getCategory()->productCount)
-                <div class="megamenu__category py-4 px-3">
+                <div class="megamenu__category py-3 px-3">
                     <div class="megamenu__category-active relative">
                         <a href="{{ route('category.show', ['category' => $category->getCategory()->slug]) }}"
                             class="megamenu__category-link">

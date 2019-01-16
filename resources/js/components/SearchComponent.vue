@@ -10,7 +10,6 @@
                                 @deleteFacet="deleteFacet"
                                 @updatePriceRange="updatePrice">
                 </facets-component>
-                <div class="my-2 border-b border-grey-light w-full"></div>
             </div>
             <div class="w-4/5">
                 <div class="flex justify-end items-center mb-2">

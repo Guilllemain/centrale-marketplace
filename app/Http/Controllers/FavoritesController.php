@@ -30,6 +30,6 @@ class FavoritesController extends Controller
     public function removeFavorite(Request $request)
     {
         // $declinationId = (string)$request->declinationId . '_0';
-        $this->favoriteService->removeDeclinationToUserFavorites($declinationId);
+        $this->favoriteService->removeDeclinationToUserFavorites($request->declinationId);
     }
 }

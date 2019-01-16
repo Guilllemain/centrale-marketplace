@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-
+    
     <div class="container">
         @isset($currentCategory)
             <div class="py-6">
@@ -9,6 +9,12 @@
             </div>
         @endisset
 
+        @isset($result)
+            <div class="py-6">
+                <h1 class="text-center">{{ $result }}</h1>
+            </div>
+        @endisset
+        
         @isset($currentCompany)
             <div class="my-4">
                 <h1 class="text-center">{{ $currentCompany->name }}</h1>

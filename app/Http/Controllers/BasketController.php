@@ -21,10 +21,13 @@ class BasketController extends Controller
     public function index()
     {
         $id = session('_basket_id');
-        if (!$id) {
-            return;
-        }
 
+        if (request()->wantsJson()) {
+            if (!$id) {
+                return;
+            }
+        }
+        
         $basket = $this->basketService->getBasket($id);
 
         if (request()->wantsJson()) {
@@ -41,7 +44,7 @@ class BasketController extends Controller
         $quantity = $request->quantity;
         $this->basketService->sendProductToBasket($declinationId, $quantity);
         
-        if(session('authenticated') && !$currentbasketId) {
+        if (session('authenticated') && !$currentbasketId) {
             $this->basketService->setUserBasketId(
                 $this->userService->getUserIdFromSession(),
                 $this->basketService->getCurrentBasketId()

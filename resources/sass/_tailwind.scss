@@ -49,6 +49,7 @@ a {
 // }
 
 .megamenu__category-children {
+    top: 1.65rem;
     left: 0;
     transform: scaleY(0);
     transform-origin: top;
@@ -64,24 +65,27 @@ a {
 .megamenu__category-link {
     @apply text-white opacity-75;
 
-    &:hover {
-        @apply text-white opacity-100;
-    }
-
     &--active {
         @apply opacity-100 font-bold;
     }
 }
 
-.megamenu__category-active{
-    &:hover .b-rounded-bar {
+.megamenu__category:hover {
+    & .megamenu__category-children {
+        @apply visible opacity-100;
+        transform: scaleY(1);
+    }
+    .b-rounded-bar {
         @apply block;
+    }
+    .megamenu__category-link {
+        @apply text-white opacity-100;
     }
 }
 
-.megamenu__category:hover .megamenu__category-children {
-    @apply visible opacity-100;
-    transform: scaleY(1);
+.b-rounded-bar {
+    @apply border-t-8 border-white w-full rounded hidden absolute;
+    bottom: -.85rem;
 }
 
 .title--horizontal-bar {
@@ -145,11 +149,6 @@ a {
 
 .h-bar {
     @apply my-2 border-b border-grey-light w-full;
-}
-
-.b-rounded-bar {
-    @apply border-t-8 border-white w-full rounded hidden absolute;
-    bottom: -20px;
 }
 
 

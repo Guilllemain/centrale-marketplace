@@ -1,11 +1,11 @@
 <template>
-    <div class="border border-grey-light rounded bg-white">
+    <div class="border border-grey-light rounded">
     <form action="/search" class="" method="GET" autocomplete="off">
 
         <div class="flex items-center justify-content">
 
-            <div class="flex flex-col w-64">
-                <input class="w-128 appearance-none block text-grey-darker py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-grey" type="text" placeholder="Rechercher un produit" name="query" v-model="query" @keyup.esc="query = ''" @keyup="productAutocomplete()">
+            <div class="w-64">
+                <input class="appearance-none text-grey-darker px-4 leading-tight focus:outline-none focus:bg-white focus:border-grey" type="text" placeholder="Rechercher un produit" name="query" v-model="query" @keyup.esc="query = ''" @keyup="productAutocomplete()">
                 
                 <div v-if="productSuggestions.length > 0 && query.length > 3" class="pt-2 search__results z-50 bg-white rounded-b absolute shadow-md w-64">
                    <!--  <ul class="list-reset absolute bg-white border border-grey-lighter">
@@ -23,9 +23,8 @@
             </div>
 
             <button class="focus:outline-none border-l border-grey-light pt-1 px-2">
-                <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24">
-                    <path class="text-orange-dark fill-current" d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
-                    <path d="M0 0h24v24H0z" fill="none"/>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 search-icon">
+                    <use class="text-orange-dark fill-current" href="/svg/icons.svg#search"></use>
                 </svg>
             </button>
         </div>
@@ -92,5 +91,11 @@
 <style>
     .search__results {
         top: 3.3rem;
+    }
+    .search-icon {
+        transition: all .3s;
+    }
+    .search-icon:hover {
+        transform: scale(1.1);
     }
 </style>

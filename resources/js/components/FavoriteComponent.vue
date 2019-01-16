@@ -1,15 +1,17 @@
 <template>
     <div>
-        <a v-if="!favorite" class="flex items-center" href="" @click.prevent="addToFavorite">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6">
-                <use class="text-orange-dark fill-current" href="/svg/icons.svg#favorite"></use>
-            </svg>
-        </a>
-        <a v-else class="flex items-center" href="" @click.prevent="removeFavorite">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6">
-                <use class="text-orange-dark fill-current" href="/svg/icons.svg#favorite-full"></use>
-            </svg>
-        </a>
+        <transition name="zoom" mode="out-in">
+            <a v-if="!favorite" class="flex items-center" href="" @click.prevent="addToFavorite" key="add">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6">
+                        <use class="text-orange-dark fill-current" href="/svg/icons.svg#favorite"></use>
+                    </svg>
+            </a>
+            <a v-else class="flex items-center" href="" @click.prevent="removeFavorite" key="remove">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6">
+                        <use class="text-orange-dark fill-current" href="/svg/icons.svg#favorite-full"></use>
+                    </svg>
+            </a>
+        </transition>
     </div>
 </template>
 
@@ -55,10 +57,31 @@
             },
             async removeFavorite() {
                 await axios.post('/favorites/removeFavorite', {
-                        declinationId: this.this.product.declinations[0].id
+                        declinationId: this.product.declinations[0].id
                     })
                 this.favorite = false;
             }
         }
     }
 </script>
+
+<style scoped>
+    @keyframes zoomIn {
+        0% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(0.7);
+        }
+        100% {
+            transform: scale(1.3);
+        }
+    }
+    .zoom-enter-active, .zoom-leave-active {
+      /*transition: all .5s;*/
+    }
+    .zoom-enter, .zoom-leave-to {
+        animation: zoomIn .4s ease;
+        /*transform: scale(1.5);*/
+    }
+</style>

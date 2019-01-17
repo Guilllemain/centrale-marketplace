@@ -4619,6 +4619,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -4755,12 +4759,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
     return mounted;
   }(),
-  // computed: {
-  //     async isFavorited() {
-  //         const result = await axios.get(`/favorites/isFavorited/${this.productId}`);
-  //         return result.data;
-  //     }
-  // },
   methods: {
     addToFavorite: function () {
       var _addToFavorite = _asyncToGenerator(
@@ -5023,6 +5021,14 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -5949,7 +5955,7 @@ module.exports = function (it) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-var core = module.exports = { version: '2.6.1' };
+var core = module.exports = { version: '2.6.0' };
 if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
 
 
@@ -7583,7 +7589,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "@-webkit-keyframes zoomIn-data-v-e363f134 {\n0% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n50% {\n    -webkit-transform: scale(.7);\n            transform: scale(.7);\n}\n100% {\n    -webkit-transform: scale(1.3);\n            transform: scale(1.3);\n}\n}\n@keyframes zoomIn-data-v-e363f134 {\n0% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n50% {\n    -webkit-transform: scale(.7);\n            transform: scale(.7);\n}\n100% {\n    -webkit-transform: scale(1.3);\n            transform: scale(1.3);\n}\n}\n.zoom-enter-active[data-v-e363f134],\n.zoom-leave-active[data-v-e363f134] {\n  /*transition: all .5s;*/\n}\n.zoom-enter[data-v-e363f134],\n.zoom-leave-to[data-v-e363f134] {\n  -webkit-animation: zoomIn-data-v-e363f134 .4s ease;\n          animation: zoomIn-data-v-e363f134 .4s ease;\n  /*transform: scale(1.5);*/\n}\n", ""]);
+exports.push([module.i, "@-webkit-keyframes zoomIn-data-v-e363f134 {\n0% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n50% {\n    -webkit-transform: scale(.7);\n            transform: scale(.7);\n}\n100% {\n    -webkit-transform: scale(1.3);\n            transform: scale(1.3);\n}\n}\n@keyframes zoomIn-data-v-e363f134 {\n0% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n50% {\n    -webkit-transform: scale(.7);\n            transform: scale(.7);\n}\n100% {\n    -webkit-transform: scale(1.3);\n            transform: scale(1.3);\n}\n}\n.zoom-enter-active[data-v-e363f134],\n.zoom-leave-active[data-v-e363f134] {\n  /*transition: all .5s;*/\n}\n.zoom-enter[data-v-e363f134],\n.zoom-leave-to[data-v-e363f134] {\n  -webkit-animation: zoomIn-data-v-e363f134 .4s ease;\n          animation: zoomIn-data-v-e363f134 .4s ease;\n  /*transform: scale(1.5);*/\n}\n.favorite-icon[data-v-e363f134] {\n  transition: all .3s;\n}\n.favorite-icon[data-v-e363f134]:hover {\n  -webkit-transform: scale(1.1);\n          transform: scale(1.1);\n}\n", ""]);
 
 // exports
 
@@ -71342,30 +71348,35 @@ var render = function() {
                     },
                     [
                       _c("label", { staticClass: "cursor-pointer" }, [
-                        _c("input", {
-                          ref: "checkbox-" + index,
-                          refInFor: true,
-                          staticClass: "mr-1 font-semibold",
-                          attrs: { type: "checkbox" },
-                          on: {
-                            change: function($event) {
-                              _vm.addFacet(index)
-                            }
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c(
-                          "span",
-                          {
-                            ref: "label-" + index,
+                        _c("div", { staticClass: "flex items-baseline" }, [
+                          _c("input", {
+                            ref: "checkbox-" + index,
                             refInFor: true,
-                            staticClass: "hover:text-black hover:font-semibold"
-                          },
-                          [_vm._v(_vm._s(value.label))]
-                        ),
-                        _vm._v(" "),
-                        _c("span", { staticClass: "ml-1" }, [
-                          _vm._v("(" + _vm._s(value.count) + ")")
+                            staticClass: "mr-1 font-semibold",
+                            attrs: { type: "checkbox" },
+                            on: {
+                              change: function($event) {
+                                _vm.addFacet(index)
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("div", [
+                            _c(
+                              "span",
+                              {
+                                ref: "label-" + index,
+                                refInFor: true,
+                                staticClass:
+                                  "hover:text-black hover:font-semibold"
+                              },
+                              [_vm._v(_vm._s(value.label))]
+                            ),
+                            _vm._v(" "),
+                            _c("span", { staticClass: "ml-1 italic text-xs" }, [
+                              _vm._v("(" + _vm._s(value.count) + ")")
+                            ])
+                          ])
                         ])
                       ])
                     ]
@@ -71440,7 +71451,7 @@ var render = function() {
               "a",
               {
                 key: "add",
-                staticClass: "flex items-center",
+                staticClass: "flex items-center favorite-icon",
                 attrs: { href: "" },
                 on: {
                   click: function($event) {
@@ -71469,7 +71480,7 @@ var render = function() {
               "a",
               {
                 key: "remove",
-                staticClass: "flex items-center",
+                staticClass: "flex items-center favorite-icon",
                 attrs: { href: "" },
                 on: {
                   click: function($event) {
@@ -71684,17 +71695,39 @@ var render = function() {
       _vm._v(" "),
       _c(
         "a",
-        { staticClass: "px-2 mb-2", attrs: { href: _vm.productPath() } },
+        { staticClass: "px-3 mb-2", attrs: { href: _vm.productPath() } },
         [_c("h3", [_vm._v(_vm._s(_vm.product.name))])]
       ),
       _vm._v(" "),
       _c("div", { staticClass: "mb-2" }, [
-        _vm._v(_vm._s(_vm.formatPrice(_vm.product.minimumPrice)) + " €")
+        _vm.product.crossedOutPrice
+          ? _c("div", { staticClass: "flex-col flex items-center" }, [
+              _c("div", { staticClass: "text-red-dark" }, [
+                _vm._v(_vm._s(_vm.formatPrice(_vm.product.minimumPrice)) + " €")
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "text-xs line-through" }, [
+                _vm._v(
+                  _vm._s(_vm.formatPrice(_vm.product.crossedOutPrice)) + " €"
+                )
+              ])
+            ])
+          : _c("div", [
+              _c("div", [
+                _vm._v(_vm._s(_vm.formatPrice(_vm.product.minimumPrice)) + " €")
+              ])
+            ])
       ]),
       _vm._v(" "),
-      _c("button", { on: { click: _vm.addToCart } }, [
-        _vm._v("Ajouter au panier")
-      ])
+      _c(
+        "button",
+        {
+          staticClass:
+            "mt-auto hover:bg-grey-dark text-grey hover:text-white py-2 px-3 border hover:border-transparent rounded",
+          on: { click: _vm.addToCart }
+        },
+        [_vm._v("Ajouter au panier")]
+      )
     ]
   )
 }
@@ -71951,10 +71984,11 @@ var render = function() {
                       },
                       _vm._l(_vm.productSuggestions, function(product) {
                         return _c(
-                          "div",
+                          "a",
                           {
                             staticClass:
-                              "flex items-center hover:bg-grey-lighter pr-2"
+                              "flex items-center hover:bg-grey-lighter pr-2",
+                            attrs: { href: _vm.productPath(product) }
                           },
                           [
                             _c(
@@ -71969,11 +72003,9 @@ var render = function() {
                             ),
                             _vm._v(" "),
                             _c("div", [
-                              _c(
-                                "a",
-                                { attrs: { href: _vm.productPath(product) } },
-                                [_vm._v(_vm._s(_vm.limitLength(product.name)))]
-                              ),
+                              _c("div", [
+                                _vm._v(_vm._s(_vm.limitLength(product.name)))
+                              ]),
                               _vm._v(" "),
                               _c(
                                 "div",
@@ -84825,8 +84857,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/yann/code/centrale-marketplace/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/yann/code/centrale-marketplace/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/yguillemain/Desktop/code/centrale-marketplace/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/yguillemain/Desktop/code/centrale-marketplace/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

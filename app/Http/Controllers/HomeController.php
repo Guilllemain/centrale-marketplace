@@ -38,7 +38,7 @@ class HomeController extends Controller
         return view('home', compact('latestProducts'));
     }
 
-    private function getLatestProducts(int $maxProductCount = 6)
+    private function getLatestProducts(int $maxProductCount = 12)
     {
         if ($maxProductCount === 0) {
             return [];

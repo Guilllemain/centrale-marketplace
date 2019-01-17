@@ -2,11 +2,19 @@
     <div class="list-product m-3 flex flex-col items-center justify-center bg-white pb-4 shadow rounded">
         <img :src="getImage()" class="w-full">
         <div class="my-2 border-b border-grey-light w-5/6"></div>
-        <a :href="productPath()" class="px-2 mb-2">
+        <a :href="productPath()" class="px-3 mb-2">
             <h3>{{ product.name }}</h3>
         </a>
-        <div class="mb-2">{{ formatPrice(product.minimumPrice) }} €</div>
-        <button @click="addToCart">Ajouter au panier</button>
+        <div class="mb-2">
+            <div v-if="product.crossedOutPrice" class="flex-col flex items-center">
+                <div class="text-red-dark">{{ formatPrice(product.minimumPrice) }} €</div>
+                <div class="text-xs line-through">{{ formatPrice(product.crossedOutPrice) }} €</div>
+            </div>
+            <div v-else>
+                <div>{{ formatPrice(product.minimumPrice) }} €</div>
+            </div>
+        </div>
+        <button class="mt-auto hover:bg-grey-dark text-grey hover:text-white py-2 px-3 border hover:border-transparent rounded" @click="addToCart">Ajouter au panier</button>
     </div>
 </template>
 

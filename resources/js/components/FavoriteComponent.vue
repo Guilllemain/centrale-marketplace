@@ -1,12 +1,12 @@
 <template>
     <div>
         <transition name="zoom" mode="out-in">
-            <a v-if="!favorite" class="flex items-center" href="" @click.prevent="addToFavorite" key="add">
+            <a v-if="!favorite" class="flex items-center favorite-icon" href="" @click.prevent="addToFavorite" key="add">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6">
                         <use class="text-orange-dark fill-current" href="/svg/icons.svg#favorite"></use>
                     </svg>
             </a>
-            <a v-else class="flex items-center" href="" @click.prevent="removeFavorite" key="remove">
+            <a v-else class="flex items-center favorite-icon" href="" @click.prevent="removeFavorite" key="remove">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6">
                         <use class="text-orange-dark fill-current" href="/svg/icons.svg#favorite-full"></use>
                     </svg>
@@ -42,12 +42,6 @@
                 this.favorite = result.data;
             }
         },
-        // computed: {
-        //     async isFavorited() {
-        //         const result = await axios.get(`/favorites/isFavorited/${this.productId}`);
-        //         return result.data;
-        //     }
-        // },
         methods: {
             async addToFavorite() {
                 await axios.post('/favorites/addToFavorites', {
@@ -83,5 +77,11 @@
     .zoom-enter, .zoom-leave-to {
         animation: zoomIn .4s ease;
         /*transform: scale(1.5);*/
+    }
+    .favorite-icon {
+        transition: all .3s;
+    }
+    .favorite-icon:hover {
+        transform: scale(1.1);
     }
 </style>

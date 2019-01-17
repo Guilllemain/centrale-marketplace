@@ -9,12 +9,22 @@
             
             <div class="ml-12">
                 <div class="flex">
-                    <h3 class="text-lg tracking-wide mr-16">{{ $product->name }}</h3>
+                    <h3 class="text-lg tracking-wide mr-6">{{ $product->name }}</h3>
                     <favorite-component @if(session('authenticated')) :auth="{{ true }}" @endif :product="{{ $product }}"></favorite-component>
                 </div>
                 <stars-component></stars-component>
                 <div class="my-2 border-b border-grey-light w-full"></div>
-                <p class="text-lg mb-6">{{ formatPrice($product->minPrice) }} €</p>
+                <div class="mb-6">
+                    @if($product->declinations[0]['crossedOutPrice'])
+                    <div class="flex items-baseline">
+                        <div class="text-red-dark text-xl mr-4">{{ formatPrice($product->minPrice) }} €</div>
+                        <div class="line-through text-sm">{{ formatPrice($product->declinations[0]['crossedOutPrice']) }} €</div>
+                    </div>
+                    <div>{{calcDiscount($product->declinations[0]['originalPrice'], $product->declinations[0]['crossedOutPrice'])}} € d'économies</div>
+                    @else
+                        <div class="text-xl">{{ formatPrice($product->minPrice) }} €</div>
+                    @endif
+                </div>
                 <div class="mb-3 text-base tracking-tight font-light">{!! $product->shortDescription !!}</div>
                 <p>Code EAN : {{ $product->code }}</p>
                 <div class="flex items-center">
@@ -24,9 +34,15 @@
                         <input type="hidden" name="declinationId" value="{{$product->declinations[0]['id']}}">
                         <div class="relative mr-8">
                             <select class="block w-full appearance-none bg-white border border-grey-light hover:border-grey px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline" name="quantity">
-                                @for($i = 1; $i < 20; $i++)
-                                    <option value="{{$i}}">{{$i}}</option>
-                                @endfor
+                                @if ($product->declinations[0]['amount'] > 19)
+                                    @for($i = 1; $i < 20; $i++)
+                                        <option value="{{$i}}">{{$i}}</option>
+                                    @endfor
+                                @else
+                                    @for($i = 1; $i <= $product->declinations[0]['amount']; $i++)
+                                        <option value="{{$i}}">{{$i}}</option>
+                                    @endfor
+                                @endif
                             </select>
                             <div class="pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker">
                                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -52,9 +68,10 @@
                         </button>
                     </div> --}}
                 </div>
+
                 <div class="mr-6">Vendu par 
                     @if(count($product->companies) === 1)
-                        <a href="/company/{{ $product->companies[0]['slug'] }}">
+                        <a class="font-semibold hover:font-bold" href="/company/{{ $product->companies[0]['slug'] }}">
                             {{ $product->companies[0]['name'] }}
                         </a>
                     @else
@@ -63,6 +80,10 @@
                         </a>
                     @endif
                 </div>
+                <div class="text-xs text-green-dark italic">{{ inStock($product->declinations[0]['isAvailable']) }}</div>
+                @if($product->declinations[0]['amount'] <= 3)
+                    <div class="text-xs text-red-dark">Plus que {{$product->declinations[0]['amount']}} article(s) disponible</div>
+                @endif
             </div>
         </div>
     </div>

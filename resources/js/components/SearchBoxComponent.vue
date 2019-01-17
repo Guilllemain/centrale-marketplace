@@ -8,15 +8,15 @@
                     
                     <transition name="fade">
                         <div v-if="productSuggestions.length > 0 && query.length > 3" class="search__results z-50 bg-white rounded-b absolute shadow-md w-29 overflow-hidden">
-                            <div v-for="product in productSuggestions" class="flex items-center hover:bg-grey-lighter pr-2">
+                            <a :href="productPath(product)" v-for="product in productSuggestions" class="flex items-center hover:bg-grey-lighter pr-2">
                                 <div class="w-1/6 flex items-center mr-2">
                                     <img class="w-full" :src="getImage(product)">
                                 </div>
                                 <div>
-                                    <a class="" :href="productPath(product)">{{ limitLength(product.name) }}</a>
+                                    <div>{{ limitLength(product.name) }}</div>
                                     <div class="text-xs text-grey-dark">{{ product.price }} €</div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                     </transition>
                 </div>

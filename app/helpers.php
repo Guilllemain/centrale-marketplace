@@ -29,3 +29,25 @@ function formatPrice($price)
     $price = number_format($price, 2, ',', ' ');
     return $price;
 }
+
+function limitStringLength($string)
+{
+    if (strlen($string) > 30) {
+        return substr($string, 0, 30) . '...';
+    }
+    return $string;
+}
+
+function inStock($stock)
+{
+    if ($stock) {
+        return 'En stock';
+    } else {
+        return 'Indisponible';
+    }
+}
+
+function calcDiscount($newPrice, $oldPrice)
+{
+    return formatPrice($oldPrice - $newPrice);
+}

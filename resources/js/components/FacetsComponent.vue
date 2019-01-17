@@ -15,9 +15,13 @@
                 <transition-group name="fade">
                 <div class="mx-2" v-show="showFacet" v-for="(value, index) in facet.values" :key="index+1">
                         <label class="cursor-pointer">
-                            <input @change="addFacet(index)" :ref="`checkbox-${index}`" type="checkbox" class="mr-1 font-semibold">
-                            <span :ref="`label-${index}`" class="hover:text-black hover:font-semibold">{{ value.label }}</span>
-                            <span class="ml-1">({{ value.count }})</span>
+                            <div class="flex items-baseline">
+                                <input @change="addFacet(index)" :ref="`checkbox-${index}`" type="checkbox" class="mr-1 font-semibold">
+                                <div>
+                                    <span :ref="`label-${index}`" class="hover:text-black hover:font-semibold">{{ value.label }}</span>
+                                    <span class="ml-1 italic text-xs">({{ value.count }})</span>
+                                </div>
+                            </div>
                         </label>
                         <!-- <a @click="addFacet(index)" class="block" v-for="(value, index) in facet.values" :key="index">{{ value.label }}
                             <span class="pl-1">({{ value.count }})</span>

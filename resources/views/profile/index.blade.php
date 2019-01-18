@@ -28,7 +28,7 @@
                             <input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:shadow-outline" name="firstName" placeholder="Votre prénom" value="@if($user->firstName){{$user->firstName}}@endif" required>
                         </div>
 
-                        <button type="submit" name="user_details" class="w-full bg-orange-dark hover:bg-orange text-white font-bold py-3 px-4 rounded">
+                        <button type="submit" name="user_details" class="translateY focus:outline-none w-full bg-orange-dark hover:bg-orange text-white font-bold py-3 px-4 rounded">
                             Mettre à jour
                         </button>
                     </form>
@@ -49,7 +49,7 @@
                             <input type="password" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:shadow-outline" name="password_confirmation" placeholder="Confirmez le nouveau mot de passe" required>
                         </div>                
 
-                        <button type="submit" name="user_passsword" class="w-full bg-orange-dark hover:bg-orange text-white font-bold py-3 px-4 rounded">
+                        <button type="submit" name="user_passsword" class="translateY focus:outline-none w-full bg-orange-dark hover:bg-orange text-white font-bold py-3 px-4 rounded">
                             Modifier le mot de passe
                         </button>
                     </form>

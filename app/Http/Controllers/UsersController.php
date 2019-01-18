@@ -27,7 +27,7 @@ class UsersController extends Controller
             $this->userService->updateUser($id);
         }
 
-        return back();
+        return back()->with('flash', 'Votre profil a bien été modifié');
     }
 
     public function updateAddress(Request $request, $userId)
@@ -47,7 +47,7 @@ class UsersController extends Controller
 
         $this->userService->updateUserAdresses($userId, $request->billing_address, $request->billing_address);
         
-        return back();
+        return back()->with('flash', 'Votre adresse a bien été modifiée');
     }
 
     public function resetPassword()
@@ -59,6 +59,6 @@ class UsersController extends Controller
     {
         $this->userService->recoverPassword($request->email);
 
-        return redirect('/');
+        return back()->with('flash', 'Un email vous a été envoyé');
     }
 }

@@ -26,7 +26,6 @@ class ProfileController extends Controller
             $userId = session('authenticated')['id'];
         }
         $user = $this->userService->getProfileFromId($userId);
-        // dd($user);
         return view('profile.index', compact('user'));
     }
 

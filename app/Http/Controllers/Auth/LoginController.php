@@ -73,7 +73,7 @@ class LoginController extends Controller
             $this->basketService->mergeBaskets($currentBasketId, $userBasketId);
         }
 
-        return redirect()->intended('/');
+        return redirect()->intended('/')->with('flash', 'Vous êtes maintenant connecté');
         // if ($this->attemptLogin($request)) {
         //     return $this->sendLoginResponse($request);
         // }
@@ -91,6 +91,6 @@ class LoginController extends Controller
     {
         $request->session()->invalidate();
 
-        return redirect('/');
+        return redirect('/')->with('flash', 'Vous vous êtes déconnecté avec succès');
     }
 }

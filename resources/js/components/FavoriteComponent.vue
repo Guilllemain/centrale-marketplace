@@ -44,16 +44,25 @@
         },
         methods: {
             async addToFavorite() {
-                await axios.post('/favorites/addToFavorites', {
-                        declinationId: this.product.declinations[0].id
-                    })
-                this.favorite = true;
+                try {
+                    await axios.post('/favorites/addToFavorites', {
+                            declinationId: this.product.declinations[0].id
+                        });
+                    this.favorite = true;
+                } catch (error) {
+                    flash('Vous devez être connecté pour ajouter un produit dans vos favoris', 'danger');
+                    console.log(error);
+                }
             },
             async removeFavorite() {
-                await axios.post('/favorites/removeFavorite', {
-                        declinationId: this.product.declinations[0].id
-                    })
-                this.favorite = false;
+                try {
+                    await axios.post('/favorites/removeFavorite', {
+                            declinationId: this.product.declinations[0].id
+                        })
+                    this.favorite = false;
+                } catch (error) {
+                    console.log(error);
+                }
             }
         }
     }

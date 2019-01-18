@@ -14,7 +14,7 @@
                 <div>{{ formatPrice(product.minimumPrice) }} €</div>
             </div>
         </div>
-        <button class="mt-auto hover:bg-grey-dark text-grey hover:text-white py-2 px-3 border hover:border-transparent rounded" @click="addToCart">Ajouter au panier</button>
+        <button class="translateY mt-auto focus:outline-none hover:bg-grey-dark text-grey hover:text-white py-2 px-3 border hover:border-transparent rounded" @click="addToCart">Ajouter au panier</button>
     </div>
 </template>
 
@@ -52,12 +52,13 @@
                 price = price.toFixed(2) + '';
                 return price.replace('.', ',');
             },
-            async addToCart() {
+            async addToCart(event) {
                 try {
-                    const response = await axios.post('/basket/add', {
+                    await axios.post('/basket/add', {
                         declinationId: this.product.mainDeclination.id,
                         quantity: 1
                     });
+                    flash(`${this.product.name} a été ajouté à votre panier`);
                     // Event.$emit('addItemToCart');
                 } catch (error) {
                     console.log(error);

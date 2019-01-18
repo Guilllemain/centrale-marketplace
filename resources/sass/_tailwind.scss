@@ -161,6 +161,12 @@ a {
  */
 @tailwind utilities;
 
+.translateY {
+    transition: all .3s;
+    &:active {
+      transform: scale(.95) translateY(4px);
+    }
+}
 /**
  * Here you would add any custom utilities you need that don't come out of the
  * box with Tailwind.

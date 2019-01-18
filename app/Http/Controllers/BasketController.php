@@ -51,7 +51,7 @@ class BasketController extends Controller
             );
         }
         
-        return back();
+        return back()->with('flash', 'Ce produit a été ajouté à votre panier');
     }
 
     public function updateQuantity(Request $request, $id)
@@ -59,23 +59,23 @@ class BasketController extends Controller
         $declinationId = $request->declinationId;
         $updatedQuantity = $request->item_qty;
         $this->basketService->updateProductQuantity($id, $declinationId, $updatedQuantity);
-        return back();
+        return back()->with('flash', 'La quantité a bien été modifiée');
     }
 
     public function destroy($id, $declinationId)
     {
         $this->basketService->removeProductFromBasket($id, $declinationId);
-        return back();
+        return back()->with('flash', 'Ce produit a été supprimé de votre panier');
     }
 
     public function updateShipping(Request $request, $id)
     {
-        // dd($request);
         $shippingGroup = [
             $request->shippingGroup => $request->shipping_method_id
         ];
         $this->basketService->selectShippings($id, $shippingGroup);
-        return back();
+        return back()->with('flash', 'Le mode de livraison a été modifié');
+        ;
     }
 
     public function showAddress()

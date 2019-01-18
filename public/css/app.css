@@ -6476,6 +6476,15 @@ a:hover {
   z-index: auto;
 }
 
+.translateY {
+  transition: all .3s;
+}
+
+.translateY:active {
+  -webkit-transform: scale(.95) translateY(4px);
+          transform: scale(.95) translateY(4px);
+}
+
 /**
  * Here you would add any custom utilities you need that don't come out of the
  * box with Tailwind.

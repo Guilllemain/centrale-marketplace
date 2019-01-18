@@ -41,3 +41,9 @@ window.axios = require('axios');
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     encrypted: true
 // });
+// 
+window.Event = new Vue();
+
+window.flash = function (message, level='success') {
+    window.Event.$emit('flash', { message, level });
+};

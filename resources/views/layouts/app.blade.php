@@ -103,6 +103,8 @@
             @endif
         </main>
 
+        <flash-component message="{{ session('flash') }}"></flash-component>
+
         @include('footer')
     </div>
     <script src="//code.tidio.co/tfbpqyj9ssgdjacgc4oguz3ftbhgmz83.js"></script>

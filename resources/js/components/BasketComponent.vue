@@ -38,7 +38,7 @@
                     <p>Total</p>
                     <p>{{ formatPrice(basket.total) }} €</p>
                 </div>
-                <a href="/basket/address" class="mt-4 block text-center bg-orange-dark hover:bg-orange hover:text-white text-white font-bold py-2 px-4 rounded">Commander</a>
+                <a href="/basket/address" class="focus:outline-none translateY mt-4 block text-center bg-orange-dark hover:bg-orange hover:text-white text-white font-bold py-2 px-4 rounded">Commander</a>
                 <a href="/basket" class="mt-4 block text-center font-bold py-2 px-4">Voir mon panier</a>
             </div>
             <div v-else>Votre panier est vide</div>

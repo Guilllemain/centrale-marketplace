@@ -104,7 +104,7 @@
                                 <div>Total</div>
                                 <div>{{ formatPrice($basket->total) }} €</div>
                             </div>
-                            <a href="/basket/address" class="block text-center mt-4 bg-orange-dark w-full hover:bg-orange hover:text-white text-white font-bold py-2 px-4 rounded">Continuer</a>
+                            <a href="/basket/address" class="translateY block text-center mt-4 bg-orange-dark w-full hover:bg-orange hover:text-white text-white font-bold py-2 px-4 rounded">Continuer</a>
                         </div>
                     </div>
                     <div class="mt-8">

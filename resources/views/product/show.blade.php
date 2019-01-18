@@ -50,7 +50,7 @@
                                 </svg>
                             </div>
                         </div>
-                        <button type="submit" class="my-4 text-center bg-orange-dark hover:bg-orange hover:text-white text-white font-bold py-3 px-4 rounded">Ajouter au panier</button>
+                        <button type="submit" class="translateY my-4 text-center bg-orange-dark hover:bg-orange hover:text-white text-white font-bold py-3 px-4 rounded">Ajouter au panier</button>
                     </form>
                     {{-- <div class="mr-4 flex appearance-none border border-grey-light rounded text-grey-darker leading-tight focus:outline-none focus:bg-white focus:border-grey-darker">
                         <button class="hover:bg-grey-light border-r border-grey-light px-2 focus:outline-none" type="button">

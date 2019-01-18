@@ -24,6 +24,12 @@ Route::middleware('session')->group(function () {
     Route::post('/checkout', 'BasketController@turnIntoOrder');
 
     Route::patch('/users/address/{userId}', 'UsersController@updateAddress')->name('user.update.address');
+    
+    Route::post('/favorites/addToFavorites', 'FavoritesController@addToFavorites')->name('favorite.add');
+    Route::post('/favorites/isFavorited', 'FavoritesController@isFavorited');
+    Route::post('/favorites/removeFavorite', 'FavoritesController@removeFavorite');
+
+    Route::get('/basket/address', 'BasketController@showAddress');
 });
 
 Route::get('/', 'HomeController@index')->name('home');
@@ -31,13 +37,9 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('/search', 'Api\SearchController@index');
 
 
-Route::post('/favorites/addToFavorites', 'FavoritesController@addToFavorites')->name('favorite.add');
-Route::post('/favorites/isFavorited', 'FavoritesController@isFavorited');
-Route::post('/favorites/removeFavorite', 'FavoritesController@removeFavorite');
 
 Route::get('/basket', 'BasketController@index');
 Route::post('/basket/add', 'BasketController@addProduct')->name('basket.add');
-Route::get('/basket/address', 'BasketController@showAddress');
 Route::get('/checkout', 'BasketController@checkout');
 Route::post('/basket/update/{id}', 'BasketController@updateQuantity')->name('basket.update-qty');
 Route::post('/basket/shipping/{id}', 'BasketController@updateShipping')->name('basket.update-shipping');

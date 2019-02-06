@@ -3,6 +3,7 @@
 /public/storage
 /storage/*.key
 /vendor
+/bootstrap/GuzzleFileCache
 .env
 .phpunit.result.cache
 Homestead.json

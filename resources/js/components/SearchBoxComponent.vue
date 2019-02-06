@@ -1,36 +1,27 @@
 <template>
-    <div class="w-1/3 border border-grey-light rounded">
-        <form action="/search" method="GET" autocomplete="off">
-            <div class="flex items-center justify-content">
-
-                <div class="flex-1">
-                    <input class="w-full appearance-none text-grey-darker px-4 leading-tight focus:outline-none focus:bg-white focus:border-grey" type="text" placeholder="Rechercher un produit" name="query" v-model="query" @keyup.esc="query = ''" @keyup="productAutocomplete()">
-                    
-                    <transition name="fade">
-                        <div v-if="productSuggestions.length > 0 && query.length > 3" class="search__results z-50 bg-white rounded-b absolute shadow-md w-29 overflow-hidden">
-                            <a :href="productPath(product)" v-for="product in productSuggestions" class="flex items-center hover:bg-grey-lighter pr-2">
-                                <div class="w-1/6 flex items-center mr-2">
-                                    <img class="w-full" :src="getImage(product)">
-                                </div>
-                                <div>
-                                    <div>{{ limitLength(product.name) }}</div>
-                                    <div class="text-xs text-grey-dark">{{ product.price }} €</div>
-                                </div>
-                            </a>
-                        </div>
-                    </transition>
-                </div>
-
-                <button class="search-button focus:outline-none border-l border-grey-light pt-1 px-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 search-icon">
-                        <use class="text-orange-dark fill-current" href="/svg/icons.svg#search"></use>
-                    </svg>
-                </button>
+    <form action="/search" method="GET" autocomplete="off" class="relative w-1/3 flex items-center justify-center">
+        <input class="search__input border border-grey-light rounded appearance-none text-grey-darker py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-grey" type="text" placeholder="Rechercher un produit" name="query" v-model="query" @keyup.esc="query = ''" @keyup="productAutocomplete()">
+        
+        <transition name="fade">
+            <div v-if="productSuggestions.length > 0 && query.length > 3" class="search__results w-89 z-50 bg-white rounded-b absolute shadow-md w-full overflow-hidden">
+                <a :href="productPath(product)" v-for="product in productSuggestions" class="flex items-center hover:bg-grey-lighter pr-2">
+                    <div class="w-1/6 flex items-center mr-2">
+                        <img class="w-full" :src="getImage(product)">
+                    </div>
+                    <div>
+                        <div>{{ limitLength(product.name) }}</div>
+                        <div class="text-xs text-grey-dark">{{ product.price }} €</div>
+                    </div>
+                </a>
             </div>
-            
+        </transition>
 
-        </form>
-    </div>
+        <button class="search__button focus:outline-none">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 search__icon">
+                <use class="text-orange-dark fill-current" href="/svg/icons.svg#search"></use>
+            </svg>
+        </button>
+    </form>
 </template>
 
 <script>
@@ -93,16 +84,17 @@
     }
 </script>
 <style scoped>
-    .w-29 {
-        width: 29%;    
+    .w-89 {
+        width: 89%;    
     }
     .search__results {
-        top: 3.3rem;
+        top: 2.45rem;
+        left: .4rem;
     }
-    .search-icon {
+    .search__icon {
         transition: all .3s;
     }
-    .search-button:hover .search-icon {
+    .search__button:hover .search__icon {
         transform: scale(1.1);
     }
     .fade-enter-active, .fade-leave-active {
@@ -110,5 +102,13 @@
     }
     .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
         opacity: 0;
+    }
+    .search__input {
+        width: 95%;
+        transition: all .3s;
+        margin-right: -2.5rem;
+    }
+    .search__input:focus {
+        width: 100%;
     }
 </style>

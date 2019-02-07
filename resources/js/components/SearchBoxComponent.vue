@@ -3,8 +3,16 @@
         <input class="search__input border border-grey-light rounded appearance-none text-grey-darker py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-grey" type="text" placeholder="Rechercher un produit" name="query" v-model="query" @keyup.esc="query = ''" @keyup="productAutocomplete()">
         
         <transition name="fade">
-            <div v-if="productSuggestions.length > 0 && query.length > 3" class="search__results w-89 z-50 bg-white rounded-b absolute shadow-md w-full overflow-hidden">
-                <a :href="productPath(product)" v-for="product in productSuggestions" class="flex items-center hover:bg-grey-lighter pr-2">
+            <div v-show="productSuggestions.length > 0 && query.length > 3" class="search__results w-89 z-50 bg-white rounded-b absolute shadow-md w-full overflow-hidden">
+                <div class="m-4" v-if="loading">
+                    <div class="flex items-center">
+                        <loader-component :loading="loading"></loader-component>
+                        <div class="pl-4 text-grey">
+                            recherche en cours...
+                        </div>
+                    </div>
+                </div>
+                <a v-else :href="productPath(product)" v-for="product in productSuggestions" class="flex items-center hover:bg-grey-lighter pr-2">
                     <div class="w-1/6 flex items-center mr-2">
                         <img class="w-full" :src="getImage(product)">
                     </div>
@@ -13,6 +21,22 @@
                         <div class="text-xs text-grey-dark">{{ product.price }} €</div>
                     </div>
                 </a>
+            </div>
+        </transition>
+        
+        <transition name="fade">
+            <div v-show="productSuggestions.length === 0 && query.length > 3" class="search__results w-89 z-50 bg-white rounded-b absolute shadow-md w-full overflow-hidden">
+                <div class="m-4" v-if="loading">
+                    <div class="flex items-center">
+                        <loader-component :loading="loading"></loader-component>
+                        <div class="pl-4 text-grey">
+                            recherche en cours...
+                        </div>
+                    </div>
+                </div>
+                <div v-else class="m-4 text-grey-dark">
+                    Votre recherche ne donne aucun résultat
+                </div>
             </div>
         </transition>
 
@@ -27,16 +51,16 @@
 <script>
     import axios from 'axios';
     import _ from 'lodash';
+    import LoaderComponent from './LoaderComponent';
 
     export default {
+        components: {LoaderComponent},
         data() {
             return {
                 query: '',
-                productSuggestions: []
+                productSuggestions: [],
+                loading: false
             }
-        },
-        mounted() {
-
         },
         methods: {
             limitLength(string) {
@@ -65,17 +89,13 @@
                 300
             ),
             async getResults() {
+                this.loading = true;
                 const results = await axios.get('https://back.vegan-place.com/api/v1/catalog/search/products/autocomplete', {
                     params: {
                         query: this.query
                     }
                 });
-
-                // don't display suggestions if there is only one and that already matches user input
-                if (results.data.length === 1 && results.data[0].name === this.query) {
-                    this.productSuggestions = [];
-                    return;
-                }
+                this.loading = false;
 
                 // fill suggestions
                 this.productSuggestions = results.data;

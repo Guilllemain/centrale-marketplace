@@ -37,7 +37,7 @@
                                                 @csrf
                                                 <input type="hidden" name="declinationId" value="{{$item['declinationId']}}">
                                                 <div class="relative">
-                                                    <select class="block w-full appearance-none bg-white border border-grey-light hover:border-grey px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline" name="item_qty" onchange="event.preventDefault();
+                                                    <select class="block w-full appearance-none bg-white border border-grey-light hover:border-grey px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none" name="item_qty" onchange="event.preventDefault();
                                                                                  document.getElementById(`update-qty-{{$item['declinationId']}}`).submit();">
                                                         @for($i = 1; $i < 20; $i++)
                                                             @if($i === $item['quantity'])
@@ -67,7 +67,7 @@
                                     <input type="hidden" name="shippingGroup" value="{{$shippingGroup['id']}}">
                                     <label class="mr-2">Veuillez sélectionner le mode de livraison pour ce(s) produit(s)</label>
                                     <div class="relative">
-                                        <select class="block w-full appearance-none bg-white border border-grey-light hover:border-grey px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline" name="shipping_method_id"
+                                        <select class="block w-full appearance-none bg-white border border-grey-light hover:border-grey px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none" name="shipping_method_id"
                                                 onchange="event.preventDefault(); document.getElementById(`shipping-{{ $shippingGroup['id'] }}`).submit();">
                                             <option>Merci de choisir votre mode d'envoi...</option>
                                             @foreach($shippingGroup['shippings'] as $shippingMethod)

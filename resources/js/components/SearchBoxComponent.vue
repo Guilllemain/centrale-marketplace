@@ -4,39 +4,27 @@
         
         <transition name="fade">
             <div v-show="showResults && query.length > 3">
-                <div v-if="productSuggestions.length > 0" class="search__results w-89 z-50 bg-white rounded-b absolute shadow-md w-full overflow-hidden">
-                    <div class="m-4" v-if="loading">
-                        <div class="flex items-center">
-                            <loader-component :loading="loading"></loader-component>
-                            <div class="pl-4 text-grey">
-                                recherche en cours...
-                            </div>
+                <div class="search__results w-89 z-50 bg-white rounded-b absolute shadow-md w-full overflow-hidden">
+                    <div v-if="loading" class="m-4">
+                        <div class="flex justify-center">
+                            <loader-component></loader-component>
                         </div>
                     </div>
-                    <a v-else :href="productPath(product)" v-for="product in productSuggestions" class="flex items-center hover:bg-grey-lighter pr-2">
-                        <div class="w-1/6 flex items-center mr-2">
-                            <img class="w-full" :src="getImage(product)">
-                        </div>
-                        <div>
-                            <div>{{ limitLength(product.name) }}</div>
-                            <div class="text-xs text-grey-dark">{{ product.price }} €</div>
-                        </div>
-                    </a>
-                </div>
-
-                <div v-else class="search__results w-89 z-50 bg-white rounded-b absolute shadow-md w-full overflow-hidden">
-                    <div class="m-4" v-if="loading">
-                        <div class="flex items-center">
-                            <loader-component :loading="loading"></loader-component>
-                            <div class="pl-4 text-grey">
-                                recherche en cours...
+                    <div v-else-if="productSuggestions.length > 0">
+                        <a :href="productPath(product)" v-for="product in productSuggestions" class="flex items-center hover:bg-grey-lighter pr-2">
+                            <div class="w-1/6 flex items-center mr-2">
+                                <img class="w-full" :src="getImage(product)">
                             </div>
-                        </div>
+                            <div>
+                                <div>{{ limitLength(product.name) }}</div>
+                                <div class="text-xs text-grey-dark">{{ product.price }} €</div>
+                            </div>
+                        </a>
                     </div>
                     <div v-else class="m-4 text-grey-dark">
                         Votre recherche ne donne aucun résultat
                     </div>
-                </div>     
+                </div>
             </div>
         </transition>
         

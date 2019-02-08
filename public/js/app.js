@@ -4947,9 +4947,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'ClipLoader',
   props: {
     loading: {
       type: Boolean,
@@ -5383,18 +5381,6 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -72307,34 +72293,26 @@ var render = function() {
             ]
           },
           [
-            _vm.productSuggestions.length > 0
-              ? _c(
-                  "div",
-                  {
-                    staticClass:
-                      "search__results w-89 z-50 bg-white rounded-b absolute shadow-md w-full overflow-hidden"
-                  },
-                  [
-                    _vm.loading
-                      ? _c("div", { staticClass: "m-4" }, [
-                          _c(
-                            "div",
-                            { staticClass: "flex items-center" },
-                            [
-                              _c("loader-component", {
-                                attrs: { loading: _vm.loading }
-                              }),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "pl-4 text-grey" }, [
-                                _vm._v(
-                                  "\n                            recherche en cours...\n                        "
-                                )
-                              ])
-                            ],
-                            1
-                          )
-                        ])
-                      : _vm._l(_vm.productSuggestions, function(product) {
+            _c(
+              "div",
+              {
+                staticClass:
+                  "search__results w-89 z-50 bg-white rounded-b absolute shadow-md w-full overflow-hidden"
+              },
+              [
+                _vm.loading
+                  ? _c("div", { staticClass: "m-4" }, [
+                      _c(
+                        "div",
+                        { staticClass: "flex justify-center" },
+                        [_c("loader-component")],
+                        1
+                      )
+                    ])
+                  : _vm.productSuggestions.length > 0
+                    ? _c(
+                        "div",
+                        _vm._l(_vm.productSuggestions, function(product) {
                           return _c(
                             "a",
                             {
@@ -72367,43 +72345,16 @@ var render = function() {
                               ])
                             ]
                           )
-                        })
-                  ],
-                  2
-                )
-              : _c(
-                  "div",
-                  {
-                    staticClass:
-                      "search__results w-89 z-50 bg-white rounded-b absolute shadow-md w-full overflow-hidden"
-                  },
-                  [
-                    _vm.loading
-                      ? _c("div", { staticClass: "m-4" }, [
-                          _c(
-                            "div",
-                            { staticClass: "flex items-center" },
-                            [
-                              _c("loader-component", {
-                                attrs: { loading: _vm.loading }
-                              }),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "pl-4 text-grey" }, [
-                                _vm._v(
-                                  "\n                            recherche en cours...\n                        "
-                                )
-                              ])
-                            ],
-                            1
-                          )
-                        ])
-                      : _c("div", { staticClass: "m-4 text-grey-dark" }, [
-                          _vm._v(
-                            "\n                    Votre recherche ne donne aucun résultat\n                "
-                          )
-                        ])
-                  ]
-                )
+                        }),
+                        0
+                      )
+                    : _c("div", { staticClass: "m-4 text-grey-dark" }, [
+                        _vm._v(
+                          "\n                    Votre recherche ne donne aucun résultat\n                "
+                        )
+                      ])
+              ]
+            )
           ]
         )
       ]),

@@ -1,13 +1,11 @@
 <template>
-<div class="v-spinner" v-show="loading">
-    <div class="v-clip" :style="spinnerStyle">
+    <div class="v-spinner" v-show="loading">
+        <div class="v-clip" :style="spinnerStyle"></div>
     </div>
-  </div>
 </template>
 
 <script>
 export default {
-  name: 'ClipLoader',
   props: {
     loading: {
       type: Boolean,

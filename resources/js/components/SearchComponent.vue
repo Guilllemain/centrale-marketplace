@@ -1,6 +1,9 @@
 <template>
     <div class="container">
-        <div class="flex">
+        <div v-if="loading" class="flex items-center justify-center">
+            <loader-component size="3rem" :loading="loading"></loader-component>
+        </div>
+        <div v-else class="flex">
             <div class="w-1/5 pr-8">
                 <h2 class="text-grey-darker">Affiner par</h2>
                 <facets-component v-for="(facet, index) in facets"
@@ -31,6 +34,7 @@
     import FiltersComponent from './FiltersComponent';
     import FacetsComponent from './FacetsComponent';
     import PaginationComponent from './PaginationComponent';
+    import LoaderComponent from './LoaderComponent';
 
     export default {
         props: {
@@ -43,7 +47,7 @@
                 required: false
             },
         },
-        components: {ProductComponent, FiltersComponent, FacetsComponent, PaginationComponent},
+        components: {ProductComponent, FiltersComponent, FacetsComponent, PaginationComponent, LoaderComponent},
         data() {
             return {
                 categoryId: '',
@@ -56,7 +60,8 @@
                 price: '',
                 resultsPerPage: 12,
                 selectedFacets: [],
-                selectedSorting: ''
+                selectedSorting: '',
+                loading: false
             }
         },
         created() {
@@ -66,6 +71,7 @@
             });
         },
         mounted() {
+            this.loading = true;
             const urlParams = new URLSearchParams(window.location.search);
             this.query = urlParams.get('query') === null ? '' : urlParams.get('query');
 
@@ -122,6 +128,7 @@
                     this.products = results.data.results;
                     this.filterFacets(results.data.facets);
                     this.pagination = results.data.pagination;
+                    this.loading = false;
                 } catch (error) {
                     console.log(error);
                 }

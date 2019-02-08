@@ -32,8 +32,8 @@ function formatPrice($price)
 
 function limitStringLength($string)
 {
-    if (strlen($string) > 30) {
-        return substr($string, 0, 30) . '...';
+    if (strlen($string) > 27) {
+        return substr($string, 0, 27) . '...';
     }
     return $string;
 }

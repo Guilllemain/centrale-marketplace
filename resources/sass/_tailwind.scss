@@ -167,6 +167,17 @@ a {
       transform: scale(.95) translateY(4px);
     }
 }
+
+.translateX {
+    transition: all .3s;
+    &:hover {
+      transform: translateX(4px);
+    }
+}
+
+.mt2- {
+    margin-top: -2rem;
+}
 /**
  * Here you would add any custom utilities you need that don't come out of the
  * box with Tailwind.

@@ -16,9 +16,13 @@
         @endisset
         
         @isset($currentCompany)
-            <div class="my-4">
-                <h1 class="text-center">{{ $currentCompany->name }}</h1>
-                <div class="my-6">{!! $currentCompany->description !!}</div>
+        {{-- {{dd($currentCompany)}} --}}
+            <img src="https://back.vegan-place.com/api/v1/image/{{ $currentCompany->image['id'] }}">
+            <div class="mt2- flex flex-col items-center">
+                <h1>
+                    <span class="bg-black font-normal px-3 rounded py-2 text-white">{{ $currentCompany->name }}</span>
+                </h1>
+                <div class="w-2/3 my-6">{!! $currentCompany->description !!}</div>
             </div>
         @endisset
     </div>

@@ -17,7 +17,7 @@
                 </div>
 
                 <div class="mt-4 flex justify-between items-center">
-                    <button type="submit" class="bg-orange-dark hover:bg-orange text-white font-bold py-3 px-4 rounded">
+                    <button type="submit" class="translateY bg-orange-dark hover:bg-orange text-white font-bold py-3 px-4 rounded">
                         Se connecter
                     </button>
                     <a href="{{ route('password_reset') }}" class="hover:text-orange text-orange-dark">Mot de passe oublié ?</a>
@@ -42,7 +42,7 @@
                     <input type="password" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:shadow-outline" name="password_confirmation" placeholder="Valider votre mot de passe" required>
                 </div>
                 
-                <button type="submit" class="w-full bg-orange-dark hover:bg-orange text-white font-bold py-3 px-4 rounded">
+                <button type="submit" class="translateY w-full bg-orange-dark hover:bg-orange text-white font-bold py-3 px-4 rounded">
                     Valider
                 </button>
             </form>

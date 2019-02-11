@@ -1,7 +1,7 @@
 <template>
     <div class="flex-1 relative">
         <label>Ville</label>
-        <select class="w-full block appearance-none bg-white border border-grey-light hover:border-grey px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline" :name="inputName">
+        <select class="w-full block appearance-none bg-white border border-grey-light hover:border-grey px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:border-grey" :name="inputName">
             <option v-if="cityName && cities.length === 0" :value="cityName">{{ cityName }}</option>
             <option v-for="city in cities" :value="city.nom">{{ city.nom }}</option>
         </select>

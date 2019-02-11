@@ -78,7 +78,7 @@
             },
             getImage(image) {
                 if (image) {
-                    return `https://back.vegan-place.com/api/v1/image/${image.id}?w=200&h=200`
+                    return `${process.env.MIX_MARKETPLACE_BASE_URI}image/${image.id}?w=200&h=200`
                 }
                 return 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg'
             },

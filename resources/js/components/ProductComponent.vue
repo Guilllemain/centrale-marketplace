@@ -1,6 +1,8 @@
 <template>
     <div class="list-product m-3 flex flex-col items-center justify-center bg-white pb-4 shadow rounded">
-        <img :src="getImage()" class="w-full">
+        <div class="bg-white product__image">
+            <img :src="getImage()" class="w-full">
+        </div>
         <div class="my-2 border-b border-grey-light w-5/6"></div>
         <a :href="productPath()" class="px-3 mb-2">
             <h3>{{ product.name }}</h3>
@@ -35,7 +37,7 @@
         methods: {
             getImage() {
                 if (this.product.mainImage) {
-                    return `https://back.vegan-place.com/api/v1/image/${this.product.mainImage['id']}?w=256&h=256`
+                    return `${process.env.MIX_MARKETPLACE_BASE_URI}image/${this.product.mainImage['id']}?w=432&h=432`
                 }
                 return 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg'
             },
@@ -69,6 +71,10 @@
 </script>
 
 <style scoped>
+    .product__image {
+        width: 216px;
+        height: 216px;
+    }
     .list-product {
         transition: all .3s;
     }

@@ -4,12 +4,12 @@
             <div class="pr-4">
                 <div v-for="(image, index) in images" :key="index" ref="thumbnails" class="flex items-center thumbnail__image hover:cursor-pointer border border-grey-light mb-2"
                     @click="currentSlide(index+1)">
-                    <img class="w-full" :src="getImage(image.id, 100)" :alt="`${name}-${index}`">
+                    <img class="w-full" :src="getImage(image.id, 120)" :alt="`${name}-${index}`">
                 </div>
             </div>
             <div class="flex flex-col">
                 <img v-for="(image, index) in images" :key="index" ref="slides" class="hidden w-full hover:cursor-pointer"
-                    :src="getImage(image.id, 420)"
+                    :src="getImage(image.id, 820)"
                     @click="openModal">
             </div>
         </div>
@@ -20,7 +20,7 @@
                 </svg>
             </span>
             <div class="modal-content">
-                <img ref="modalImages" v-for="(image, index) in images" class="hidden w-full" :src="getImage(image.id, 1000)">
+                <img ref="modalImages" v-for="(image, index) in images" class="hidden w-full" :src="getImage(image.id, 2000)">
                 <a class="prev" @click="plusSlides(-1)">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8">
                         <use class="text-white fill-current" href="/svg/icons.svg#navigate-prev"></use>
@@ -58,7 +58,7 @@
         },
         methods: {
             getImage(id, size) {
-                return `https://back.vegan-place.com/api/v1/image/${id}?w=${size}&h=${size}`
+                return `${process.env.MIX_MARKETPLACE_BASE_URI}image/${id}?w=${size}&h=${size}`;
             },
             currentSlide(number) {
                 this.slideIndex = number;

@@ -23,22 +23,22 @@
 
                             <label>Nom</label>
                             <div class="pb-4">
-                                <input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:shadow-outline" name="billing_address[lastname]" placeholder="Votre nom" value="@if($user->addresses['billing']['lastname']){{ $user->addresses['billing']['lastname'] }}@endif">
+                                <input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:border-grey" name="billing_address[lastname]" placeholder="Votre nom" value="@if($user->addresses['billing']['lastname']){{ $user->addresses['billing']['lastname'] }}@endif">
                             </div>
                             
                             <label>Prénom</label>
                             <div class="pb-4">
-                                <input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:shadow-outline" name="billing_address[firstname]" placeholder="Votre prénom" value="@if($user->addresses['billing']['firstname']){{ $user->addresses['billing']['firstname'] }}@endif">
+                                <input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:border-grey" name="billing_address[firstname]" placeholder="Votre prénom" value="@if($user->addresses['billing']['firstname']){{ $user->addresses['billing']['firstname'] }}@endif">
                             </div>
 
                             <label>Téléphone</label>
                             <div class="pb-4">
-                                <input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:shadow-outline" name="billing_address[phone]" placeholder="Votre téléphone" value="@if($user->addresses['billing']['phone']){{ $user->addresses['billing']['phone'] }}@endif">
+                                <input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:border-grey" name="billing_address[phone]" placeholder="Votre téléphone" value="@if($user->addresses['billing']['phone']){{ $user->addresses['billing']['phone'] }}@endif">
                             </div>
 
                             <label>Adresse</label>
                             <div class="pb-4">
-                                <input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:shadow-outline" name="billing_address[address]" placeholder="Votre adresse" value="@if($user->addresses['billing']['address']){{ $user->addresses['billing']['address'] }}@endif">
+                                <input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:border-grey" name="billing_address[address]" placeholder="Votre adresse" value="@if($user->addresses['billing']['address']){{ $user->addresses['billing']['address'] }}@endif">
                             </div>
 
                             <address-component
@@ -67,22 +67,22 @@
 
                             <label>Nom</label>
                             <div class="pb-4">
-                                <input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:shadow-outline" name="delivery_address[lastName]" placeholder="Votre nom" required>
+                                <input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:border-grey" name="delivery_address[lastName]" placeholder="Votre nom" required>
                             </div>
                             
                             <label>Prénom</label>
                             <div class="pb-4">
-                                <input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:shadow-outline" name="delivery_address[lastName]" placeholder="Votre prénom" required>
+                                <input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:border-grey" name="delivery_address[lastName]" placeholder="Votre prénom" required>
                             </div>
 
                             <label>Téléphone</label>
                             <div class="pb-4">
-                                <input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:shadow-outline" name="delivery_address[phone]" placeholder="Votre téléphone" required>
+                                <input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:border-grey" name="delivery_address[phone]" placeholder="Votre téléphone" required>
                             </div>
 
                             <label>Adresse</label>
                             <div class="pb-4">
-                                <input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:shadow-outline" name="delivery_address[address]" placeholder="Votre adresse" required>
+                                <input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:border-grey" name="delivery_address[address]" placeholder="Votre adresse" required>
                             </div>
                             
                             <address-component city-input-name="delivery_address[city]" zip-code-input-name="delivery_address[zipcode]"></address-component>

@@ -2,7 +2,7 @@
     <div class="w-1/5 mr-8">
         <label>Code postal</label>
         <div class="pb-4">
-            <input v-model="zipcode" @keyup="getZipCode" type="number" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:shadow-outline" :name="inputName" placeholder="Votre code postal" required>
+            <input v-model="zipcode" @keyup="getZipCode" type="number" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:border-grey" :name="inputName" placeholder="Votre code postal" required>
         </div>
     </div>
 </template>

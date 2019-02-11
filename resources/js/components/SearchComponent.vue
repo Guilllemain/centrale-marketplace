@@ -156,3 +156,12 @@
         }
     }
 </script>
+
+<style scoped>
+    .search__products {
+        display: grid;
+        align-content: start;
+        justify-content: start;
+        grid-template-columns: repeat(4, 1fr);
+    }
+</style>

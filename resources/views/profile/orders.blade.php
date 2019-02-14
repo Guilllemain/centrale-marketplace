@@ -7,7 +7,7 @@
             @include('partials._profile_nav')
 
             <div class="w-2/3">
-                @foreach($orders as $order)
+                @forelse($orders as $order)
                     <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-full">
                         <div class="flex">
                             <div class="uppercase text-xs mr-12">Commande effectuée le
@@ -39,7 +39,9 @@
                             </div>
                         @endforeach
                     </div>
-                @endforeach
+                @empty
+                    <p>Vous n'avez pas encore passé commande.</p>
+                @endforelse
             </div>
         </div>
     </div>

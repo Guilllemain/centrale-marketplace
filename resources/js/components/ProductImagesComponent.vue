@@ -62,7 +62,7 @@
         },
         methods: {
             getImage(id, size) {
-                return `https://back.vegan-place.com/api/v1/image/${id}?w=${size}&h=${size}`
+                return `${process.env.MIX_MARKETPLACE_BASE_URI}image/${id}?w=${size}&h=${size}`;
             },
             currentSlide(index) {
                 this.slideIndex = index;
@@ -97,13 +97,6 @@
       background-color: rgba(0, 0, 0, .8);
       transition: all .5s;
     }
-
-    .modal--active {
-        display: block;
-        visibility: visible;
-        animation: showModal .2s ease-out forwards;
-    }
-
     /* Modal Content */
     .modal-content {
       position: relative;

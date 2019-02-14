@@ -3,15 +3,15 @@
         @foreach($categories as $category)
             @if($category->getCategory()->productCount)
                 <div class="megamenu__category p-3">
-                    <div class="megamenu__category-active relative">
+                    <div class="relative">
                         <a href="{{ route('category.show', ['category' => $category->getCategory()->slug]) }}"
-                            class="megamenu__category-link">
+                            class="megamenu__title">
                             {{ $category->getCategory()->name }}
                         </a>
                         <div class="b-rounded-bar"></div>
                     </div>
                     @if($category->getChildren())
-                        <div class="megamenu__category-children shadow-md">
+                        <div class="megamenu__panel shadow-md">
                             @foreach($category->getChildren() as $subcategory)
                                 <div class="@if($subcategory->getChildren()) mb-6 @endif w-1/6">
                                     <a class="font-bold" href="{{ route('category.show',[
@@ -20,7 +20,7 @@
                                     ])}}">{{ $subcategory->getCategory()->name }}</a>
                                     @if($subcategory->getChildren())
                                         <div class="my-2 border-b border-grey-light w-2/3"></div>
-                                        <div class="megamenu__category-children-children">
+                                        <div class="megamenu__subcategories">
                                             @foreach($subcategory->getChildren() as $subcategory)
                                                 <div class="hover:font-bold translateX">
                                                     <a href="{{ route('category.show',[

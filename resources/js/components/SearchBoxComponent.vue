@@ -12,7 +12,7 @@
                     </div>
                     <div v-else-if="productSuggestions.length > 0">
                         <a :href="productPath(product)" v-for="product in productSuggestions" class="flex items-center hover:bg-grey-lighter pr-2">
-                            <div class="w-1/6 flex items-center mr-2">
+                            <div class="w-1/6 flex items-center mr-2 search__image">
                                 <img class="w-full" :src="getImage(product)">
                             </div>
                             <div>
@@ -60,9 +60,9 @@
             },
             getImage(product) {
                 if (product) {
-                    return `https://back.vegan-place.com/api/v1/image/${product.mainImage['id']}?w=256&h=256`
+                    return `${process.env.MIX_MARKETPLACE_BASE_URI}image/${product.mainImage['id']}?w=120&h=120`;
                 }
-                return 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg'
+                return 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg';
             },
             productPath(product) {
                 if(product.categoryPath.length > 2) {
@@ -82,7 +82,7 @@
                 300
             ),
             async getResults() {
-                const results = await axios.get('https://back.vegan-place.com/api/v1/catalog/search/products/autocomplete', {
+                const results = await axios.get(`${process.env.MIX_MARKETPLACE_BASE_URI}catalog/search/products/autocomplete`, {
                     params: {
                         query: this.query
                     }
@@ -96,6 +96,11 @@
     }
 </script>
 <style scoped>
+    .search__image {
+        background-image: url('/spinner.gif');
+        background-size: cover;
+        height: 57.98px;
+    }
     .w-89 {
         width: 89%;    
     }

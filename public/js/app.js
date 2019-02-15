@@ -4358,7 +4358,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     getImage: function getImage(image) {
       if (image) {
-        return "".concat(Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}).MIX_MARKETPLACE_BASE_URI, "image/").concat(image.id, "?w=200&h=200");
+        return "".concat("https://back.vegan-place.com/api/v1/", "image/").concat(image.id, "?w=200&h=200");
       }
 
       return 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg';
@@ -5181,7 +5181,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   methods: {
     getImage: function getImage() {
       if (this.product.mainImage) {
-        return "".concat(Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}).MIX_MARKETPLACE_BASE_URI, "image/").concat(this.product.mainImage['id'], "?w=432&h=432");
+        return "".concat("https://back.vegan-place.com/api/v1/", "image/").concat(this.product.mainImage['id'], "?w=432&h=432");
       }
 
       return 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg';
@@ -5297,6 +5297,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     images: {
@@ -5311,12 +5318,13 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       slideIndex: 0,
-      viewModal: false
+      viewModal: false,
+      viewContent: false
     };
   },
   methods: {
     getImage: function getImage(id, size) {
-      return "".concat(Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}).MIX_MARKETPLACE_BASE_URI, "image/").concat(id, "?w=").concat(size, "&h=").concat(size);
+      return "".concat("https://back.vegan-place.com/api/v1/", "image/").concat(id, "?w=").concat(size, "&h=").concat(size);
     },
     currentSlide: function currentSlide(index) {
       this.slideIndex = index;
@@ -5334,6 +5342,7 @@ __webpack_require__.r(__webpack_exports__);
       this.viewModal = true;
     },
     closeModal: function closeModal() {
+      this.viewContent = false;
       this.viewModal = false;
     },
     plusSlides: function plusSlides(number) {
@@ -5430,7 +5439,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     getImage: function getImage(product) {
       if (product) {
-        return "".concat(Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}).MIX_MARKETPLACE_BASE_URI, "image/").concat(product.mainImage['id'], "?w=120&h=120");
+        return "".concat("https://back.vegan-place.com/api/v1/", "image/").concat(product.mainImage['id'], "?w=120&h=120");
       }
 
       return 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg';
@@ -5460,7 +5469,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("".concat(Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}).MIX_MARKETPLACE_BASE_URI, "catalog/search/products/autocomplete"), {
+                return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("".concat("https://back.vegan-place.com/api/v1/", "catalog/search/products/autocomplete"), {
                   params: {
                     query: this.query
                   }
@@ -6078,7 +6087,7 @@ module.exports = function (it) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-var core = module.exports = { version: '2.6.1' };
+var core = module.exports = { version: '2.6.0' };
 if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
 
 
@@ -7693,7 +7702,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".fade-enter-active[data-v-103e4ea6],\n.fade-leave-active[data-v-103e4ea6] {\n  max-height: 3rem;\n  transition: all .3s;\n}\n.fade-enter[data-v-103e4ea6],\n.fade-leave-to[data-v-103e4ea6] {\n  opacity: 0;\n  max-height: 0;\n  -webkit-transform: scaleY(0);\n          transform: scaleY(0);\n  -webkit-transform-origin: top;\n          transform-origin: top;\n}\n", ""]);
+exports.push([module.i, ".fade-enter-active[data-v-103e4ea6],\n.fade-leave-active[data-v-103e4ea6] {\n  max-height: 3rem;\n  transition: all .3s;\n}\n.fade-enter[data-v-103e4ea6],\n.fade-leave-to[data-v-103e4ea6] {\n  opacity: 0;\n  max-height: 0;\n  /*transform: scaleY(0);\n    transform-origin: top;*/\n}\n", ""]);
 
 // exports
 
@@ -7807,7 +7816,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".modal[data-v-c38ae4be] {\n  position: fixed;\n  z-index: 10;\n  padding-top: 50px;\n  left: 0;\n  top: 0;\n  width: 100%;\n  height: 100%;\n  overflow: auto;\n  background-color: rgba(0, 0, 0, .8);\n  transition: all .5s;\n}\n\n/* Modal Content */\n.modal-content[data-v-c38ae4be] {\n  position: relative;\n  margin: auto;\n  width: 88vh;\n  max-width: 1200px;\n}\n.thumbnail__image[data-v-c38ae4be] {\n  opacity: .7;\n  transition: all .3s;\n}\n.thumbnail__image[data-v-c38ae4be]:hover {\n  opacity: 1;\n  -webkit-transform: scale(1.07);\n          transform: scale(1.07);\n}\n\n/* The Close Button */\n.close[data-v-c38ae4be] {\n  position: absolute;\n  top: 1rem;\n  right: 1.5rem;\n  opacity: .8;\n}\n.close[data-v-c38ae4be]:hover,\n.close[data-v-c38ae4be]:focus {\n  opacity: 1;\n  cursor: pointer;\n}\n.close[data-v-c38ae4be]:hover {\n  -webkit-transform: scale(1.1);\n          transform: scale(1.1);\n}\n\n/* Next & previous buttons */\n.prev[data-v-c38ae4be],\n.next[data-v-c38ae4be] {\n  cursor: pointer;\n  position: absolute;\n  top: 50%;\n  padding: 16px;\n  margin-top: -50px;\n  opacity: .8;\n  transition: all .6s ease;\n}\n.next[data-v-c38ae4be] {\n  right: -4rem;\n}\n.prev[data-v-c38ae4be] {\n  left: -4rem;\n}\n.prev[data-v-c38ae4be]:hover,\n.next[data-v-c38ae4be]:hover {\n  opacity: 1;\n  -webkit-transform: scale(1.1);\n          transform: scale(1.1);\n}\n.thumbnail--active[data-v-c38ae4be] {\n  border: solid 1px #bbb;\n  opacity: 1;\n}\n.scale-enter-active[data-v-c38ae4be] {\n  -webkit-animation: scaleIn-data-v-c38ae4be .2s ease-out forwards;\n          animation: scaleIn-data-v-c38ae4be .2s ease-out forwards;\n}\n.scale-leave-active[data-v-c38ae4be] {\n  -webkit-animation: scaleOut-data-v-c38ae4be .2s ease-out forwards;\n          animation: scaleOut-data-v-c38ae4be .2s ease-out forwards;\n}\n.scale-enter[data-v-c38ae4be],\n.scale-leave-to[data-v-c38ae4be] {\n}\n@-webkit-keyframes scaleIn-data-v-c38ae4be {\n0% {\n    opacity: 0;\n    -webkit-transform: scale(.75);\n            transform: scale(.75);\n}\n100% {\n    opacity: 1;\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n}\n@keyframes scaleIn-data-v-c38ae4be {\n0% {\n    opacity: 0;\n    -webkit-transform: scale(.75);\n            transform: scale(.75);\n}\n100% {\n    opacity: 1;\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n}\n@-webkit-keyframes scaleOut-data-v-c38ae4be {\n0% {\n    opacity: 1;\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n100% {\n    opacity: 0;\n    -webkit-transform: scale(.75);\n            transform: scale(.75);\n}\n}\n@keyframes scaleOut-data-v-c38ae4be {\n0% {\n    opacity: 1;\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n100% {\n    opacity: 0;\n    -webkit-transform: scale(.75);\n            transform: scale(.75);\n}\n}\n", ""]);
+exports.push([module.i, ".modal[data-v-c38ae4be] {\n  position: fixed;\n  z-index: 10;\n  left: 0;\n  top: 0;\n  width: 100%;\n  height: 100%;\n  overflow: auto;\n  background-color: rgba(0, 0, 0, .85);\n  transition: all .5s;\n}\n.modal-content[data-v-c38ae4be] {\n  width: 88vh;\n}\n.thumbnail__image[data-v-c38ae4be] {\n  opacity: .7;\n  transition: all .3s;\n}\n.thumbnail__image[data-v-c38ae4be]:hover {\n  opacity: 1;\n  -webkit-transform: scale(1.07);\n          transform: scale(1.07);\n}\n.close[data-v-c38ae4be] {\n  position: absolute;\n  top: 1rem;\n  right: 1.5rem;\n  opacity: .8;\n  cursor: pointer;\n}\n.close[data-v-c38ae4be]:hover,\n.close[data-v-c38ae4be]:focus {\n  opacity: 1;\n}\n.close[data-v-c38ae4be]:hover {\n  -webkit-transform: scale(1.1);\n          transform: scale(1.1);\n}\n\n/* Next & previous buttons */\n.prev[data-v-c38ae4be],\n.next[data-v-c38ae4be] {\n  cursor: pointer;\n  opacity: .8;\n  transition: all .6s ease;\n}\n.prev[data-v-c38ae4be]:hover,\n.next[data-v-c38ae4be]:hover {\n  opacity: 1;\n  -webkit-transform: scale(1.1);\n          transform: scale(1.1);\n}\n.thumbnail--active[data-v-c38ae4be] {\n  border: solid 1px #bbb;\n  opacity: 1;\n}\n.fade-enter-active[data-v-c38ae4be],\n.fade-leave-active[data-v-c38ae4be] {\n  transition: opacity .2s;\n}\n.fade-enter[data-v-c38ae4be],\n.fade-leave-to[data-v-c38ae4be] {\n  opacity: 0;\n}\n.scale-enter-active[data-v-c38ae4be] {\n  -webkit-animation: scaleIn-data-v-c38ae4be .2s ease-out forwards;\n          animation: scaleIn-data-v-c38ae4be .2s ease-out forwards;\n}\n.scale-leave-active[data-v-c38ae4be] {\n  -webkit-animation: scaleOut-data-v-c38ae4be .2s ease-out forwards;\n          animation: scaleOut-data-v-c38ae4be .2s ease-out forwards;\n}\n.scale-enter[data-v-c38ae4be],\n.scale-leave-to[data-v-c38ae4be] {\n}\n@-webkit-keyframes scaleIn-data-v-c38ae4be {\n0% {\n    opacity: 0;\n    -webkit-transform: scale(.75);\n            transform: scale(.75);\n}\n100% {\n    opacity: 1;\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n}\n@keyframes scaleIn-data-v-c38ae4be {\n0% {\n    opacity: 0;\n    -webkit-transform: scale(.75);\n            transform: scale(.75);\n}\n100% {\n    opacity: 1;\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n}\n@-webkit-keyframes scaleOut-data-v-c38ae4be {\n0% {\n    opacity: 1;\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n100% {\n    opacity: 0;\n    -webkit-transform: scale(.75);\n            transform: scale(.75);\n}\n}\n@keyframes scaleOut-data-v-c38ae4be {\n0% {\n    opacity: 1;\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n100% {\n    opacity: 0;\n    -webkit-transform: scale(.75);\n            transform: scale(.75);\n}\n}\n", ""]);
 
 // exports
 
@@ -71600,7 +71609,7 @@ var render = function() {
             [
               _c(
                 "transition-group",
-                { attrs: { name: "fade" } },
+                { attrs: { name: "fade", appear: "" } },
                 _vm._l(_vm.facet.values, function(value, index) {
                   return _c(
                     "div",
@@ -72106,7 +72115,7 @@ var render = function() {
             return _c(
               "div",
               {
-                key: index,
+                key: image.id,
                 staticClass:
                   "flex items-center thumbnail__image cursor-pointer border border-grey-light mb-2",
                 class: { "thumbnail--active": _vm.slideIndex === index },
@@ -72136,7 +72145,7 @@ var render = function() {
           _vm._l(_vm.images, function(image, index) {
             return index === _vm.slideIndex
               ? _c("img", {
-                  key: index,
+                  key: image.id,
                   staticClass: "w-full cursor-pointer",
                   attrs: { src: _vm.getImage(image.id, 420) },
                   on: { click: _vm.openModal }
@@ -72147,104 +72156,139 @@ var render = function() {
         )
       ]),
       _vm._v(" "),
-      _c("transition", { attrs: { name: "scale" } }, [
-        _vm.viewModal
-          ? _c("div", { staticClass: "modal", on: { click: _vm.closeModal } }, [
-              _c("span", { staticClass: "close cursor-pointer" }, [
-                _c(
-                  "svg",
-                  {
-                    staticClass: "h-8 w-8",
-                    attrs: { xmlns: "http://www.w3.org/2000/svg" }
-                  },
-                  [
-                    _c("use", {
-                      staticClass: "text-white fill-current",
-                      attrs: { href: "/svg/icons.svg#close" }
-                    })
-                  ]
-                )
-              ]),
-              _vm._v(" "),
-              _c(
+      _c(
+        "transition",
+        {
+          attrs: { name: "fade" },
+          on: {
+            "after-enter": function($event) {
+              _vm.viewContent = true
+            }
+          }
+        },
+        [
+          _vm.viewModal
+            ? _c(
                 "div",
                 {
-                  staticClass: "modal-content",
-                  on: {
-                    click: function($event) {
-                      $event.stopPropagation()
-                    }
-                  }
+                  staticClass: "modal flex items-center justify-center",
+                  on: { click: _vm.closeModal }
                 },
                 [
-                  _vm._l(_vm.images, function(image, index) {
-                    return index === _vm.slideIndex
-                      ? _c("img", {
-                          staticClass: "w-full",
-                          attrs: { src: _vm.getImage(image.id, 1000) }
+                  _c("span", { staticClass: "close cursor-pointer" }, [
+                    _c(
+                      "svg",
+                      {
+                        staticClass: "h-8 w-8",
+                        attrs: { xmlns: "http://www.w3.org/2000/svg" }
+                      },
+                      [
+                        _c("use", {
+                          staticClass: "text-white fill-current",
+                          attrs: { href: "/svg/icons.svg#close" }
                         })
-                      : _vm._e()
-                  }),
+                      ]
+                    )
+                  ]),
                   _vm._v(" "),
-                  _c(
-                    "a",
-                    {
-                      staticClass: "prev",
-                      on: {
-                        click: function($event) {
-                          _vm.plusSlides(-1)
+                  _c("transition", { attrs: { name: "scale" } }, [
+                    _c(
+                      "div",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: _vm.viewContent,
+                            expression: "viewContent"
+                          }
+                        ],
+                        staticClass:
+                          "modal-content flex items-center justify-center",
+                        on: {
+                          click: function($event) {
+                            $event.stopPropagation()
+                          }
                         }
-                      }
-                    },
-                    [
-                      _c(
-                        "svg",
-                        {
-                          staticClass: "h-8 w-8",
-                          attrs: { xmlns: "http://www.w3.org/2000/svg" }
-                        },
-                        [
-                          _c("use", {
-                            staticClass: "text-white fill-current",
-                            attrs: { href: "/svg/icons.svg#navigate-prev" }
-                          })
-                        ]
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "a",
-                    {
-                      staticClass: "next",
-                      on: {
-                        click: function($event) {
-                          _vm.plusSlides(1)
-                        }
-                      }
-                    },
-                    [
-                      _c(
-                        "svg",
-                        {
-                          staticClass: "h-8 w-8",
-                          attrs: { xmlns: "http://www.w3.org/2000/svg" }
-                        },
-                        [
-                          _c("use", {
-                            staticClass: "text-white fill-current",
-                            attrs: { href: "/svg/icons.svg#navigate-next" }
-                          })
-                        ]
-                      )
-                    ]
-                  )
+                      },
+                      [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "prev",
+                            on: {
+                              click: function($event) {
+                                _vm.plusSlides(-1)
+                              }
+                            }
+                          },
+                          [
+                            _c(
+                              "svg",
+                              {
+                                staticClass: "h-8 w-8",
+                                attrs: { xmlns: "http://www.w3.org/2000/svg" }
+                              },
+                              [
+                                _c("use", {
+                                  staticClass: "text-white fill-current",
+                                  attrs: {
+                                    href: "/svg/icons.svg#navigate-prev"
+                                  }
+                                })
+                              ]
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _vm._l(_vm.images, function(image, index) {
+                          return index === _vm.slideIndex
+                            ? _c("img", {
+                                key: image.id,
+                                staticClass: "w-full px-4",
+                                attrs: { src: _vm.getImage(image.id, 1000) }
+                              })
+                            : _vm._e()
+                        }),
+                        _vm._v(" "),
+                        _c(
+                          "a",
+                          {
+                            staticClass: "next",
+                            on: {
+                              click: function($event) {
+                                _vm.plusSlides(1)
+                              }
+                            }
+                          },
+                          [
+                            _c(
+                              "svg",
+                              {
+                                staticClass: "h-8 w-8",
+                                attrs: { xmlns: "http://www.w3.org/2000/svg" }
+                              },
+                              [
+                                _c("use", {
+                                  staticClass: "text-white fill-current",
+                                  attrs: {
+                                    href: "/svg/icons.svg#navigate-next"
+                                  }
+                                })
+                              ]
+                            )
+                          ]
+                        )
+                      ],
+                      2
+                    )
+                  ])
                 ],
-                2
+                1
               )
-            ])
-          : _vm._e()
-      ])
+            : _vm._e()
+        ]
+      )
     ],
     1
   )
@@ -85450,8 +85494,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/yann/code/centrale-marketplace/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/yann/code/centrale-marketplace/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/yguillemain/Desktop/code/centrale-marketplace/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/yguillemain/Desktop/code/centrale-marketplace/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

@@ -12,7 +12,7 @@
                 </span>
             </div>
             <div v-if="facet.name !== 'price'">
-                <transition-group name="fade">
+                <transition-group name="fade" appear>
                 <div class="mx-2" v-show="showFacet" v-for="(value, index) in facet.values" :key="index+1">
                         <label class="cursor-pointer">
                             <div class="flex items-baseline">
@@ -81,10 +81,10 @@
         max-height: 3rem;
         transition: all .3s;
     }
-    .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    .fade-enter, .fade-leave-to {
         opacity: 0;
         max-height: 0;
-        transform: scaleY(0);
-        transform-origin: top;
+        /*transform: scaleY(0);
+        transform-origin: top;*/
     }
 </style>

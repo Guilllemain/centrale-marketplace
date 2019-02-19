@@ -33,4 +33,9 @@ class SearchController extends Controller
         $slug = $request->query->get('slug');
         dd($slug);
     }
+
+    public function searchAlgolia(Request $request)
+    {
+        return $this->catalog->searchAlgolia($request->query('query'));
+    }
 }

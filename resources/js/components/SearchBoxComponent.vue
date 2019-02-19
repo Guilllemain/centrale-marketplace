@@ -82,7 +82,7 @@
                 300
             ),
             async getResults() {
-                const results = await axios.get(`${process.env.MIX_MARKETPLACE_BASE_URI}catalog/search/products/autocomplete`, {
+                const results = await axios.get('/searchbox', {
                     params: {
                         query: this.query
                     }

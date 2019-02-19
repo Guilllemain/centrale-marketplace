@@ -35,7 +35,7 @@ Route::middleware('session')->group(function () {
 Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('/search', 'Api\SearchController@index');
-
+Route::get('/searchbox', 'Api\SearchController@searchAlgolia');
 
 
 Route::get('/basket', 'BasketController@index');

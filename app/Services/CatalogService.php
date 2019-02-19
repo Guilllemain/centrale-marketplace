@@ -86,4 +86,10 @@ class CatalogService extends AbstractService
 
         return new Company($response);
     }
+
+    // searchbox results
+    public function searchAlgolia($query)
+    {
+        return $this->client->get('catalog/search/products/autocomplete?query=' . $query);
+    }
 }

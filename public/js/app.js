@@ -5469,7 +5469,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("".concat("https://back.vegan-place.com/api/v1/", "catalog/search/products/autocomplete"), {
+                return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/searchbox', {
                   params: {
                     query: this.query
                   }

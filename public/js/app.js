@@ -5304,6 +5304,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     images: {
@@ -6087,7 +6088,7 @@ module.exports = function (it) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-var core = module.exports = { version: '2.6.0' };
+var core = module.exports = { version: '2.6.1' };
 if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
 
 
@@ -72122,6 +72123,9 @@ var render = function() {
                 on: {
                   click: function($event) {
                     _vm.currentSlide(index)
+                  },
+                  mouseover: function($event) {
+                    _vm.currentSlide(index)
                   }
                 }
               },
@@ -85494,8 +85498,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/yguillemain/Desktop/code/centrale-marketplace/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/yguillemain/Desktop/code/centrale-marketplace/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/yann/code/centrale-marketplace/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/yann/code/centrale-marketplace/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

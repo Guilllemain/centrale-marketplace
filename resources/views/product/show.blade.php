@@ -87,4 +87,14 @@
             </div>
         </div>
     </div>
+    <div class="bg-grey-lighter mt-16 p-3">
+        <div class="container">
+            <a class="uppercase text-lg font-light mr-10" href="">Description</a>
+            <a class="uppercase text-lg font-light mr-10 opacity-50 hover:opacity-100" href="">Caractéristiques</a>
+            <a class="uppercase text-lg font-light opacity-50 hover:opacity-100" href="">Avis</a>
+        </div>
+    </div>
+    <div class="container mt-16">
+        <div>{!! $product->description !!}</div>
+    </div>
 @endsection

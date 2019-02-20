@@ -5,6 +5,7 @@
                 <div class="flex items-center thumbnail__image cursor-pointer border border-grey-light mb-2"
                      v-for="(image, index) in images" :key="image.id" 
                      @click="currentSlide(index)"
+                     @mouseover="currentSlide(index)"
                      :class="{'thumbnail--active': slideIndex === index }">
                     <img class="w-full" :src="getImage(image.id, 100)" :alt="`${name}-${index}`">
                 </div>

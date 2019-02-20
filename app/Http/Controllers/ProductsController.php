@@ -24,6 +24,7 @@ class ProductsController extends Controller
         if (!$product) {
             throw "Product '${slug}' Not Found";
         }
+        // dd($product);
         return view('product.show', compact('product'));
     }
 

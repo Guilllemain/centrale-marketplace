@@ -59,6 +59,6 @@ class UsersController extends Controller
     {
         $this->userService->recoverPassword($request->email);
 
-        return back()->with('flash', 'Un email vous a été envoyé');
+        return redirect('/login')->with('flash', 'Un email vous a été envoyé');
     }
 }

@@ -71179,13 +71179,13 @@ var render = function() {
         ? _c(
             "div",
             [
-              _c("h3", { staticClass: "uppercase text-center" }, [
+              _c("h3", { staticClass: "uppercase text-center mb-4" }, [
                 _vm._v("Mon panier")
               ]),
               _vm._v(" "),
               _vm._l(_vm.items, function(item) {
                 return _c("div", [
-                  _c("div", { staticClass: "my-2 flex items-center" }, [
+                  _c("div", { staticClass: "mb-2 flex items-center" }, [
                     _c("div", { staticClass: "w-1/5 mr-4" }, [
                       _c("img", {
                         staticClass: "w-full",
@@ -71203,7 +71203,7 @@ var render = function() {
                       ])
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "text-right" }, [
+                    _c("div", { staticClass: "text-right ml-2" }, [
                       _c("p", [
                         _vm._v(
                           _vm._s(
@@ -71220,17 +71220,21 @@ var render = function() {
                 ])
               }),
               _vm._v(" "),
-              _c("div", { staticClass: "flex justify-between mb-2" }, [
-                _c("p", [_vm._v("Livraison")]),
-                _vm._v(" "),
-                _c("p", [
-                  _vm._v(
-                    "à partir de " +
-                      _vm._s(_vm.formatPrice(_vm.basket.totalShipping)) +
-                      " €"
-                  )
-                ])
-              ]),
+              _c(
+                "div",
+                { staticClass: "flex justify-between mb-2 text-grey-dark" },
+                [
+                  _c("p", [_vm._v("Livraison")]),
+                  _vm._v(" "),
+                  _c("p", [
+                    _vm._v(
+                      "à partir de " +
+                        _vm._s(_vm.formatPrice(_vm.basket.totalShipping)) +
+                        " €"
+                    )
+                  ])
+                ]
+              ),
               _vm._v(" "),
               _c("div", { staticClass: "flex justify-between font-bold" }, [
                 _c("p", [_vm._v("Total")]),
@@ -71253,7 +71257,8 @@ var render = function() {
               _c(
                 "a",
                 {
-                  staticClass: "mt-4 block text-center font-bold py-2 px-4",
+                  staticClass:
+                    "mt-4 block text-center font-bold py-2 px-4 hover:text-grey-dark",
                   attrs: { href: "/basket" }
                 },
                 [_vm._v("Voir mon panier")]
@@ -71261,7 +71266,9 @@ var render = function() {
             ],
             2
           )
-        : _c("div", [_vm._v("Votre panier est vide")])
+        : _c("p", { staticClass: "text-center" }, [
+            _vm._v("Votre panier est vide")
+          ])
     ])
   ])
 }

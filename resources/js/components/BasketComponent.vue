@@ -14,9 +14,9 @@
         </div>
         <div class="basket__content min-w-64">
             <div v-if="items.length > 0">
-                <h3 class="uppercase text-center">Mon panier</h3>
+                <h3 class="uppercase text-center mb-4">Mon panier</h3>
                 <div v-for="item in items">
-                    <div class="my-2 flex items-center">
+                    <div class="mb-2 flex items-center">
                         <div class="w-1/5 mr-4">
                             <img class="w-full" :src="getImage(item.mainImage)">
                         </div>
@@ -24,13 +24,13 @@
                             <a :href="item.productUrl">{{ item.productName }}</a>
                             <div class="text-grey-dark">Quantité: {{ item.quantity }}</div>
                         </div>
-                        <div class="text-right">
+                        <div class="text-right ml-2">
                             <p>{{ formatPrice(item.totalPrice.priceWithTaxes) }} €</p>
                         </div>
                     </div>
                     <div class="my-2 border-b border-grey-light w-full"></div>
                 </div>
-                <div class="flex justify-between mb-2">
+                <div class="flex justify-between mb-2 text-grey-dark">
                     <p>Livraison</p>
                     <p>à partir de {{ formatPrice(basket.totalShipping) }} €</p>
                 </div>
@@ -39,9 +39,9 @@
                     <p>{{ formatPrice(basket.total) }} €</p>
                 </div>
                 <a href="/basket/address" class="focus:outline-none translateY mt-4 block text-center bg-orange-dark hover:bg-orange hover:text-white text-white font-bold py-2 px-4 rounded">Commander</a>
-                <a href="/basket" class="mt-4 block text-center font-bold py-2 px-4">Voir mon panier</a>
+                <a href="/basket" class="mt-4 block text-center font-bold py-2 px-4 hover:text-grey-dark">Voir mon panier</a>
             </div>
-            <div v-else>Votre panier est vide</div>
+            <p v-else class="text-center">Votre panier est vide</p>
         </div>
     </div>
 </template>

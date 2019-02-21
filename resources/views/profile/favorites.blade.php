@@ -17,7 +17,6 @@
                 @else
                     <div class="flex flex-wrap">
                         @foreach($favorites as $favorite)
-                            {{-- {{dd($favorite)}} --}}
                             <div class="w-1/4 m-3 flex flex-col items-center justify-center bg-white pb-4 rounded shadow">
                                 <a href="{{ getProductPath($favorite) }}" class="flex flex-col items-center justify-center px-2 my-2">
                                     <img src="{{ config('marketplace.http_client.base_uri') . "image/" . $favorite['mainImage']['id'] . "?w=200&h=200"}}">

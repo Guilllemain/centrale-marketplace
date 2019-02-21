@@ -15,10 +15,10 @@
                         <a href="/search" class="text-center bg-orange-dark hover:bg-orange hover:text-white text-white font-bold py-2 px-4 rounded">Parcourir les produits</a>
                     </div>
                 @else
-                    <div class="flex">
+                    <div class="flex flex-wrap">
                         @foreach($favorites as $favorite)
                             {{-- {{dd($favorite)}} --}}
-                            <div class="w-1/3 mx-3 flex flex-col items-center justify-center bg-white pb-4 rounded shadow">
+                            <div class="w-1/4 m-3 flex flex-col items-center justify-center bg-white pb-4 rounded shadow">
                                 <a href="{{ getProductPath($favorite) }}" class="flex flex-col items-center justify-center px-2 my-2">
                                     <img src="{{ config('marketplace.http_client.base_uri') . "image/" . $favorite['mainImage']['id'] . "?w=200&h=200"}}">
                                     <div class="my-2 border-b border-grey-light w-full"></div>

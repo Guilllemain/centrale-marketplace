@@ -49,6 +49,7 @@
                             declinationId: this.product.declinations[0].id
                         });
                     this.favorite = true;
+                    flash('Vous avez ajouté ce produit à vos favoris');
                 } catch (error) {
                     flash('Vous devez être connecté pour ajouter un produit dans vos favoris', 'danger');
                     console.log(error);
@@ -60,6 +61,7 @@
                             declinationId: this.product.declinations[0].id
                         })
                     this.favorite = false;
+                    flash('Vous avez retiré ce produit de vos favoris');
                 } catch (error) {
                     console.log(error);
                 }

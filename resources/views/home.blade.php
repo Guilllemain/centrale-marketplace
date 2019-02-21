@@ -31,14 +31,14 @@
                     <div class="flex flex-col items-center shadow-md rounded">
                         <img class="" src="https://back.vegan-place.com/api/v1/image/{{ $product->mainImage }}?w=200&h=200">
                         <div class="my-2 border-b border-grey-light w-2/3"></div>
-                        <a href="{{ route('product.show', [
+                        {{-- <a href="{{ route('product.show', [
                             'category' => $product->categoryPath[0]['slug'],
                             'subCategory' => $product->categoryPath[1]['slug'],
                             'finalCategory' => $product->categoryPath[2]['slug'],
                             'slug' => $product->slug,
-                        ]) }}">
+                        ]) }}"> --}}
                             <h3 class="px-3 mb-2">{{ limitStringLength($product->name) }}</h3>
-                        </a>
+                        {{-- </a> --}}
                         <div class="mb-2 text-base">{{ formatPrice($product->minimumPrice) }} €</div>
                     </div>
                 </div>

@@ -31,6 +31,7 @@ Vue.component('basket-component', require('./components/BasketComponent.vue').de
 Vue.component('address-component', require('./components/AddressComponent.vue').default);
 Vue.component('checkout-component', require('./components/CheckoutComponent.vue').default);
 Vue.component('stars-component', require('./components/StarsComponent.vue').default);
+Vue.component('review-component', require('./components/ReviewComponent.vue').default);
 Vue.component('favorite-component', require('./components/FavoriteComponent.vue').default);
 Vue.component('carousel-component', require('./components/CarouselComponent.vue').default);
 Vue.component('product-images-component', require('./components/ProductImagesComponent.vue').default);

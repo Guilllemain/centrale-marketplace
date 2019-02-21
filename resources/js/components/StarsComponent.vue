@@ -1,9 +1,10 @@
 <template>
     <div class="mt-2 mb-4">
         <el-rate
-          v-model="value4"
-          disabled
+          v-model="value"
+          :disabled="disabled"
           text-color="#ff9900"
+          @change="rateProduct"
         >
         </el-rate>
     </div>
@@ -11,12 +12,22 @@
 
 <script>
     export default {
+        props: {
+            disabled: {
+                required: false,
+                type: Boolean,
+                default: true
+            }
+        },
         data() {
             return {
-                value4: 4
+                value: 4
             }
         },
         methods: {
+            rateProduct() {
+                this.$emit('rate', this.value);
+            }
         }
     }
 </script>

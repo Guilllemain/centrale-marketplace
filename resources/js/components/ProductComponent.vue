@@ -40,7 +40,8 @@
         },
         methods: {
             show () {
-                this.$modal.show('comparison')
+                this.$store.commit('addProductToCompare', this.product);
+                this.$modal.show('comparison');
             },
             getImage() {
                 if (this.product.mainImage) {

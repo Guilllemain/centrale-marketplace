@@ -8,6 +8,7 @@
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import VModal from 'vue-js-modal';
+import store from './store';
 
 
 window.Vue = require('vue');
@@ -55,5 +56,6 @@ var mixin = {
 
 const app = new Vue({
     mixins: [mixin],
+    store,
     el: '#app'
 });

@@ -25,6 +25,8 @@
             </div>
         </div>
         <pagination-component :pagination="pagination" @pageChanged="updatePage"></pagination-component>
+        <modal-component></modal-component>
+        
     </div>
 </template>
 

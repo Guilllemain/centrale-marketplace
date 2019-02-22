@@ -7,9 +7,12 @@
 
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
+import VModal from 'vue-js-modal';
+
 
 window.Vue = require('vue');
 window.Vue.use(ElementUI);
+window.Vue.use(VModal);
 
 require('./bootstrap');
 
@@ -25,6 +28,7 @@ require('./bootstrap');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key)))
 
 Vue.component('flash-component', require('./components/FlashComponent.vue').default);
+Vue.component('modal-component', require('./components/ModalComponent.vue').default);
 Vue.component('search-component', require('./components/SearchComponent.vue').default);
 Vue.component('search-box-component', require('./components/SearchBoxComponent.vue').default);
 Vue.component('basket-component', require('./components/BasketComponent.vue').default);

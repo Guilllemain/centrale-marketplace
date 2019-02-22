@@ -17,6 +17,10 @@
             </div>
         </div>
         <button class="translateY mt-auto focus:outline-none hover:bg-grey-dark text-grey hover:text-white py-2 px-3 border hover:border-transparent rounded" @click="addToCart">Ajouter au panier</button>
+        <label class="text-xs mt-3">
+            <input @click="show" type="checkbox" class="mr-1 focus:outline-none">
+            Comparer
+        </label>
     </div>
 </template>
 
@@ -35,6 +39,9 @@
             }
         },
         methods: {
+            show () {
+                this.$modal.show('comparison')
+            },
             getImage() {
                 if (this.product.mainImage) {
                     return `${process.env.MIX_MARKETPLACE_BASE_URI}image/${this.product.mainImage['id']}?w=432&h=432`

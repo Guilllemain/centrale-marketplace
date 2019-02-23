@@ -107,7 +107,8 @@
 
         @include('footer')
     </div>
-    <script src="//code.tidio.co/tfbpqyj9ssgdjacgc4oguz3ftbhgmz83.js"></script>
+    {{-- live-chat tidio --}}
+    {{-- <script src="//code.tidio.co/tfbpqyj9ssgdjacgc4oguz3ftbhgmz83.js"></script> --}}
 
     @yield('scripts')
     @stack('scripts')

@@ -5039,6 +5039,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -5053,14 +5054,11 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       return this.products.length <= 1;
     },
     filteredAttributes: function filteredAttributes() {
-      var _this = this;
-
       var results = [];
-
-      var _loop = function _loop(i) {
+      this.products.forEach(function (product) {
         var result = [];
-
-        _this.products[i].attributes.forEach(function (attribute, index) {
+        product.attributes.forEach(function (attribute) {
+          if (attribute.attribute.id === 3 || attribute.attribute.id === 4 || attribute.attribute.id === 5) return;
           var attValues = [];
           attribute.values.forEach(function (value) {
             return attValues.push(value.name);
@@ -5071,14 +5069,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
             values: attValues
           });
         });
-
         results.push(result);
-      };
-
-      for (var i = 0; i < this.products.length; i++) {
-        _loop(i);
-      }
-
+      });
       var final = [];
 
       if (results.length === 2) {
@@ -5094,13 +5086,13 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         });
       }
 
-      return final; // 
-      // let results = [];
+      return final; // let results = [];
       // this.products.forEach(product => {
       //     results.push({
       //             name: product.name,
+      //             id: product.productId,
       //             price: product.minimumPrice,
-      //             attributes: {...product.attributes}
+      //             attributes: [...product.attributes]
       //         })
       // })
       // let final = [];
@@ -5108,12 +5100,12 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       //     results[0].attributes.forEach(att => {
       //         results[1].attributes.forEach(att2 => {
       //             if(att.attribute.id === att2.attribute.id) {
-      //                 final.push({name: att.attribute.name, values: [att.values, att2.values]})
+      //                 final.push({name: att.attribute.name, values: [...att.values, ...att2.values]})
       //             }
       //         })
       //     })
       // }
-      // return results;
+      // return final;
     }
   },
   methods: {
@@ -5326,12 +5318,24 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }
   },
   data: function data() {
-    return {};
+    return {
+      checked: false
+    };
   },
   methods: {
     show: function show() {
-      this.$store.commit('addProductToCompare', this.product);
-      this.$modal.show('comparison');
+      if (this.checked) {
+        if (this.$store.getters.comparedProducts.length >= 2) {
+          flash('Vous ne pouvez pas comparer plus de 2 produits', 'warning');
+          return this.checked = false;
+        }
+
+        this.$store.commit('addProductToCompare', this.product);
+        this.$modal.show('comparison');
+      } else {
+        this.$store.commit('removeProductFromCompare', this.product);
+        if (this.$store.getters.comparedProducts.length === 0) this.$modal.hide('comparison');
+      }
     },
     getImage: function getImage() {
       if (this.product.mainImage) {
@@ -7982,7 +7986,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "button[disabled][data-v-4b2d100a] {\n  background-color: lightgrey;\n  opacity: .7;\n}\nbutton[data-v-4b2d100a] {\n  position: relative;\n  z-index: 999999;\n}\n.v--modal-overlay[data-v-4b2d100a] {\n  background: transparent;\n  height: auto;\n}\n", ""]);
+exports.push([module.i, "button[disabled][data-v-4b2d100a] {\n  background-color: lightgrey;\n  opacity: .7;\n}\n.v--modal-overlay[data-v-4b2d100a] {\n  background: none;\n  height: auto;\n}\n.v--modal-overlay .v--modal-background-click[data-v-4b2d100a] {\n  position: absolute;\n  bottom: 0;\n}\n.table[data-v-4b2d100a] {\n  display: grid;\n  grid-template-columns: 15% 35% 35%;\n  grid-gap: 1rem;\n}\n.grid-header[data-v-4b2d100a] {\n  display: grid;\n  align-items: center;\n  grid-template-columns: 15% 35% 35% 15%;\n  grid-gap: 1rem;\n}\n.grid-header[data-v-4b2d100a]:before {\n  content: '';\n  grid-column: 1;\n  grid-row: 1;\n}\n", ""]);
 
 // exports
 
@@ -76169,69 +76173,56 @@ var render = function() {
       }
     },
     [
-      _c("div", { staticClass: "flex m-6" }, [
-        _c("div", { staticClass: "w-5/6" }, [
+      _c(
+        "div",
+        { staticClass: "grid-header p-4 bg-blue" },
+        [
+          _vm._l(_vm.products, function(product) {
+            return _c("div", { staticClass: "text-base text-white" }, [
+              _vm._v(_vm._s(product.name))
+            ])
+          }),
+          _vm._v(" "),
           _c(
-            "table",
-            { staticClass: "w-full" },
+            "button",
+            {
+              staticClass:
+                "translateY mr-auto focus:outline-none hover:bg-blue bg-blue-dark font-normal text-white hover:text-white py-3 px-3 border hover:border-transparent rounded",
+              attrs: { disabled: _vm.buttonDisabled },
+              on: { click: _vm.showFullComparison }
+            },
             [
-              _c(
-                "thead",
-                [
-                  _c("th", { staticClass: "w-1/4" }),
+              _vm._v(
+                "\n            " +
+                  _vm._s(_vm.showContent ? "Minimiser" : "Comparer") +
+                  "\n        "
+              )
+            ]
+          )
+        ],
+        2
+      ),
+      _vm._v(" "),
+      _vm.showContent
+        ? _c(
+            "div",
+            { staticClass: "table my-4 mx-6" },
+            [
+              _vm._l(_vm.filteredAttributes, function(attribute) {
+                return [
+                  _c("div", { staticClass: "ml-4" }, [
+                    _vm._v(_vm._s(attribute.name))
+                  ]),
                   _vm._v(" "),
-                  _vm._l(_vm.products, function(product) {
-                    return _c("th", {}, [_vm._v(_vm._s(product.name))])
+                  _vm._l(attribute.values, function(value) {
+                    return _c("div", [_vm._v(_vm._s(value))])
                   })
-                ],
-                2
-              ),
-              _vm._v(" "),
-              _vm.showContent
-                ? [
-                    _c(
-                      "tbody",
-                      _vm._l(_vm.filteredAttributes, function(attribute) {
-                        return _c(
-                          "tr",
-                          [
-                            _c("th", [_vm._v(_vm._s(attribute.name))]),
-                            _vm._v(" "),
-                            _vm._l(attribute.values, function(value) {
-                              return _c("td", [_vm._v(_vm._s(value))])
-                            })
-                          ],
-                          2
-                        )
-                      }),
-                      0
-                    )
-                  ]
-                : _vm._e(),
-              _vm._v(" "),
-              _c("div")
+                ]
+              })
             ],
             2
           )
-        ]),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass:
-              "ml-auto translateY mt-auto focus:outline-none hover:bg-blue bg-blue-dark font-normal text-white hover:text-white py-3 px-3 border hover:border-transparent rounded",
-            attrs: { disabled: _vm.buttonDisabled },
-            on: { click: _vm.showFullComparison }
-          },
-          [
-            _vm._v(
-              "\n            " +
-                _vm._s(_vm.showContent ? "Minimiser" : "Comparer") +
-                "\n        "
-            )
-          ]
-        )
-      ])
+        : _vm._e()
     ]
   )
 }
@@ -76387,9 +76378,45 @@ var render = function() {
       _vm._v(" "),
       _c("label", { staticClass: "text-xs mt-3" }, [
         _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.checked,
+              expression: "checked"
+            }
+          ],
           staticClass: "mr-1 focus:outline-none",
           attrs: { type: "checkbox" },
-          on: { click: _vm.show }
+          domProps: {
+            checked: Array.isArray(_vm.checked)
+              ? _vm._i(_vm.checked, null) > -1
+              : _vm.checked
+          },
+          on: {
+            change: [
+              function($event) {
+                var $$a = _vm.checked,
+                  $$el = $event.target,
+                  $$c = $$el.checked ? true : false
+                if (Array.isArray($$a)) {
+                  var $$v = null,
+                    $$i = _vm._i($$a, $$v)
+                  if ($$el.checked) {
+                    $$i < 0 && (_vm.checked = $$a.concat([$$v]))
+                  } else {
+                    $$i > -1 &&
+                      (_vm.checked = $$a
+                        .slice(0, $$i)
+                        .concat($$a.slice($$i + 1)))
+                  }
+                } else {
+                  _vm.checked = $$c
+                }
+              },
+              _vm.show
+            ]
+          }
         }),
         _vm._v("\n        Comparer\n    ")
       ])
@@ -91901,11 +91928,10 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
   },
   mutations: {
     addProductToCompare: function addProductToCompare(state, product) {
-      if (state.comparedProducts.length >= 3) {
-        return flash('Vous ne pouvez pas comparer plus de 3 produits', 'warning');
-      }
-
       state.comparedProducts.push(product);
+    },
+    removeProductFromCompare: function removeProductFromCompare(state, product) {
+      state.comparedProducts.splice(product, 1);
     }
   },
   actions: {}

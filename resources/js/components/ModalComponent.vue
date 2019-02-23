@@ -1,11 +1,24 @@
 <template>
     <modal name="comparison" :adaptive="true" width="100%" height="auto" :pivotY="1.0" :clickToClose="false">
-        <div class="flex m-6">
-            
-        <div class="w-5/6">
-            <table class="w-full">
+        <div class="grid-header p-4 bg-blue">
+            <div v-for="product in products" class="text-base text-white">{{ product.name }}</div>
+            <button 
+                class="translateY mr-auto focus:outline-none hover:bg-blue bg-blue-dark font-normal text-white hover:text-white py-3 px-3 border hover:border-transparent rounded"
+                :disabled="buttonDisabled"
+                @click="showFullComparison"
+                >
+                {{ showContent ? 'Minimiser' : 'Comparer' }}
+            </button>
+        </div>
+        <div class="table my-4 mx-6" v-if="showContent">
+            <template v-for="attribute in filteredAttributes">
+               <div class="ml-4">{{attribute.name}}</div>
+               <div v-for="value in attribute.values">{{ value }}</div>
+            </template>
+        </div>
+            <!-- <table class="w-full">
                 <thead>
-                    <th class="w-1/4"></th>
+                    <th class="w-1/5"></th>
                     <th class="" v-for="product in products">{{ product.name }}</th>
                 </thead>
                 <template v-if="showContent">
@@ -14,22 +27,10 @@
                            <th>{{attribute.name}}</th>
                            <td v-for="value in attribute.values">{{ value }}</td> 
                         </tr>
-                        <!-- <div>{{ formatPrice(product.minimumPrice) }}</div>
-                        <div>{{ product.shortDescription }}</div> -->
                     </tbody>
                 </template>
-            <div >
-            </div>
-            </table>
-        </div>
-            <button 
-                class="ml-auto translateY mt-auto focus:outline-none hover:bg-blue bg-blue-dark font-normal text-white hover:text-white py-3 px-3 border hover:border-transparent rounded"
-                :disabled="buttonDisabled"
-                @click="showFullComparison"
-                >
-                {{ showContent ? 'Minimiser' : 'Comparer' }}
-            </button>
-        </div>
+            </table> -->
+            
     </modal>
 </template>
 
@@ -49,19 +50,20 @@
             },
             filteredAttributes() {
                 let results = [];
-                for (let i = 0; i < this.products.length; i++) {
+                this.products.forEach(product => {
                     let result = [];
-                    this.products[i].attributes.forEach((attribute, index) => 
-                        {
-                            let attValues = []
-                            attribute.values.forEach(value => attValues.push(value.name));
-                            result.push(
-                                {   id: attribute.attribute.id,
-                                    name: attribute.attribute.name,
-                                    values: attValues  })
-                        })
+                    product.attributes.forEach(attribute => 
+                    {
+                        if (attribute.attribute.id === 3 || attribute.attribute.id === 4 || attribute.attribute.id === 5) return;
+                        let attValues = []
+                        attribute.values.forEach(value => attValues.push(value.name));
+                        result.push(
+                            {   id: attribute.attribute.id,
+                                name: attribute.attribute.name,
+                                values: attValues  })
+                    })
                     results.push(result);
-                }
+                });
                 let final = [];
                 if (results.length === 2) {
                     results[0].forEach(result => {
@@ -73,13 +75,14 @@
                     });
                 }
                 return final;
-                // 
+                
                 // let results = [];
                 // this.products.forEach(product => {
                 //     results.push({
                 //             name: product.name,
+                //             id: product.productId,
                 //             price: product.minimumPrice,
-                //             attributes: {...product.attributes}
+                //             attributes: [...product.attributes]
                 //         })
                 // })
 
@@ -88,12 +91,12 @@
                 //     results[0].attributes.forEach(att => {
                 //         results[1].attributes.forEach(att2 => {
                 //             if(att.attribute.id === att2.attribute.id) {
-                //                 final.push({name: att.attribute.name, values: [att.values, att2.values]})
+                //                 final.push({name: att.attribute.name, values: [...att.values, ...att2.values]})
                 //             }
                 //         })
                 //     })
                 // }
-                // return results;
+                // return final;
             }
         },
         methods: {
@@ -113,12 +116,28 @@
         background-color: lightgrey;
         opacity: .7;
     }
-    button {
-        position: relative;
-        z-index: 999999;
-    }
     .v--modal-overlay {
-      background: transparent;
+      background: none;
       height: auto;
+    }
+    .v--modal-overlay .v--modal-background-click {
+        position: absolute;
+        bottom: 0;
+    }
+    .table {
+        display: grid;
+        grid-template-columns: 15% 35% 35%;
+        grid-gap: 1rem;
+    }
+    .grid-header {
+        display: grid;
+        align-items: center;
+        grid-template-columns: 15% 35% 35% 15%;
+        grid-gap: 1rem;
+    }
+    .grid-header:before {
+        content: '';
+        grid-column: 1;
+        grid-row: 1;
     }
 </style>

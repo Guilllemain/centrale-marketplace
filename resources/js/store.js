@@ -14,10 +14,10 @@ export default new Vuex.Store({
   },
   mutations: {
     addProductToCompare(state, product) {
-      if (state.comparedProducts.length >= 3) {
-        return flash('Vous ne pouvez pas comparer plus de 3 produits', 'warning');
-      }
       state.comparedProducts.push(product);
+    },
+    removeProductFromCompare(state, product) {
+      state.comparedProducts.splice(product, 1);
     }
   },
   actions: {

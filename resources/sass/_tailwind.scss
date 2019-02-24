@@ -36,6 +36,28 @@
  * @import "components/forms";
  */
 
+// hide the top of the vue modal
+.v--modal-overlay > .v--modal-background-click {
+    position: absolute;
+}
+
+.close__icon {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    opacity: .8;
+    cursor: pointer;
+}
+
+.close__icon:hover,
+.close__icon:focus {
+    opacity: 1;
+}
+
+.close__icon:hover {
+    transform: scale(1.1);
+}
+
 a {
     @apply no-underline text-grey-darkest;
 

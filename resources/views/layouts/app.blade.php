@@ -25,7 +25,7 @@
 
 </head>
 <body>
-    <div id="app" class="flex-col flex h-full">
+    <div id="app" class="flex-col flex h-full relative">
         <div>
             <header class="p-6">
                 <div class="container">
@@ -106,6 +106,7 @@
         <flash-component message="{{ session('flash') }}"></flash-component>
 
         @include('footer')
+        <modal-component></modal-component>
     </div>
     {{-- live-chat tidio --}}
     {{-- <script src="//code.tidio.co/tfbpqyj9ssgdjacgc4oguz3ftbhgmz83.js"></script> --}}

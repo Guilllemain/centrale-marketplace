@@ -1,19 +1,25 @@
 <template>
-    <modal name="comparison" :adaptive="true" width="100%" height="auto" :pivotY="1.0" :clickToClose="false">
-        <div class="grid-header p-4 bg-blue">
-            <div v-for="product in products" class="text-base text-white">{{ product.name }}</div>
+    <div class="fixed pin-b bg-white w-full" v-show="products.length > 0">
+        <div class="grid-header p-3 bg-blue shadow">
+            <span @click="closeModal" class="close__icon cursor-pointer">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4">
+                    <use class="text-white fill-current" href="/svg/icons.svg#close"></use>
+                </svg>
+            </span>
+            <h3 v-for="product in products" class="font-light tracking-wide text-base text-white">{{ product.name }}</h3>
             <button 
-                class="translateY mr-auto focus:outline-none hover:bg-blue bg-blue-dark font-normal text-white hover:text-white py-3 px-3 border hover:border-transparent rounded"
+                class="translateY mr-auto focus:outline-none hover:bg-blue-dark bg-white font-normal text-blue hover:text-white py-3 px-3 border hover:border-transparent rounded"
                 :disabled="buttonDisabled"
                 @click="showFullComparison"
                 >
                 {{ showContent ? 'Minimiser' : 'Comparer' }}
             </button>
         </div>
-        <div class="table my-4 mx-6" v-if="showContent">
+        <div class="table mt-4 mb-10 mx-6" v-if="showContent">
             <template v-for="attribute in filteredAttributes">
-               <div class="ml-4">{{attribute.name}}</div>
-               <div v-for="value in attribute.values">{{ value }}</div>
+                <h5 class="ml-4 text-sm">{{attribute.name}}</h5>
+                <div v-for="value in attribute.values">{{ value }}</div>
+                <div class="h-bar"></div>
             </template>
         </div>
             <!-- <table class="w-full">
@@ -31,7 +37,7 @@
                 </template>
             </table> -->
             
-    </modal>
+    </div>
 </template>
 
 <script>
@@ -56,12 +62,18 @@
                     {
                         if (attribute.attribute.id === 3 || attribute.attribute.id === 4 || attribute.attribute.id === 5) return;
                         let attValues = []
-                        attribute.values.forEach(value => attValues.push(value.name));
+                        attValues = attribute.values.map(value => value.name);
+                        if (attribute.values.length > 1) {
+                            attValues = [attValues.join(', ')];
+                        }
                         result.push(
                             {   id: attribute.attribute.id,
                                 name: attribute.attribute.name,
                                 values: attValues  })
                     })
+                    result.push({   id: 'productPrice',
+                                    name: 'Prix',
+                                    values: [this.formatPrice(product.minimumPrice)]  })
                     results.push(result);
                 });
                 let final = [];
@@ -103,9 +115,13 @@
             showFullComparison() {
                 this.showContent = !this.showContent;
             },
+            closeModal() {
+                this.$store.dispatch('clearComparedProducts');
+                this.$modal.hide('comparison');
+            },
             formatPrice(price) {
                 price = price.toFixed(2) + '';
-                return price.replace('.', ',');
+                return price.replace('.', ',') + ' €';
             },
         }
     }
@@ -120,14 +136,11 @@
       background: none;
       height: auto;
     }
-    .v--modal-overlay .v--modal-background-click {
-        position: absolute;
-        bottom: 0;
-    }
     .table {
         display: grid;
         grid-template-columns: 15% 35% 35%;
-        grid-gap: 1rem;
+        grid-column-gap: 1rem;
+        align-items: center;
     }
     .grid-header {
         display: grid;
@@ -139,5 +152,15 @@
         content: '';
         grid-column: 1;
         grid-row: 1;
+    }
+    button {
+        grid-column: 4;
+    }
+    .h-bar {
+        grid-column: 1 / -1;
+    }
+    .h-bar:last-child {
+        display: none;
+        visibility: hidden;
     }
 </style>

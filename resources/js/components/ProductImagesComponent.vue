@@ -20,7 +20,7 @@
         </div>
         <transition name="fade" @after-enter="viewContent = true">
             <div class="modal flex items-center justify-center" @click="closeModal" v-if="viewModal">
-                <span class="close cursor-pointer">
+                <span class="close__icon cursor-pointer">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8">
                         <use class="text-white fill-current" href="/svg/icons.svg#close"></use>
                     </svg>
@@ -116,22 +116,6 @@
     .thumbnail__image:hover {
         opacity: 1;
         transform: scale(1.07);
-    }
-    .close {
-        position: absolute;
-        top: 1rem;
-        right: 1.5rem;
-        opacity: .8;
-        cursor: pointer;
-    }
-
-    .close:hover,
-    .close:focus {
-        opacity: 1;
-    }
-
-    .close:hover {
-        transform: scale(1.1);
     }
     
     /* Next & previous buttons */

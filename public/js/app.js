@@ -5040,6 +5040,12 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -5054,20 +5060,32 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       return this.products.length <= 1;
     },
     filteredAttributes: function filteredAttributes() {
+      var _this = this;
+
       var results = [];
       this.products.forEach(function (product) {
         var result = [];
         product.attributes.forEach(function (attribute) {
           if (attribute.attribute.id === 3 || attribute.attribute.id === 4 || attribute.attribute.id === 5) return;
           var attValues = [];
-          attribute.values.forEach(function (value) {
-            return attValues.push(value.name);
+          attValues = attribute.values.map(function (value) {
+            return value.name;
           });
+
+          if (attribute.values.length > 1) {
+            attValues = [attValues.join(', ')];
+          }
+
           result.push({
             id: attribute.attribute.id,
             name: attribute.attribute.name,
             values: attValues
           });
+        });
+        result.push({
+          id: 'productPrice',
+          name: 'Prix',
+          values: [_this.formatPrice(product.minimumPrice)]
         });
         results.push(result);
       });
@@ -5112,9 +5130,13 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     showFullComparison: function showFullComparison() {
       this.showContent = !this.showContent;
     },
+    closeModal: function closeModal() {
+      this.$store.dispatch('clearComparedProducts');
+      this.$modal.hide('comparison');
+    },
     formatPrice: function formatPrice(price) {
       price = price.toFixed(2) + '';
-      return price.replace('.', ',');
+      return price.replace('.', ',') + ' €';
     }
   }
 });
@@ -5319,24 +5341,44 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   data: function data() {
     return {
-      checked: false
+      isCompared: false
     };
   },
-  methods: {
-    show: function show() {
-      if (this.checked) {
-        if (this.$store.getters.comparedProducts.length >= 2) {
-          flash('Vous ne pouvez pas comparer plus de 2 produits', 'warning');
-          return this.checked = false;
-        }
+  computed: {
+    isDisabled: function isDisabled() {
+      if (!this.isCompared) {
+        return this.$store.getters.comparedProducts.length >= 2;
+      }
 
+      return false;
+    },
+    idProductCompared: function idProductCompared() {
+      if (this.isCompared & this.$store.getters.comparedProducts.length === 0) {
+        return this.isCompared = false;
+      }
+    }
+  },
+  watch: {
+    isCompared: function isCompared(value) {
+      if (value) {
         this.$store.commit('addProductToCompare', this.product);
         this.$modal.show('comparison');
       } else {
         this.$store.commit('removeProductFromCompare', this.product);
         if (this.$store.getters.comparedProducts.length === 0) this.$modal.hide('comparison');
       }
-    },
+    }
+  },
+  methods: {
+    // show () {
+    //     if (this.checked) {
+    //         this.$store.commit('addProductToCompare', this.product);
+    //         this.$modal.show('comparison');
+    //     } else {
+    //         this.$store.commit('removeProductFromCompare', this.product);
+    //         if (this.$store.getters.comparedProducts.length === 0) this.$modal.hide('comparison');
+    //     }
+    // },
     getImage: function getImage() {
       if (this.product.mainImage) {
         return "".concat("https://back.vegan-place.com/api/v1/", "image/").concat(this.product.mainImage['id'], "?w=432&h=432");
@@ -7986,7 +8028,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "button[disabled][data-v-4b2d100a] {\n  background-color: lightgrey;\n  opacity: .7;\n}\n.v--modal-overlay[data-v-4b2d100a] {\n  background: none;\n  height: auto;\n}\n.v--modal-overlay .v--modal-background-click[data-v-4b2d100a] {\n  position: absolute;\n  bottom: 0;\n}\n.table[data-v-4b2d100a] {\n  display: grid;\n  grid-template-columns: 15% 35% 35%;\n  grid-gap: 1rem;\n}\n.grid-header[data-v-4b2d100a] {\n  display: grid;\n  align-items: center;\n  grid-template-columns: 15% 35% 35% 15%;\n  grid-gap: 1rem;\n}\n.grid-header[data-v-4b2d100a]:before {\n  content: '';\n  grid-column: 1;\n  grid-row: 1;\n}\n", ""]);
+exports.push([module.i, "button[disabled][data-v-4b2d100a] {\n  background-color: lightgrey;\n  opacity: .7;\n}\n.v--modal-overlay[data-v-4b2d100a] {\n  background: none;\n  height: auto;\n}\n.table[data-v-4b2d100a] {\n  display: grid;\n  grid-template-columns: 15% 35% 35%;\n  grid-column-gap: 1rem;\n  align-items: center;\n}\n.grid-header[data-v-4b2d100a] {\n  display: grid;\n  align-items: center;\n  grid-template-columns: 15% 35% 35% 15%;\n  grid-gap: 1rem;\n}\n.grid-header[data-v-4b2d100a]:before {\n  content: '';\n  grid-column: 1;\n  grid-row: 1;\n}\nbutton[data-v-4b2d100a] {\n  grid-column: 4;\n}\n.h-bar[data-v-4b2d100a] {\n  grid-column: 1 / -1;\n}\n.h-bar[data-v-4b2d100a]:last-child {\n  display: none;\n  visibility: hidden;\n}\n", ""]);
 
 // exports
 
@@ -8043,7 +8085,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".modal[data-v-c38ae4be] {\n  position: fixed;\n  z-index: 10;\n  left: 0;\n  top: 0;\n  width: 100%;\n  height: 100%;\n  overflow: auto;\n  background-color: rgba(0, 0, 0, .85);\n  transition: all .5s;\n}\n.modal-content[data-v-c38ae4be] {\n  width: 88vh;\n}\n.thumbnail__image[data-v-c38ae4be] {\n  opacity: .7;\n  transition: all .3s;\n}\n.thumbnail__image[data-v-c38ae4be]:hover {\n  opacity: 1;\n  -webkit-transform: scale(1.07);\n          transform: scale(1.07);\n}\n.close[data-v-c38ae4be] {\n  position: absolute;\n  top: 1rem;\n  right: 1.5rem;\n  opacity: .8;\n  cursor: pointer;\n}\n.close[data-v-c38ae4be]:hover,\n.close[data-v-c38ae4be]:focus {\n  opacity: 1;\n}\n.close[data-v-c38ae4be]:hover {\n  -webkit-transform: scale(1.1);\n          transform: scale(1.1);\n}\n\n/* Next & previous buttons */\n.prev[data-v-c38ae4be],\n.next[data-v-c38ae4be] {\n  cursor: pointer;\n  opacity: .8;\n  transition: all .6s ease;\n}\n.prev[data-v-c38ae4be]:hover,\n.next[data-v-c38ae4be]:hover {\n  opacity: 1;\n  -webkit-transform: scale(1.1);\n          transform: scale(1.1);\n}\n.thumbnail--active[data-v-c38ae4be] {\n  border: solid 1px #bbb;\n  opacity: 1;\n}\n.fade-enter-active[data-v-c38ae4be],\n.fade-leave-active[data-v-c38ae4be] {\n  transition: opacity .2s;\n}\n.fade-enter[data-v-c38ae4be],\n.fade-leave-to[data-v-c38ae4be] {\n  opacity: 0;\n}\n.scale-enter-active[data-v-c38ae4be] {\n  -webkit-animation: scaleIn-data-v-c38ae4be .2s ease-out forwards;\n          animation: scaleIn-data-v-c38ae4be .2s ease-out forwards;\n}\n.scale-leave-active[data-v-c38ae4be] {\n  -webkit-animation: scaleOut-data-v-c38ae4be .2s ease-out forwards;\n          animation: scaleOut-data-v-c38ae4be .2s ease-out forwards;\n}\n.scale-enter[data-v-c38ae4be],\n.scale-leave-to[data-v-c38ae4be] {\n}\n@-webkit-keyframes scaleIn-data-v-c38ae4be {\n0% {\n    opacity: 0;\n    -webkit-transform: scale(.75);\n            transform: scale(.75);\n}\n100% {\n    opacity: 1;\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n}\n@keyframes scaleIn-data-v-c38ae4be {\n0% {\n    opacity: 0;\n    -webkit-transform: scale(.75);\n            transform: scale(.75);\n}\n100% {\n    opacity: 1;\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n}\n@-webkit-keyframes scaleOut-data-v-c38ae4be {\n0% {\n    opacity: 1;\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n100% {\n    opacity: 0;\n    -webkit-transform: scale(.75);\n            transform: scale(.75);\n}\n}\n@keyframes scaleOut-data-v-c38ae4be {\n0% {\n    opacity: 1;\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n100% {\n    opacity: 0;\n    -webkit-transform: scale(.75);\n            transform: scale(.75);\n}\n}\n", ""]);
+exports.push([module.i, ".modal[data-v-c38ae4be] {\n  position: fixed;\n  z-index: 10;\n  left: 0;\n  top: 0;\n  width: 100%;\n  height: 100%;\n  overflow: auto;\n  background-color: rgba(0, 0, 0, .85);\n  transition: all .5s;\n}\n.modal-content[data-v-c38ae4be] {\n  width: 88vh;\n}\n.thumbnail__image[data-v-c38ae4be] {\n  opacity: .7;\n  transition: all .3s;\n}\n.thumbnail__image[data-v-c38ae4be]:hover {\n  opacity: 1;\n  -webkit-transform: scale(1.07);\n          transform: scale(1.07);\n}\n\n/* Next & previous buttons */\n.prev[data-v-c38ae4be],\n.next[data-v-c38ae4be] {\n  cursor: pointer;\n  opacity: .8;\n  transition: all .6s ease;\n}\n.prev[data-v-c38ae4be]:hover,\n.next[data-v-c38ae4be]:hover {\n  opacity: 1;\n  -webkit-transform: scale(1.1);\n          transform: scale(1.1);\n}\n.thumbnail--active[data-v-c38ae4be] {\n  border: solid 1px #bbb;\n  opacity: 1;\n}\n.fade-enter-active[data-v-c38ae4be],\n.fade-leave-active[data-v-c38ae4be] {\n  transition: opacity .2s;\n}\n.fade-enter[data-v-c38ae4be],\n.fade-leave-to[data-v-c38ae4be] {\n  opacity: 0;\n}\n.scale-enter-active[data-v-c38ae4be] {\n  -webkit-animation: scaleIn-data-v-c38ae4be .2s ease-out forwards;\n          animation: scaleIn-data-v-c38ae4be .2s ease-out forwards;\n}\n.scale-leave-active[data-v-c38ae4be] {\n  -webkit-animation: scaleOut-data-v-c38ae4be .2s ease-out forwards;\n          animation: scaleOut-data-v-c38ae4be .2s ease-out forwards;\n}\n.scale-enter[data-v-c38ae4be],\n.scale-leave-to[data-v-c38ae4be] {\n}\n@-webkit-keyframes scaleIn-data-v-c38ae4be {\n0% {\n    opacity: 0;\n    -webkit-transform: scale(.75);\n            transform: scale(.75);\n}\n100% {\n    opacity: 1;\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n}\n@keyframes scaleIn-data-v-c38ae4be {\n0% {\n    opacity: 0;\n    -webkit-transform: scale(.75);\n            transform: scale(.75);\n}\n100% {\n    opacity: 1;\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n}\n@-webkit-keyframes scaleOut-data-v-c38ae4be {\n0% {\n    opacity: 1;\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n100% {\n    opacity: 0;\n    -webkit-transform: scale(.75);\n            transform: scale(.75);\n}\n}\n@keyframes scaleOut-data-v-c38ae4be {\n0% {\n    opacity: 1;\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n100% {\n    opacity: 0;\n    -webkit-transform: scale(.75);\n            transform: scale(.75);\n}\n}\n", ""]);
 
 // exports
 
@@ -75785,8 +75827,7 @@ var render = function() {
           _c(
             "h3",
             {
-              staticClass:
-                "uppercase text-sm font-normal mb-1 hover:cursor-pointer"
+              staticClass: "uppercase text-sm font-normal mb-1 cursor-pointer"
             },
             [_vm._v(_vm._s(_vm.facet.label))]
           ),
@@ -75795,7 +75836,7 @@ var render = function() {
             _c(
               "svg",
               {
-                staticClass: "h-5 w-5 hover:cursor-pointer",
+                staticClass: "h-5 w-5 cursor-pointer",
                 attrs: {
                   xmlns: "http://www.w3.org/2000/svg",
                   viewBox: "0 0 24 24"
@@ -76161,33 +76202,59 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "modal",
+    "div",
     {
-      attrs: {
-        name: "comparison",
-        adaptive: true,
-        width: "100%",
-        height: "auto",
-        pivotY: 1.0,
-        clickToClose: false
-      }
+      directives: [
+        {
+          name: "show",
+          rawName: "v-show",
+          value: _vm.products.length > 0,
+          expression: "products.length > 0"
+        }
+      ],
+      staticClass: "fixed pin-b bg-white w-full"
     },
     [
       _c(
         "div",
-        { staticClass: "grid-header p-4 bg-blue" },
+        { staticClass: "grid-header p-3 bg-blue shadow" },
         [
+          _c(
+            "span",
+            {
+              staticClass: "close__icon cursor-pointer",
+              on: { click: _vm.closeModal }
+            },
+            [
+              _c(
+                "svg",
+                {
+                  staticClass: "h-4 w-4",
+                  attrs: { xmlns: "http://www.w3.org/2000/svg" }
+                },
+                [
+                  _c("use", {
+                    staticClass: "text-white fill-current",
+                    attrs: { href: "/svg/icons.svg#close" }
+                  })
+                ]
+              )
+            ]
+          ),
+          _vm._v(" "),
           _vm._l(_vm.products, function(product) {
-            return _c("div", { staticClass: "text-base text-white" }, [
-              _vm._v(_vm._s(product.name))
-            ])
+            return _c(
+              "h3",
+              { staticClass: "font-light tracking-wide text-base text-white" },
+              [_vm._v(_vm._s(product.name))]
+            )
           }),
           _vm._v(" "),
           _c(
             "button",
             {
               staticClass:
-                "translateY mr-auto focus:outline-none hover:bg-blue bg-blue-dark font-normal text-white hover:text-white py-3 px-3 border hover:border-transparent rounded",
+                "translateY mr-auto focus:outline-none hover:bg-blue-dark bg-white font-normal text-blue hover:text-white py-3 px-3 border hover:border-transparent rounded",
               attrs: { disabled: _vm.buttonDisabled },
               on: { click: _vm.showFullComparison }
             },
@@ -76206,17 +76273,19 @@ var render = function() {
       _vm.showContent
         ? _c(
             "div",
-            { staticClass: "table my-4 mx-6" },
+            { staticClass: "table mt-4 mb-10 mx-6" },
             [
               _vm._l(_vm.filteredAttributes, function(attribute) {
                 return [
-                  _c("div", { staticClass: "ml-4" }, [
+                  _c("h5", { staticClass: "ml-4 text-sm" }, [
                     _vm._v(_vm._s(attribute.name))
                   ]),
                   _vm._v(" "),
                   _vm._l(attribute.values, function(value) {
                     return _c("div", [_vm._v(_vm._s(value))])
-                  })
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "h-bar" })
                 ]
               })
             ],
@@ -76376,50 +76445,59 @@ var render = function() {
         [_vm._v("Ajouter au panier")]
       ),
       _vm._v(" "),
-      _c("label", { staticClass: "text-xs mt-3" }, [
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.checked,
-              expression: "checked"
-            }
-          ],
-          staticClass: "mr-1 focus:outline-none",
-          attrs: { type: "checkbox" },
-          domProps: {
-            checked: Array.isArray(_vm.checked)
-              ? _vm._i(_vm.checked, null) > -1
-              : _vm.checked
-          },
-          on: {
-            change: [
-              function($event) {
-                var $$a = _vm.checked,
+      _c(
+        "label",
+        {
+          staticClass: "text-xs mt-3 cursor-pointer",
+          class: { "opacity-50": _vm.isDisabled },
+          attrs: { for: "compare" + _vm.product.productId }
+        },
+        [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.isCompared,
+                expression: "isCompared"
+              }
+            ],
+            staticClass: "mr-1 focus:outline-none",
+            attrs: {
+              disabled: _vm.isDisabled,
+              id: "compare" + _vm.product.productId,
+              type: "checkbox"
+            },
+            domProps: {
+              checked: Array.isArray(_vm.isCompared)
+                ? _vm._i(_vm.isCompared, null) > -1
+                : _vm.isCompared
+            },
+            on: {
+              change: function($event) {
+                var $$a = _vm.isCompared,
                   $$el = $event.target,
                   $$c = $$el.checked ? true : false
                 if (Array.isArray($$a)) {
                   var $$v = null,
                     $$i = _vm._i($$a, $$v)
                   if ($$el.checked) {
-                    $$i < 0 && (_vm.checked = $$a.concat([$$v]))
+                    $$i < 0 && (_vm.isCompared = $$a.concat([$$v]))
                   } else {
                     $$i > -1 &&
-                      (_vm.checked = $$a
+                      (_vm.isCompared = $$a
                         .slice(0, $$i)
                         .concat($$a.slice($$i + 1)))
                   }
                 } else {
-                  _vm.checked = $$c
+                  _vm.isCompared = $$c
                 }
-              },
-              _vm.show
-            ]
-          }
-        }),
-        _vm._v("\n        Comparer\n    ")
-      ])
+              }
+            }
+          }),
+          _vm._v("\n        Comparer\n    ")
+        ]
+      )
     ]
   )
 }
@@ -76519,7 +76597,7 @@ var render = function() {
                   on: { click: _vm.closeModal }
                 },
                 [
-                  _c("span", { staticClass: "close cursor-pointer" }, [
+                  _c("span", { staticClass: "close__icon cursor-pointer" }, [
                     _c(
                       "svg",
                       {
@@ -91932,9 +92010,24 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
     },
     removeProductFromCompare: function removeProductFromCompare(state, product) {
       state.comparedProducts.splice(product, 1);
+    },
+    clearComparedProducts: function clearComparedProducts(state) {
+      state.comparedProducts = [];
+    },
+    isProductCompared: function isProductCompared(state, product) {
+      return state.comparedProducts.includes(product);
     }
   },
-  actions: {}
+  actions: {
+    clearComparedProducts: function clearComparedProducts(_ref) {
+      var commit = _ref.commit;
+      commit('clearComparedProducts');
+    },
+    isProductCompared: function isProductCompared(_ref2, product) {
+      var commit = _ref2.commit;
+      commit('isProductCompared', product);
+    }
+  }
 }));
 
 /***/ }),

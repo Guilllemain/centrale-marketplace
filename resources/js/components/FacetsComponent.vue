@@ -3,9 +3,9 @@
         <div class="my-2 border-b border-grey-light w-full"></div>
         <div class="mt-4 mb-4">
             <div class="flex items-center justify-between" @click="showFacet = !showFacet">
-                <h3 class="uppercase text-sm font-normal mb-1 hover:cursor-pointer">{{ facet.label }}</h3>
+                <h3 class="uppercase text-sm font-normal mb-1 cursor-pointer">{{ facet.label }}</h3>
                 <span>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 hover:cursor-pointer" viewBox="0 0 24 24">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 cursor-pointer" viewBox="0 0 24 24">
                         <use v-if="!showFacet" href="/svg/icons.svg#arrow-up"></use>
                         <use v-else href="/svg/icons.svg#arrow-down"></use>
                     </svg>

@@ -7,13 +7,10 @@
 
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
-import VModal from 'vue-js-modal';
 import store from './store';
-
 
 window.Vue = require('vue');
 window.Vue.use(ElementUI);
-window.Vue.use(VModal);
 
 require('./bootstrap');
 

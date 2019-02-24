@@ -10,7 +10,6 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="https://js.stripe.com/v3/"></script>
     @routes
     <script src="{{ asset('js/app.js') }}" defer></script>
 

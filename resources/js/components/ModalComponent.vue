@@ -1,43 +1,36 @@
 <template>
-    <div class="fixed pin-b bg-white w-full" v-show="products.length > 0">
-        <div class="grid-header p-3 bg-blue shadow">
-            <span @click="closeModal" class="close__icon cursor-pointer">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4">
-                    <use class="text-white fill-current" href="/svg/icons.svg#close"></use>
-                </svg>
-            </span>
-            <h3 v-for="product in products" class="font-light tracking-wide text-base text-white">{{ product.name }}</h3>
-            <button 
-                class="translateY mr-auto focus:outline-none hover:bg-blue-dark bg-white font-normal text-blue hover:text-white py-3 px-3 border hover:border-transparent rounded"
-                :disabled="buttonDisabled"
-                @click="showFullComparison"
-                >
-                {{ showContent ? 'Minimiser' : 'Comparer' }}
-            </button>
+    <transition name="slide-up">
+        <div class="modal fixed pin-b bg-white w-full" v-show="products.length > 0">
+            <div class="grid-header p-3 bg-blue shadow">
+                <span @click="closeModal" class="close__icon cursor-pointer">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4">
+                        <use class="text-white fill-current" href="/svg/icons.svg#close"></use>
+                    </svg>
+                </span>
+                <h3 v-for="product in products" class="font-light tracking-wide text-base text-white">{{ product.name }}</h3>
+                <button 
+                    class="translateY mr-auto focus:outline-none hover:bg-blue-dark bg-white font-normal text-blue hover:text-white py-3 px-3 border hover:border-transparent rounded"
+                    :disabled="buttonDisabled"
+                    @click="showFullComparison"
+                    >
+                    {{ showContent ? 'Minimiser' : 'Comparer' }}
+                </button>
+            </div>
+            <transition 
+                @enter="enter"
+                @after-enter="afterEnter"
+                @leave="leave"
+                name=slide-up>
+                <div class="overflow-y-scroll mt-4 mb-10 table mx-6" v-if="showContent">
+                    <template v-for="attribute in filteredAttributes">
+                        <h5 class="ml-4 text-sm">{{attribute.name}}</h5>
+                        <div v-for="value in attribute.values">{{ value }}</div>
+                        <div class="h-bar"></div>
+                    </template>
+                </div>
+            </transition>
         </div>
-        <div class="table mt-4 mb-10 mx-6" v-if="showContent">
-            <template v-for="attribute in filteredAttributes">
-                <h5 class="ml-4 text-sm">{{attribute.name}}</h5>
-                <div v-for="value in attribute.values">{{ value }}</div>
-                <div class="h-bar"></div>
-            </template>
-        </div>
-            <!-- <table class="w-full">
-                <thead>
-                    <th class="w-1/5"></th>
-                    <th class="" v-for="product in products">{{ product.name }}</th>
-                </thead>
-                <template v-if="showContent">
-                    <tbody>
-                        <tr v-for="attribute in filteredAttributes">
-                           <th>{{attribute.name}}</th>
-                           <td v-for="value in attribute.values">{{ value }}</td> 
-                        </tr>
-                    </tbody>
-                </template>
-            </table> -->
-            
-    </div>
+    </transition>
 </template>
 
 <script>
@@ -112,12 +105,44 @@
             }
         },
         methods: {
+            enter(element) {
+                const width = getComputedStyle(element).width;
+                element.style.width = width;
+                element.style.position = 'absolute';
+                element.style.visibility = 'hidden';
+                element.style.height = 'auto';
+
+                const height = getComputedStyle(element).height;
+                element.style.width = null;
+                element.style.position = null;
+                element.style.visibility = null;
+                element.style.height = 0;
+
+                // Force repaint to make sure the animation is triggered correctly.
+                getComputedStyle(element).height;
+
+                // Trigger the animation. We use `setTimeout` because we need to make sure the
+                // browser has finished painting after setting the `height` to `0` in the line above.
+                setTimeout(() => element.style.height = height);
+            },
+            afterEnter(element) {
+                element.style.height = 'auto';
+            },
+            leave(element) {
+                const height = getComputedStyle(element).height;
+                element.style.height = height;
+
+                // Force repaint to make sure the animation is triggered correctly.
+                getComputedStyle(element).height;
+
+                setTimeout(() => element.style.height = 0);
+            },
             showFullComparison() {
                 this.showContent = !this.showContent;
             },
             closeModal() {
+                this.showContent = false;
                 this.$store.dispatch('clearComparedProducts');
-                this.$modal.hide('comparison');
             },
             formatPrice(price) {
                 price = price.toFixed(2) + '';
@@ -128,13 +153,12 @@
 </script>
 
 <style scoped>
+    .modal {
+        z-index: 1100;
+    }
     button[disabled] {
         background-color: lightgrey;
         opacity: .7;
-    }
-    .v--modal-overlay {
-      background: none;
-      height: auto;
     }
     .table {
         display: grid;
@@ -162,5 +186,23 @@
     .h-bar:last-child {
         display: none;
         visibility: hidden;
+    }
+    .slide-up-enter, .slide-up-leave-to {
+        opacity: 0;
+        height: 0;
+        margin-top: 0;
+        margin-bottom: 0;
+        transform: translateY(3rem);
+    }
+    .slide-up-enter-active, .slide-up-leave-active {
+        transition: all .4s ease-in-out;
+        overflow: hidden;
+    }
+    /* force the browser into optimizing the animation */
+    * {
+      will-change: height;
+      transform: translateZ(0);
+      backface-visibility: hidden;
+      perspective: 1000px;
     }
 </style>

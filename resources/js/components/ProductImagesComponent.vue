@@ -10,8 +10,8 @@
                     <img class="w-full" :src="getImage(image.id, 100)" :alt="`${name}-${index}`">
                 </div>
             </div>
-            <div class="flex flex-col">
-                <img class="w-full cursor-pointer"
+            <div class="flex image__main">
+                <img class="w-full"
                      v-for="(image, index) in images" :key="image.id"
                      v-if="index === slideIndex"
                      :src="getImage(image.id, 420)"
@@ -95,6 +95,9 @@
     }
 </script>
 <style scoped>
+    .image__main {
+        cursor: zoom-in;
+    }
     .modal {
         position: fixed;
         z-index: 10;

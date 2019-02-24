@@ -17,7 +17,7 @@
             </div>
         </div>
         <button class="translateY mt-auto focus:outline-none hover:bg-grey-dark text-grey hover:text-white py-2 px-3 border hover:border-transparent rounded" @click="addToCart">Ajouter au panier</button>
-        <label class="text-xs mt-3 cursor-pointer" :class="{ 'opacity-50': isDisabled }" :for="'compare' + product.productId">
+        <label class="text-xs mt-3 cursor-pointer" :class="{ compareCheckbox: isDisabled }" :for="'compare' + product.productId">
             <input v-model="isCompared" :disabled="isDisabled" :id="'compare' + product.productId" type="checkbox" class="mr-1 focus:outline-none">
             Comparer
         </label>
@@ -56,10 +56,8 @@
             isCompared(value) {
                 if (value) {
                     this.$store.commit('addProductToCompare', this.product);
-                    this.$modal.show('comparison');
                 } else {
                     this.$store.commit('removeProductFromCompare', this.product);
-                    if (this.$store.getters.comparedProducts.length === 0) this.$modal.hide('comparison');
                 }
             } 
         },
@@ -67,10 +65,8 @@
             // show () {
             //     if (this.checked) {
             //         this.$store.commit('addProductToCompare', this.product);
-            //         this.$modal.show('comparison');
             //     } else {
             //         this.$store.commit('removeProductFromCompare', this.product);
-            //         if (this.$store.getters.comparedProducts.length === 0) this.$modal.hide('comparison');
             //     }
             // },
             getImage() {
@@ -119,5 +115,9 @@
 
     .list-product:hover {
         transform: scale(1.05);
+    }
+    .compareCheckbox {
+        opacity: .5;
+        cursor: not-allowed;
     }
 </style>

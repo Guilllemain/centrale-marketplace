@@ -59,7 +59,6 @@
         mounted() {
             this.getBasket();
             // Event.$on('addItemToCart', () => this.getBasket());
-            console.log(this.$vm);
         },
         methods: {
             async getBasket() {

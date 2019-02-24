@@ -33,7 +33,7 @@
 </template>
 
 <script>
-    const stripe = Stripe('pk_test_urL29gD8B9Z4XWHunuMswDKk');
+    // const stripe = Stripe('pk_test_urL29gD8B9Z4XWHunuMswDKk');
 
     export default {
         data() {

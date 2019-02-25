@@ -20,11 +20,11 @@
 @endsection
 
 @section('content')
-    <carousel-component></carousel-component>
+    {{-- <carousel-component></carousel-component> --}}
     
     <div class="my-16 mx-32">
         <h1 class="title--horizontal-bar uppercase mb-6 text-2xl tracking-wide">Nouveautés</h1>
-
+        
         <div class="carousel" data-flickity='{ "wrapAround": "true", "pageDots": false, "contain": true }'>
             @foreach($latestProducts as $product)
                 <div class="carousel-cell">

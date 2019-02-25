@@ -89,42 +89,7 @@
     </div>
 
     @include('partials.product.description')
-    <div class="container">
-        
-        <div class="glide">
-          <div class="glide__track" data-glide-el="track">
-            <ul class="glide__slides">
-                @foreach($product->images as $image)
-                    <li class="glide__slide">
-                        <img src="https://back.vegan-place.com/api/v1/image/{{ $image['id'] }}?w=200&h=200">
-                    </li>
-                @endforeach
-            </ul>
-          </div>
-          <div class="glide__arrows" data-glide-el="controls">
-              <button class="glide__arrow glide__arrow--left" data-glide-dir="<">prev</button>
-              <button class="glide__arrow glide__arrow--right" data-glide-dir=">" id="api-go-forward">next</button>
-            </div>
-            <div class="glide__bullets" data-glide-el="controls[nav]">
-                <button class="glide__bullet" data-glide-dir="=0"></button>
-                <button class="glide__bullet" data-glide-dir="=1"></button>
-                <button class="glide__bullet" data-glide-dir="=2"></button>
-              </div>
-        </div>
+    <div class="container mt-16">
+        <carousel-component></carousel-component>
     </div>
-@endsection
-
-@section('scripts')
-    <script src="{{ asset('js/app.js') }}"></script>
-    <script>
-        const glide = new window.Glide('.glide', {
-          type: 'carousel',
-          perView: 5
-        });
-        var forward = document.querySelector('#api-go-forward');
-        forward.addEventListener('click', function () {
-          glide.go('>')
-        })
-        glide.mount();
-    </script>
 @endsection

@@ -1,5 +1,5 @@
 <template>
-    <el-carousel :interval="5000">
+    <!-- <el-carousel :interval="5000">
         <el-carousel-item>
             <div class="relative">
                 <div class="title text-white uppercase absolute tracking-wide z-10">
@@ -27,17 +27,29 @@
                 <img class="opacity-90 w-full" src="main3.jpg">
             </div>
         </el-carousel-item>
-    </el-carousel>
+    </el-carousel> -->
+    <div>
+        
+            <li class="glide__slide" v-for="product in suggestedProducts" :key="product.productId">
+                <img :src="`https://back.vegan-place.com/api/v1/image/${product.mainImage.id}?w=200&h=200`">
+            </li>
+    </div>
 </template>
 
 <script>
+    import axios from 'axios';
+
     export default {
         data() {
             return {
-                title: 'Profitez de nos dernières arrivées'
+                suggestedProducts: [],
             }
         },
-        methods: {
+        computed: {
+        },
+        async created() {
+            const response = await axios.get('/');
+            this.suggestedProducts = response.data.results;
         }
     }
 </script>

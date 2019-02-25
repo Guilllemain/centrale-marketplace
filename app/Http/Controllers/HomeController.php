@@ -30,6 +30,9 @@ class HomeController extends Controller
     public function index()
     {
         // dd(session());
+        if (request()->wantsJson()) {
+            return $this->getLatestProducts();
+        }
         if (!Cache::has('latestProducts')) {
             $latestProducts = $this->getLatestProducts()->getProducts();
             Cache::add('latestProducts', $latestProducts, 3240);

@@ -6,14 +6,21 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   plugins: [createPersistedState()],
+
   state: {
-    comparedProducts: []
+    comparedProducts: [],
+    selectedFacets: []
   },
+
   getters: {
     comparedProducts(state) {
       return state.comparedProducts;
+    },
+    selectedFacets(state) {
+      return state.selectedFacets;
     }
   },
+
   mutations: {
     addProductToCompare(state, product) {
       state.comparedProducts.push(product);
@@ -24,16 +31,21 @@ export default new Vuex.Store({
     clearComparedProducts(state) {
       state.comparedProducts = [];
     },
-    isProductCompared(state, product) {
-      return state.comparedProducts.includes(product);
+
+    addFacet(state, facet) {
+      state.selectedFacets.push(facet);
+    },
+    deleteFacet(state, facet) {
+      state.selectedFacets.splice(facet, 1);
+    },
+    clearFacets(state) {
+      state.selectedFacets = [];
     }
   },
+
   actions: {
     clearComparedProducts({commit}) {
       commit('clearComparedProducts');
-    },
-    isProductCompared({commit}, product) {
-      commit('isProductCompared', product);
     }
   }
 })

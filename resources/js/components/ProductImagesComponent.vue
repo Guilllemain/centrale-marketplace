@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="product__images">
         <div class="flex">
             <div class="pr-4">
                 <div class="flex items-center thumbnail__image cursor-pointer border border-grey-light mb-2"
@@ -10,7 +10,7 @@
                     <img class="w-full" :src="getImage(image.id, 100)" :alt="`${name}-${index}`">
                 </div>
             </div>
-            <div class="flex image__main">
+            <div class="flex image__main flex-col">
                 <img class="w-full"
                      v-for="(image, index) in images" :key="image.id"
                      v-if="index === slideIndex"
@@ -95,6 +95,9 @@
     }
 </script>
 <style scoped>
+    .product__images {
+        flex: 0 0 40%;
+    }
     .image__main {
         cursor: zoom-in;
     }
@@ -134,6 +137,7 @@
         opacity: 1;
         transform: scale(1.1);
     }
+    
     .thumbnail--active {
       border: solid 1px #bbb;
       opacity: 1;

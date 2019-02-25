@@ -36,11 +36,6 @@
  * @import "components/forms";
  */
 
-// hide the top of the vue modal
-.v--modal-overlay > .v--modal-background-click {
-    position: absolute;
-}
-
 .close__icon {
     position: absolute;
     top: 1rem;

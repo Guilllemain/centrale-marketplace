@@ -6,11 +6,15 @@
         <div v-else class="flex">
             <div class="w-1/5 pr-8">
                 <h2 class="text-grey-darker">Affiner par</h2>
+                <a v-if="selectedFacets.length > 0" class="mr-2 mt-2 flex items-end" href="#" @click.prevent="clearFacets">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24">
+                        <use class="text-grey fill-current" href="/svg/icons.svg#delete"></use>
+                    </svg>
+                    <span class="ml-1 text-xs text-grey">Supprimer les filtres</span>
+                </a>
                 <facets-component v-for="(facet, index) in facets"
                                 :facet="facet"
-                                :key="index"
-                                @addFacet="addFacet"
-                                @deleteFacet="deleteFacet"
+                                :key="index+facet.name"
                                 @updatePriceRange="updatePrice">
                 </facets-component>
             </div>
@@ -25,8 +29,6 @@
             </div>
         </div>
         <pagination-component :pagination="pagination" @pageChanged="updatePage"></pagination-component>
-        <modal-component></modal-component>
-        
     </div>
 </template>
 
@@ -39,6 +41,7 @@
     import LoaderComponent from './LoaderComponent';
 
     export default {
+        components: {ProductComponent, FiltersComponent, FacetsComponent, PaginationComponent, LoaderComponent},
         props: {
             category: {
                 type: Object,
@@ -49,7 +52,6 @@
                 required: false
             },
         },
-        components: {ProductComponent, FiltersComponent, FacetsComponent, PaginationComponent, LoaderComponent},
         data() {
             return {
                 categoryId: '',
@@ -61,7 +63,6 @@
                 page: 1,
                 price: '',
                 resultsPerPage: 12,
-                selectedFacets: [],
                 selectedSorting: '',
                 loading: false
             }
@@ -83,6 +84,9 @@
             this.displayResults();
         },
         computed: {
+            selectedFacets() {
+                return this.$store.getters.selectedFacets;
+            },
             baseUri() {
                 const url = [];
                 const urlParams = new URLSearchParams(window.location.search);
@@ -103,6 +107,11 @@
                 return url.join('');
             }
         },
+        watch: {
+            selectedFacets() {
+                this.displayResults();
+            }
+        },
         methods: {
             updatePrice(event) {
                 this.price = event;
@@ -110,14 +119,6 @@
             },
             updatePage(event) {
                 this.page = event;
-                this.displayResults();
-            },
-            addFacet(event) {
-                this.selectedFacets.push(event);
-                this.displayResults();
-            },
-            deleteFacet(event) {
-                this.selectedFacets.splice(event);
                 this.displayResults();
             },
             addSorting(event) {
@@ -135,6 +136,9 @@
                     console.log(error);
                 }
             },
+            clearFacets() {
+                this.$store.commit('clearFacets');
+            },
             filterFacets(facets) {
                 Object.keys(facets).map(function (facetId) {
                     if (typeof facets[facetId].values != 'undefined') {
@@ -146,7 +150,9 @@
                         });
                     }
                 });
-                this.facets = facets.filter(facet => !this.isEmpty(facet.values));
+                this.facets = facets.filter(facet => {
+                    if (facet.name != 3 && facet.name != 4 && facet.name != 5 && facet.name != 24) return !this.isEmpty(facet.values);
+                })
             },
             isEmpty(obj) {
                 for(var key in obj) {

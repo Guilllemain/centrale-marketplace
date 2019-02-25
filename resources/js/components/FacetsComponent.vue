@@ -13,21 +13,8 @@
             </div>
             <div v-if="facet.name !== 'price'">
                 <transition-group name="fade" appear>
-                <div class="mx-2" v-show="showFacet" v-for="(value, index) in facet.values" :key="index+1">
-                        <label class="cursor-pointer">
-                            <div class="flex items-baseline">
-                                <input @change="addFacet(index)" :ref="`checkbox-${index}`" type="checkbox" class="mr-1 font-semibold">
-                                <div>
-                                    <span :ref="`label-${index}`" class="hover:text-black hover:font-semibold">{{ value.label }}</span>
-                                    <span class="ml-1 italic text-xs">({{ value.count }})</span>
-                                </div>
-                            </div>
-                        </label>
-                        <!-- <a @click="addFacet(index)" class="block" v-for="(value, index) in facet.values" :key="index">{{ value.label }}
-                            <span class="pl-1">({{ value.count }})</span>
-                        </a> -->
-                </div>
-            </transition-group>
+                    <facet-value-component class="mx-2 cbx-container" :facet="facet" :value="value" :index="index" v-show="showFacet" v-for="(value, index) in facet.values" :key="index+1"></facet-value-component>
+                </transition-group>
             </div>
             
             <div v-else class="mx-2 pr-4 w-full">
@@ -42,9 +29,10 @@
 
 <script>
     import PriceSliderComponent from './PriceSliderComponent';
+    import FacetValueComponent from './FacetValueComponent';
 
     export default {
-        components: {PriceSliderComponent},
+        components: {PriceSliderComponent, FacetValueComponent},
         props: {
             facet: {
                 type: Object,
@@ -63,15 +51,6 @@
             changePrice(event) {
                 this.$emit('updatePriceRange', {min: event[0], max: event[1]});
             },
-            addFacet(index) {
-                if (this.$refs[`checkbox-${index}`][0].checked) {
-                    this.$refs[`label-${index}`][0].classList.add('font-semibold');
-                    this.$emit('addFacet', {name: this.facet.name, value: index});
-                } else {
-                    this.$refs[`label-${index}`][0].classList.remove('font-semibold');
-                    this.$emit('deleteFacet', {name: this.facet.name, value: index});
-                }
-            }
         }
     }
 </script>
@@ -84,7 +63,8 @@
     .fade-enter, .fade-leave-to {
         opacity: 0;
         max-height: 0;
-        /*transform: scaleY(0);
-        transform-origin: top;*/
+    }
+    .cbx-container {
+        --cbx-size: 12px;
     }
 </style>

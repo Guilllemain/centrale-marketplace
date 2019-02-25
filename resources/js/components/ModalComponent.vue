@@ -21,7 +21,7 @@
                 @after-enter="afterEnter"
                 @leave="leave"
                 name=slide-up>
-                <div class="overflow-y-scroll mt-4 mb-10 table mx-6" v-if="showContent">
+                <div class="content overflow-y-scroll mt-4 mb-10 table mx-6" v-if="showContent">
                     <template v-for="attribute in filteredAttributes">
                         <h5 class="ml-4 text-sm">{{attribute.name}}</h5>
                         <div v-for="value in attribute.values">{{ value }}</div>
@@ -154,7 +154,11 @@
 
 <style scoped>
     .modal {
+        max-height: 60vh;
         z-index: 1100;
+    }
+    .content {
+        max-height: 50vh;
     }
     button[disabled] {
         background-color: lightgrey;

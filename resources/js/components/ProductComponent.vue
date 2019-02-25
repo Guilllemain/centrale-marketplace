@@ -9,66 +9,31 @@
         </a>
         <div class="mb-2">
             <div v-if="product.crossedOutPrice" class="flex-col flex items-center">
-                <div class="text-red-dark">{{ formatPrice(product.minimumPrice) }} €</div>
-                <div class="text-xs line-through">{{ formatPrice(product.crossedOutPrice) }} €</div>
+                <div class="text-red-dark">{{ formatPrice(product.minimumPrice) }}</div>
+                <div class="text-xs line-through">{{ formatPrice(product.crossedOutPrice) }}</div>
             </div>
             <div v-else>
-                <div>{{ formatPrice(product.minimumPrice) }} €</div>
+                <div>{{ formatPrice(product.minimumPrice) }}</div>
             </div>
         </div>
         <button class="translateY mt-auto focus:outline-none hover:bg-grey-dark text-grey hover:text-white py-2 px-3 border hover:border-transparent rounded" @click="addToCart">Ajouter au panier</button>
-        <label class="text-xs mt-3 cursor-pointer" :class="{ compareCheckbox: isDisabled }" :for="'compare' + product.productId">
-            <input v-model="isCompared" :disabled="isDisabled" :id="'compare' + product.productId" type="checkbox" class="mr-1 focus:outline-none">
-            Comparer
-        </label>
+        <compare-checkbox-component :product="product"></compare-checkbox-component>
     </div>
 </template>
 
 <script>
     import axios from 'axios';
+    import CompareCheckboxComponent from './compareCheckboxComponent';
 
     export default {
+        components: {CompareCheckboxComponent},
         props: {
             product: {
                 type: Object,
                 required: true
             }
         },
-        data() {
-            return {
-                isCompared: false
-            }
-        },
-        computed: {
-            isDisabled() {
-                if (!this.isCompared) {
-                    return this.$store.getters.comparedProducts.length >= 2;
-                }
-                return false
-            },
-            idProductCompared() {
-                if (this.isCompared & this.$store.getters.comparedProducts.length === 0) {
-                    return this.isCompared = false;
-                }
-            }
-        },
-        watch: {
-            isCompared(value) {
-                if (value) {
-                    this.$store.commit('addProductToCompare', this.product);
-                } else {
-                    this.$store.commit('removeProductFromCompare', this.product);
-                }
-            } 
-        },
         methods: {
-            // show () {
-            //     if (this.checked) {
-            //         this.$store.commit('addProductToCompare', this.product);
-            //     } else {
-            //         this.$store.commit('removeProductFromCompare', this.product);
-            //     }
-            // },
             getImage() {
                 if (this.product.mainImage) {
                     return `${process.env.MIX_MARKETPLACE_BASE_URI}image/${this.product.mainImage['id']}?w=432&h=432`
@@ -86,7 +51,7 @@
             },
             formatPrice(price) {
                 price = price.toFixed(2) + '';
-                return price.replace('.', ',');
+                return price.replace('.', ',') + ' €';
             },
             async addToCart(event) {
                 try {

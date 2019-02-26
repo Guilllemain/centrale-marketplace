@@ -12,7 +12,8 @@
                     <form method="POST" action="{{ route('user.update', $user->id) }}">
                         @csrf
                         @method('PATCH')
-                        <h3 class="mb-2">Coordonnées</h3>
+                        <h3 class="mb-4 font-light uppercase">Coordonnées</h3>
+                        <div class="h-bar w-1/3 mb-6"></div>
                         <label>Email</label>
                         <div class="pb-4">
                             <input type="email" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:border-grey" name="email" placeholder="Votre adresse email" value="{{ $user->email }}" required>
@@ -38,7 +39,9 @@
                     <form method="POST" action="{{ route('user.update', $user->id) }}">
                         @csrf
                         @method('PATCH')
-                        <h3 class="mb-2">Changer de mot de passe</h3>
+                        <h3 class="mb-4 font-light uppercase">Changer de mot de passe</h3>
+                        <div class="h-bar w-1/2 mb-6"></div>
+
                         <label>Nouveau mot de passe</label>
                         <div class="pb-4">
                             <input type="password" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:border-grey" name="password" placeholder="Nouveau mot de passe" required>

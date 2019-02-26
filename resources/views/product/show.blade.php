@@ -84,12 +84,13 @@
                 @endif
             </div>
         </div>
-
-
     </div>
 
     @include('partials.product.description')
+
     <div class="container mt-16">
+        <h2 class="title--horizontal-bar uppercase mb-6 text-xl tracking-wide font-light">Produits associés</h2>
+
         <carousel-component></carousel-component>
     </div>
 @endsection

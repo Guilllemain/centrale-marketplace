@@ -732,7 +732,6 @@ a:hover {
   margin-bottom: .5rem;
   border-bottom-width: 1px;
   border-color: #dae1e7;
-  width: 100%;
 }
 
 /**
@@ -6535,7 +6534,6 @@ a:hover {
 
 .tabs .content section h2,
 .tabs ul li label {
-  font-weight: bold;
   font-size: 18px;
   color: #606f7b;
 }
@@ -6595,7 +6593,7 @@ a:hover {
   width: 50px;
   max-width: 100%;
   margin: 0 auto;
-  height: 4px;
+  height: 2px;
   background: #606f7b;
   border-radius: 1px;
 }

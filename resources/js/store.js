@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import axios from 'axios'
 import createPersistedState from 'vuex-persistedstate'
 
 Vue.use(Vuex)
@@ -9,7 +10,8 @@ export default new Vuex.Store({
 
   state: {
     comparedProducts: [],
-    selectedFacets: []
+    selectedFacets: [],
+    basketContent: null
   },
 
   getters: {
@@ -18,6 +20,9 @@ export default new Vuex.Store({
     },
     selectedFacets(state) {
       return state.selectedFacets;
+    },
+    basketContent(state) {
+      return state.basketContent;
     }
   },
 
@@ -40,12 +45,20 @@ export default new Vuex.Store({
     },
     clearFacets(state) {
       state.selectedFacets = [];
+    },
+
+    updateBasket(state, basket) {
+      state.basketContent = basket;
     }
   },
 
   actions: {
     clearComparedProducts({commit}) {
       commit('clearComparedProducts');
+    },
+    async getBasketContent({commit}) {
+      const response = await axios.get('/basket');
+      commit('updateBasket', response.data);
     }
   }
 })

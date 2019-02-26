@@ -4,8 +4,8 @@
 <div class="container">
     <div class="flex mt-8">
         <div class="w-1/2 mx-16 my-8">
-            <h1 class="text-grey-darkest text-2xl mb-2">Déjà inscrit ?</h1>
-            <div class="border-b border-grey-light w-1/3 mb-6"></div>
+            <h1 class="text-grey-darkest text-2xl mb-2 font-light uppercase">Déjà inscrit ?</h1>
+            <div class="h-bar w-1/3 mb-6"></div>
             <form method="POST" action="{{ route('login') }}">
                 @csrf
                 <div class="pb-4">
@@ -26,8 +26,8 @@
         </div>
         <div class="my-8 border-r border-grey-light"></div>
         <div class="w-1/2 mx-16 my-8">
-            <h1 class="text-grey-darkest text-2xl mb-2">Pas encore inscrit ?</h1>
-            <div class="border-b border-grey-light w-1/3 mb-6"></div>
+            <h1 class="text-grey-darkest text-2xl mb-2 font-light uppercase">Pas encore inscrit ?</h1>
+            <div class="h-bar w-1/3 mb-6"></div>
             <form method="POST" action="{{ route('register') }}">
                 @csrf
                 <div class="pb-4">

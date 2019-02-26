@@ -6,13 +6,13 @@
     <div class="bg-grey-lighter p-4">
         <ul class="container">
             <li title="Description">
-                <label for="tab1" role="button">Description</label>
+                <label for="tab1" role="button" class="font-light uppercase">Description</label>
             </li>
             <li title="Caractéristiques">
-                <label for="tab2" role="button">Caractéristiques</label>
+                <label for="tab2" role="button" class="font-light uppercase">Caractéristiques</label>
             </li>
             <li title="Avis">
-                <label for="tab3" role="button">Avis</label>
+                <label for="tab3" role="button" class="font-light uppercase">Avis</label>
             </li>
         </ul>
     </div>

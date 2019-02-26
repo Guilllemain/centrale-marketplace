@@ -7,6 +7,8 @@
             @include('partials._profile_nav')
 
             <div class="w-2/3">
+                <h3 class="mb-4 font-light uppercase">Produits favoris</h3>
+                <div class="h-bar w-1/3 mb-6"></div>
                 @if(!$favorites)
                     <div>
                         Vous n'avez aucun produit dans vos favoris

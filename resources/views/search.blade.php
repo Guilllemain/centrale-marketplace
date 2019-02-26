@@ -5,13 +5,13 @@
     <div class="container">
         @isset($currentCategory)
             <div class="py-6">
-                <h1 class="text-center">{{ $currentCategory->name }}</h1>
+                <h1 class="text-center font-light">{{ $currentCategory->name }}</h1>
             </div>
         @endisset
 
         @isset($result)
             <div class="py-6">
-                <h1 class="text-center">{{ $result }}</h1>
+                <h1 class="text-center font-light">{{ $result }}</h1>
             </div>
         @endisset
         

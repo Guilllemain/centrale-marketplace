@@ -1,5 +1,5 @@
 <template>
-    <div class="list-product m-3 flex flex-col items-center justify-center bg-white pb-4 shadow rounded">
+    <div class="list-product mx-3 my-4 flex flex-col items-center justify-center bg-white pb-4 rounded">
         <div class="bg-white product__image">
             <img :src="getImage()" class="w-full">
         </div>
@@ -60,7 +60,7 @@
                         quantity: 1
                     });
                     flash(`${this.product.name} a été ajouté à votre panier`);
-                    // Event.$emit('addItemToCart');
+                    this.$store.dispatch('getBasketContent');
                 } catch (error) {
                     console.log(error);
                 }

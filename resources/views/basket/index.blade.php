@@ -5,7 +5,7 @@
     @if($basket->totalQuantity > 0)
         <div class="flex mt-8">
             <div class="w-3/4">
-                <h2>Mon panier</h2>
+                <h2 class="font-light uppercase">Mon panier</h2>
                 @foreach ($basket->getCompanies() as $company)
                     <div class="my-4 p-4 bg-white border border-grey-light">
                         <h4>Vendu par {{ $company['company']['name'] }}</h4>
@@ -61,9 +61,9 @@
                                     </div>
                                 @endforeach
                             </div>
-                            <form id="shipping-{{ $shippingGroup['id'] }}" action="{{ route('basket.update-shipping', $basket->id) }}" method="POST">
-                                @csrf
-                                <div class="flex items-center">
+                            <div class="flex items-center justify-between">
+                                <form id="shipping-{{ $shippingGroup['id'] }}" action="{{ route('basket.update-shipping', $basket->id) }}" method="POST" class="flex items-center">
+                                    @csrf
                                     <input type="hidden" name="shippingGroup" value="{{$shippingGroup['id']}}">
                                     <label class="mr-2">Veuillez sélectionner le mode de livraison pour ce(s) produit(s)</label>
                                     <div class="relative">
@@ -80,8 +80,12 @@
                                             </svg>
                                         </div>
                                     </div>
+                                </form>
+                                <div class="font-bold">
+                                    <p>Total pour ce marchand : {{ formatPrice($company['productTotalWithTaxes']) }} €</p>
                                 </div>
-                            </form>
+                            </div>
+
                         @endforeach
                     </div>
                 @endforeach
@@ -89,7 +93,7 @@
             <div class="w-1/4">
                 <div class="flex flex-col ml-8">
                     <div class="">
-                        <h2>Total</h2>
+                        <h2 class="font-light uppercase">Total</h2>
                         <div class="my-4 p-4 bg-white border border-grey-light">
                             <div class="flex justify-between -items-center">
                                 <div>Livraison</div>
@@ -108,16 +112,14 @@
                         </div>
                     </div>
                     <div class="mt-8">
-                        <h2 class="mb-4">Ajouter un code</h2>
-                        {{-- <div class="my-4 p-4 bg-white border border-grey-light"> --}}
-                            <input class="appearance-none border rounded w-full py-3 px-3 text-grey-darker leading-tight focus:outline-none focus:border-grey" type="text" name="coupon" placeholder="Entrez votre code promo">
-                        {{-- </div> --}}
+                        <h2 class="mb-4 font-light uppercase">Ajouter un code</h2>
+                        <input class="appearance-none border rounded w-full py-3 px-3 text-grey-darker leading-tight focus:outline-none focus:border-grey" type="text" name="coupon" placeholder="Entrez votre code promo">
                     </div>
                 </div>
             </div>
         </div>
     @else
-        <h2 class="mt-12 mb-8">Mon panier</h2>
+        <h2 class="font-light uppercase mb-4 mt-8">Mon panier</h2>
         <div class="mb-8">Votre basket est vide</div>
         <a href="/search" class="text-center mt-4 bg-orange-dark w-full hover:bg-orange hover:text-white text-white font-bold py-2 px-4 rounded">Continuer votre shopping</a>
     @endif

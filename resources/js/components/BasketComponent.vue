@@ -52,20 +52,23 @@
     export default {
         data() {
             return {
-                basket: '',
                 items: []
             }
         },
         mounted() {
-            this.getBasket();
-            // Event.$on('addItemToCart', () => this.getBasket());
+            this.$store.dispatch('getBasketContent');
+        },
+        computed: {
+            basket() {
+                return this.$store.getters.basketContent;
+            }
+        },
+        watch: {
+            basket(value) {
+                if (value) this.getItems();
+            }
         },
         methods: {
-            async getBasket() {
-                const response = await axios.get('/basket');
-                this.basket = response.data;
-                if(this.basket) this.getItems()
-            },
             formatPrice(price) {
                 price = price.toFixed(2) + '';
                 return price.replace('.', ',');

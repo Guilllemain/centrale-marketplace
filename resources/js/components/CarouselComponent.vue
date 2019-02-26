@@ -1,65 +1,54 @@
 <template>
-    <!-- <el-carousel :interval="5000">
-        <el-carousel-item>
-            <div class="relative">
-                <div class="title text-white uppercase absolute tracking-wide z-10">
-                    <h3 class="text-5xl font-hairline tracking-wide">Soldes</h3>
-                    <h4 class="text-xl font-light">Jusqu'à -50% de réduction</h4>
+    <carousel :perPage="5" :navigationEnabled="true" :paginationEnabled="false" :scrollPerPage="false">
+      <slide v-for="(product, index) in latestProducts" :key="product.productId">
+        <div class="flex flex-col items-center">
+            <img class="mb-2" :src="`https://back.vegan-place.com/api/v1/image/${product.mainImage.id}?w=200&h=200`">
+            <h3 class="mb-2">{{ product.name }}</h3>
+            <div class="my-2 border-b border-grey-light w-2/3"></div>
+            
+            <div class="mb-2">
+                <div v-if="product.crossedOutPrice" class="flex-col flex items-center">
+                    <div class="text-red-dark">{{ formatPrice(product.minimumPrice) }}</div>
+                    <div class="text-xs line-through">{{ formatPrice(product.crossedOutPrice) }}</div>
                 </div>
-                <img class="opacity-90 w-full" src="main2.jpg">
-            </div>
-        </el-carousel-item>
-        <el-carousel-item>
-            <div class="relative">
-                <div class="title text-white uppercase absolute tracking-wide z-10">
-                    <h3 class="text-5xl font-hairline tracking-wide">Soldes</h3>
-                    <h4 class="text-xl font-light">Jusqu'à -50% de réduction</h4>
+                <div v-else>
+                    <div>{{ formatPrice(product.minimumPrice) }}</div>
                 </div>
-                <img class="opacity-90 w-full" src="main.jpg">
             </div>
-        </el-carousel-item>
-        <el-carousel-item>
-            <div class="relative">
-                <div class="title text-white uppercase absolute tracking-wide z-10">
-                    <h3 class="text-5xl font-hairline tracking-wide">Soldes</h3>
-                    <h4 class="text-xl font-light">Jusqu'à -50% de réduction</h4>
-                </div>
-                <img class="opacity-90 w-full" src="main3.jpg">
-            </div>
-        </el-carousel-item>
-    </el-carousel> -->
-    <div>
-        
-            <li class="glide__slide" v-for="product in suggestedProducts" :key="product.productId">
-                <img :src="`https://back.vegan-place.com/api/v1/image/${product.mainImage.id}?w=200&h=200`">
-            </li>
-    </div>
+        </div>
+      </slide>
+    </carousel>
 </template>
 
 <script>
     import axios from 'axios';
+    import { Carousel, Slide } from 'vue-carousel';
 
     export default {
+        components: {
+            Carousel,
+            Slide
+        },
         data() {
             return {
-                suggestedProducts: [],
+                latestProducts: [],
             }
         },
         computed: {
         },
         async created() {
             const response = await axios.get('/');
-            this.suggestedProducts = response.data.results;
+            this.latestProducts = response.data.results;
+        },
+        methods: {
+            formatPrice(price) {
+                price = price.toFixed(2) + '';
+                return price.replace('.', ',') + ' €';
+            },
         }
     }
 </script>
 
 <style scoped>
-    .title {
-        left: 45%;
-        top: 15%;
-    }
-    .opacity-90 {
-        opacity: 0.9;
-    }
+
 </style>

@@ -12,9 +12,10 @@
                     @method('PATCH')
                     <div class="flex">
                         <div class="flex-1">
-                            {{-- <h3>Adresse</h3> --}}
+                            <h3 class="mb-4 font-light uppercase">Adresse de livraison</h3>
+                            <div class="h-bar w-1/4"></div>
 
-                            <div class="my-4">
+                            <div class="mt-8 mb-4">
                                 <label class="mr-2" for="mister">Monsieur</label>
                                 <input type="radio" id="mister" name="billing_address[title]" value="mr" @if($user->addresses['billing']['title'] === 'mr') checked @endif>
                                 <label class="ml-8 mr-2" for="miss">Madame</label>

@@ -1,6 +1,7 @@
 <template>
     <div class="product__images">
         <div class="flex">
+             <!-- thumbnails -->
             <div class="pr-4">
                 <div class="flex items-center thumbnail__image cursor-pointer border border-grey-light mb-2"
                      v-for="(image, index) in images" :key="image.id" 
@@ -10,16 +11,18 @@
                     <img class="w-full" :src="getImage(image.id, 100)" :alt="`${name}-${index}`">
                 </div>
             </div>
+            <!-- main image -->
             <div class="flex image__main flex-col">
                 <img class="w-full"
                      v-for="(image, index) in images" :key="image.id"
-                     v-if="index === slideIndex"
+                     v-show="index === slideIndex"
                      :src="getImage(image.id, 420)"
                      @click="openModal">
             </div>
         </div>
+        <!-- modal -->
         <transition name="fade" @after-enter="viewContent = true">
-            <div class="modal flex items-center justify-center" @click="closeModal" v-if="viewModal">
+            <div class="modal flex items-center justify-center" @click="closeModal" v-show="viewModal">
                 <span class="close__icon cursor-pointer">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8">
                         <use class="text-white fill-current" href="/svg/icons.svg#close"></use>
@@ -34,7 +37,7 @@
                             </svg>
                         </a>
                         <img v-for="(image, index) in images" :key="image.id"
-                             v-if="index === slideIndex"
+                             v-show="index === slideIndex"
                              :src="getImage(image.id, 1000)"
                              class="w-full px-4">
                         <a class="next" @click="plusSlides(1)">

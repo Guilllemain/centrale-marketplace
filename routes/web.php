@@ -30,6 +30,8 @@ Route::middleware('session')->group(function () {
     Route::post('/favorites/removeFavorite', 'FavoritesController@removeFavorite');
 
     Route::get('/basket/address', 'BasketController@showAddress');
+
+    Route::get('/basket/invoice', 'BasketController@generateInvoicePDF');
 });
 
 Route::get('/', 'HomeController@index')->name('home');

@@ -5,7 +5,7 @@
         </div>
         <div v-else class="flex">
             <div class="w-1/5 pr-8">
-                <h2 class="text-grey-darker">Affiner par</h2>
+                <h2 class="text-grey-darker font-light tracking-wide">Affiner par</h2>
                 <a v-if="selectedFacets.length > 0" class="mr-2 mt-2 flex items-end" href="#" @click.prevent="clearFacets">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24">
                         <use class="text-grey fill-current" href="/svg/icons.svg#delete"></use>

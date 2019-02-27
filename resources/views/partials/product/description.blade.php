@@ -3,7 +3,7 @@
     <input type="radio" name="tab-control" id="tab2">
     <input type="radio" name="tab-control" id="tab3">
     
-    <div class="bg-grey-lighter p-4">
+    <div class="bg-grey-lighter p-3">
         <ul class="container">
             <li title="Description">
                 <label for="tab1" role="button" class="font-light uppercase">Description</label>

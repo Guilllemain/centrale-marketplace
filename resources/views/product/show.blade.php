@@ -7,7 +7,7 @@
             
             <div class="ml-12">
                 <div class="flex">
-                    <h3 class="text-lg tracking-wide mr-6">{{ $product->name }}</h3>
+                    <h3 class="text-lg tracking-wide mr-6 uppercase font-normal">{{ $product->name }}</h3>
                     <favorite-component @if(session('authenticated')) :auth="{{ true }}" @endif :product="{{ $product }}"></favorite-component>
                 </div>
                 <stars-component></stars-component>

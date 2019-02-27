@@ -5573,6 +5573,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     images: {
@@ -8293,7 +8296,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".cbx-container[data-v-75145ee0] {\n  --cbx-size: 15px;\n}\n.is-disabled[data-v-75145ee0] {\n  opacity: .5;\n  cursor: not-allowed;\n}\n", ""]);
+exports.push([module.i, ".cbx-container[data-v-75145ee0] {\n  --cbx-size: 15px;\n}\n.is-disabled[data-v-75145ee0] {\n  opacity: .5;\n}\n.is-disabled .label-cbx[data-v-75145ee0] {\n  cursor: not-allowed;\n}\n", ""]);
 
 // exports
 
@@ -76771,14 +76774,20 @@ var render = function() {
           "div",
           { staticClass: "flex image__main flex-col" },
           _vm._l(_vm.images, function(image, index) {
-            return index === _vm.slideIndex
-              ? _c("img", {
-                  key: image.id,
-                  staticClass: "w-full",
-                  attrs: { src: _vm.getImage(image.id, 420) },
-                  on: { click: _vm.openModal }
-                })
-              : _vm._e()
+            return _c("img", {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: index === _vm.slideIndex,
+                  expression: "index === slideIndex"
+                }
+              ],
+              key: image.id,
+              staticClass: "w-full",
+              attrs: { src: _vm.getImage(image.id, 420) },
+              on: { click: _vm.openModal }
+            })
           }),
           0
         )
@@ -76795,126 +76804,134 @@ var render = function() {
           }
         },
         [
-          _vm.viewModal
-            ? _c(
-                "div",
+          _c(
+            "div",
+            {
+              directives: [
                 {
-                  staticClass: "modal flex items-center justify-center",
-                  on: { click: _vm.closeModal }
-                },
-                [
-                  _c("span", { staticClass: "close__icon cursor-pointer" }, [
-                    _c(
-                      "svg",
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.viewModal,
+                  expression: "viewModal"
+                }
+              ],
+              staticClass: "modal flex items-center justify-center",
+              on: { click: _vm.closeModal }
+            },
+            [
+              _c("span", { staticClass: "close__icon cursor-pointer" }, [
+                _c(
+                  "svg",
+                  {
+                    staticClass: "h-8 w-8",
+                    attrs: { xmlns: "http://www.w3.org/2000/svg" }
+                  },
+                  [
+                    _c("use", {
+                      staticClass: "text-white fill-current",
+                      attrs: { href: "/svg/icons.svg#close" }
+                    })
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("transition", { attrs: { name: "scale" } }, [
+                _c(
+                  "div",
+                  {
+                    directives: [
                       {
-                        staticClass: "h-8 w-8",
-                        attrs: { xmlns: "http://www.w3.org/2000/svg" }
-                      },
-                      [
-                        _c("use", {
-                          staticClass: "text-white fill-current",
-                          attrs: { href: "/svg/icons.svg#close" }
-                        })
-                      ]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("transition", { attrs: { name: "scale" } }, [
+                        name: "show",
+                        rawName: "v-show",
+                        value: _vm.viewContent,
+                        expression: "viewContent"
+                      }
+                    ],
+                    staticClass:
+                      "modal-content flex items-center justify-center",
+                    on: {
+                      click: function($event) {
+                        $event.stopPropagation()
+                      }
+                    }
+                  },
+                  [
                     _c(
-                      "div",
+                      "a",
                       {
-                        directives: [
-                          {
-                            name: "show",
-                            rawName: "v-show",
-                            value: _vm.viewContent,
-                            expression: "viewContent"
-                          }
-                        ],
-                        staticClass:
-                          "modal-content flex items-center justify-center",
+                        staticClass: "prev",
                         on: {
                           click: function($event) {
-                            $event.stopPropagation()
+                            return _vm.plusSlides(-1)
                           }
                         }
                       },
                       [
                         _c(
-                          "a",
+                          "svg",
                           {
-                            staticClass: "prev",
-                            on: {
-                              click: function($event) {
-                                return _vm.plusSlides(-1)
-                              }
-                            }
+                            staticClass: "h-8 w-8",
+                            attrs: { xmlns: "http://www.w3.org/2000/svg" }
                           },
                           [
-                            _c(
-                              "svg",
-                              {
-                                staticClass: "h-8 w-8",
-                                attrs: { xmlns: "http://www.w3.org/2000/svg" }
-                              },
-                              [
-                                _c("use", {
-                                  staticClass: "text-white fill-current",
-                                  attrs: {
-                                    href: "/svg/icons.svg#navigate-prev"
-                                  }
-                                })
-                              ]
-                            )
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _vm._l(_vm.images, function(image, index) {
-                          return index === _vm.slideIndex
-                            ? _c("img", {
-                                key: image.id,
-                                staticClass: "w-full px-4",
-                                attrs: { src: _vm.getImage(image.id, 1000) }
-                              })
-                            : _vm._e()
-                        }),
-                        _vm._v(" "),
-                        _c(
-                          "a",
-                          {
-                            staticClass: "next",
-                            on: {
-                              click: function($event) {
-                                return _vm.plusSlides(1)
-                              }
-                            }
-                          },
-                          [
-                            _c(
-                              "svg",
-                              {
-                                staticClass: "h-8 w-8",
-                                attrs: { xmlns: "http://www.w3.org/2000/svg" }
-                              },
-                              [
-                                _c("use", {
-                                  staticClass: "text-white fill-current",
-                                  attrs: {
-                                    href: "/svg/icons.svg#navigate-next"
-                                  }
-                                })
-                              ]
-                            )
+                            _c("use", {
+                              staticClass: "text-white fill-current",
+                              attrs: { href: "/svg/icons.svg#navigate-prev" }
+                            })
                           ]
                         )
-                      ],
-                      2
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _vm._l(_vm.images, function(image, index) {
+                      return _c("img", {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: index === _vm.slideIndex,
+                            expression: "index === slideIndex"
+                          }
+                        ],
+                        key: image.id,
+                        staticClass: "w-full px-4",
+                        attrs: { src: _vm.getImage(image.id, 1000) }
+                      })
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "a",
+                      {
+                        staticClass: "next",
+                        on: {
+                          click: function($event) {
+                            return _vm.plusSlides(1)
+                          }
+                        }
+                      },
+                      [
+                        _c(
+                          "svg",
+                          {
+                            staticClass: "h-8 w-8",
+                            attrs: { xmlns: "http://www.w3.org/2000/svg" }
+                          },
+                          [
+                            _c("use", {
+                              staticClass: "text-white fill-current",
+                              attrs: { href: "/svg/icons.svg#navigate-next" }
+                            })
+                          ]
+                        )
+                      ]
                     )
-                  ])
-                ],
-                1
-              )
-            : _vm._e()
+                  ],
+                  2
+                )
+              ])
+            ],
+            1
+          )
         ]
       )
     ],
@@ -77199,9 +77216,11 @@ var render = function() {
               "div",
               { staticClass: "w-1/5 pr-8" },
               [
-                _c("h2", { staticClass: "text-grey-darker" }, [
-                  _vm._v("Affiner par")
-                ]),
+                _c(
+                  "h2",
+                  { staticClass: "text-grey-darker font-light tracking-wide" },
+                  [_vm._v("Affiner par")]
+                ),
                 _vm._v(" "),
                 _vm.selectedFacets.length > 0
                   ? _c(

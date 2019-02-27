@@ -6,6 +6,7 @@ use App\Services\BasketService;
 use App\Services\UserService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class BasketController extends Controller
 {
@@ -121,5 +122,14 @@ class BasketController extends Controller
         // ]);
 
         dd($account);
+    }
+
+    public function generateInvoicePDF()
+    {
+        $currentbasketId = $this->basketService->getCurrentBasketId();
+        $basket = $this->basketService->getBasket($currentbasketId);
+
+        $pdf = PDF::loadView('invoicePDF', compact('basket'));
+        return $pdf->download('invoice.pdf');
     }
 }

@@ -7,7 +7,7 @@
             <div class="w-3/4">
                 <h2 class="font-light uppercase">Mon panier</h2>
                 @foreach ($basket->getCompanies() as $company)
-                    <div class="my-4 p-4 bg-white border border-grey-light">
+                    <div class="my-4 px-4 pt-4 pb-2 bg-white border border-grey-light">
                         <h4>Vendu par {{ $company['company']['name'] }}</h4>
                         <div class="my-2 border-b border-grey-light"></div>
                         @foreach($company['shippingGroups'] as $shippingGroup)
@@ -85,8 +85,8 @@
                                     <p>Total pour ce marchand : {{ formatPrice($company['productTotalWithTaxes']) }} €</p>
                                 </div>
                             </div>
-
                         @endforeach
+                        <textarea class="appearance-none w-full bg-grey-lighter text-grey-darker border border-grey-light rounded py-3 px-4 mt-3 leading-tight focus:outline-none focus:bg-white focus:border-grey" placeholder="Ajouter un commentaire"></textarea>
                     </div>
                 @endforeach
             </div>
@@ -123,5 +123,6 @@
         <div class="mb-8">Votre basket est vide</div>
         <a href="/search" class="text-center mt-4 bg-orange-dark w-full hover:bg-orange hover:text-white text-white font-bold py-2 px-4 rounded">Continuer votre shopping</a>
     @endif
+    <a href="/basket/invoice">Enregistrer devis</a>
 </div>
 @endsection

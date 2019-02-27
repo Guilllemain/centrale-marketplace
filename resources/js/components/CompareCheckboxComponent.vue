@@ -69,6 +69,8 @@
     }
     .is-disabled {
         opacity: .5;
+    }
+    .is-disabled .label-cbx {
         cursor: not-allowed;
     }
 </style>

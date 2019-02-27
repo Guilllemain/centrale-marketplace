@@ -1,11 +1,14 @@
 <template>
-    <el-slider  range
-                @change="changePrice"
-                v-model="range"
-                :min="facet.values.min"
-                :max="facet.values.max"
-                >
-    </el-slider>
+    <div>
+        <el-slider  range
+                    @change="changePrice"
+                    v-model="range"
+                    :min="facet.values.min"
+                    :max="facet.values.max"
+                    >
+        </el-slider>
+        <div>De {{ formatPrice(range[0]) }} à {{ formatPrice(range[1]) }}</div>
+    </div>
 </template>
 
 <script>

@@ -144,10 +144,6 @@
                 this.showContent = false;
                 this.$store.dispatch('clearComparedProducts');
             },
-            formatPrice(price) {
-                price = price.toFixed(2) + '';
-                return price.replace('.', ',') + ' €';
-            },
         }
     }
 </script>

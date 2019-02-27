@@ -49,10 +49,6 @@
                     return `/${this.product.categoryPath[0]['slug']}/${this.product.slug}`;
                 }
             },
-            formatPrice(price) {
-                price = price.toFixed(2) + '';
-                return price.replace('.', ',') + ' €';
-            },
             async addToCart(event) {
                 try {
                     await axios.post('/basket/add', {

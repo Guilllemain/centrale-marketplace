@@ -16,6 +16,7 @@
         "kevinrob/guzzle-cache-middleware": "^3.2",
         "laravel/framework": "5.7.*",
         "laravel/tinker": "^1.0",
+        "spatie/laravel-cookie-consent": "^2.7",
         "stripe/stripe-php": "^6.27",
         "symfony/cache": "^4.2",
         "tightenco/ziggy": "^0.6.9"

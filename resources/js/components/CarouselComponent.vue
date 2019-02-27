@@ -34,18 +34,10 @@
                 latestProducts: [],
             }
         },
-        computed: {
-        },
         async created() {
             const response = await axios.get('/');
             this.latestProducts = response.data.results;
         },
-        methods: {
-            formatPrice(price) {
-                price = price.toFixed(2) + '';
-                return price.replace('.', ',') + ' €';
-            },
-        }
     }
 </script>
 

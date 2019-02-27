@@ -43,16 +43,17 @@ Vue.component('product-images-component', require('./components/ProductImagesCom
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-
-var mixin = {
-  methods: {
-    route: route
-  }
-}
-
+window.Vue.mixin({
+    methods: {
+        route: route,
+        formatPrice(price) {
+            price = price.toFixed(2) + '';
+            return price.replace('.', ',') + ' €';
+        },
+    }
+})
 
 const app = new Vue({
-    mixins: [mixin],
     store,
     el: '#app'
 });

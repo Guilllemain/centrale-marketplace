@@ -109,7 +109,7 @@
     </div>
     {{-- live-chat tidio --}}
     {{-- <script src="//code.tidio.co/tfbpqyj9ssgdjacgc4oguz3ftbhgmz83.js"></script> --}}
-
+    @include('cookieConsent::index')
     @yield('scripts')
     @stack('scripts')
 </body>

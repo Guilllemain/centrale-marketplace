@@ -25,18 +25,18 @@
                             <div class="text-grey-dark">Quantité: {{ item.quantity }}</div>
                         </div>
                         <div class="text-right ml-2">
-                            <p>{{ formatPrice(item.totalPrice.priceWithTaxes) }} €</p>
+                            <p>{{ formatPrice(item.totalPrice.priceWithTaxes) }}</p>
                         </div>
                     </div>
                     <div class="my-2 border-b border-grey-light w-full"></div>
                 </div>
                 <div class="flex justify-between mb-2 text-grey-dark">
                     <p>Livraison</p>
-                    <p>à partir de {{ formatPrice(basket.totalShipping) }} €</p>
+                    <p>à partir de {{ formatPrice(basket.totalShipping) }}</p>
                 </div>
                 <div class="flex justify-between font-bold">
                     <p>Total</p>
-                    <p>{{ formatPrice(basket.total) }} €</p>
+                    <p>{{ formatPrice(basket.total) }}</p>
                 </div>
                 <a href="/basket/address" class="focus:outline-none translateY mt-4 block text-center bg-orange-dark hover:bg-orange hover:text-white text-white font-bold py-2 px-4 rounded">Commander</a>
                 <a href="/basket" class="mt-4 block text-center font-bold py-2 px-4 hover:text-grey-dark">Voir mon panier</a>
@@ -69,10 +69,6 @@
             }
         },
         methods: {
-            formatPrice(price) {
-                price = price.toFixed(2) + '';
-                return price.replace('.', ',');
-            },
             getItems() {
                 this.basket.companyGroups.forEach(company => 
                     company.shippingGroups.forEach(group => 

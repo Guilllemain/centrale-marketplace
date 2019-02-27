@@ -4311,10 +4311,6 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
-    formatPrice: function formatPrice(price) {
-      price = price.toFixed(2) + '';
-      return price.replace('.', ',');
-    },
     getItems: function getItems() {
       var _this = this;
 
@@ -4393,7 +4389,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       latestProducts: []
     };
   },
-  computed: {},
   created: function () {
     var _created = _asyncToGenerator(
     /*#__PURE__*/
@@ -4423,13 +4418,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }
 
     return created;
-  }(),
-  methods: {
-    formatPrice: function formatPrice(price) {
-      price = price.toFixed(2) + '';
-      return price.replace('.', ',') + ' €';
-    }
-  }
+  }()
 });
 
 /***/ }),
@@ -5238,10 +5227,6 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     closeModal: function closeModal() {
       this.showContent = false;
       this.$store.dispatch('clearComparedProducts');
-    },
-    formatPrice: function formatPrice(price) {
-      price = price.toFixed(2) + '';
-      return price.replace('.', ',') + ' €';
     }
   }
 });
@@ -5364,6 +5349,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     facet: {
@@ -5462,10 +5450,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       } else {
         return "/".concat(this.product.categoryPath[0]['slug'], "/").concat(this.product.slug);
       }
-    },
-    formatPrice: function formatPrice(price) {
-      price = price.toFixed(2) + '';
-      return price.replace('.', ',') + ' €';
     },
     addToCart: function () {
       var _addToCart = _asyncToGenerator(
@@ -6148,7 +6132,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 3:
                 response = _context.sent;
-                // console.log(response.data[0].nom);
                 this.$emit('updateCityName', response.data);
 
               case 5:
@@ -75626,7 +75609,7 @@ var render = function() {
                         _vm._v(
                           _vm._s(
                             _vm.formatPrice(item.totalPrice.priceWithTaxes)
-                          ) + " €"
+                          )
                         )
                       ])
                     ])
@@ -75647,8 +75630,7 @@ var render = function() {
                   _c("p", [
                     _vm._v(
                       "à partir de " +
-                        _vm._s(_vm.formatPrice(_vm.basket.totalShipping)) +
-                        " €"
+                        _vm._s(_vm.formatPrice(_vm.basket.totalShipping))
                     )
                   ])
                 ]
@@ -75657,9 +75639,7 @@ var render = function() {
               _c("div", { staticClass: "flex justify-between font-bold" }, [
                 _c("p", [_vm._v("Total")]),
                 _vm._v(" "),
-                _c("p", [
-                  _vm._v(_vm._s(_vm.formatPrice(_vm.basket.total)) + " €")
-                ])
+                _c("p", [_vm._v(_vm._s(_vm.formatPrice(_vm.basket.total)))])
               ]),
               _vm._v(" "),
               _c(
@@ -76623,17 +76603,36 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("el-slider", {
-    attrs: { range: "", min: _vm.facet.values.min, max: _vm.facet.values.max },
-    on: { change: _vm.changePrice },
-    model: {
-      value: _vm.range,
-      callback: function($$v) {
-        _vm.range = $$v
-      },
-      expression: "range"
-    }
-  })
+  return _c(
+    "div",
+    [
+      _c("el-slider", {
+        attrs: {
+          range: "",
+          min: _vm.facet.values.min,
+          max: _vm.facet.values.max
+        },
+        on: { change: _vm.changePrice },
+        model: {
+          value: _vm.range,
+          callback: function($$v) {
+            _vm.range = $$v
+          },
+          expression: "range"
+        }
+      }),
+      _vm._v(" "),
+      _c("div", [
+        _vm._v(
+          "De " +
+            _vm._s(_vm.formatPrice(_vm.range[0])) +
+            " à " +
+            _vm._s(_vm.formatPrice(_vm.range[1]))
+        )
+      ])
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -90804,13 +90803,16 @@ Vue.component('product-images-component', __webpack_require__(/*! ./components/P
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-var mixin = {
+window.Vue.mixin({
   methods: {
-    route: route
+    route: route,
+    formatPrice: function formatPrice(price) {
+      price = price.toFixed(2) + '';
+      return price.replace('.', ',') + ' €';
+    }
   }
-};
+});
 var app = new Vue({
-  mixins: [mixin],
   store: _store__WEBPACK_IMPORTED_MODULE_2__["default"],
   el: '#app'
 });

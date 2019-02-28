@@ -2,7 +2,7 @@
 
 @push('head')
     <title>{{ config('app.name', 'Laravel') }} - {{ $product->name }}</title>
-    <meta name="description" content="{!! $product->shortDescription !!}">
+    <meta name="description" content="{{ html_entity_decode(strip_tags($product->shortDescription)) }}">
 @endpush
 
 @section('content')

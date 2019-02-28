@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@push('head')
+    <title>{{ config('app.name', 'Laravel') }} - Mon compte</title>
+@endpush
+
 @section('content')
     <div class="container mt-16">
         <div class="flex">

@@ -1,5 +1,10 @@
 @extends('layouts.app')
 
+@push('head')
+    <title>{{ config('app.name', 'Laravel') }} - {{ $product->name }}</title>
+    <meta name="description" content="{!! $product->shortDescription !!}">
+@endpush
+
 @section('content')
     <div class="container mt-16">
         <div class="flex">

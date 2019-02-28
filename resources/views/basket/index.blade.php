@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@push('head')
+    <title>{{ config('app.name', 'Laravel') }} - Mon panier</title>
+@endpush
+
 @section('content')
 <div class="container">
     @if($basket->totalQuantity > 0)

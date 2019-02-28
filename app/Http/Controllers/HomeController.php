@@ -35,7 +35,7 @@ class HomeController extends Controller
         }
         if (!Cache::has('latestProducts')) {
             $latestProducts = $this->getLatestProducts()->getProducts();
-            Cache::add('latestProducts', $latestProducts, 3240);
+            Cache::add('latestProducts', $latestProducts, 60 * 60 * 24); // keep cache for a day
         }
         $latestProducts = Cache::get('latestProducts');
         return view('home', compact('latestProducts'));

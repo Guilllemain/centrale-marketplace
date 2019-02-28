@@ -1,6 +1,7 @@
 <template>
-    <div class="alert-flash" :class="'alert-'+level" v-show="show" role="alert" v-text="body">
-    </div>
+    <transition name="slide">
+        <div class="alert-flash" :class="'alert-'+level" v-show="show" role="alert" v-text="body"></div>
+    </transition>
 </template>
 
 <script>
@@ -71,5 +72,12 @@
         color: #856404;
         background-color: #fff3cd;
         border-color: #ffeeba;
+    }
+    .slide-enter, .slide-leave-to {
+        opacity: .2;
+        transform: translateX(25rem);
+    }
+    .slide-enter-active, .slide-leave-active {
+        transition: all .4s ease-out;
     }
 </style>

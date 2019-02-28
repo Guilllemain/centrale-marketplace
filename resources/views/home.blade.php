@@ -1,5 +1,10 @@
 @extends('layouts.app')
 
+@push('head')
+    <title>{{ config('app.name', 'Laravel') }} - Accueil</title>
+    <meta name="description" content="">
+@endpush
+
 @section('content')
     
     <div class="my-16 mx-32">

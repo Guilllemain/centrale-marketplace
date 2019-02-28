@@ -1,5 +1,10 @@
 @extends('layouts.app')
 
+@push('head')
+    <title>{{ config('app.name', 'Laravel') }} - Connexion</title>
+    <meta name="description" content="">
+@endpush
+
 @section('content')
 <div class="container">
     <div class="flex mt-8">

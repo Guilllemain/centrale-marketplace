@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@push('head')
+    <title>{{ config('app.name', 'Laravel') }} - Réinitialiser son mot de passe</title>
+@endpush
+
 @section('content')
     <div class="flex justify-center mt-16">
         <form action="{{ route('forgot_password') }}" method="POST" class="w-1/5 px-8 pt-6 pb-8 mb-4">

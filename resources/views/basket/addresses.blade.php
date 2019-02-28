@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@push('head')
+    <title>{{ config('app.name', 'Laravel') }} - Adresse</title>
+@endpush
+
 @section('content')
     <div class="container mt-16">
         <form method="POST" action="{{ route('basket.update-address', $user->id) }}">

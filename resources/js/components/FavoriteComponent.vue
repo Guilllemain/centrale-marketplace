@@ -82,9 +82,6 @@
             transform: scale(1.3);
         }
     }
-    .zoom-enter-active, .zoom-leave-active {
-      /*transition: all .5s;*/
-    }
     .zoom-enter, .zoom-leave-to {
         animation: zoomIn .4s ease;
         /*transform: scale(1.5);*/

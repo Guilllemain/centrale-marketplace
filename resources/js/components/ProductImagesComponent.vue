@@ -157,8 +157,6 @@
     .scale-leave-active {
         animation: scaleOut .2s ease-in-out forwards;
     }
-    .scale-enter, .scale-leave-to {
-    }
     @keyframes scaleIn {
         0% {opacity: 0; transform: scale(.75);}
         100% {opacity: 1;transform: scale(1);}

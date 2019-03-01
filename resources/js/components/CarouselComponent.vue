@@ -1,6 +1,6 @@
 <template>
     <carousel :perPage="5" :navigationEnabled="true" :paginationEnabled="false" :scrollPerPage="false">
-      <slide v-for="(product, index) in latestProducts" :key="product.productId">
+      <slide v-for="product in latestProducts" :key="product.productId">
         <div class="flex flex-col items-center">
             <img class="mb-2" :src="`https://back.vegan-place.com/api/v1/image/${product.mainImage.id}?w=200&h=200`">
             <h3 class="mb-2">{{ product.name }}</h3>

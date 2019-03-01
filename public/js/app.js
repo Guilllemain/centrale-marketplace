@@ -5160,6 +5160,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
           results[1].forEach(function (result2) {
             if (result.id === result2.id) {
               final.push({
+                id: result.id,
                 name: result.name,
                 values: [].concat(_toConsumableArray(result.values), _toConsumableArray(result2.values))
               });
@@ -5659,6 +5660,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -5673,6 +5681,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       loading: false,
       showResults: false
     };
+  },
+  watch: {
+    query: function query() {
+      this.loading = true;
+      this.productAutocomplete();
+    }
   },
   methods: {
     limitLength: function limitLength(string) {
@@ -5695,10 +5709,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       } else {
         return "/".concat(product.categoryPath[0]['slug'], "/").concat(product.categoryPath[1]['slug'], "/").concat(product.slug);
       }
-    },
-    searchProducts: function searchProducts() {
-      this.loading = true;
-      this.productAutocomplete();
     },
     productAutocomplete: lodash__WEBPACK_IMPORTED_MODULE_2___default.a.debounce(function () {
       this.getResults();
@@ -8043,7 +8053,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".fade-enter-active[data-v-103e4ea6],\n.fade-leave-active[data-v-103e4ea6] {\n  max-height: 3rem;\n  transition: all .3s;\n}\n.fade-enter[data-v-103e4ea6],\n.fade-leave-to[data-v-103e4ea6] {\n  opacity: 0;\n  max-height: 0;\n}\n.cbx-container[data-v-103e4ea6] {\n  --cbx-size: 12px;\n}\n", ""]);
+exports.push([module.i, ".fade-enter-active[data-v-103e4ea6],\n.fade-leave-active[data-v-103e4ea6] {\n  max-height: 3rem;\n  transition: all .3s ease-in-out;\n}\n.fade-enter[data-v-103e4ea6],\n.fade-leave-to[data-v-103e4ea6] {\n  opacity: 0;\n  max-height: 0;\n}\n.cbx-container[data-v-103e4ea6] {\n  --cbx-size: 12px;\n}\n", ""]);
 
 // exports
 
@@ -8062,7 +8072,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "@-webkit-keyframes zoomIn-data-v-e363f134 {\n0% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n50% {\n    -webkit-transform: scale(.7);\n            transform: scale(.7);\n}\n100% {\n    -webkit-transform: scale(1.3);\n            transform: scale(1.3);\n}\n}\n@keyframes zoomIn-data-v-e363f134 {\n0% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n50% {\n    -webkit-transform: scale(.7);\n            transform: scale(.7);\n}\n100% {\n    -webkit-transform: scale(1.3);\n            transform: scale(1.3);\n}\n}\n.zoom-enter-active[data-v-e363f134],\n.zoom-leave-active[data-v-e363f134] {\n  /*transition: all .5s;*/\n}\n.zoom-enter[data-v-e363f134],\n.zoom-leave-to[data-v-e363f134] {\n  -webkit-animation: zoomIn-data-v-e363f134 .4s ease;\n          animation: zoomIn-data-v-e363f134 .4s ease;\n  /*transform: scale(1.5);*/\n}\n.favorite-icon[data-v-e363f134] {\n  transition: all .3s;\n}\n.favorite-icon[data-v-e363f134]:hover {\n  -webkit-transform: scale(1.1);\n          transform: scale(1.1);\n}\n", ""]);
+exports.push([module.i, "@-webkit-keyframes zoomIn-data-v-e363f134 {\n0% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n50% {\n    -webkit-transform: scale(.7);\n            transform: scale(.7);\n}\n100% {\n    -webkit-transform: scale(1.3);\n            transform: scale(1.3);\n}\n}\n@keyframes zoomIn-data-v-e363f134 {\n0% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n50% {\n    -webkit-transform: scale(.7);\n            transform: scale(.7);\n}\n100% {\n    -webkit-transform: scale(1.3);\n            transform: scale(1.3);\n}\n}\n.zoom-enter[data-v-e363f134],\n.zoom-leave-to[data-v-e363f134] {\n  -webkit-animation: zoomIn-data-v-e363f134 .4s ease;\n          animation: zoomIn-data-v-e363f134 .4s ease;\n  /*transform: scale(1.5);*/\n}\n.favorite-icon[data-v-e363f134] {\n  transition: all .3s ease-in-out;\n}\n.favorite-icon[data-v-e363f134]:hover {\n  -webkit-transform: scale(1.1);\n          transform: scale(1.1);\n}\n", ""]);
 
 // exports
 
@@ -8081,7 +8091,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".alert-flash[data-v-a4a130d0] {\n  padding: .75rem 1.25rem;\n  margin-bottom: 1rem;\n  border: 1px solid transparent;\n  border-radius: .25rem;\n  position: fixed;\n  right: 2.5rem;\n  top: 2rem;\n}\n.alert-danger[data-v-a4a130d0] {\n  color: #721c24;\n  background-color: #f8d7da;\n  border-color: #f5c6cb;\n}\n.alert-success[data-v-a4a130d0] {\n  color: #155724;\n  background-color: #d4edda;\n  border-color: #c3e6cb;\n}\n.alert-info[data-v-a4a130d0] {\n  color: #004085;\n  background-color: #cce5ff;\n  border-color: #b8daff;\n}\n.alert-warning[data-v-a4a130d0] {\n  color: #856404;\n  background-color: #fff3cd;\n  border-color: #ffeeba;\n}\n.slide-enter[data-v-a4a130d0],\n.slide-leave-to[data-v-a4a130d0] {\n  opacity: .2;\n  -webkit-transform: translateX(25rem);\n          transform: translateX(25rem);\n}\n.slide-enter-active[data-v-a4a130d0],\n.slide-leave-active[data-v-a4a130d0] {\n  transition: all .4s ease-out;\n}\n", ""]);
+exports.push([module.i, ".alert-flash[data-v-a4a130d0] {\n  padding: .75rem 1.25rem;\n  margin-bottom: 1rem;\n  border: 1px solid transparent;\n  border-radius: .25rem;\n  position: fixed;\n  right: 2.5rem;\n  top: 2rem;\n}\n.alert-danger[data-v-a4a130d0] {\n  color: #721c24;\n  background-color: #f8d7da;\n  border-color: #f5c6cb;\n}\n.alert-success[data-v-a4a130d0] {\n  color: #155724;\n  background-color: #d4edda;\n  border-color: #c3e6cb;\n}\n.alert-info[data-v-a4a130d0] {\n  color: #004085;\n  background-color: #cce5ff;\n  border-color: #b8daff;\n}\n.alert-warning[data-v-a4a130d0] {\n  color: #856404;\n  background-color: #fff3cd;\n  border-color: #ffeeba;\n}\n.slide-enter[data-v-a4a130d0],\n.slide-leave-to[data-v-a4a130d0] {\n  opacity: .2;\n  -webkit-transform: translateX(25rem);\n          transform: translateX(25rem);\n}\n.slide-enter-active[data-v-a4a130d0],\n.slide-leave-active[data-v-a4a130d0] {\n  transition: all .3s ease-in-out;\n}\n", ""]);
 
 // exports
 
@@ -8119,7 +8129,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".modal[data-v-4b2d100a] {\n  max-height: 60vh;\n  z-index: 1100;\n}\n.content[data-v-4b2d100a] {\n  max-height: 50vh;\n}\nbutton[disabled][data-v-4b2d100a] {\n  background-color: lightgrey;\n  opacity: .7;\n}\n.table[data-v-4b2d100a] {\n  display: grid;\n  grid-template-columns: 15% 35% 35%;\n  grid-column-gap: 1rem;\n  align-items: center;\n}\n.grid-header[data-v-4b2d100a] {\n  display: grid;\n  align-items: center;\n  grid-template-columns: 15% 35% 35% 15%;\n  grid-gap: 1rem;\n}\n.grid-header[data-v-4b2d100a]:before {\n  content: '';\n  grid-column: 1;\n  grid-row: 1;\n}\nbutton[data-v-4b2d100a] {\n  grid-column: 4;\n}\n.h-bar[data-v-4b2d100a] {\n  grid-column: 1 / -1;\n}\n.h-bar[data-v-4b2d100a]:last-child {\n  display: none;\n  visibility: hidden;\n}\n.slide-up-enter[data-v-4b2d100a],\n.slide-up-leave-to[data-v-4b2d100a] {\n  opacity: 0;\n  height: 0;\n  margin-top: 0;\n  margin-bottom: 0;\n  -webkit-transform: translateY(3rem);\n          transform: translateY(3rem);\n}\n.slide-up-enter-active[data-v-4b2d100a],\n.slide-up-leave-active[data-v-4b2d100a] {\n  transition: all .4s ease-in-out;\n  overflow: hidden;\n}\n\n/* force the browser into optimizing the animation */\n*[data-v-4b2d100a] {\n  will-change: height;\n  -webkit-transform: translateZ(0);\n          transform: translateZ(0);\n  -webkit-backface-visibility: hidden;\n          backface-visibility: hidden;\n  -webkit-perspective: 1000px;\n          perspective: 1000px;\n}\n", ""]);
+exports.push([module.i, ".modal[data-v-4b2d100a] {\n  max-height: 60vh;\n  z-index: 1100;\n}\n.content[data-v-4b2d100a] {\n  max-height: 50vh;\n}\nbutton[disabled][data-v-4b2d100a] {\n  background-color: lightgrey;\n  opacity: .7;\n}\n.table[data-v-4b2d100a] {\n  display: grid;\n  grid-template-columns: 15% 35% 35%;\n  grid-column-gap: 1rem;\n  align-items: center;\n}\n.grid-header[data-v-4b2d100a] {\n  display: grid;\n  align-items: center;\n  grid-template-columns: 15% 35% 35% 15%;\n  grid-gap: 1rem;\n}\n.grid-header[data-v-4b2d100a]:before {\n  content: '';\n  grid-column: 1;\n  grid-row: 1;\n}\nbutton[data-v-4b2d100a] {\n  grid-column: 4;\n}\n.h-bar[data-v-4b2d100a] {\n  grid-column: 1 / -1;\n}\n.h-bar[data-v-4b2d100a]:last-child {\n  display: none;\n  visibility: hidden;\n}\n.slide-up-enter[data-v-4b2d100a],\n.slide-up-leave-to[data-v-4b2d100a] {\n  opacity: 0;\n  height: 0;\n  margin-top: 0;\n  margin-bottom: 0;\n  -webkit-transform: translateY(3rem);\n          transform: translateY(3rem);\n}\n.slide-up-enter-active[data-v-4b2d100a],\n.slide-up-leave-active[data-v-4b2d100a] {\n  transition: all .3s ease-in-out;\n  overflow: hidden;\n}\n\n/* force the browser into optimizing the animation */\n*[data-v-4b2d100a] {\n  will-change: height;\n  -webkit-transform: translateZ(0);\n          transform: translateZ(0);\n  -webkit-backface-visibility: hidden;\n          backface-visibility: hidden;\n  -webkit-perspective: 1000px;\n          perspective: 1000px;\n}\n", ""]);
 
 // exports
 
@@ -8157,7 +8167,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".product__images[data-v-c38ae4be] {\n  flex: 0 0 40%;\n}\n.image__main[data-v-c38ae4be] {\n  cursor: zoom-in;\n}\n.modal[data-v-c38ae4be] {\n  position: fixed;\n  z-index: 10;\n  left: 0;\n  top: 0;\n  width: 100%;\n  height: 100%;\n  overflow: auto;\n  background-color: rgba(0, 0, 0, .85);\n  transition: all .5s;\n}\n.modal-content[data-v-c38ae4be] {\n  width: 88vh;\n}\n.thumbnail__image[data-v-c38ae4be] {\n  opacity: .7;\n  transition: all .3s;\n}\n.thumbnail__image[data-v-c38ae4be]:hover {\n  opacity: 1;\n  -webkit-transform: scale(1.07);\n          transform: scale(1.07);\n}\n\n/* Next & previous buttons */\n.prev[data-v-c38ae4be],\n.next[data-v-c38ae4be] {\n  cursor: pointer;\n  opacity: .8;\n  transition: all .6s ease;\n}\n.prev[data-v-c38ae4be]:hover,\n.next[data-v-c38ae4be]:hover {\n  opacity: 1;\n  -webkit-transform: scale(1.1);\n          transform: scale(1.1);\n}\n.thumbnail--active[data-v-c38ae4be] {\n  border: solid 1px #bbb;\n  opacity: 1;\n}\n.fade-enter-active[data-v-c38ae4be],\n.fade-leave-active[data-v-c38ae4be] {\n  transition: opacity .2s;\n}\n.fade-enter[data-v-c38ae4be],\n.fade-leave-to[data-v-c38ae4be] {\n  opacity: 0;\n}\n.scale-enter-active[data-v-c38ae4be] {\n  -webkit-animation: scaleIn-data-v-c38ae4be .2s ease-out forwards;\n          animation: scaleIn-data-v-c38ae4be .2s ease-out forwards;\n}\n.scale-leave-active[data-v-c38ae4be] {\n  -webkit-animation: scaleOut-data-v-c38ae4be .2s ease-out forwards;\n          animation: scaleOut-data-v-c38ae4be .2s ease-out forwards;\n}\n.scale-enter[data-v-c38ae4be],\n.scale-leave-to[data-v-c38ae4be] {\n}\n@-webkit-keyframes scaleIn-data-v-c38ae4be {\n0% {\n    opacity: 0;\n    -webkit-transform: scale(.75);\n            transform: scale(.75);\n}\n100% {\n    opacity: 1;\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n}\n@keyframes scaleIn-data-v-c38ae4be {\n0% {\n    opacity: 0;\n    -webkit-transform: scale(.75);\n            transform: scale(.75);\n}\n100% {\n    opacity: 1;\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n}\n@-webkit-keyframes scaleOut-data-v-c38ae4be {\n0% {\n    opacity: 1;\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n100% {\n    opacity: 0;\n    -webkit-transform: scale(.75);\n            transform: scale(.75);\n}\n}\n@keyframes scaleOut-data-v-c38ae4be {\n0% {\n    opacity: 1;\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n100% {\n    opacity: 0;\n    -webkit-transform: scale(.75);\n            transform: scale(.75);\n}\n}\n", ""]);
+exports.push([module.i, ".product__images[data-v-c38ae4be] {\n  flex: 0 0 40%;\n}\n.image__main[data-v-c38ae4be] {\n  cursor: zoom-in;\n}\n.modal[data-v-c38ae4be] {\n  position: fixed;\n  z-index: 10;\n  left: 0;\n  top: 0;\n  width: 100%;\n  height: 100%;\n  overflow: auto;\n  background-color: rgba(0, 0, 0, .85);\n  transition: all .4s ease-in-out;\n}\n.modal-content[data-v-c38ae4be] {\n  width: 88vh;\n}\n.thumbnail__image[data-v-c38ae4be] {\n  opacity: .7;\n  transition: all .3s ease-in-out;\n}\n.thumbnail__image[data-v-c38ae4be]:hover {\n  opacity: 1;\n  -webkit-transform: scale(1.07);\n          transform: scale(1.07);\n}\n\n/* Next & previous buttons */\n.prev[data-v-c38ae4be],\n.next[data-v-c38ae4be] {\n  cursor: pointer;\n  opacity: .8;\n  transition: all .4s ease-in-out;\n}\n.prev[data-v-c38ae4be]:hover,\n.next[data-v-c38ae4be]:hover {\n  opacity: 1;\n  -webkit-transform: scale(1.1);\n          transform: scale(1.1);\n}\n.thumbnail--active[data-v-c38ae4be] {\n  border: solid 1px #bbb;\n  opacity: 1;\n}\n.fade-enter-active[data-v-c38ae4be],\n.fade-leave-active[data-v-c38ae4be] {\n  transition: opacity .2s;\n}\n.fade-enter[data-v-c38ae4be],\n.fade-leave-to[data-v-c38ae4be] {\n  opacity: 0;\n}\n.scale-enter-active[data-v-c38ae4be] {\n  -webkit-animation: scaleIn-data-v-c38ae4be .2s ease-in-out forwards;\n          animation: scaleIn-data-v-c38ae4be .2s ease-in-out forwards;\n}\n.scale-leave-active[data-v-c38ae4be] {\n  -webkit-animation: scaleOut-data-v-c38ae4be .2s ease-in-out forwards;\n          animation: scaleOut-data-v-c38ae4be .2s ease-in-out forwards;\n}\n@-webkit-keyframes scaleIn-data-v-c38ae4be {\n0% {\n    opacity: 0;\n    -webkit-transform: scale(.75);\n            transform: scale(.75);\n}\n100% {\n    opacity: 1;\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n}\n@keyframes scaleIn-data-v-c38ae4be {\n0% {\n    opacity: 0;\n    -webkit-transform: scale(.75);\n            transform: scale(.75);\n}\n100% {\n    opacity: 1;\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n}\n@-webkit-keyframes scaleOut-data-v-c38ae4be {\n0% {\n    opacity: 1;\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n100% {\n    opacity: 0;\n    -webkit-transform: scale(.75);\n            transform: scale(.75);\n}\n}\n@keyframes scaleOut-data-v-c38ae4be {\n0% {\n    opacity: 1;\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n100% {\n    opacity: 0;\n    -webkit-transform: scale(.75);\n            transform: scale(.75);\n}\n}\n", ""]);
 
 // exports
 
@@ -8176,7 +8186,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".search__image[data-v-a79f6436] {\n  background-image: url('/spinner.gif');\n  background-size: cover;\n  height: 57.98px;\n}\n.w-89[data-v-a79f6436] {\n  width: 89%;\n}\n.search__results[data-v-a79f6436] {\n  top: 2.45rem;\n  left: .4rem;\n}\n.search__icon[data-v-a79f6436] {\n  transition: all .3s;\n}\n.search__button:hover .search__icon[data-v-a79f6436] {\n  -webkit-transform: scale(1.1);\n          transform: scale(1.1);\n}\n.fade-enter-active[data-v-a79f6436],\n.fade-leave-active[data-v-a79f6436] {\n  transition: all .3s;\n}\n.fade-enter[data-v-a79f6436],\n.fade-leave-to[data-v-a79f6436] {\n  opacity: 0;\n}\n.search__input[data-v-a79f6436] {\n  width: 95%;\n  transition: all .3s;\n  margin-right: -2.5rem;\n}\n.search__input[data-v-a79f6436]:focus {\n  width: 100%;\n}\n", ""]);
+exports.push([module.i, ".search__image[data-v-a79f6436] {\n  background-image: url('/spinner.gif');\n  background-size: cover;\n  height: 57.98px;\n}\n.w-89[data-v-a79f6436] {\n  width: 89%;\n}\n.search__results[data-v-a79f6436] {\n  top: 2.45rem;\n  left: .4rem;\n}\n.search__icon[data-v-a79f6436] {\n  transition: all .2s ease-in-out;\n}\n.search__button:hover .search__icon[data-v-a79f6436] {\n  -webkit-transform: scale(1.1);\n          transform: scale(1.1);\n}\n.fade-enter-active[data-v-a79f6436],\n.fade-leave-active[data-v-a79f6436] {\n  transition: all .3s ease-in-out;\n}\n.fade-enter[data-v-a79f6436],\n.fade-leave-to[data-v-a79f6436] {\n  opacity: 0;\n}\n.search__input[data-v-a79f6436] {\n  width: 95%;\n  transition: all .3s;\n  margin-right: -2.5rem;\n}\n.search__input[data-v-a79f6436]:focus {\n  width: 100%;\n}\n", ""]);
 
 // exports
 
@@ -75490,7 +75500,7 @@ var render = function() {
               ]),
               _vm._v(" "),
               _vm._l(_vm.items, function(item) {
-                return _c("div", [
+                return _c("div", { key: item.productId }, [
                   _c("div", { staticClass: "mb-2 flex items-center" }, [
                     _c("div", { staticClass: "w-1/5 mr-4" }, [
                       _c("img", {
@@ -75607,7 +75617,7 @@ var render = function() {
         scrollPerPage: false
       }
     },
-    _vm._l(_vm.latestProducts, function(product, index) {
+    _vm._l(_vm.latestProducts, function(product) {
       return _c("slide", { key: product.productId }, [
         _c("div", { staticClass: "flex flex-col items-center" }, [
           _c("img", {
@@ -75814,9 +75824,11 @@ var render = function() {
           : _vm._e(),
         _vm._v(" "),
         _vm._l(_vm.cities, function(city) {
-          return _c("option", { domProps: { value: city.nom } }, [
-            _vm._v(_vm._s(city.nom))
-          ])
+          return _c(
+            "option",
+            { key: city.code, domProps: { value: city.nom } },
+            [_vm._v(_vm._s(city.nom))]
+          )
         })
       ],
       2
@@ -76374,6 +76386,7 @@ var render = function() {
               return _c(
                 "h3",
                 {
+                  key: product.productId,
                   staticClass: "font-light tracking-wide text-base text-white"
                 },
                 [_vm._v(_vm._s(product.name))]
@@ -76421,15 +76434,19 @@ var render = function() {
                   [
                     _vm._l(_vm.filteredAttributes, function(attribute) {
                       return [
-                        _c("h5", { staticClass: "ml-4 text-sm" }, [
-                          _vm._v(_vm._s(attribute.name))
-                        ]),
+                        _c(
+                          "h5",
+                          { key: attribute.id, staticClass: "ml-4 text-sm" },
+                          [_vm._v(_vm._s(attribute.name))]
+                        ),
                         _vm._v(" "),
-                        _vm._l(attribute.values, function(value) {
-                          return _c("div", [_vm._v(_vm._s(value))])
+                        _vm._l(attribute.values, function(value, index) {
+                          return _c("div", { key: value + index }, [
+                            _vm._v(_vm._s(value))
+                          ])
                         }),
                         _vm._v(" "),
-                        _c("div", { staticClass: "h-bar" })
+                        _c("div", { key: attribute.name, staticClass: "h-bar" })
                       ]
                     })
                   ],
@@ -76949,20 +76966,15 @@ var render = function() {
         },
         domProps: { value: _vm.query },
         on: {
-          keyup: [
-            function($event) {
-              if (
-                !$event.type.indexOf("key") &&
-                _vm._k($event.keyCode, "esc", 27, $event.key, ["Esc", "Escape"])
-              ) {
-                return null
-              }
-              _vm.query = ""
-            },
-            function($event) {
-              return _vm.searchProducts()
+          keyup: function($event) {
+            if (
+              !$event.type.indexOf("key") &&
+              _vm._k($event.keyCode, "esc", 27, $event.key, ["Esc", "Escape"])
+            ) {
+              return null
             }
-          ],
+            _vm.query = ""
+          },
           focus: function($event) {
             _vm.showResults = true
           },
@@ -77015,6 +77027,7 @@ var render = function() {
                         return _c(
                           "a",
                           {
+                            key: product.productId,
                             staticClass:
                               "flex items-center hover:bg-grey-lighter pr-2",
                             attrs: { href: _vm.productPath(product) }
@@ -92628,8 +92641,8 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_2__
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/yguillemain/Desktop/code/centrale-marketplace/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/yguillemain/Desktop/code/centrale-marketplace/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/yann/code/centrale-marketplace/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/yann/code/centrale-marketplace/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

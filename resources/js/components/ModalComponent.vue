@@ -7,7 +7,7 @@
                         <use class="text-white fill-current" href="/svg/icons.svg#close"></use>
                     </svg>
                 </span>
-                <h3 v-for="product in products" class="font-light tracking-wide text-base text-white">{{ product.name }}</h3>
+                <h3 v-for="product in products" :key="product.productId" class="font-light tracking-wide text-base text-white">{{ product.name }}</h3>
                 <button 
                     class="translateY mr-auto focus:outline-none hover:bg-blue-dark bg-white font-normal text-blue hover:text-white py-3 px-3 border hover:border-transparent rounded"
                     :disabled="buttonDisabled"
@@ -23,9 +23,9 @@
                 name=slide-up>
                 <div class="content overflow-y-scroll mt-4 mb-10 table mx-6" v-if="showContent">
                     <template v-for="attribute in filteredAttributes">
-                        <h5 class="ml-4 text-sm">{{attribute.name}}</h5>
-                        <div v-for="value in attribute.values">{{ value }}</div>
-                        <div class="h-bar"></div>
+                        <h5 :key="attribute.id" class="ml-4 text-sm">{{attribute.name}}</h5>
+                        <div :key="value + index" v-for="(value, index) in attribute.values">{{ value }}</div>
+                        <div :key="attribute.name" class="h-bar"></div>
                     </template>
                 </div>
             </transition>
@@ -74,7 +74,7 @@
                     results[0].forEach(result => {
                         results[1].forEach(result2 => {
                             if (result.id === result2.id) {
-                                final.push({name: result.name, values: [...result.values, ...result2.values]})
+                                final.push({id: result.id, name: result.name, values: [...result.values, ...result2.values]})
                             }
                         })
                     });

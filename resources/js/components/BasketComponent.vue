@@ -15,7 +15,7 @@
         <div class="basket__content min-w-64">
             <div v-if="items.length > 0">
                 <h3 class="uppercase text-center mb-4">Mon panier</h3>
-                <div v-for="item in items">
+                <div v-for="item in items" :key="item.productId">
                     <div class="mb-2 flex items-center">
                         <div class="w-1/5 mr-4">
                             <img class="w-full" :src="getImage(item.mainImage)">

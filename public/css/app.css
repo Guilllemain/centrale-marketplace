@@ -614,9 +614,9 @@ a:hover {
   padding-bottom: 1rem;
   display: flex;
   flex-wrap: wrap;
-  transition: -webkit-transform .4s;
-  transition: transform .4s;
-  transition: transform .4s, -webkit-transform .4s;
+  transition: -webkit-transform .3s ease-in-out;
+  transition: transform .3s ease-in-out;
+  transition: transform .3s ease-in-out, -webkit-transform .3s ease-in-out;
 }
 
 .megamenu__subcategories {
@@ -719,7 +719,7 @@ a:hover {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .12), 0 2px 4px 0 rgba(0, 0, 0, .08);
   right: 0;
   width: 20vw;
-  transition: all .3s;
+  transition: all .2s ease-in-out;
 }
 
 .basket:hover .basket__content {
@@ -6480,7 +6480,7 @@ a:hover {
 }
 
 .translateY {
-  transition: all .3s;
+  transition: all .3s ease-in-out;
 }
 
 .translateY:active {

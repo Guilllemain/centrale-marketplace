@@ -1,6 +1,13 @@
 <template>
     <form action="/search" method="GET" autocomplete="off" class="relative w-1/3 flex items-center justify-center">
-        <input class="search__input border border-grey-light rounded appearance-none text-grey-darker py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-grey" type="text" placeholder="Rechercher un produit" name="query" v-model="query" @keyup.esc="query = ''" @keyup="searchProducts()" @focus="showResults = true" @blur="showResults = false">
+        <input  class="search__input border border-grey-light rounded appearance-none text-grey-darker py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-grey"
+                type="text"
+                placeholder="Rechercher un produit"
+                name="query"
+                v-model="query"
+                @keyup.esc="query = ''"
+                @focus="showResults = true"
+                @blur="showResults = false">
         
         <transition name="fade">
             <div v-show="showResults && query.length > 3">
@@ -11,7 +18,7 @@
                         </div>
                     </div>
                     <div v-else-if="productSuggestions.length > 0">
-                        <a :href="productPath(product)" v-for="product in productSuggestions" class="flex items-center hover:bg-grey-lighter pr-2">
+                        <a :href="productPath(product)" v-for="product in productSuggestions" :key="product.productId" class="flex items-center hover:bg-grey-lighter pr-2">
                             <div class="w-1/6 flex items-center mr-2 search__image">
                                 <img class="w-full" :src="getImage(product)">
                             </div>
@@ -51,6 +58,12 @@
                 showResults: false
             }
         },
+        watch: {
+            query() {
+                this.loading = true;
+                this.productAutocomplete();
+            }
+        },
         methods: {
             limitLength(string) {
                 if (string.length > 44) {
@@ -70,10 +83,6 @@
                 } else {
                     return `/${product.categoryPath[0]['slug']}/${product.categoryPath[1]['slug']}/${product.slug}`;
                 }
-            },
-            searchProducts() {
-                this.loading = true;
-                this.productAutocomplete();
             },
             productAutocomplete: _.debounce(function () {
                     this.getResults();

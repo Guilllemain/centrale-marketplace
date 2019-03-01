@@ -122,11 +122,11 @@
                 </div>
             </div>
         </div>
+        <a href="/basket/invoice">Enregistrer devis</a>
     @else
         <h2 class="font-light uppercase mb-4 mt-8">Mon panier</h2>
         <div class="mb-8">Votre basket est vide</div>
         <a href="/search" class="text-center mt-4 bg-orange-dark w-full hover:bg-orange hover:text-white text-white font-bold py-2 px-4 rounded">Continuer votre shopping</a>
     @endif
-    <a href="/basket/invoice">Enregistrer devis</a>
 </div>
 @endsection

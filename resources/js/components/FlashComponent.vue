@@ -78,6 +78,6 @@
         transform: translateX(25rem);
     }
     .slide-enter-active, .slide-leave-active {
-        transition: all .4s ease-out;
+        transition: all .3s ease-in-out;
     }
 </style>

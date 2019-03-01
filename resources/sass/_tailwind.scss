@@ -72,7 +72,7 @@ a {
         transform: scaleY(0);
         transform-origin: top;
         @apply invisible opacity-0 absolute w-full z-30 bg-white pl-16 pr-12 py-4 flex flex-wrap;
-        transition: transform .4s;
+        transition: transform .3s ease-in-out;
     }      
 
     &__subcategories {
@@ -152,7 +152,7 @@ a {
 .basket{
     &__content {
         @apply absolute invisible opacity-0 z-50 bg-white p-6 rounded shadow-md pin-r w-20v;
-        transition: all .3s;
+        transition: all .2s ease-in-out;
     }
     
     &:hover &__content {
@@ -177,7 +177,7 @@ a {
 @tailwind utilities;
 
 .translateY {
-    transition: all .3s;
+    transition: all .3s ease-in-out;
     &:active {
       transform: scale(.95) translateY(4px);
     }

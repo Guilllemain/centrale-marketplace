@@ -58,7 +58,7 @@
 <style scoped>
     .fade-enter-active, .fade-leave-active {
         max-height: 3rem;
-        transition: all .3s;
+        transition: all .3s ease-in-out;
     }
     .fade-enter, .fade-leave-to {
         opacity: 0;

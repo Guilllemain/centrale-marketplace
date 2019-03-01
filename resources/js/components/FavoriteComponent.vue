@@ -90,7 +90,7 @@
         /*transform: scale(1.5);*/
     }
     .favorite-icon {
-        transition: all .3s;
+        transition: all .3s ease-in-out;
     }
     .favorite-icon:hover {
         transform: scale(1.1);

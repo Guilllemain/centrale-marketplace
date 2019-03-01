@@ -113,14 +113,14 @@
         height: 100%;
         overflow: auto;
         background-color: rgba(0, 0, 0, .85);
-        transition: all .5s;
+        transition: all .4s ease-in-out;
     }
     .modal-content {
         width: 88vh;
     }
     .thumbnail__image {
         opacity: .70;
-        transition: all .3s;
+        transition: all .3s ease-in-out;
     }
     .thumbnail__image:hover {
         opacity: 1;
@@ -132,7 +132,7 @@
     .next {
       cursor: pointer;
       opacity: .8;
-      transition: all 0.6s ease;
+      transition: all .4s ease-in-out;
     }
 
     .prev:hover,
@@ -152,10 +152,10 @@
         opacity: 0;
     }
     .scale-enter-active {
-        animation: scaleIn .2s ease-out forwards;
+        animation: scaleIn .2s ease-in-out forwards;
     }
     .scale-leave-active {
-        animation: scaleOut .2s ease-out forwards;
+        animation: scaleOut .2s ease-in-out forwards;
     }
     .scale-enter, .scale-leave-to {
     }

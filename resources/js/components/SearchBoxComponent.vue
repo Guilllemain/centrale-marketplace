@@ -109,15 +109,15 @@
         left: .4rem;
     }
     .search__icon {
-        transition: all .3s;
+        transition: all .2s ease-in-out;
     }
     .search__button:hover .search__icon {
         transform: scale(1.1);
     }
     .fade-enter-active, .fade-leave-active {
-        transition: all .3s;
+        transition: all .3s ease-in-out;
     }
-    .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    .fade-enter, .fade-leave-to {
         opacity: 0;
     }
     .search__input {

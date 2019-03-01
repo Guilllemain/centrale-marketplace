@@ -195,7 +195,7 @@
         transform: translateY(3rem);
     }
     .slide-up-enter-active, .slide-up-leave-active {
-        transition: all .4s ease-in-out;
+        transition: all .3s ease-in-out;
         overflow: hidden;
     }
     /* force the browser into optimizing the animation */

@@ -1,41 +1,131 @@
-<!DOCTYPE html>
-<html>
+
+<!doctype html>
+<html lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>Hi</title>
+    <meta charset="UTF-8">
+    <title>Invoice - #123</title>
+
+    <style type="text/css">
+        @page {
+            margin: 0px;
+        }
+        body {
+            margin: 0px;
+        }
+        * {
+            font-family: Verdana, Arial, sans-serif;
+        }
+        a {
+            color: #fff;
+            text-decoration: none;
+        }
+        table {
+            font-size: x-small;
+        }
+        tfoot tr td {
+            font-weight: bold;
+            font-size: x-small;
+        }
+        .invoice table {
+            margin: 15px;
+        }
+        .invoice h3 {
+            margin-left: 15px;
+        }
+        .information {
+            background-color: #60A7A6;
+            color: #FFF;
+        }
+        .information .logo {
+            margin: 5px;
+        }
+        .information table {
+            padding: 10px;
+        }
+    </style>
+
 </head>
 <body>
-    <div>
-        <h2 class="font-light uppercase">Mon panier</h2>
+    <div class="information">
+        <table width="100%">
+            <tr>
+                <td align="left" style="width: 40%;">
+                    <h3>John Doe</h3>
+                    <pre>
+                    Street 15
+                    123456 City
+                    United Kingdom
+                    <br /><br />
+                    Date: 2018-01-01
+                    Identifier: #uniquehash
+                    Status: Paid
+                    </pre>
+                </td>
+                <td align="center">
+                    {{-- <img src="/path/to/logo.png" alt="Logo" width="64" class="logo"/> --}}
+                </td>
+                <td align="right" style="width: 40%;">
+                    <h3>CompanyName</h3>
+                    <pre>
+                        https://company.com
+
+                        Street 26
+                        123456 City
+                        United Kingdom
+                    </pre>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <br/>
+    <div class="invoice">
+        <h3>Invoice specification #123</h3>
         @foreach ($basket->getCompanies() as $company)
-            <div class="my-4 p-4 bg-white border border-grey-light">
-                <h4>Vendu par {{ $company['company']['name'] }}</h4>
+            <h4>Vendu par {{ $company['company']['name'] }}</h4>
+            <table width="100%">
+                <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Description</th>
+                    <th>Quantité</th>
+                    <th>Total</th>
+                </tr>
+                </thead>
+                <tbody>
                 @foreach($company['shippingGroups'] as $shippingGroup)
-                    <div class="my-4">
                         @foreach($shippingGroup['items'] as $item)
-                            <div class="flex items-center mb-4">
-                                <div class="flex items-center flex-1">
-                                    <div class="flex flex-col">
-                                        <h3 class="ml-2">{{ $item['productName']}}</h3>
-                                    </div>
-                                </div>
-                                <div class="flex items-center w-1/5">
-                                    <span>Quantité : {{$item['quantity']}}</span>
-                                </div>
-                                <div class="w-1/5 text-right font-bold">
-                                    <p>Total : {{formatPrice($item['total'])}} €</p>
-                                </div>
-                            </div>
+                            <tr>
+                                <td>{{ $item['productName']}}</td>
+                                <td>Add description</td>
+                                <td>{{$item['quantity']}}</td>
+                                <td align="left">{{formatPrice($item['total'])}}</td>
+                            </tr>
                         @endforeach
-                    </div>
-                    <div class="flex items-center justify-between">
-                        <div class="font-bold">
-                            <p>Total pour ce marchand : {{ formatPrice($company['productTotalWithTaxes']) }} €</p>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
+                    @endforeach
+                </tbody>
+
+                <tfoot>
+                <tr>
+                    <td colspan="1"></td>
+                    <td align="left">Total pour ce marchand</td>
+                    <td align="left" class="gray">{{ formatPrice($company['productTotalWithTaxes']) }}</td>
+                </tr>
+                </tfoot>
+            </table>
         @endforeach
     </div>
-</body>
+
+    <div class="information" style="position: absolute; bottom: 0;">
+        <table width="100%">
+            <tr>
+                <td align="left" style="width: 50%;">
+                    &copy; {{ date('Y') }} {{ config('app.url') }} - All rights reserved.
+                </td>
+                <td align="right" style="width: 50%;">
+                    Company Slogan
+                </td>
+            </tr>
+        </table>
+    </div>
+  </body>
 </html>

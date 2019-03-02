@@ -120,8 +120,6 @@ class BasketController extends Controller
         //     "type" => "custom",
         //     "account_token" => $token,
         // ]);
-
-        dd($account);
     }
 
     public function generateInvoicePDF()
@@ -130,6 +128,6 @@ class BasketController extends Controller
         $basket = $this->basketService->getBasket($currentbasketId);
 
         $pdf = PDF::loadView('invoicePDF', compact('basket'));
-        return $pdf->download('invoice.pdf');
+        return $pdf->stream('invoice.pdf');
     }
 }

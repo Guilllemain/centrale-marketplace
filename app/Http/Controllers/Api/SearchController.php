@@ -16,7 +16,7 @@ class SearchController extends Controller
     public function index(Request $request)
     {
         if ($request->wantsJson()) {
-            $query = $request->query;
+            $query = $request->query('query');
             $filters = $request->filters;
             $sorting = $request->sorting;
             $page = $request->page;

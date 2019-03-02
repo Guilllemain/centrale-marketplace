@@ -75,9 +75,6 @@
         },
         mounted() {
             this.loading = true;
-            const urlParams = new URLSearchParams(window.location.search);
-            this.query = urlParams.get('query') === null ? '' : urlParams.get('query');
-
             if(this.category) this.categoryId = this.category.id;
             if(this.company) this.companyId = this.company.id;
 
@@ -91,7 +88,7 @@
                 const url = [];
                 const urlParams = new URLSearchParams(window.location.search);
                 this.query = urlParams.get('query') === null ? '' : urlParams.get('query');
-
+                
                 url.push(`/api/search/products?query=${this.query}&page=${this.page}&resultsPerPage=${this.resultsPerPage}`);
 
                 if(this.categoryId) url.push(`&filters[categories]=${this.categoryId}`);

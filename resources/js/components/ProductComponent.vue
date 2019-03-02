@@ -16,7 +16,10 @@
                 <div>{{ formatPrice(product.minimumPrice) }}</div>
             </div>
         </div>
-        <button class="translateY mt-auto focus:outline-none hover:bg-grey-dark text-grey hover:text-white py-2 px-3 border hover:border-transparent rounded" @click="addToCart">Ajouter au panier</button>
+        <button class="translateY mt-auto focus:outline-none hover:bg-grey-dark text-grey hover:text-white py-2 px-3 border hover:border-transparent rounded"
+                @click="addToCart">
+                Ajouter au panier
+        </button>
         <compare-checkbox-component :product="product"></compare-checkbox-component>
     </div>
 </template>

@@ -4293,9 +4293,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    return {
-      items: []
-    };
+    return {};
   },
   mounted: function mounted() {
     this.$store.dispatch('getBasketContent');
@@ -4303,25 +4301,18 @@ __webpack_require__.r(__webpack_exports__);
   computed: {
     basket: function basket() {
       return this.$store.getters.basketContent;
-    }
-  },
-  watch: {
-    basket: function basket(value) {
-      if (value) this.getItems();
-    }
-  },
-  methods: {
-    getItems: function getItems() {
-      var _this = this;
-
-      this.basket.companyGroups.forEach(function (company) {
-        return company.shippingGroups.forEach(function (group) {
-          return group.items.forEach(function (item) {
-            return _this.items.push(item);
+    },
+    items: function items() {
+      return this.$store.getters.basketContent.companyGroups.flatMap(function (company) {
+        return company.shippingGroups.flatMap(function (group) {
+          return group.items.map(function (item) {
+            return item;
           });
         });
       });
-    },
+    }
+  },
+  methods: {
     getImage: function getImage(image) {
       if (image) {
         return "".concat("https://back.vegan-place.com/api/v1/", "image/").concat(image.id, "?w=200&h=200");
@@ -4616,7 +4607,6 @@ __webpack_require__.r(__webpack_exports__);
       required: true
     },
     value: {
-      type: Object,
       required: true
     }
   },
@@ -5109,7 +5099,6 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -5169,26 +5158,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         });
       }
 
-      return final; // let results = [];
-      // this.products.forEach(product => {
-      //     results.push({
-      //             name: product.name,
-      //             id: product.productId,
-      //             price: product.minimumPrice,
-      //             attributes: [...product.attributes]
-      //         })
-      // })
-      // let final = [];
-      // if (results.length > 1) {
-      //     results[0].attributes.forEach(att => {
-      //         results[1].attributes.forEach(att2 => {
-      //             if(att.attribute.id === att2.attribute.id) {
-      //                 final.push({name: att.attribute.name, values: [...att.values, ...att2.values]})
-      //             }
-      //         })
-      //     })
-      // }
-      // return final;
+      return final;
     }
   },
   methods: {
@@ -5354,6 +5324,9 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
+//
 //
 //
 //
@@ -5863,8 +5836,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   mounted: function mounted() {
     this.loading = true;
-    var urlParams = new URLSearchParams(window.location.search);
-    this.query = urlParams.get('query') === null ? '' : urlParams.get('query');
     if (this.category) this.categoryId = this.category.id;
     if (this.company) this.companyId = this.company.id;
     this.displayResults();
@@ -8129,7 +8100,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".modal[data-v-4b2d100a] {\n  max-height: 60vh;\n  z-index: 1100;\n}\n.content[data-v-4b2d100a] {\n  max-height: 50vh;\n}\nbutton[disabled][data-v-4b2d100a] {\n  background-color: lightgrey;\n  opacity: .7;\n}\n.table[data-v-4b2d100a] {\n  display: grid;\n  grid-template-columns: 15% 35% 35%;\n  grid-column-gap: 1rem;\n  align-items: center;\n}\n.grid-header[data-v-4b2d100a] {\n  display: grid;\n  align-items: center;\n  grid-template-columns: 15% 35% 35% 15%;\n  grid-gap: 1rem;\n}\n.grid-header[data-v-4b2d100a]:before {\n  content: '';\n  grid-column: 1;\n  grid-row: 1;\n}\nbutton[data-v-4b2d100a] {\n  grid-column: 4;\n}\n.h-bar[data-v-4b2d100a] {\n  grid-column: 1 / -1;\n}\n.h-bar[data-v-4b2d100a]:last-child {\n  display: none;\n  visibility: hidden;\n}\n.slide-up-enter[data-v-4b2d100a],\n.slide-up-leave-to[data-v-4b2d100a] {\n  opacity: 0;\n  height: 0;\n  margin-top: 0;\n  margin-bottom: 0;\n  -webkit-transform: translateY(3rem);\n          transform: translateY(3rem);\n}\n.slide-up-enter-active[data-v-4b2d100a],\n.slide-up-leave-active[data-v-4b2d100a] {\n  transition: all .3s ease-in-out;\n  overflow: hidden;\n}\n\n/* force the browser into optimizing the animation */\n*[data-v-4b2d100a] {\n  will-change: height;\n  -webkit-transform: translateZ(0);\n          transform: translateZ(0);\n  -webkit-backface-visibility: hidden;\n          backface-visibility: hidden;\n  -webkit-perspective: 1000px;\n          perspective: 1000px;\n}\n", ""]);
+exports.push([module.i, ".modal[data-v-4b2d100a] {\n  max-height: 60vh;\n  z-index: 1100;\n}\n.content[data-v-4b2d100a] {\n  max-height: 50vh;\n}\nbutton[disabled][data-v-4b2d100a] {\n  background-color: lightgrey;\n  opacity: .7;\n}\n.table[data-v-4b2d100a] {\n  display: grid;\n  grid-template-columns: 15% 35% 35%;\n  grid-column-gap: 1rem;\n  align-items: center;\n}\n.table[data-v-4b2d100a]::after {\n  content: \"\";\n  background-color: lightgrey;\n  height: 1px;\n  display: block;\n  margin: .5rem 0;\n  width: 100%;\n  grid-column: 1 / -1;\n}\n.table[data-v-4b2d100a]:last-child::after {\n  background: none;\n}\n.grid-header[data-v-4b2d100a] {\n  display: grid;\n  align-items: center;\n  grid-template-columns: 15% 35% 35% 15%;\n  grid-gap: 1rem;\n}\n.grid-header[data-v-4b2d100a]:before {\n  content: '';\n  grid-column: 1;\n  grid-row: 1;\n}\nbutton[data-v-4b2d100a] {\n  grid-column: 4;\n}\n.slide-up-enter[data-v-4b2d100a],\n.slide-up-leave-to[data-v-4b2d100a] {\n  opacity: 0;\n  height: 0;\n  margin-top: 0;\n  margin-bottom: 0;\n  -webkit-transform: translateY(3rem);\n          transform: translateY(3rem);\n}\n.slide-up-enter-active[data-v-4b2d100a],\n.slide-up-leave-active[data-v-4b2d100a] {\n  transition: all .3s ease-in-out;\n  overflow: hidden;\n}\n\n/* force the browser into optimizing the animation */\n*[data-v-4b2d100a] {\n  will-change: height;\n  -webkit-transform: translateZ(0);\n          transform: translateZ(0);\n  -webkit-backface-visibility: hidden;\n          backface-visibility: hidden;\n  -webkit-perspective: 1000px;\n          perspective: 1000px;\n}\n", ""]);
 
 // exports
 
@@ -75500,7 +75471,7 @@ var render = function() {
               ]),
               _vm._v(" "),
               _vm._l(_vm.items, function(item) {
-                return _c("div", { key: item.productId }, [
+                return _c("div", { key: item.productId + Math.random() }, [
                   _c("div", { staticClass: "mb-2 flex items-center" }, [
                     _c("div", { staticClass: "w-1/5 mr-4" }, [
                       _c("img", {
@@ -76427,30 +76398,26 @@ var render = function() {
             _vm.showContent
               ? _c(
                   "div",
-                  {
-                    staticClass:
-                      "content overflow-y-scroll mt-4 mb-10 table mx-6"
-                  },
-                  [
-                    _vm._l(_vm.filteredAttributes, function(attribute) {
-                      return [
-                        _c(
-                          "h5",
-                          { key: attribute.id, staticClass: "ml-4 text-sm" },
-                          [_vm._v(_vm._s(attribute.name))]
-                        ),
+                  { staticClass: "content overflow-y-scroll mt-4 mb-10 mx-6" },
+                  _vm._l(_vm.filteredAttributes, function(attribute) {
+                    return _c(
+                      "div",
+                      { key: attribute.id, staticClass: "table" },
+                      [
+                        _c("h5", { staticClass: "ml-4 text-sm" }, [
+                          _vm._v(_vm._s(attribute.name))
+                        ]),
                         _vm._v(" "),
                         _vm._l(attribute.values, function(value, index) {
                           return _c("div", { key: value + index }, [
                             _vm._v(_vm._s(value))
                           ])
-                        }),
-                        _vm._v(" "),
-                        _c("div", { key: attribute.name, staticClass: "h-bar" })
-                      ]
-                    })
-                  ],
-                  2
+                        })
+                      ],
+                      2
+                    )
+                  }),
+                  0
                 )
               : _vm._e()
           ]
@@ -76624,7 +76591,7 @@ var render = function() {
             "translateY mt-auto focus:outline-none hover:bg-grey-dark text-grey hover:text-white py-2 px-3 border hover:border-transparent rounded",
           on: { click: _vm.addToCart }
         },
-        [_vm._v("Ajouter au panier")]
+        [_vm._v("\n            Ajouter au panier\n    ")]
       ),
       _vm._v(" "),
       _c("compare-checkbox-component", { attrs: { product: _vm.product } })

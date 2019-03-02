@@ -15,7 +15,7 @@
         <div class="basket__content min-w-64">
             <div v-if="items.length > 0">
                 <h3 class="uppercase text-center mb-4">Mon panier</h3>
-                <div v-for="item in items" :key="item.productId">
+                <div v-for="item in items" :key="item.productId + Math.random()">
                     <div class="mb-2 flex items-center">
                         <div class="w-1/5 mr-4">
                             <img class="w-full" :src="getImage(item.mainImage)">
@@ -52,7 +52,6 @@
     export default {
         data() {
             return {
-                items: []
             }
         },
         mounted() {
@@ -61,20 +60,14 @@
         computed: {
             basket() {
                 return this.$store.getters.basketContent;
-            }
-        },
-        watch: {
-            basket(value) {
-                if (value) this.getItems();
+            },
+            items() {
+                return this.$store.getters.basketContent.companyGroups.flatMap(company => {
+                    return company.shippingGroups.flatMap(group => group.items.map(item => item))
+                });
             }
         },
         methods: {
-            getItems() {
-                this.basket.companyGroups.forEach(company => 
-                    company.shippingGroups.forEach(group => 
-                        group.items.forEach(item => 
-                            this.items.push(item))))
-            },
             getImage(image) {
                 if (image) {
                     return `${process.env.MIX_MARKETPLACE_BASE_URI}image/${image.id}?w=200&h=200`

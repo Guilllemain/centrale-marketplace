@@ -30,7 +30,6 @@
                 required: true
             },
             value: {
-                type: Object,
                 required: true
             },
         },

@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 if (! function_exists('utf8ize')) {
     function utf8ize($data)
@@ -26,7 +26,7 @@ function getProductPath($product)
 
 function formatPrice($price)
 {
-    $price = number_format($price, 2, ',', ' ');
+    $price = number_format($price, 2, ',', ' ') . ' €';
     return $price;
 }
 

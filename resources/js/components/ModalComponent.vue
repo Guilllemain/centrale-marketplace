@@ -21,12 +21,11 @@
                 @after-enter="afterEnter"
                 @leave="leave"
                 name=slide-up>
-                <div class="content overflow-y-scroll mt-4 mb-10 table mx-6" v-if="showContent">
-                    <template v-for="attribute in filteredAttributes">
-                        <h5 :key="attribute.id" class="ml-4 text-sm">{{attribute.name}}</h5>
+                <div class="content overflow-y-scroll mt-4 mb-10 mx-6" v-if="showContent">
+                    <div class="table" v-for="attribute in filteredAttributes" :key="attribute.id">
+                        <h5 class="ml-4 text-sm">{{attribute.name}}</h5>
                         <div :key="value + index" v-for="(value, index) in attribute.values">{{ value }}</div>
-                        <div :key="attribute.name" class="h-bar"></div>
-                    </template>
+                    </div>
                 </div>
             </transition>
         </div>
@@ -80,28 +79,6 @@
                     });
                 }
                 return final;
-                
-                // let results = [];
-                // this.products.forEach(product => {
-                //     results.push({
-                //             name: product.name,
-                //             id: product.productId,
-                //             price: product.minimumPrice,
-                //             attributes: [...product.attributes]
-                //         })
-                // })
-
-                // let final = [];
-                // if (results.length > 1) {
-                //     results[0].attributes.forEach(att => {
-                //         results[1].attributes.forEach(att2 => {
-                //             if(att.attribute.id === att2.attribute.id) {
-                //                 final.push({name: att.attribute.name, values: [...att.values, ...att2.values]})
-                //             }
-                //         })
-                //     })
-                // }
-                // return final;
             }
         },
         methods: {
@@ -166,6 +143,18 @@
         grid-column-gap: 1rem;
         align-items: center;
     }
+    .table::after {
+        content: "";
+        background-color: lightgrey;
+        height: 1px;
+        display: block;
+        margin: .5rem 0;
+        width: 100%;
+        grid-column: 1 / -1;
+    }
+    .table:last-child::after {
+        background: none;
+    }
     .grid-header {
         display: grid;
         align-items: center;
@@ -179,13 +168,6 @@
     }
     button {
         grid-column: 4;
-    }
-    .h-bar {
-        grid-column: 1 / -1;
-    }
-    .h-bar:last-child {
-        display: none;
-        visibility: hidden;
     }
     .slide-up-enter, .slide-up-leave-to {
         opacity: 0;

@@ -4303,13 +4303,17 @@ __webpack_require__.r(__webpack_exports__);
       return this.$store.getters.basketContent;
     },
     items: function items() {
-      return this.$store.getters.basketContent.companyGroups.flatMap(function (company) {
-        return company.shippingGroups.flatMap(function (group) {
-          return group.items.map(function (item) {
-            return item;
+      if (this.basket) {
+        return this.basket.companyGroups.flatMap(function (company) {
+          return company.shippingGroups.flatMap(function (group) {
+            return group.items.map(function (item) {
+              return item;
+            });
           });
         });
-      });
+      }
+
+      return [];
     }
   },
   methods: {
@@ -5835,6 +5839,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     });
   },
   mounted: function mounted() {
+    // delete the facets if the user navigates to another search page
+    if (performance.navigation.type !== 1 && performance.navigation.type !== 2) {
+      this.$store.commit('clearFacets');
+    }
+
+    ;
     this.loading = true;
     if (this.category) this.categoryId = this.category.id;
     if (this.company) this.companyId = this.company.id;
@@ -92608,8 +92618,8 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_2__
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/yann/code/centrale-marketplace/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/yann/code/centrale-marketplace/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/yguillemain/code/centrale-marketplace/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/yguillemain/code/centrale-marketplace/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

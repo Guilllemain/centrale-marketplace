@@ -62,9 +62,12 @@
                 return this.$store.getters.basketContent;
             },
             items() {
-                return this.$store.getters.basketContent.companyGroups.flatMap(company => {
-                    return company.shippingGroups.flatMap(group => group.items.map(item => item))
-                });
+                if (this.basket) {
+                    return this.basket.companyGroups.flatMap(company => {
+                        return company.shippingGroups.flatMap(group => group.items.map(item => item))
+                    });
+                }
+                return [];
             }
         },
         methods: {

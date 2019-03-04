@@ -74,6 +74,11 @@
             });
         },
         mounted() {
+            // delete the facets if the user navigates to another search page
+            if (performance.navigation.type !== 1 && performance.navigation.type !== 2) {
+                this.$store.commit('clearFacets');
+            };
+
             this.loading = true;
             if(this.category) this.categoryId = this.category.id;
             if(this.company) this.companyId = this.company.id;

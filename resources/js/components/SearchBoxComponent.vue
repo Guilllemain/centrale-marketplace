@@ -121,7 +121,7 @@
         transition: all .2s ease-in-out;
     }
     .search__button:hover .search__icon {
-        transform: scale(1.1);
+        transform: scale(1.1) rotate(5deg);
     }
     .fade-enter-active, .fade-leave-active {
         transition: all .3s ease-in-out;

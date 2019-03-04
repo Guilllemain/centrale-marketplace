@@ -6,7 +6,17 @@
 @endpush
 
 @section('content')
-    <div class="container mt-16">
+    <div class="container mt-8">
+        <div class="flex mb-8">
+            @for ($i = 0; $i < count($product->categoryPath); $i++)
+                <a
+                    href="{{ breadcrumbLinks($product->categoryPath, $i) }}"
+                    class="breadcrumb__path uppercase text-grey-dark"
+                    >
+                    {{ $product->categoryPath[$i]['name'] }}
+                </a>
+            @endfor
+        </div>
         <div class="flex">
             <product-images-component name="{{ $product->name }}" :images="{{ $product->getImages() }}"></product-images-component>
             
@@ -20,12 +30,12 @@
                 <div class="mb-6">
                     @if($product->declinations[0]['crossedOutPrice'])
                     <div class="flex items-baseline">
-                        <div class="text-red-dark text-xl mr-4">{{ formatPrice($product->minPrice) }} €</div>
-                        <div class="line-through text-sm">{{ formatPrice($product->declinations[0]['crossedOutPrice']) }} €</div>
+                        <div class="text-red-dark text-xl mr-4">{{ formatPrice($product->minPrice) }}</div>
+                        <div class="line-through text-sm">{{ formatPrice($product->declinations[0]['crossedOutPrice']) }}</div>
                     </div>
-                    <div>{{calcDiscount($product->declinations[0]['originalPrice'], $product->declinations[0]['crossedOutPrice'])}} € d'économies</div>
+                    <div>{{calcDiscount($product->declinations[0]['originalPrice'], $product->declinations[0]['crossedOutPrice'])}} d'économies</div>
                     @else
-                        <div class="text-xl">{{ formatPrice($product->minPrice) }} €</div>
+                        <div class="text-xl">{{ formatPrice($product->minPrice) }}</div>
                     @endif
                 </div>
                 <div class="mb-3 text-base tracking-tight font-light">{!! $product->shortDescription !!}</div>
@@ -53,7 +63,18 @@
                                 </svg>
                             </div>
                         </div>
-                        <button type="submit" class="translateY my-4 text-center bg-orange-dark hover:bg-orange hover:text-white text-white font-bold py-3 px-4 rounded focus:outline-none">Ajouter au panier</button>
+                        @if ($product->declinations[0]['amount'] <= 0) 
+                            <button type="submit"
+                                    disabled
+                                    class="my-4 text-center bg-grey-light text-white font-bold py-3 px-4 rounded cursor-default"
+                                    >Rupture de stock
+                            </button>
+                        @else
+                            <button type="submit"
+                                    class="translateY my-4 text-center bg-orange-dark hover:bg-orange text-white font-bold py-3 px-4 rounded focus:outline-none"
+                                    >Ajouter au panier
+                            </button>
+                        @endif
                     </form>
                     {{-- <div class="mr-4 flex appearance-none border border-grey-light rounded text-grey-darker leading-tight focus:outline-none focus:bg-white focus:border-grey-darker">
                         <button class="hover:bg-grey-light border-r border-grey-light px-2 focus:outline-none" type="button">

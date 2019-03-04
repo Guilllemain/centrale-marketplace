@@ -35,6 +35,10 @@
  * @import "components/buttons";
  * @import "components/forms";
  */
+.breadcrumb__path:not(:last-child)::after {
+    content: "/";
+    margin: 0 .5rem;
+}
 
 .close__icon {
     position: absolute;

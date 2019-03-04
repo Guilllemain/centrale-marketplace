@@ -34,3 +34,9 @@
         }
     }
 </script>
+
+<style>
+    .el-slider__button-wrapper {
+        z-index: 10;
+    }
+</style>

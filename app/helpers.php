@@ -24,6 +24,16 @@ function getProductPath($product)
     return $finalPath;
 }
 
+function breadcrumbLinks($fullPath, $index)
+{
+    $path = [];
+    for ($i = 0; $i <= $index; $i++) {
+        array_push($path, $fullPath[$i]['slug']);
+    }
+    $finalPath = '/' . implode('/', $path);
+    return $finalPath;
+}
+
 function formatPrice($price)
 {
     $price = number_format($price, 2, ',', ' ') . ' €';

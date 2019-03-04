@@ -1,11 +1,11 @@
 <template>
     <div class="list-product mx-3 my-4 flex flex-col items-center justify-center bg-white pb-4 rounded">
-        <div class="bg-white product__image">
-            <img :src="getImage()" class="w-full">
-        </div>
-        <div class="my-2 border-b border-grey-light w-5/6"></div>
-        <a :href="productPath()" class="px-3 mb-2">
-            <h3>{{ product.name }}</h3>
+        <a :href="productPath()">
+            <div class="bg-white product__image">
+                <img :src="getImage()" class="w-full">
+            </div>
+            <div class="my-2 border-b border-grey-light w-5/6"></div>
+            <h3 class="px-3 mb-2">{{ product.name }}</h3>
         </a>
         <div class="mb-2">
             <div v-if="product.crossedOutPrice" class="flex-col flex items-center">
@@ -72,13 +72,16 @@
     .product__image {
         width: 216px;
         height: 216px;
+        overflow: hidden;
+    }
+    .product__image img {
+        transition: all .3s ease-in-out;
+    }
+    .product__image img:hover {
+        transform: scale(1.1);
     }
     .list-product {
         transition: all .3s;
-    }
-
-    .list-product:hover {
-        transform: scale(1.05);
     }
     .compareCheckbox {
         opacity: .5;

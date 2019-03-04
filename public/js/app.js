@@ -8053,7 +8053,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "@-webkit-keyframes zoomIn-data-v-e363f134 {\n0% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n50% {\n    -webkit-transform: scale(.7);\n            transform: scale(.7);\n}\n100% {\n    -webkit-transform: scale(1.3);\n            transform: scale(1.3);\n}\n}\n@keyframes zoomIn-data-v-e363f134 {\n0% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n50% {\n    -webkit-transform: scale(.7);\n            transform: scale(.7);\n}\n100% {\n    -webkit-transform: scale(1.3);\n            transform: scale(1.3);\n}\n}\n.zoom-enter[data-v-e363f134],\n.zoom-leave-to[data-v-e363f134] {\n  -webkit-animation: zoomIn-data-v-e363f134 .4s ease;\n          animation: zoomIn-data-v-e363f134 .4s ease;\n  /*transform: scale(1.5);*/\n}\n.favorite-icon[data-v-e363f134] {\n  transition: all .3s ease-in-out;\n}\n.favorite-icon[data-v-e363f134]:hover {\n  -webkit-transform: scale(1.1);\n          transform: scale(1.1);\n}\n", ""]);
+exports.push([module.i, "@-webkit-keyframes zoomIn-data-v-e363f134 {\n0% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n50% {\n    -webkit-transform: scale(.85);\n            transform: scale(.85);\n}\n100% {\n    -webkit-transform: scale(1.15);\n            transform: scale(1.15);\n}\n}\n@keyframes zoomIn-data-v-e363f134 {\n0% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n50% {\n    -webkit-transform: scale(.85);\n            transform: scale(.85);\n}\n100% {\n    -webkit-transform: scale(1.15);\n            transform: scale(1.15);\n}\n}\n.zoom-enter[data-v-e363f134],\n.zoom-leave-to[data-v-e363f134] {\n  -webkit-animation: zoomIn-data-v-e363f134 .4s ease-in-out;\n          animation: zoomIn-data-v-e363f134 .4s ease-in-out;\n  /*transform: scale(1.5);*/\n}\n.favorite-icon[data-v-e363f134] {\n  transition: all .3s ease-in-out;\n}\n.favorite-icon[data-v-e363f134]:hover {\n  -webkit-animation: zoomIn-data-v-e363f134 .7s infinite ease;\n          animation: zoomIn-data-v-e363f134 .7s infinite ease;\n}\n", ""]);
 
 // exports
 
@@ -8110,7 +8110,26 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".modal[data-v-4b2d100a] {\n  max-height: 60vh;\n  z-index: 1100;\n}\n.content[data-v-4b2d100a] {\n  max-height: 50vh;\n}\nbutton[disabled][data-v-4b2d100a] {\n  background-color: lightgrey;\n  opacity: .7;\n}\n.table[data-v-4b2d100a] {\n  display: grid;\n  grid-template-columns: 15% 35% 35%;\n  grid-column-gap: 1rem;\n  align-items: center;\n}\n.table[data-v-4b2d100a]::after {\n  content: \"\";\n  background-color: lightgrey;\n  height: 1px;\n  display: block;\n  margin: .5rem 0;\n  width: 100%;\n  grid-column: 1 / -1;\n}\n.table[data-v-4b2d100a]:last-child::after {\n  background: none;\n}\n.grid-header[data-v-4b2d100a] {\n  display: grid;\n  align-items: center;\n  grid-template-columns: 15% 35% 35% 15%;\n  grid-gap: 1rem;\n}\n.grid-header[data-v-4b2d100a]:before {\n  content: '';\n  grid-column: 1;\n  grid-row: 1;\n}\nbutton[data-v-4b2d100a] {\n  grid-column: 4;\n}\n.slide-up-enter[data-v-4b2d100a],\n.slide-up-leave-to[data-v-4b2d100a] {\n  opacity: 0;\n  height: 0;\n  margin-top: 0;\n  margin-bottom: 0;\n  -webkit-transform: translateY(3rem);\n          transform: translateY(3rem);\n}\n.slide-up-enter-active[data-v-4b2d100a],\n.slide-up-leave-active[data-v-4b2d100a] {\n  transition: all .3s ease-in-out;\n  overflow: hidden;\n}\n\n/* force the browser into optimizing the animation */\n*[data-v-4b2d100a] {\n  will-change: height;\n  -webkit-transform: translateZ(0);\n          transform: translateZ(0);\n  -webkit-backface-visibility: hidden;\n          backface-visibility: hidden;\n  -webkit-perspective: 1000px;\n          perspective: 1000px;\n}\n", ""]);
+exports.push([module.i, ".modal[data-v-4b2d100a] {\n  max-height: 60vh;\n  z-index: 15;\n}\n.content[data-v-4b2d100a] {\n  max-height: 50vh;\n}\nbutton[disabled][data-v-4b2d100a] {\n  background-color: lightgrey;\n  opacity: .7;\n}\n.table[data-v-4b2d100a] {\n  display: grid;\n  grid-template-columns: 15% 35% 35%;\n  grid-column-gap: 1rem;\n  align-items: center;\n}\n.table[data-v-4b2d100a]::after {\n  content: \"\";\n  background-color: lightgrey;\n  height: 1px;\n  display: block;\n  margin: .5rem 0;\n  width: 100%;\n  grid-column: 1 / -1;\n}\n.table[data-v-4b2d100a]:last-child::after {\n  background: none;\n}\n.grid-header[data-v-4b2d100a] {\n  display: grid;\n  align-items: center;\n  grid-template-columns: 15% 35% 35% 15%;\n  grid-gap: 1rem;\n}\n.grid-header[data-v-4b2d100a]:before {\n  content: '';\n  grid-column: 1;\n  grid-row: 1;\n}\nbutton[data-v-4b2d100a] {\n  grid-column: 4;\n}\n.slide-up-enter[data-v-4b2d100a],\n.slide-up-leave-to[data-v-4b2d100a] {\n  opacity: 0;\n  height: 0;\n  margin-top: 0;\n  margin-bottom: 0;\n  -webkit-transform: translateY(3rem);\n          transform: translateY(3rem);\n}\n.slide-up-enter-active[data-v-4b2d100a],\n.slide-up-leave-active[data-v-4b2d100a] {\n  transition: all .3s ease-in-out;\n  overflow: hidden;\n}\n\n/* force the browser into optimizing the animation */\n*[data-v-4b2d100a] {\n  will-change: height;\n  -webkit-transform: translateZ(0);\n          transform: translateZ(0);\n  -webkit-backface-visibility: hidden;\n          backface-visibility: hidden;\n  -webkit-perspective: 1000px;\n          perspective: 1000px;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/PriceSliderComponent.vue?vue&type=style&index=0&lang=css&":
+/*!**************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/PriceSliderComponent.vue?vue&type=style&index=0&lang=css& ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".el-slider__button-wrapper {\n  z-index: 10;\n}\n", ""]);
 
 // exports
 
@@ -8129,7 +8148,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".product__image[data-v-9e91ef8e] {\n  width: 216px;\n  height: 216px;\n}\n.list-product[data-v-9e91ef8e] {\n  transition: all .3s;\n}\n.list-product[data-v-9e91ef8e]:hover {\n  -webkit-transform: scale(1.05);\n          transform: scale(1.05);\n}\n.compareCheckbox[data-v-9e91ef8e] {\n  opacity: .5;\n  cursor: not-allowed;\n}\n", ""]);
+exports.push([module.i, ".product__image[data-v-9e91ef8e] {\n  width: 216px;\n  height: 216px;\n  overflow: hidden;\n}\n.product__image img[data-v-9e91ef8e] {\n  transition: all .3s ease-in-out;\n}\n.product__image img[data-v-9e91ef8e]:hover {\n  -webkit-transform: scale(1.1);\n          transform: scale(1.1);\n}\n.list-product[data-v-9e91ef8e] {\n  transition: all .3s;\n}\n.compareCheckbox[data-v-9e91ef8e] {\n  opacity: .5;\n  cursor: not-allowed;\n}\n", ""]);
 
 // exports
 
@@ -8167,7 +8186,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".search__image[data-v-a79f6436] {\n  background-image: url('/spinner.gif');\n  background-size: cover;\n  height: 57.98px;\n}\n.w-89[data-v-a79f6436] {\n  width: 89%;\n}\n.search__results[data-v-a79f6436] {\n  top: 2.45rem;\n  left: .4rem;\n}\n.search__icon[data-v-a79f6436] {\n  transition: all .2s ease-in-out;\n}\n.search__button:hover .search__icon[data-v-a79f6436] {\n  -webkit-transform: scale(1.1);\n          transform: scale(1.1);\n}\n.fade-enter-active[data-v-a79f6436],\n.fade-leave-active[data-v-a79f6436] {\n  transition: all .3s ease-in-out;\n}\n.fade-enter[data-v-a79f6436],\n.fade-leave-to[data-v-a79f6436] {\n  opacity: 0;\n}\n.search__input[data-v-a79f6436] {\n  width: 95%;\n  transition: all .3s;\n  margin-right: -2.5rem;\n}\n.search__input[data-v-a79f6436]:focus {\n  width: 100%;\n}\n", ""]);
+exports.push([module.i, ".search__image[data-v-a79f6436] {\n  background-image: url('/spinner.gif');\n  background-size: cover;\n  height: 57.98px;\n}\n.w-89[data-v-a79f6436] {\n  width: 89%;\n}\n.search__results[data-v-a79f6436] {\n  top: 2.45rem;\n  left: .4rem;\n}\n.search__icon[data-v-a79f6436] {\n  transition: all .2s ease-in-out;\n}\n.search__button:hover .search__icon[data-v-a79f6436] {\n  -webkit-transform: scale(1.1) rotate(5deg);\n          transform: scale(1.1) rotate(5deg);\n}\n.fade-enter-active[data-v-a79f6436],\n.fade-leave-active[data-v-a79f6436] {\n  transition: all .3s ease-in-out;\n}\n.fade-enter[data-v-a79f6436],\n.fade-leave-to[data-v-a79f6436] {\n  opacity: 0;\n}\n.search__input[data-v-a79f6436] {\n  width: 95%;\n  transition: all .3s;\n  margin-right: -2.5rem;\n}\n.search__input[data-v-a79f6436]:focus {\n  width: 100%;\n}\n", ""]);
 
 // exports
 
@@ -74475,6 +74494,36 @@ if(false) {}
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/PriceSliderComponent.vue?vue&type=style&index=0&lang=css&":
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/PriceSliderComponent.vue?vue&type=style&index=0&lang=css& ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./PriceSliderComponent.vue?vue&type=style&index=0&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/PriceSliderComponent.vue?vue&type=style&index=0&lang=css&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ProductComponent.vue?vue&type=style&index=0&id=9e91ef8e&scoped=true&lang=css&":
 /*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ProductComponent.vue?vue&type=style&index=0&id=9e91ef8e&scoped=true&lang=css& ***!
@@ -76564,17 +76613,17 @@ var render = function() {
         "list-product mx-3 my-4 flex flex-col items-center justify-center bg-white pb-4 rounded"
     },
     [
-      _c("div", { staticClass: "bg-white product__image" }, [
-        _c("img", { staticClass: "w-full", attrs: { src: _vm.getImage() } })
+      _c("a", { attrs: { href: _vm.productPath() } }, [
+        _c("div", { staticClass: "bg-white product__image" }, [
+          _c("img", { staticClass: "w-full", attrs: { src: _vm.getImage() } })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "my-2 border-b border-grey-light w-5/6" }),
+        _vm._v(" "),
+        _c("h3", { staticClass: "px-3 mb-2" }, [
+          _vm._v(_vm._s(_vm.product.name))
+        ])
       ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "my-2 border-b border-grey-light w-5/6" }),
-      _vm._v(" "),
-      _c(
-        "a",
-        { staticClass: "px-3 mb-2", attrs: { href: _vm.productPath() } },
-        [_c("h3", [_vm._v(_vm._s(_vm.product.name))])]
-      ),
       _vm._v(" "),
       _c("div", { staticClass: "mb-2" }, [
         _vm.product.crossedOutPrice
@@ -91790,7 +91839,9 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _PriceSliderComponent_vue_vue_type_template_id_c3396804___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PriceSliderComponent.vue?vue&type=template&id=c3396804& */ "./resources/js/components/PriceSliderComponent.vue?vue&type=template&id=c3396804&");
 /* harmony import */ var _PriceSliderComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PriceSliderComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/PriceSliderComponent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _PriceSliderComponent_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./PriceSliderComponent.vue?vue&type=style&index=0&lang=css& */ "./resources/js/components/PriceSliderComponent.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
 
 
 
@@ -91798,7 +91849,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
   _PriceSliderComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
   _PriceSliderComponent_vue_vue_type_template_id_c3396804___WEBPACK_IMPORTED_MODULE_0__["render"],
   _PriceSliderComponent_vue_vue_type_template_id_c3396804___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
@@ -91827,6 +91878,22 @@ component.options.__file = "resources/js/components/PriceSliderComponent.vue"
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PriceSliderComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./PriceSliderComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/PriceSliderComponent.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PriceSliderComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/PriceSliderComponent.vue?vue&type=style&index=0&lang=css&":
+/*!*******************************************************************************************!*\
+  !*** ./resources/js/components/PriceSliderComponent.vue?vue&type=style&index=0&lang=css& ***!
+  \*******************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_PriceSliderComponent_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader!../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./PriceSliderComponent.vue?vue&type=style&index=0&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/PriceSliderComponent.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_PriceSliderComponent_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_PriceSliderComponent_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_PriceSliderComponent_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_PriceSliderComponent_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_PriceSliderComponent_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 

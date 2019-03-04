@@ -1,4 +1,4 @@
-<div class="js-cookie-consent cookie-consent fixed pin-b bg-grey-light p-3 w-full flex justify-center text-grey-darker items-center">
+<div class="js-cookie-consent cookie-consent fixed pin-b bg-grey-light p-3 w-full flex justify-center text-grey-darker items-center z-20">
 
     <span class="cookie-consent__message">
         {!! trans('cookieConsent::texts.message') !!}

@@ -76,20 +76,20 @@
             transform: scale(1);
         }
         50% {
-            transform: scale(0.7);
+            transform: scale(0.85);
         }
         100% {
-            transform: scale(1.3);
+            transform: scale(1.15);
         }
     }
     .zoom-enter, .zoom-leave-to {
-        animation: zoomIn .4s ease;
+        animation: zoomIn .4s ease-in-out;
         /*transform: scale(1.5);*/
     }
     .favorite-icon {
         transition: all .3s ease-in-out;
     }
     .favorite-icon:hover {
-        transform: scale(1.1);
+        animation: zoomIn .7s infinite ease;
     }
 </style>

@@ -128,7 +128,7 @@
 <style scoped>
     .modal {
         max-height: 60vh;
-        z-index: 1100;
+        z-index: 15;
     }
     .content {
         max-height: 50vh;

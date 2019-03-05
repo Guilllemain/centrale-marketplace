@@ -1,8 +1,8 @@
 <template>
     <div class="product__images">
         <div class="flex">
-             <!-- thumbnails -->
-            <div class="pr-4">
+            <!-- thumbnails -->
+            <div class="pr-4 w-1/6">
                 <div class="flex items-center thumbnail__image cursor-pointer border border-grey-light mb-2"
                      v-for="(image, index) in images" :key="image.id" 
                      @click="currentSlide(index)"
@@ -20,6 +20,7 @@
                      @click="openModal">
             </div>
         </div>
+
         <!-- modal -->
         <transition name="fade" @after-enter="viewContent = true">
             <div class="modal flex items-center justify-center" @click="closeModal" v-show="viewModal">
@@ -47,7 +48,6 @@
                         </a>
                     </div>
                 </transition>
-                
             </div>
         </transition>
     </div>
@@ -99,7 +99,7 @@
 </script>
 <style scoped>
     .product__images {
-        flex: 0 0 40%;
+        flex: 0 0 42%;
     }
     .image__main {
         cursor: zoom-in;

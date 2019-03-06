@@ -8167,7 +8167,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".product__images[data-v-c38ae4be] {\n  flex: 0 0 42%;\n}\n.image__main[data-v-c38ae4be] {\n  cursor: zoom-in;\n}\n.modal[data-v-c38ae4be] {\n  position: fixed;\n  z-index: 10;\n  left: 0;\n  top: 0;\n  width: 100%;\n  height: 100%;\n  overflow: auto;\n  background-color: rgba(0, 0, 0, .85);\n  transition: all .4s ease-in-out;\n}\n.modal-content[data-v-c38ae4be] {\n  width: 88vh;\n}\n.thumbnail__image[data-v-c38ae4be] {\n  opacity: .7;\n  transition: all .3s ease-in-out;\n}\n.thumbnail__image[data-v-c38ae4be]:hover {\n  opacity: 1;\n  -webkit-transform: scale(1.07);\n          transform: scale(1.07);\n}\n\n/* Next & previous buttons */\n.prev[data-v-c38ae4be],\n.next[data-v-c38ae4be] {\n  cursor: pointer;\n  opacity: .8;\n  transition: all .4s ease-in-out;\n}\n.prev[data-v-c38ae4be]:hover,\n.next[data-v-c38ae4be]:hover {\n  opacity: 1;\n  -webkit-transform: scale(1.1);\n          transform: scale(1.1);\n}\n.thumbnail--active[data-v-c38ae4be] {\n  border: solid 1px #bbb;\n  opacity: 1;\n}\n.fade-enter-active[data-v-c38ae4be],\n.fade-leave-active[data-v-c38ae4be] {\n  transition: opacity .2s;\n}\n.fade-enter[data-v-c38ae4be],\n.fade-leave-to[data-v-c38ae4be] {\n  opacity: 0;\n}\n.scale-enter-active[data-v-c38ae4be] {\n  -webkit-animation: scaleIn-data-v-c38ae4be .2s ease-in-out forwards;\n          animation: scaleIn-data-v-c38ae4be .2s ease-in-out forwards;\n}\n.scale-leave-active[data-v-c38ae4be] {\n  -webkit-animation: scaleOut-data-v-c38ae4be .2s ease-in-out forwards;\n          animation: scaleOut-data-v-c38ae4be .2s ease-in-out forwards;\n}\n@-webkit-keyframes scaleIn-data-v-c38ae4be {\n0% {\n    opacity: 0;\n    -webkit-transform: scale(.75);\n            transform: scale(.75);\n}\n100% {\n    opacity: 1;\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n}\n@keyframes scaleIn-data-v-c38ae4be {\n0% {\n    opacity: 0;\n    -webkit-transform: scale(.75);\n            transform: scale(.75);\n}\n100% {\n    opacity: 1;\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n}\n@-webkit-keyframes scaleOut-data-v-c38ae4be {\n0% {\n    opacity: 1;\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n100% {\n    opacity: 0;\n    -webkit-transform: scale(.75);\n            transform: scale(.75);\n}\n}\n@keyframes scaleOut-data-v-c38ae4be {\n0% {\n    opacity: 1;\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n100% {\n    opacity: 0;\n    -webkit-transform: scale(.75);\n            transform: scale(.75);\n}\n}\n", ""]);
+exports.push([module.i, ".thumbnail__list[data-v-c38ae4be] {\n  flex-basis: 8%;\n}\n.product__images[data-v-c38ae4be] {\n  flex: 0 0 50%;\n}\n.image__main[data-v-c38ae4be] {\n  cursor: zoom-in;\n}\n.modal[data-v-c38ae4be] {\n  position: fixed;\n  z-index: 10;\n  left: 0;\n  top: 0;\n  width: 100%;\n  height: 100%;\n  overflow: auto;\n  background-color: rgba(0, 0, 0, .85);\n  transition: all .4s ease-in-out;\n}\n.modal-content[data-v-c38ae4be] {\n  width: 88vh;\n}\n.thumbnail__image[data-v-c38ae4be] {\n  opacity: .7;\n  transition: all .3s ease-in-out;\n}\n.thumbnail__image[data-v-c38ae4be]:hover {\n  opacity: 1;\n  -webkit-transform: scale(1.07);\n          transform: scale(1.07);\n}\n\n/* Next & previous buttons */\n.prev[data-v-c38ae4be],\n.next[data-v-c38ae4be] {\n  cursor: pointer;\n  opacity: .8;\n  transition: all .4s ease-in-out;\n}\n.prev[data-v-c38ae4be]:hover,\n.next[data-v-c38ae4be]:hover {\n  opacity: 1;\n  -webkit-transform: scale(1.1);\n          transform: scale(1.1);\n}\n.thumbnail--active[data-v-c38ae4be] {\n  border: solid 1px #bbb;\n  opacity: 1;\n}\n.fade-enter-active[data-v-c38ae4be],\n.fade-leave-active[data-v-c38ae4be] {\n  transition: opacity .2s;\n}\n.fade-enter[data-v-c38ae4be],\n.fade-leave-to[data-v-c38ae4be] {\n  opacity: 0;\n}\n.scale-enter-active[data-v-c38ae4be] {\n  -webkit-animation: scaleIn-data-v-c38ae4be .2s ease-in-out forwards;\n          animation: scaleIn-data-v-c38ae4be .2s ease-in-out forwards;\n}\n.scale-leave-active[data-v-c38ae4be] {\n  -webkit-animation: scaleOut-data-v-c38ae4be .2s ease-in-out forwards;\n          animation: scaleOut-data-v-c38ae4be .2s ease-in-out forwards;\n}\n@-webkit-keyframes scaleIn-data-v-c38ae4be {\n0% {\n    opacity: 0;\n    -webkit-transform: scale(.75);\n            transform: scale(.75);\n}\n100% {\n    opacity: 1;\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n}\n@keyframes scaleIn-data-v-c38ae4be {\n0% {\n    opacity: 0;\n    -webkit-transform: scale(.75);\n            transform: scale(.75);\n}\n100% {\n    opacity: 1;\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n}\n@-webkit-keyframes scaleOut-data-v-c38ae4be {\n0% {\n    opacity: 1;\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n100% {\n    opacity: 0;\n    -webkit-transform: scale(.75);\n            transform: scale(.75);\n}\n}\n@keyframes scaleOut-data-v-c38ae4be {\n0% {\n    opacity: 1;\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n100% {\n    opacity: 0;\n    -webkit-transform: scale(.75);\n            transform: scale(.75);\n}\n}\n", ""]);
 
 // exports
 
@@ -76687,14 +76687,14 @@ var render = function() {
       _c("div", { staticClass: "flex" }, [
         _c(
           "div",
-          { staticClass: "pr-4 w-1/6" },
+          { staticClass: "mr-2 thumbnail__list" },
           _vm._l(_vm.images, function(image, index) {
             return _c(
               "div",
               {
                 key: image.id,
                 staticClass:
-                  "flex items-center thumbnail__image cursor-pointer border border-grey-light mb-2",
+                  "flex items-center thumbnail__image cursor-pointer border border-grey-light mb-1",
                 class: { "thumbnail--active": _vm.slideIndex === index },
                 on: {
                   click: function($event) {
@@ -76734,7 +76734,7 @@ var render = function() {
               ],
               key: image.id,
               staticClass: "w-full",
-              attrs: { src: _vm.getImage(image.id, 420) },
+              attrs: { src: _vm.getImage(image.id, 490) },
               on: { click: _vm.openModal }
             })
           }),

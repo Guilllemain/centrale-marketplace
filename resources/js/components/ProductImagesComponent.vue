@@ -2,8 +2,8 @@
     <div class="product__images">
         <div class="flex">
             <!-- thumbnails -->
-            <div class="pr-4 w-1/6">
-                <div class="flex items-center thumbnail__image cursor-pointer border border-grey-light mb-2"
+            <div class="mr-2 thumbnail__list">
+                <div class="flex items-center thumbnail__image cursor-pointer border border-grey-light mb-1"
                      v-for="(image, index) in images" :key="image.id" 
                      @click="currentSlide(index)"
                      @mouseover="currentSlide(index)"
@@ -16,7 +16,7 @@
                 <img class="w-full"
                      v-for="(image, index) in images" :key="image.id"
                      v-show="index === slideIndex"
-                     :src="getImage(image.id, 420)"
+                     :src="getImage(image.id, 490)"
                      @click="openModal">
             </div>
         </div>
@@ -98,8 +98,11 @@
     }
 </script>
 <style scoped>
+    .thumbnail__list {
+        flex-basis: 8%;
+    }
     .product__images {
-        flex: 0 0 42%;
+        flex: 0 0 50%;
     }
     .image__main {
         cursor: zoom-in;

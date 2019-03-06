@@ -11,7 +11,7 @@
             @for ($i = 0; $i < count($product->categoryPath); $i++)
                 <a
                     href="{{ breadcrumbLinks($product->categoryPath, $i) }}"
-                    class="breadcrumb__path uppercase text-grey-dark"
+                    class="text-xs breadcrumb__path uppercase text-grey-dark"
                     >
                     {{ $product->categoryPath[$i]['name'] }}
                 </a>

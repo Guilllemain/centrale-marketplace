@@ -104,7 +104,7 @@
 
         <flash-component message="{{ session('flash') }}"></flash-component>
 
-        @include('footer')
+        @include('partials.footer')
         <modal-component></modal-component>
     </div>
     {{-- live-chat tidio --}}

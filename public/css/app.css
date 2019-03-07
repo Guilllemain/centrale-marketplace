@@ -739,6 +739,10 @@ a:hover {
   border-color: #dae1e7;
 }
 
+.newsletter__input {
+  margin-right: -2rem;
+}
+
 /**
  * This injects all of Tailwind's utility classes, generated based on your
  * config file.

@@ -5985,6 +5985,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     disabled: {
@@ -6001,6 +6002,9 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     rateProduct: function rateProduct() {
       this.$emit('rate', this.value);
+    },
+    showReview: function showReview() {
+      document.querySelector('#tab3').checked = true;
     }
   }
 });
@@ -77278,7 +77282,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "mt-2 mb-4" },
+    { staticClass: "mt-2 mb-4 flex" },
     [
       _c("el-rate", {
         attrs: { disabled: _vm.disabled, "text-color": "#ff9900" },
@@ -77290,7 +77294,17 @@ var render = function() {
           },
           expression: "value"
         }
-      })
+      }),
+      _vm._v(" "),
+      _c(
+        "a",
+        {
+          staticClass: "text-grey-dark ml-3",
+          attrs: { href: "#avis", id: "show-review" },
+          on: { click: _vm.showReview }
+        },
+        [_vm._v("9 avis")]
+      )
     ],
     1
   )

@@ -1,5 +1,5 @@
 <template>
-    <div class="mt-2 mb-4">
+    <div class="mt-2 mb-4 flex">
         <el-rate
           v-model="value"
           :disabled="disabled"
@@ -7,6 +7,7 @@
           @change="rateProduct"
         >
         </el-rate>
+        <a @click="showReview" href="#avis" id="show-review" class="text-grey-dark ml-3">9 avis</a>
     </div>
 </template>
 
@@ -27,6 +28,9 @@
         methods: {
             rateProduct() {
                 this.$emit('rate', this.value);
+            },
+            showReview() {
+                document.querySelector('#tab3').checked = true;
             }
         }
     }

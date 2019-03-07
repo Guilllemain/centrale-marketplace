@@ -94,11 +94,6 @@ class ApiClient
         try {
             return $this->client->request($method, $uri, $this->addAuth($options));
         } catch (BadResponseException $e) {
-            $domainError = $this->extractDomainErrorFromGuzzleException($e);
-            if ($domainError !== null) {
-                throw $domainError;
-            }
-
             throw $e;
         }
     }

@@ -167,6 +167,10 @@ a {
     @apply my-2 border-b border-grey-light;
 }
 
+.newsletter__input {
+    margin-right: -2rem;
+}
+
 
 /**
  * This injects all of Tailwind's utility classes, generated based on your

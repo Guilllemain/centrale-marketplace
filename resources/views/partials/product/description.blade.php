@@ -12,7 +12,7 @@
                 <label for="tab2" role="button" class="font-light uppercase">Caractéristiques</label>
             </li>
             <li title="Avis">
-                <label for="tab3" role="button" class="font-light uppercase">Avis</label>
+                <label id="avis" for="tab3" role="button" class="font-light uppercase">Avis</label>
             </li>
         </ul>
     </div>
@@ -77,7 +77,4 @@
             @endif
         </section>
     </div>
-
-
-    
 </section>

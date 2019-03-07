@@ -36,9 +36,10 @@ Route::middleware('session')->group(function () {
 
 Route::get('/', 'HomeController@index')->name('home');
 
+Route::post('/newsletter', 'NewsletterController@store')->name('newsletter');
+
 Route::get('/search', 'Api\SearchController@index');
 Route::get('/searchbox', 'Api\SearchController@searchAlgolia');
-
 
 Route::get('/basket', 'BasketController@index');
 Route::post('/basket/add', 'BasketController@addProduct')->name('basket.add');

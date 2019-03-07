@@ -22,7 +22,7 @@
                                         <div class="my-2 border-b border-grey-light w-2/3"></div>
                                         <div class="megamenu__subcategories">
                                             @foreach($subcategory->getChildren() as $subcategory)
-                                                <div class="hover:font-bold translateX">
+                                                <div class="flex hover:font-bold">
                                                     <a href="{{ route('category.show',[
                                                         'category' => $subcategory->getCategory()->categoryPath[0]['slug'],
                                                         'subCategory' => $subcategory->getCategory()->categoryPath[1]['slug'],

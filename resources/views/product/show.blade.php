@@ -40,43 +40,44 @@
                 </div>
                 <div class="mb-3 text-base tracking-tight font-light">{!! $product->shortDescription !!}</div>
                 <p>Code EAN : {{ $product->code }}</p>
-                <div class="flex items-center">
-                    <span>Quantité :</span>
-                    <form class="ml-2 flex items-center" action="{{ route('basket.add') }}" method="POST">
-                        @csrf
-                        <input type="hidden" name="declinationId" value="{{$product->declinations[0]['id']}}">
-                        <div class="relative mr-8">
-                            <select class="block w-full appearance-none bg-white border border-grey-light hover:border-grey px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none" name="quantity">
-                                @if ($product->declinations[0]['amount'] > 19)
-                                    @for($i = 1; $i < 20; $i++)
-                                        <option value="{{$i}}">{{$i}}</option>
-                                    @endfor
-                                @else
-                                    @for($i = 1; $i <= $product->declinations[0]['amount']; $i++)
-                                        <option value="{{$i}}">{{$i}}</option>
-                                    @endfor
-                                @endif
-                            </select>
-                            <div class="pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker">
-                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/>
-                                </svg>
+                 @if ($product->declinations[0]['amount'] <= 0) 
+                    <button type="submit"
+                        disabled
+                        class="my-4 text-center bg-grey-light text-white font-bold py-3 px-4 rounded cursor-default"
+                        >Rupture de stock
+                    </button>
+                @else
+                    <div class="flex items-center">
+                        <span>Quantité :</span>
+                        <form class="ml-2 flex items-center" action="{{ route('basket.add') }}" method="POST">
+                            @csrf
+                            <input type="hidden" name="declinationId" value="{{$product->declinations[0]['id']}}">
+                            <div class="relative mr-8">
+                                <select class="block w-full appearance-none bg-white border border-grey-light hover:border-grey px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none" name="quantity">
+                                    @if ($product->declinations[0]['amount'] > 19)
+                                        @for($i = 1; $i < 20; $i++)
+                                            <option value="{{$i}}">{{$i}}</option>
+                                        @endfor
+                                    @else
+                                        @for($i = 1; $i <= $product->declinations[0]['amount']; $i++)
+                                            <option value="{{$i}}">{{$i}}</option>
+                                        @endfor
+                                    @endif
+                                </select>
+                                <div class="pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker">
+                                    <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                        <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/>
+                                    </svg>
+                                </div>
                             </div>
-                        </div>
-                        @if ($product->declinations[0]['amount'] <= 0) 
-                            <button type="submit"
-                                    disabled
-                                    class="my-4 text-center bg-grey-light text-white font-bold py-3 px-4 rounded cursor-default"
-                                    >Rupture de stock
-                            </button>
-                        @else
+                        
                             <button type="submit"
                                     class="translateY my-4 text-center bg-orange-dark hover:bg-orange text-white font-bold py-3 px-4 rounded focus:outline-none"
                                     >Ajouter au panier
                             </button>
-                        @endif
-                    </form>
-                </div>
+                        </form>
+                    </div>
+                @endif
 
                 <div class="mr-6">Vendu par 
                     @if(count($product->companies) === 1)
@@ -89,9 +90,12 @@
                         </a>
                     @endif
                 </div>
-                <div class="text-xs text-green-dark italic">{{ inStock($product->declinations[0]['isAvailable']) }}</div>
-                @if($product->declinations[0]['amount'] <= 3)
+                @if($product->declinations[0]['amount'] <= 5 && $product->declinations[0]['amount'] > 0)
                     <div class="text-xs text-red-dark">Plus que {{$product->declinations[0]['amount']}} article(s) disponible</div>
+                @elseif ($product->declinations[0]['amount'] === 0)
+                    <div class="text-xs text-red-dark">Ce produit a été victime de son succès</div>
+                @else
+                    <div class="text-xs text-green-dark">En stock</div>
                 @endif
             </div>
         </div>

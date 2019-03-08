@@ -3,100 +3,101 @@
         <div class="flex">
             <!-- thumbnails -->
             <div class="mr-2 thumbnail__list">
-                <div class="flex items-center thumbnail__image cursor-pointer border border-grey-light mb-1"
-                     v-for="(image, index) in images" :key="image.id" 
-                     @click="currentSlide(index)"
-                     @mouseover="currentSlide(index)"
-                     :class="{'thumbnail--active': slideIndex === index }">
+                <div
+                    class="flex items-center thumbnail__image cursor-pointer border border-grey-light mb-1"
+                    v-for="(image, index) in images"
+                    :key="image.id"
+                    @click="currentSlide(index)"
+                    @mouseover="currentSlide(index)"
+                    :class="{'thumbnail--active': slideIndex === index }"
+                >
                     <img class="w-full" :src="getImage(image.id, 100)" :alt="`${name}-${index}`">
                 </div>
             </div>
             <!-- main image -->
             <div class="flex image__main flex-col">
-                <img class="w-full"
-                     v-for="(image, index) in images" :key="image.id"
-                     v-show="index === slideIndex"
-                     :src="getImage(image.id, 490)"
-                     @click="openModal">
+                <img
+                    class="w-full"
+                    v-for="(image, index) in images"
+                    :key="image.id"
+                    v-show="index === slideIndex"
+                    :src="getImage(image.id, 490)"
+                    @click="isOpenModal = true"
+                >
             </div>
         </div>
 
         <!-- modal -->
-        <transition name="fade" @after-enter="viewContent = true">
-            <div class="modal flex items-center justify-center" @click="closeModal" v-show="viewModal">
-                <span class="close__icon cursor-pointer">
+        <modal-component @closeModal="isOpenModal = false" v-if="isOpenModal">
+            <div class="flex items-center justify-center">
+                <a class="prev" @click="plusSlides(-1)">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8">
-                        <use class="text-white fill-current" href="/svg/icons.svg#close"></use>
+                        <use class="text-white fill-current" href="/svg/icons.svg#navigate-prev"></use>
                     </svg>
-                </span>
-                
-                <transition name="scale">
-                    <div class="modal-content flex items-center justify-center" @click.stop v-show="viewContent">
-                        <a class="prev" @click="plusSlides(-1)">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8">
-                                <use class="text-white fill-current" href="/svg/icons.svg#navigate-prev"></use>
-                            </svg>
-                        </a>
-                        <img v-for="(image, index) in images" :key="image.id"
-                             v-show="index === slideIndex"
-                             :src="getImage(image.id, 1000)"
-                             class="w-full px-4">
-                        <a class="next" @click="plusSlides(1)">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8">
-                                <use class="text-white fill-current" href="/svg/icons.svg#navigate-next"></use>
-                            </svg>
-                        </a>
-                    </div>
-                </transition>
+                </a>
+                <img
+                    v-for="(image, index) in images"
+                    :key="image.id"
+                    v-show="index === slideIndex"
+                    :src="getImage(image.id, 1000)"
+                    class="w-full px-4"
+                >
+                <a class="next" @click="plusSlides(1)">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8">
+                        <use class="text-white fill-current" href="/svg/icons.svg#navigate-next"></use>
+                    </svg>
+                </a>
             </div>
-        </transition>
+        </modal-component>
     </div>
 </template>
 
 <script>
-    export default {
-        props: {
-            images: {
-                type: Array,
-                required: true
-            },
-            name: {
-                type: String,
-                required: true
+import ModalComponent from "./ModalComponent";
+
+export default {
+    components: { ModalComponent },
+    props: {
+        images: {
+            type: Array,
+            required: true
+        },
+        name: {
+            type: String,
+            required: true
+        }
+    },
+    data() {
+        return {
+            slideIndex: 0,
+            isOpenModal: false
+        };
+    },
+    methods: {
+        getImage(id, size) {
+            return `${
+                process.env.MIX_MARKETPLACE_BASE_URI
+            }image/${id}?w=${size}&h=${size}`;
+        },
+        currentSlide(index) {
+            this.slideIndex = index;
+        },
+        showSlides() {
+            if (this.slideIndex >= this.images.length) {
+                this.slideIndex = 0;
+            }
+            if (this.slideIndex < 0) {
+                this.slideIndex = this.images.length - 1;
             }
         },
-        data() {
-            return {
-                slideIndex: 0,
-                viewModal: false,
-                viewContent: false
-            }
-        },
-        methods: {
-            getImage(id, size) {
-                return `${process.env.MIX_MARKETPLACE_BASE_URI}image/${id}?w=${size}&h=${size}`;
-            },
-            currentSlide(index) {
-                this.slideIndex = index;
-            },
-            showSlides() {
-                if (this.slideIndex >= this.images.length) {this.slideIndex = 0}
-                if (this.slideIndex < 0) {this.slideIndex = this.images.length - 1}
-            },
-            openModal() {
-                this.viewModal = true;
-            },
-            closeModal() {
-                this.viewContent = false;
-                this.viewModal = false;
-            },
-            plusSlides(number) {
-                this.slideIndex += number;
-                this.showSlides();
-            }
+        plusSlides(number) {
+            this.slideIndex += number;
+            this.showSlides();
         }
     }
+};
 </script>
+
 <style scoped>
     .thumbnail__list {
         flex-basis: 8%;
@@ -107,35 +108,21 @@
     .image__main {
         cursor: zoom-in;
     }
-    .modal {
-        position: fixed;
-        z-index: 10;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        overflow: auto;
-        background-color: rgba(0, 0, 0, .85);
-        transition: all .4s ease-in-out;
-    }
-    .modal-content {
-        width: 88vh;
-    }
     .thumbnail__image {
-        opacity: .70;
-        transition: all .3s ease-in-out;
+        opacity: 0.7;
+        transition: all 0.3s ease-in-out;
     }
     .thumbnail__image:hover {
         opacity: 1;
         transform: scale(1.07);
     }
-    
+
     /* Next & previous buttons */
     .prev,
     .next {
-      cursor: pointer;
-      opacity: .8;
-      transition: all .4s ease-in-out;
+        cursor: pointer;
+        opacity: 0.8;
+        transition: all 0.4s ease-in-out;
     }
 
     .prev:hover,
@@ -143,29 +130,9 @@
         opacity: 1;
         transform: scale(1.1);
     }
-    
+
     .thumbnail--active {
-      border: solid 1px #bbb;
-      opacity: 1;
-    }
-    .fade-enter-active, .fade-leave-active {
-        transition: opacity .2s;
-    }
-    .fade-enter, .fade-leave-to {
-        opacity: 0;
-    }
-    .scale-enter-active {
-        animation: scaleIn .2s ease-in-out forwards;
-    }
-    .scale-leave-active {
-        animation: scaleOut .2s ease-in-out forwards;
-    }
-    @keyframes scaleIn {
-        0% {opacity: 0; transform: scale(.75);}
-        100% {opacity: 1;transform: scale(1);}
-    }
-    @keyframes scaleOut {
-        0% {opacity: 1;transform: scale(1);}
-        100% {opacity: 0; transform: scale(.75);}
+        border: solid 1px #bbb;
+        opacity: 1;
     }
 </style>

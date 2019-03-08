@@ -26,7 +26,7 @@ require('./bootstrap');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key)))
 
 Vue.component('flash-component', require('./components/FlashComponent.vue').default);
-Vue.component('modal-component', require('./components/ModalComponent.vue').default);
+Vue.component('compare-modal-component', require('./components/CompareModalComponent.vue').default);
 Vue.component('search-component', require('./components/SearchComponent.vue').default);
 Vue.component('search-box-component', require('./components/SearchBoxComponent.vue').default);
 Vue.component('basket-component', require('./components/BasketComponent.vue').default);
@@ -37,6 +37,7 @@ Vue.component('review-component', require('./components/ReviewComponent.vue').de
 Vue.component('favorite-component', require('./components/FavoriteComponent.vue').default);
 Vue.component('carousel-component', require('./components/CarouselComponent.vue').default);
 Vue.component('product-images-component', require('./components/ProductImagesComponent.vue').default);
+Vue.component('sign-up-component', require('./components/Auth/SignUpComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

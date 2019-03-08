@@ -72,7 +72,7 @@ class LoginController extends Controller
         if ($currentBasketId && $userBasketId) {
             $this->basketService->mergeBaskets($currentBasketId, $userBasketId);
         }
-
+        
         return redirect()->intended('/')->with('flash', 'Vous êtes maintenant connecté');
         // if ($this->attemptLogin($request)) {
         //     return $this->sendLoginResponse($request);

@@ -48,15 +48,6 @@ function limitStringLength($string)
     return $string;
 }
 
-function inStock($stock)
-{
-    if ($stock) {
-        return 'En stock';
-    } else {
-        return 'Indisponible';
-    }
-}
-
 function calcDiscount($newPrice, $oldPrice)
 {
     return formatPrice($oldPrice - $newPrice);

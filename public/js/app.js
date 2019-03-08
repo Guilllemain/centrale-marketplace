@@ -76026,7 +76026,7 @@ var staticRenderFns = [
         "button",
         {
           staticClass:
-            "translateY text-white w-full bg-orange-dark  p-3 uppercase rounded tracking-wide focus:outline-none"
+            "translateY hover:bg-orange text-white w-full bg-orange-dark  p-3 uppercase rounded tracking-wide focus:outline-none"
         },
         [_vm._v("Réinitialiser mon mot de passe")]
       )
@@ -76215,7 +76215,7 @@ var staticRenderFns = [
         "button",
         {
           staticClass:
-            "translateY text-white w-full bg-orange-dark  p-3 uppercase rounded tracking-wide focus:outline-none",
+            "translateY hover:bg-orange text-white w-full bg-orange-dark  p-3 uppercase rounded tracking-wide focus:outline-none",
           attrs: { type: "submit" }
         },
         [_vm._v("Connection")]
@@ -76438,7 +76438,7 @@ var staticRenderFns = [
         "button",
         {
           staticClass:
-            "translateY text-white w-full bg-orange-dark  p-3 uppercase rounded tracking-wide focus:outline-none"
+            "translateY hover:bg-orange text-white w-full bg-orange-dark  p-3 uppercase rounded tracking-wide focus:outline-none"
         },
         [_vm._v("Valider")]
       )

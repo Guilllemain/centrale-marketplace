@@ -35,7 +35,7 @@
                 </label>
             </div>
             <div class="py-4">
-                <button class="translateY text-white w-full bg-orange-dark  p-3 uppercase rounded tracking-wide focus:outline-none">Valider</button>
+                <button class="translateY hover:bg-orange text-white w-full bg-orange-dark  p-3 uppercase rounded tracking-wide focus:outline-none">Valider</button>
             </div>
             <div class="text-center">
                 <a href="" @click.prevent="$emit('showLogin')" class="text-grey-dark">Revenir à la connexion</a>

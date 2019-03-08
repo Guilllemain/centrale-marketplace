@@ -26,7 +26,7 @@
                 <a href="" @click.prevent="$emit('forgotPassword')" class="text-grey-dark">Mot de passe oublié ?</a>
             </div>
             <div class="py-4">
-                <button type="submit" class="translateY text-white w-full bg-orange-dark  p-3 uppercase rounded tracking-wide focus:outline-none">Connection</button>
+                <button type="submit" class="translateY hover:bg-orange text-white w-full bg-orange-dark  p-3 uppercase rounded tracking-wide focus:outline-none">Connection</button>
             </div>
             <div class="text-center">
                 <a href="" @click.prevent="$emit('showRegister')" class="text-grey-dark">Se créer un compte</a>

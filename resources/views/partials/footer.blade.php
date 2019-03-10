@@ -1,4 +1,4 @@
-<footer>
+<footer class="mt-16">
     <div class="bg-orange-lighter p-2">
         <div class="container flex items-center justify-between">
             <h4 class="w-1/4 uppercase font-normal">Inscrivez-vous à notre newsletter</h4>

@@ -4400,11 +4400,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return axios.post('/login', this.user);
 
               case 3:
-                _context.next = 9;
+                location.reload();
+                _context.next = 10;
                 break;
 
-              case 5:
-                _context.prev = 5;
+              case 6:
+                _context.prev = 6;
                 _context.t0 = _context["catch"](0);
                 console.error(_context.t0);
 
@@ -4412,12 +4413,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   this.errors = _context.t0.response.data.errors || {};
                 }
 
-              case 9:
+              case 10:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, this, [[0, 5]]);
+        }, _callee, this, [[0, 6]]);
       }));
 
       function login() {
@@ -94205,8 +94206,8 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_2__
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/yguillemain/code/centrale-marketplace/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/yguillemain/code/centrale-marketplace/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/yann/code/centrale-marketplace/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/yann/code/centrale-marketplace/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

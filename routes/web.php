@@ -48,7 +48,6 @@ Route::post('/basket/update/{id}', 'BasketController@updateQuantity')->name('bas
 Route::post('/basket/shipping/{id}', 'BasketController@updateShipping')->name('basket.update-shipping');
 Route::delete('/basket/{id}/{declinationId}', 'BasketController@destroy')->name('basket.delete');
 
-Route::get('/users/password/reset', 'UsersController@resetPassword')->name('password_reset');
 Route::post('/users/password', 'UsersController@forgotPassword')->name('forgot_password');
 Route::patch('/users/{id}', 'UsersController@update')->name('user.update');
 

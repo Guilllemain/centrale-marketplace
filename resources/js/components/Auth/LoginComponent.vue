@@ -50,6 +50,7 @@ export default {
         async login() {
             try {
                 await axios.post('/login', this.user);
+                location.reload();
             } catch (error) {
                 console.error(error);
                 if (error.response.status === 422) {

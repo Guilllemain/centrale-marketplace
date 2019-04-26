@@ -552,6 +552,61 @@ table {
   }
 }
 
+.input {
+  width: 100%;
+  color: #606f7b;
+  padding-left: .75rem;
+  padding-right: .75rem;
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+  line-height: 1.25;
+  border-width: 1px;
+  border-radius: .25rem;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  outline: none;
+}
+
+.input:focus {
+  border: solid 1px #b8c2cc;
+}
+
+.btn {
+  color: #fff;
+  width: 100%;
+  display: block;
+  text-align: center;
+  text-transform: uppercase;
+  padding: .75rem;
+  border-radius: .25rem;
+  letter-spacing: .05em;
+  background-color: #de751f;
+  transition: all .3s ease-in-out;
+}
+
+.btn:hover {
+  color: #fff;
+  background-color: #f6993f;
+}
+
+.btn:focus {
+  outline: none;
+}
+
+.btn:active {
+  -webkit-transform: scale(.95) translateY(4px);
+          transform: scale(.95) translateY(4px);
+}
+
+.btn-grey {
+  background-color: #606f7b;
+}
+
+.btn-grey:hover {
+  background-color: #8795a1;
+}
+
 /**
  * Here you would add any of your custom component classes; stuff that you'd
  * want loaded *before* the utilities so that the utilities could still
@@ -567,6 +622,16 @@ table {
  * @import "components/buttons";
  * @import "components/forms";
  */
+
+.home__image {
+  background: center url("../../home.jpg");
+  background-size: cover;
+  height: 20vw;
+}
+
+.home__image div {
+  background: linear-gradient(rgba(255, 255, 255, .7), rgba(255, 255, 255, .7));
+}
 
 .breadcrumb__path:not(:last-child)::after {
   content: "/";
@@ -3432,6 +3497,10 @@ a:hover {
 
 .h-px {
   height: 1px;
+}
+
+.h-20v {
+  height: 20vw;
 }
 
 .h-full {
@@ -9546,6 +9615,10 @@ body {
     height: 1px;
   }
 
+  .sm\:h-20v {
+    height: 20vw;
+  }
+
   .sm\:h-full {
     height: 100%;
   }
@@ -15258,6 +15331,10 @@ body {
 
   .md\:h-px {
     height: 1px;
+  }
+
+  .md\:h-20v {
+    height: 20vw;
   }
 
   .md\:h-full {
@@ -20974,6 +21051,10 @@ body {
     height: 1px;
   }
 
+  .lg\:h-20v {
+    height: 20vw;
+  }
+
   .lg\:h-full {
     height: 100%;
   }
@@ -26686,6 +26767,10 @@ body {
 
   .xl\:h-px {
     height: 1px;
+  }
+
+  .xl\:h-20v {
+    height: 20vw;
   }
 
   .xl\:h-full {

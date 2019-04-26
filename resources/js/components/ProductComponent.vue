@@ -5,7 +5,7 @@
                 <img :src="getImage()" class="w-full">
             </div>
             <div class="my-2 border-b border-grey-light w-5/6"></div>
-            <h3 class="px-3 mb-2">{{ product.name }}</h3>
+            <h3 class="px-3 mb-2 text-center">{{ product.name }}</h3>
         </a>
         <div class="mb-2">
             <div v-if="product.crossedOutPrice" class="flex-col flex items-center">
@@ -16,7 +16,7 @@
                 <div>{{ formatPrice(product.minimumPrice) }}</div>
             </div>
         </div>
-        <button class="translateY mt-auto focus:outline-none hover:bg-grey-dark text-grey hover:text-white py-2 px-3 border hover:border-transparent rounded"
+        <button class="btn mt-auto btn-grey w-3/4 text-xs"
                 @click="addToCart">
                 Ajouter au panier
         </button>

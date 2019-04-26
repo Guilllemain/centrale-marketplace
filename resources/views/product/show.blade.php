@@ -38,22 +38,22 @@
                         <div class="text-xl">{{ formatPrice($product->minPrice) }}</div>
                     @endif
                 </div>
-                <div class="mb-3 text-base tracking-tight font-light">{!! $product->shortDescription !!}</div>
+                <div class="mb-6 text-base tracking-tight font-light">{!! $product->shortDescription !!}</div>
                 <p>Code EAN : {{ $product->code }}</p>
-                 @if ($product->declinations[0]['amount'] <= 0) 
+                @if ($product->declinations[0]['amount'] <= 0) 
                     <button type="submit"
                         disabled
                         class="my-4 text-center bg-grey-light text-white font-bold py-3 px-4 rounded cursor-default"
                         >Rupture de stock
                     </button>
                 @else
-                    <div class="flex items-center">
+                    <div class="my-4 flex items-center">
                         <span>Quantité :</span>
                         <form class="ml-2 flex items-center" action="{{ route('basket.add') }}" method="POST">
                             @csrf
                             <input type="hidden" name="declinationId" value="{{$product->declinations[0]['id']}}">
                             <div class="relative mr-8">
-                                <select class="block w-full appearance-none bg-white border border-grey-light hover:border-grey px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none" name="quantity">
+                                <select class="block appearance-none bg-white border border-grey-light hover:border-grey px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none" name="quantity">
                                     @if ($product->declinations[0]['amount'] > 19)
                                         @for($i = 1; $i < 20; $i++)
                                             <option value="{{$i}}">{{$i}}</option>
@@ -71,9 +71,8 @@
                                 </div>
                             </div>
                         
-                            <button type="submit"
-                                    class="translateY my-4 text-center bg-orange-dark hover:bg-orange text-white font-bold py-3 px-4 rounded focus:outline-none"
-                                    >Ajouter au panier
+                            <button type="submit" class="btn">
+                                Ajouter au panier
                             </button>
                         </form>
                     </div>

@@ -35,6 +35,16 @@
  * @import "components/buttons";
  * @import "components/forms";
  */
+.home__image {
+    background: center url('../../home.jpg');
+    background-size: cover;
+    height: 20vw;
+
+    div {
+        background: linear-gradient(rgba(255,255,255,.7), rgba(255,255,255,.7));
+    }
+}
+
 .breadcrumb__path:not(:last-child)::after {
     content: "/";
     margin: 0 .5rem;

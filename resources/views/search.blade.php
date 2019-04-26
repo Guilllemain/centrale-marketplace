@@ -21,7 +21,6 @@
         @endisset
         
         @isset($currentCompany)
-        {{-- {{dd($currentCompany)}} --}}
             <img src="https://back.vegan-place.com/api/v1/image/{{ $currentCompany->image['id'] }}">
             <div class="mt2- mb-8 flex flex-col items-center">
                 <h1>

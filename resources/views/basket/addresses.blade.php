@@ -49,7 +49,7 @@
                         zip-code-input-name="billing_address[zipcode]">
                     </address-component>
 
-                    <button type="submit" name="addresses" class="focus:outline-none translateY w-full bg-orange-dark hover:bg-orange text-white font-bold py-3 px-4 rounded">
+                    <button type="submit" name="addresses" class="btn">
                         Procéder au paiement
                     </button>
                 </div>

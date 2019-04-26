@@ -30,7 +30,7 @@
                 <div class="container">
                     <div class="flex justify-between items-center relative">
                         <a href="{{ url('/') }}">
-                            <img src="{{ asset('logo.png') }}">
+                            <img srcset="{{ asset('logo-1x.png') }}, {{ asset('logo-2x.png') }} 2x">
                         </a>
 
                         <search-box-component></search-box-component>

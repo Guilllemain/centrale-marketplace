@@ -60,7 +60,7 @@
                                             </form>
                                         </div>
                                         <div class="w-1/5 text-right font-bold">
-                                            <p>Total : {{formatPrice($item['total'])}} €</p>
+                                            <p>Total : {{formatPrice($item['total'])}}</p>
                                         </div>
                                     </div>
                                 @endforeach
@@ -86,7 +86,7 @@
                                     </div>
                                 </form>
                                 <div class="font-bold">
-                                    <p>Total pour ce marchand : {{ formatPrice($company['productTotalWithTaxes']) }} €</p>
+                                    <p>Total pour ce marchand : {{ formatPrice($company['productTotalWithTaxes']) }}</p>
                                 </div>
                             </div>
                         @endforeach
@@ -101,23 +101,21 @@
                         <div class="my-4 p-4 bg-white border border-grey-light">
                             <div class="flex justify-between -items-center">
                                 <div>Livraison</div>
-                                <div>{{ formatPrice($basket->totalShipping) }} €</div>
+                                <div>{{ formatPrice($basket->totalShipping) }}</div>
                             </div>
                             <div class="my-4 flex justify-between -items-center">
                                 <div>Sous-total</div>
-                                <div>{{ formatPrice($basket->subtotal) }} €</div>
+                                <div>{{ formatPrice($basket->subtotal) }}</div>
                             </div>
+                            <div class="my-2 border-b border-grey-light"></div>
+                                <discount-component></discount-component>
                             <div class="my-2 border-b border-grey-light"></div>
                             <div class="mt-4 font-bold flex justify-between -items-center">
                                 <div>Total</div>
-                                <div>{{ formatPrice($basket->total) }} €</div>
+                                <div>{{ formatPrice($basket->total) }}</div>
                             </div>
-                            <a href="/basket/address" class="translateY block text-center mt-4 bg-orange-dark w-full hover:bg-orange hover:text-white text-white font-bold py-2 px-4 rounded">Continuer</a>
+                            <a href="/basket/address" class="btn mt-4">Continuer</a>
                         </div>
-                    </div>
-                    <div class="mt-8">
-                        <h2 class="mb-4 font-light uppercase">Ajouter un code</h2>
-                        <input class="appearance-none border rounded w-full py-3 px-3 text-grey-darker leading-tight focus:outline-none focus:border-grey" type="text" name="coupon" placeholder="Entrez votre code promo">
                     </div>
                 </div>
             </div>

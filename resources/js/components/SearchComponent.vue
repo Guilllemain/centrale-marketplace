@@ -81,7 +81,10 @@
 
             this.loading = true;
             if(this.category) this.categoryId = this.category.id;
-            if(this.company) this.companyId = this.company.id;
+            if(this.company) {
+                this.companyId = this.company.id;
+                this.$store.commit('addFacet', {name: "companies", value: this.companyId.toString()});
+            }
 
             this.displayResults();
         },

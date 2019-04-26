@@ -6,7 +6,7 @@
             </svg>
             <h4 class="opacity-75 font-normal">Se connecter</h4>
         </a>
-        <modal-component @closeModal="isOpenModal = false" v-if="isOpenModal">
+        <modal-component @closeModal="isOpenModal = false" v-if="isOpenModal" contentWidth="25vw">
             <login-component @forgotPassword="activeComponent = 'forgot-pass'" @showRegister="activeComponent = 'register'" v-if="activeComponent === 'login'"></login-component>
             <register-component @showLogin="activeComponent = 'login'" v-if="activeComponent === 'register'"></register-component>
             <forgot-pass-component @showLogin="activeComponent = 'login'" v-if="activeComponent === 'forgot-pass'"></forgot-pass-component>

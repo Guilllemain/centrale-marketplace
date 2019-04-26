@@ -7,7 +7,7 @@
                 </svg>
             </span>
             <transition name="scale">
-                <div class="modal-content" @click.stop v-show="viewContent">
+                <div :style="{ width: contentWidth }" @click.stop v-show="viewContent">
                     <slot></slot>
                 </div>
             </transition>
@@ -17,6 +17,13 @@
 
 <script>
 export default {
+    props: {
+        contentWidth: {
+            required: false,
+            type: String,
+            default: '90vh'
+        }
+    },
     data() {
         return {
             viewContent: false
@@ -51,9 +58,6 @@ export default {
         overflow: auto;
         background-color: rgba(0, 0, 0, .85);
         transition: all .4s ease-in-out;
-    }
-    .modal-content {
-        width: 88vh;
     }
     .fade-enter-active, .fade-leave-active {
         transition: opacity .2s;

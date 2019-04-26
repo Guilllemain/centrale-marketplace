@@ -536,6 +536,7 @@ module.exports = {
     '32': '8rem',
     '48': '12rem',
     '64': '16rem',
+    '20v': '20vw',
     'full': '100%',
     'screen': '100vh',
   },
@@ -938,6 +939,59 @@ module.exports = {
       center: true,
       // padding: '1rem',
     }),
+    function ({ addUtilities, addComponents, e, prefix, config }) {
+      const buttons = {
+        '.btn': {
+          color: '#fff',
+          width: '100%',
+          display: 'block',
+          textAlign: 'center',
+          textTransform: 'uppercase',
+          padding: '.75rem',
+          borderRadius: '.25rem',
+          letterSpacing: '0.05em',
+          backgroundColor: '#de751f',
+          transition: 'all .3s ease-in-out',
+          '&:hover': {
+            color: '#fff',
+            backgroundColor: '#f6993f'
+          },
+          '&:focus': {
+            outline: 'none'
+          },
+          '&:active': {
+            transform: 'scale(.95) translateY(4px)'
+          }
+        },
+        '.btn-grey': {
+          backgroundColor: '#606f7b',
+          '&:hover': {
+            backgroundColor: '#8795a1'
+          },
+        },
+      }
+
+      const inputs = {
+        '.input': {
+          width: '100%',
+          color: '#606f7b',
+          paddingLeft: '.75rem',
+          paddingRight: '.75rem',
+          paddingTop: '.5rem',
+          paddingBottom: '.5rem',
+          lineHeight: '1.25',
+          borderWidth: '1px',
+          borderRadius: '.25rem',
+          appearance: 'none',
+          outline: 'none',
+          '&:focus': {
+            border: 'solid 1px #b8c2cc'
+          }
+        }
+      }
+      addComponents(inputs);
+      addComponents(buttons);
+    },
   ],
 
 

@@ -38,6 +38,7 @@ Vue.component('favorite-component', require('./components/FavoriteComponent.vue'
 Vue.component('carousel-component', require('./components/CarouselComponent.vue').default);
 Vue.component('product-images-component', require('./components/ProductImagesComponent.vue').default);
 Vue.component('sign-up-component', require('./components/Auth/SignUpComponent.vue').default);
+Vue.component('discount-component', require('./components/DiscountComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

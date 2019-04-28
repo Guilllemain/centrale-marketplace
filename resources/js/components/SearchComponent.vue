@@ -80,7 +80,10 @@
             };
 
             this.loading = true;
-            if(this.category) this.categoryId = this.category.id;
+            if(this.category) {
+                this.categoryId = this.category.id;
+                this.$store.commit('addFacet', {name: "categories", value: this.categoryId.toString()});
+            }
             if(this.company) {
                 this.companyId = this.company.id;
                 this.$store.commit('addFacet', {name: "companies", value: this.companyId.toString()});
@@ -99,8 +102,6 @@
                 
                 url.push(`/api/search/products?query=${this.query}&page=${this.page}&resultsPerPage=${this.resultsPerPage}`);
 
-                if(this.categoryId) url.push(`&filters[categories]=${this.categoryId}`);
-                if(this.companyId) url.push(`&filters[companies]=${this.companyId}`);
                 if(this.selectedSorting) url.push(this.selectedSorting);
 
                 if(this.selectedFacets.length > 0) {

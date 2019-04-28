@@ -5292,6 +5292,7 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
+    // select facets to expand by default
     if (this.facet.name !== 'categories' && this.facet.name !== 'price' && this.facet.name !== '1' && this.facet.name !== 'companies') this.showFacet = false;
   },
   methods: {
@@ -6314,7 +6315,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
     ;
     this.loading = true;
-    if (this.category) this.categoryId = this.category.id;
+
+    if (this.category) {
+      this.categoryId = this.category.id;
+      this.$store.commit('addFacet', {
+        name: "categories",
+        value: this.categoryId.toString()
+      });
+    }
 
     if (this.company) {
       this.companyId = this.company.id;
@@ -6335,8 +6343,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var urlParams = new URLSearchParams(window.location.search);
       this.query = urlParams.get('query') === null ? '' : urlParams.get('query');
       url.push("/api/search/products?query=".concat(this.query, "&page=").concat(this.page, "&resultsPerPage=").concat(this.resultsPerPage));
-      if (this.categoryId) url.push("&filters[categories]=".concat(this.categoryId));
-      if (this.companyId) url.push("&filters[companies]=".concat(this.companyId));
       if (this.selectedSorting) url.push(this.selectedSorting);
 
       if (this.selectedFacets.length > 0) {
@@ -91980,7 +91986,7 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
 // const files = require.context('./', true, /\.vue$/i)
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key)))
+// files.keys().map(key => Vuex.component(key.split('/').pop().split('.')[0], files(key)))
 
 
 Vue.component('flash-component', __webpack_require__(/*! ./components/FlashComponent.vue */ "./resources/js/components/FlashComponent.vue").default);
@@ -94371,8 +94377,8 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_2__
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/yguillemain/code/centrale-marketplace/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/yguillemain/code/centrale-marketplace/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/yann/code/centrale-marketplace/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/yann/code/centrale-marketplace/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

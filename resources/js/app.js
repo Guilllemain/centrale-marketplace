@@ -23,7 +23,7 @@ require('./bootstrap');
  */
 
 // const files = require.context('./', true, /\.vue$/i)
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key)))
+// files.keys().map(key => Vuex.component(key.split('/').pop().split('.')[0], files(key)))
 
 Vue.component('flash-component', require('./components/FlashComponent.vue').default);
 Vue.component('compare-modal-component', require('./components/CompareModalComponent.vue').default);

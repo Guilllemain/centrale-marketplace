@@ -45,6 +45,7 @@
             }
         },
         mounted() {
+            // select facets to expand by default
             if(this.facet.name !== 'categories' && this.facet.name !== 'price' && this.facet.name !== '1' && this.facet.name !== 'companies') this.showFacet = false;
         },
         methods: {

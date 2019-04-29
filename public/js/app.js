@@ -4578,9 +4578,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 
 
 
@@ -76522,34 +76519,17 @@ var render = function() {
     "div",
     [
       _c(
-        "a",
+        "div",
         {
-          staticClass: "flex flex-col items-center",
+          staticClass: "cursor-pointer flex flex-col items-center",
           on: {
             click: function($event) {
               _vm.isOpenModal = true
             }
           }
         },
-        [
-          _c(
-            "svg",
-            {
-              staticClass: "h-8 w-8",
-              attrs: { xmlns: "http://www.w3.org/2000/svg" }
-            },
-            [
-              _c("use", {
-                staticClass: "text-orange-dark fill-current",
-                attrs: { href: "/svg/icons.svg#login" }
-              })
-            ]
-          ),
-          _vm._v(" "),
-          _c("h4", { staticClass: "opacity-75 font-normal" }, [
-            _vm._v("Se connecter")
-          ])
-        ]
+        [_vm._t("default")],
+        2
       ),
       _vm._v(" "),
       _vm.isOpenModal
@@ -76820,7 +76800,9 @@ var render = function() {
           _c("div", { staticClass: "my-2 border-b border-grey-light w-2/3" }),
           _vm._v(" "),
           _c("a", { attrs: { href: _vm.productPath(product) } }, [
-            _c("h3", { staticClass: "mb-2" }, [_vm._v(_vm._s(product.name))])
+            _c("h3", { staticClass: "text-center mb-2" }, [
+              _vm._v(_vm._s(product.name))
+            ])
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "mb-2" }, [
@@ -94377,8 +94359,8 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_2__
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/yann/code/centrale-marketplace/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/yann/code/centrale-marketplace/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/yguillemain/code/centrale-marketplace/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/yguillemain/code/centrale-marketplace/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

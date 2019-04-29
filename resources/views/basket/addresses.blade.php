@@ -6,12 +6,13 @@
 
 @section('content')
     <div class="container mt-16">
+        @include('basket._steps', ['steps' => 2])
         <form method="POST" action="{{ route('basket.update-address', $user->id) }}">
         @csrf
         @method('PATCH')
             <div class="flex justify-center">
                 <div class="w-1/2 mr-8">
-                    <h3>Adresse de facturation</h3>
+                    <h3>Adresse de livraison</h3>
                     
                     <div class="my-4">
                         <label class="mr-2" for="mister">Monsieur</label>

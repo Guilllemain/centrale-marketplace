@@ -28,7 +28,8 @@
 @endsection
 
 @section('content')
-    <div class="container">
+    <div class="container mt-16">
+      @include('basket._steps', ['steps' => 3])
         <h2 class="mb-8">Paiement</h2>
         <div class="mb-12">
             @foreach($payment_types as $payment)

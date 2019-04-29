@@ -40,7 +40,12 @@
                             <div class="flex items-end">
                                 <!-- Authentication Links -->
                                 @if(!session('authenticated'))
-                                    <sign-up-component></sign-up-component>
+                                    <sign-up-component>
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8">
+                                            <use class="text-orange-dark fill-current" href="/svg/icons.svg#login"></use>
+                                        </svg>
+                                        <h4 class="opacity-75 font-normal">Se connecter</h4>
+                                    </sign-up-component>
                                 @else
                                     <div class="profile">
                                         <a class="block flex flex-col items-center" href="{{ route('profile.show', session('authenticated')['id']) }}">

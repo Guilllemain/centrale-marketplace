@@ -1,11 +1,8 @@
 <template>
     <div>
-        <a class="flex flex-col items-center" @click="isOpenModal = true">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8">
-                <use class="text-orange-dark fill-current" href="/svg/icons.svg#login"></use>
-            </svg>
-            <h4 class="opacity-75 font-normal">Se connecter</h4>
-        </a>
+        <div class="cursor-pointer flex flex-col items-center" @click="isOpenModal = true">
+            <slot></slot>
+        </div>
         <modal-component @closeModal="isOpenModal = false" v-if="isOpenModal" contentWidth="25vw">
             <login-component @forgotPassword="activeComponent = 'forgot-pass'" @showRegister="activeComponent = 'register'" v-if="activeComponent === 'login'"></login-component>
             <register-component @showLogin="activeComponent = 'login'" v-if="activeComponent === 'register'"></register-component>

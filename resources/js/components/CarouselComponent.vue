@@ -6,7 +6,7 @@
             <div class="my-2 border-b border-grey-light w-2/3"></div>
             
             <a :href="productPath(product)">
-                <h3 class="mb-2">{{ product.name }}</h3>
+                <h3 class="text-center mb-2">{{ product.name }}</h3>
             </a>
             
             <div class="mb-2">

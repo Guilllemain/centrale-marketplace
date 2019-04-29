@@ -12,7 +12,7 @@
                 <h2 class="font-light uppercase">Mon panier</h2>
                 @foreach ($basket->getCompanies() as $company)
                     <div class="my-4 px-4 pt-4 pb-2 bg-white border border-grey-light">
-                        <h4>Vendu par {{ $company['company']['name'] }}</h4>
+                        <h4 class="font-light">Vendu par <a href="/company/{{$company['company']['slug']}}" class="font-semibold">{{ $company['company']['name'] }}</a></h4>
                         <div class="my-2 border-b border-grey-light"></div>
                         @foreach($company['shippingGroups'] as $shippingGroup)
                             <div class="my-4">
@@ -114,7 +114,13 @@
                                 <div>Total</div>
                                 <div>{{ formatPrice($basket->total) }}</div>
                             </div>
-                            <a href="/basket/address" class="btn mt-4">Continuer</a>
+                            @if(!session('authenticated'))
+                                <sign-up-component>
+                                    <a class="btn mt-4">Continuer</a>
+                                </sign-up-component>
+                            @else
+                                <a href="/basket/address" class="btn mt-4">Continuer</a>
+                            @endif
                         </div>
                     </div>
                 </div>

@@ -1,4 +1,6 @@
-@import url(https://fonts.googleapis.com/css?family=Lato:300,400,700,900);/**
+@import url(https://fonts.googleapis.com/css?family=Lato:300,400,700,900);@charset "UTF-8";
+
+/**
  * This injects Tailwind's base styles, which is a combination of
  * Normalize.css and some additional base styles.
  *
@@ -622,6 +624,98 @@ table {
  * @import "components/buttons";
  * @import "components/forms";
  */
+
+.multi-steps > li.is-active ~ li:before,
+.multi-steps > li.is-active:before {
+  content: counter(stepNum);
+  font-family: inherit;
+  font-weight: 700;
+}
+
+.multi-steps > li.is-active ~ li:after,
+.multi-steps > li.is-active:after {
+  background-color: #ededed;
+}
+
+.multi-steps {
+  margin-bottom: 4rem;
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+}
+
+.multi-steps > li {
+  counter-increment: stepNum;
+  text-align: center;
+  display: table-cell;
+  position: relative;
+  color: #3490dc;
+}
+
+.multi-steps > li > a {
+  color: currentColor;
+}
+
+.multi-steps > li > a:hover {
+  color: #1d68a7;
+}
+
+.multi-steps > li:before {
+  content: "\F00C";
+  content: "\2713;";
+  content: "\10003";
+  content: "\10004";
+  content: "\2713";
+  display: block;
+  margin: 0 auto 4px;
+  background-color: #fff;
+  width: 36px;
+  height: 36px;
+  line-height: 32px;
+  text-align: center;
+  font-weight: bold;
+  border-width: 2px;
+  border-style: solid;
+  border-color: #3490dc;
+  border-radius: 50%;
+}
+
+.multi-steps > li:after {
+  content: "";
+  height: 2px;
+  width: 100%;
+  background-color: #3490dc;
+  position: absolute;
+  top: 16px;
+  left: 50%;
+  z-index: -1;
+}
+
+.multi-steps > li:last-child:after {
+  display: none;
+}
+
+.multi-steps > li.is-active:before {
+  background-color: #fff;
+  border-color: #3490dc;
+}
+
+.multi-steps > li.is-active ~ li {
+  color: #808080;
+}
+
+.multi-steps > li.is-active ~ li:before {
+  background-color: #ededed;
+  border-color: #ededed;
+}
+
+.multi-steps > li.is-active a {
+  cursor: default;
+}
+
+.multi-steps > li.is-active a:hover {
+  color: currentColor;
+}
 
 .home__image {
   background: center url("../../home.jpg");

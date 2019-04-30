@@ -26,6 +26,10 @@ class AppServiceProvider extends ServiceProvider
             '*',
             'App\Http\ViewComposers\CategoriesComposer'
         );
+        View::composer(
+            '*',
+            'App\Http\ViewComposers\FooterMenusComposer'
+        );
         setLocale(LC_TIME, 'fr_FR');
         \Carbon\Carbon::setLocale('fr');
     }

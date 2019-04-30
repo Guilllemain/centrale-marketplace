@@ -27,18 +27,18 @@ require('./bootstrap');
 
 Vue.component('flash-component', require('./components/FlashComponent.vue').default);
 Vue.component('compare-modal-component', require('./components/CompareModalComponent.vue').default);
-Vue.component('search-component', require('./components/SearchComponent.vue').default);
 Vue.component('search-box-component', require('./components/SearchBoxComponent.vue').default);
-Vue.component('basket-component', require('./components/BasketComponent.vue').default);
-Vue.component('address-component', require('./components/AddressComponent.vue').default);
 Vue.component('checkout-component', require('./components/CheckoutComponent.vue').default);
-Vue.component('stars-component', require('./components/StarsComponent.vue').default);
-Vue.component('review-component', require('./components/ReviewComponent.vue').default);
-Vue.component('favorite-component', require('./components/FavoriteComponent.vue').default);
 Vue.component('carousel-component', require('./components/CarouselComponent.vue').default);
-Vue.component('product-images-component', require('./components/ProductImagesComponent.vue').default);
+Vue.component('address-component', require('./components/profile/AddressComponent.vue').default);
+Vue.component('stars-component', require('./components/product/StarsComponent.vue').default);
+Vue.component('favorite-component', require('./components/product/FavoriteComponent.vue').default);
+Vue.component('review-component', require('./components/product/ReviewComponent.vue').default);
+Vue.component('product-images-component', require('./components/product/ProductImagesComponent.vue').default);
+Vue.component('search-component', require('./components/search/SearchComponent.vue').default);
 Vue.component('sign-up-component', require('./components/Auth/SignUpComponent.vue').default);
-Vue.component('discount-component', require('./components/DiscountComponent.vue').default);
+Vue.component('basket-component', require('./components/basket/BasketComponent.vue').default);
+Vue.component('discount-component', require('./components/basket/DiscountComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

@@ -15,10 +15,11 @@
 Auth::routes();
 
 Route::middleware('session')->group(function () {
-    Route::get('/profile/show/{userId?}', 'ProfileController@show')->name('profile.show');
-    Route::get('/profile/addresses/{userId}', 'ProfileController@showAddresses')->name('profile.addresses');
-    Route::get('/profile/orders/{userId}', 'ProfileController@showOrders')->name('profile.orders');
-    Route::get('/profile/favorites/{userId}', 'ProfileController@showFavorites')->name('profile.favorites');
+    Route::get('/profile', 'ProfileController@show')->name('profile.show');
+    Route::get('/profile/addresses', 'ProfileController@showAddresses')->name('profile.addresses');
+    Route::get('/profile/orders', 'ProfileController@showOrders')->name('profile.orders');
+    Route::get('/profile/favorites', 'ProfileController@showFavorites')->name('profile.favorites');
+    Route::get('/profile/subscriptions', 'ProfileController@showSubscriptions')->name('profile.subscriptions');
     
     Route::patch('/basket/address/{userId}', 'BasketController@updateAddress')->name('basket.update-address');
     Route::post('/checkout', 'BasketController@turnIntoOrder');

@@ -36,99 +36,23 @@
  * @import "components/forms";
  */
 
-$brand-primary: #3490dc;
-$white: #fff;
-$grey-light: #ededed;
-%remain-steps{
-  &:before {
-    content: counter(stepNum);
-    font-family: inherit;
-    font-weight: 700;
-  }
-  &:after{
-    background-color: $grey-light;
-  }
-}
-.multi-steps{
-    margin-bottom: 4rem;
-  display: table;
-  table-layout: fixed;
-  width: 100%;
-  > li{
-    counter-increment: stepNum;
-    text-align: center;
-    display: table-cell;
-    position: relative;
-    color: $brand-primary;
-
-    > a {
-        color: currentColor;
-
-        &:hover {
-            color: darken(#3490dc, 15%);
-        }
+.footer__item {
+    display: flex;
+    align-items: center;
+    &::before {
+        content: "";
+        width: 0;
+        height: 15px;
+        display: block;
+        transition: all .3s;
     }
-
-    &:before{
-      content: '\f00c';
-      content: '\2713;';
-      content: '\10003';
-      content: '\10004';
-      content: '\2713';
-      display: block;
-      margin: 0 auto 4px;
-      background-color: $white;
-      width: 36px;
-      height: 36px;
-      line-height: 32px;
-      text-align: center;
-      font-weight: bold;
-      border:{
-        width: 2px;
-        style: solid;
-        color: $brand-primary;
-        radius: 50%;
-      }
+    &:hover::before {
+        content: "";
+        background-color: white;
+        width: .3rem;
+        height: 15px;
+        margin-right: .3rem;
     }
-    &:after{
-      content: '';
-      height: 2px;
-      width: 100%;
-      background-color: $brand-primary;
-      position: absolute;
-      top: 16px;
-      left: 50%;
-      z-index: -1;
-    }
-    &:last-child{
-      &:after{
-        display: none;
-      }
-    }
-
-    &.is-active{
-      @extend %remain-steps;
-      &:before{
-        background-color: $white;
-        border-color: $brand-primary;
-      }
-
-      ~ li{
-        color: #808080;
-        @extend %remain-steps;
-        &:before{
-          background-color: $grey-light;
-          border-color: $grey-light;
-        }
-      }
-      a {
-        cursor: default;
-        &:hover {
-            color: currentColor;
-        }
-      }
-    }
-  }
 }
 
 .home__image {
@@ -171,68 +95,6 @@ a {
     }
 }
 
-// .header-bg {
-//     background-image: linear-gradient(90deg,#cacaca, #b7b7b7);
-// }
-
-.megamenu {
-    &__panel {
-        top: 2.6rem;
-        left: 0;
-        transform: scaleY(0);
-        transform-origin: top;
-        @apply invisible opacity-0 absolute w-full z-30 bg-white pl-16 pr-12 py-4 flex flex-wrap;
-        transition: transform .3s ease-in-out;
-    }      
-
-    &__subcategories {
-        font-size: 0.6rem;
-    }
-
-    &__title {
-        @apply text-white opacity-75;
-
-        &--active {
-            @apply opacity-100 font-bold;
-        }
-    }
-    &__category:hover {
-        .megamenu {
-            &__panel {
-                @apply visible opacity-100;
-                transform: scaleY(1);
-            }
-            &__title {
-                @apply text-white opacity-100;
-            }
-        }
-        .b-rounded-bar {
-            @apply block;
-        }
-    }
-}
-.megamenu__subcategories > div::before {
-    content: "";
-    width: 0;
-    height: 15px;
-    display: block;
-    transition: all .3s;
-}
-.megamenu__subcategories > div:hover {
-    &::before {
-        content: "";
-        @apply bg-orange-dark block;
-        width: .3rem;
-        height: 15px;
-        margin-right: .3rem;
-    }
-}
-
-.b-rounded-bar {
-    @apply border-t-8 border-white w-full rounded hidden absolute;
-    bottom: -.85rem;
-}
-
 .title--horizontal-bar {
     overflow: hidden;
     text-align: center;
@@ -256,8 +118,24 @@ a {
     }
 }
 
+.profile__menu {
+    a {
+        &::after {
+            content: '';
+            display: block;
+            height: 1px;
+            width: 0;
+            background-color: black;
+            transition: all .3s;
+        }
+        &:hover::after {
+            width: 100%;
+        }
+    }
+}
+
 .profile{
-    &__content {
+    &__links {
         @apply absolute invisible w-1/6 opacity-0 z-50 bg-white p-3 rounded shadow-md;
         right: 30px;
         transition: all .3s;
@@ -285,10 +163,6 @@ a {
     }
 }
 
-.h-bar {
-    @apply my-2 border-b border-grey-light;
-}
-
 .newsletter__input {
     margin-right: -2rem;
 }
@@ -303,6 +177,10 @@ a {
  * @import "tailwindcss/utilities";
  */
 @tailwind utilities;
+
+.h-bar {
+    @apply my-2 border-b border-grey-light;
+}
 
 .translateY {
     transition: all .3s ease-in-out;

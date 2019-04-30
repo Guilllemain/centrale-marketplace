@@ -48,16 +48,16 @@
                                     </sign-up-component>
                                 @else
                                     <div class="profile">
-                                        <a class="block flex flex-col items-center" href="{{ route('profile.show', session('authenticated')['id']) }}">
+                                        <a class="block flex flex-col items-center" href="{{ route('profile.show') }}">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8">
                                                 <use class="text-orange-dark fill-current" href="{{asset('svg/icons.svg#login')}}"></use>
                                             </svg>
                                             <h4 class="opacity-75 font-normal">Mon compte</h4>
                                         </a>
-                                        <div class="profile__content">
-                                            <a class="block mt-2 flex flex-col items-center" href="{{ route('profile.show', session('authenticated')['id']) }}">Mon profil</a>
+                                        <div class="profile__links">
+                                            <a class="block mt-2 flex flex-col items-center" href="{{ route('profile.show') }}">Mon profil</a>
                                             <div class="h-bar"></div>
-                                            <a class="block mt-2 flex flex-col items-center" href="{{ route('profile.orders', session('authenticated')['id']) }}">Mes commandes</a>
+                                            <a class="block mt-2 flex flex-col items-center" href="{{ route('profile.orders') }}">Mes commandes</a>
                                             <div class="h-bar"></div>
                                             <a class="flex flex-col items-center" href="{{ route('logout') }}"
                                                 onclick="event.preventDefault();

@@ -25,8 +25,7 @@
 </template>
 
 <script>
-    import axios from 'axios';
-    import CompareCheckboxComponent from './compareCheckboxComponent';
+    import CompareCheckboxComponent from '../compareCheckboxComponent';
 
     export default {
         components: {CompareCheckboxComponent},

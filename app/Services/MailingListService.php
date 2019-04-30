@@ -7,6 +7,8 @@ use GuzzleHttp\Exception\ClientException;
 
 class MailingListService extends AbstractService
 {
+    private $mailingListNewsletter = 1;
+
     public function subscribe(int $mailingListId, string $email)
     {
         try {
@@ -21,5 +23,12 @@ class MailingListService extends AbstractService
                     throw $e;
             }
         }
+    }
+
+    public function checkSubcription()
+    {
+        $response = $this->client->get("mailinglists/{$this->mailingListNewsletter}/subscription");
+
+        return (bool)$response['isSubscribedTo'];
     }
 }

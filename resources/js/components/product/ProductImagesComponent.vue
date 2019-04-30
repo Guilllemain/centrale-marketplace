@@ -53,7 +53,7 @@
 </template>
 
 <script>
-import ModalComponent from "./ModalComponent";
+import ModalComponent from "../ModalComponent";
 
 export default {
     components: { ModalComponent },

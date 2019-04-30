@@ -2,14 +2,12 @@
 
 namespace App\Services;
 
-use App\ApiClient;
 use App\Category;
 use App\CategoryTree;
 use App\Company;
 use App\Product;
 use App\SearchResult;
 use App\Services\AbstractService;
-use GuzzleHttp\Client;
 use GuzzleHttp\RequestOptions;
 
 class CatalogService extends AbstractService

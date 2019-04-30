@@ -37,7 +37,7 @@ class CategoriesComposer
     {
         if (!Cache::has('categories')) {
             $categories = $this->catalog->getCategoriesTree();
-            Cache::add('categories', $categories, 3240);
+            Cache::add('categories', $categories, 172600); // cache for 48h (48 * 3600)
         }
         $categories = Cache::get('categories');
         $view->with('categories', $categories);

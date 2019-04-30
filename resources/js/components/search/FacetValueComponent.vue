@@ -16,10 +16,7 @@
 </template>
 
 <script>
-    import PriceSliderComponent from './PriceSliderComponent';
-
     export default {
-        components: {PriceSliderComponent},
         props: {
             facet: {
                 type: Object,

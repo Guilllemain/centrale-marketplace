@@ -38,7 +38,7 @@
     import FiltersComponent from './FiltersComponent';
     import FacetsComponent from './FacetsComponent';
     import PaginationComponent from './PaginationComponent';
-    import LoaderComponent from './LoaderComponent';
+    import LoaderComponent from '../LoaderComponent';
 
     export default {
         components: {ProductComponent, FiltersComponent, FacetsComponent, PaginationComponent, LoaderComponent},

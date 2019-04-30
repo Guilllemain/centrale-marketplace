@@ -18,20 +18,15 @@
         </div>
     </div>
     <div class="bg-grey-darkest">
-        <div class="footer__list py-8 text-white flex justify-center">
-            <div class="flex flex-col mr-8 p-4">
-                <h2 class="text-sm uppercase mb-6 font-normal">Aide</h2>
-                <a class="text-white font-light translateX hover:text-white hover:font-medium" href="">Questions fréquentes</a>
-                <a class="text-white font-light translateX hover:text-white hover:font-medium" href="">Suivre mon colis</a>
-                <a class="text-white font-light translateX hover:text-white hover:font-medium" href="">Moyens de paiement</a>
-                <a class="text-white font-light translateX hover:text-white hover:font-medium" href="">Retours et remboursements</a>
-                <a class="text-white font-light translateX hover:text-white hover:font-medium" href="">10% de réduction avec la newsletter</a>
-            </div>
-            <div class="flex flex-col p-4">
-                <h2 class="text-sm uppercase mb-6 font-normal">Cartes cadeaux</h2>
-                <a class="text-white font-light translateX hover:text-white hover:font-medium" href="">Offrir une carte cadeau</a>
-                <a class="text-white font-light translateX hover:text-white hover:font-medium" href="">Utiliser une carte cadeau</a>
-            </div>
+        <div class="py-8 text-white flex justify-center">
+            @foreach ($footer_menus as $menu)
+                <div class="flex flex-col p-4 w-1/6">
+                    <h2 class="text-sm uppercase mb-6 font-normal">{{$menu['name']}}</h2>
+                    @foreach ($menu['items'] as $item)
+                        <a class="footer__item text-white font-light translateX hover:text-white hover:font-medium" href="{{$item['url']}}">{{$item['name']}}</a>
+                    @endforeach
+                </div>
+            @endforeach
         </div>
         <div class="h-bar w-1/3 mb-2 m-auto opacity-25"></div>
         <div class="py-3">

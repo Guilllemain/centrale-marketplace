@@ -1,0 +1,61 @@
+.megamenu {
+    &__panel {
+        top: 2.6rem;
+        left: 0;
+        transform: scaleY(0);
+        transform-origin: top;
+        @apply invisible opacity-0 absolute w-full z-30 bg-white pl-16 pr-12 py-4 flex flex-wrap;
+        transition: transform .3s ease-in-out;
+    }      
+
+    &__subcategories {
+        font-size: 0.6rem;
+
+        div {
+            &::before {
+                content: "";
+                width: 0;
+                height: 15px;
+                display: block;
+                transition: all .3s;
+            }
+
+            &:hover::before {
+                content: "";
+                @apply bg-orange-dark;
+                width: .3rem;
+                height: 15px;
+                margin-right: .3rem;
+            }
+        }
+    }
+
+    &__title {
+        @apply text-white opacity-75;
+
+        &--active {
+            @apply opacity-100 font-bold;
+        }
+    }
+    
+    &__category:hover {
+        .megamenu {
+            &__panel {
+                @apply visible opacity-100;
+                transform: scaleY(1);
+            }
+            &__title {
+                @apply text-white opacity-100;
+            }
+        }
+
+        .b-rounded-bar {
+            @apply block;
+        }
+    }
+}
+
+.b-rounded-bar {
+    @apply border-t-8 border-white w-full rounded hidden absolute;
+    bottom: -.85rem;
+}

@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
 use App\Services\CatalogService;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 
 class HomeController extends Controller
@@ -29,13 +27,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // dd(session());
         if (request()->wantsJson()) {
             return $this->getLatestProducts();
         }
         if (!Cache::has('latestProducts')) {
             $latestProducts = $this->getLatestProducts()->getProducts();
-            Cache::add('latestProducts', $latestProducts, 60 * 60 * 24); // keep cache for a day
+            Cache::add('latestProducts', $latestProducts, 60 * 60 * 48); // keep cache for a day
         }
         $latestProducts = Cache::get('latestProducts');
         return view('home', compact('latestProducts'));

@@ -49,32 +49,7 @@
                 @else
                     <div class="my-4 flex items-center">
                         <span>Quantité :</span>
-                        <form class="ml-2 flex items-center" action="{{ route('basket.add') }}" method="POST">
-                            @csrf
-                            <input type="hidden" name="declinationId" value="{{$product->declinations[0]['id']}}">
-                            <div class="relative mr-8">
-                                <select class="block appearance-none bg-white border border-grey-light hover:border-grey px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none" name="quantity">
-                                    @if ($product->declinations[0]['amount'] > 19)
-                                        @for($i = 1; $i < 20; $i++)
-                                            <option value="{{$i}}">{{$i}}</option>
-                                        @endfor
-                                    @else
-                                        @for($i = 1; $i <= $product->declinations[0]['amount']; $i++)
-                                            <option value="{{$i}}">{{$i}}</option>
-                                        @endfor
-                                    @endif
-                                </select>
-                                <div class="pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker">
-                                    <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                        <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/>
-                                    </svg>
-                                </div>
-                            </div>
-                        
-                            <button type="submit" class="btn">
-                                Ajouter au panier
-                            </button>
-                        </form>
+                        <add-to-cart-component name="{{$product->name}}" :product="{{json_encode($product->declinations[0])}}"></add-to-cart-component>
                     </div>
                 @endif
 

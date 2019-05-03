@@ -1,7 +1,7 @@
 <template>
     <div class="basket ml-8">
         <div class="relative">
-            <span v-show="items.length > 0" class="absolute pin-r pin-t">
+            <span v-if="items.length > 0" class="absolute pin-r pin-t">
                 <el-badge :value="basket.totalQuantity"></el-badge>
             </span>
             <a class="flex flex-col items-center" href="/basket">
@@ -53,7 +53,7 @@
             }
         },
         mounted() {
-            this.$store.dispatch('getBasketContent');
+            // this.$store.dispatch('getBasketContent');
         },
         computed: {
             basket() {

@@ -16,10 +16,13 @@
                 <div>{{ formatPrice(product.minimumPrice) }}</div>
             </div>
         </div>
-        <button class="btn mt-auto btn-grey w-3/4 text-xs"
+        <button v-if="product.isAvailable" class="btn mt-auto btn-grey w-3/4 text-xs"
                 @click="addToCart">
                 Ajouter au panier
         </button>
+        <a :href="productPath()" v-else class="btn mt-auto btn-grey w-3/4 text-xs">
+            Voir les offres
+        </a>
         <compare-checkbox-component :product="product"></compare-checkbox-component>
     </div>
 </template>

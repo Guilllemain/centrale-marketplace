@@ -12,19 +12,19 @@
     "devDependencies": {
         "axios": "^0.18",
         "cross-env": "^5.1",
-        "laravel-mix": "^4.0.14",
+        "laravel-mix": "^4.0.15",
         "lodash": "^4.17.5",
-        "popper.js": "^1.14.7",
-        "sass": "^1.17.2",
+        "popper.js": "^1.15.0",
+        "sass": "^1.19.0",
         "sass-loader": "^7.1.0",
         "tailwindcss": "^0.7.4",
-        "vue": "^2.6.7",
-        "vue-template-compiler": "^2.6.7",
-        "vuetify": "^1.5.2"
+        "vue": "^2.6.10",
+        "vue-template-compiler": "^2.6.10",
+        "vuetify": "^1.5.14"
     },
     "dependencies": {
-        "element-ui": "^2.5.4",
-        "vue-carousel": "^0.18.0-alpha",
+        "element-ui": "^2.8.2",
+        "vue-carousel": "^0.18.0",
         "vuex": "^3.1.0",
         "vuex-persistedstate": "^2.5.4"
     }

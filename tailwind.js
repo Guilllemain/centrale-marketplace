@@ -951,6 +951,7 @@ module.exports = {
           borderRadius: '.25rem',
           letterSpacing: '0.05em',
           backgroundColor: '#de751f',
+          lineHeight: '1.1',
           transition: 'all .3s ease-in-out',
           '&:hover': {
             color: '#fff',

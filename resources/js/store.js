@@ -49,12 +49,18 @@ export default new Vuex.Store({
 
     updateBasket(state, basket) {
       state.basketContent = basket;
+    },
+    clearBasket(state) {
+      state.basketContent = null;
     }
   },
 
   actions: {
     clearComparedProducts({commit}) {
       commit('clearComparedProducts');
+    },
+    clearBasket({commit}) {
+      commit('clearBasket');
     },
     async getBasketContent({commit}) {
       const response = await axios.get('/basket');

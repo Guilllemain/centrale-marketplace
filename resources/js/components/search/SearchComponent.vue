@@ -88,8 +88,7 @@
                 this.companyId = this.company.id;
                 this.$store.commit('addFacet', {name: "companies", value: this.companyId.toString()});
             }
-
-            this.displayResults();
+            // this.displayResults();
         },
         computed: {
             selectedFacets() {

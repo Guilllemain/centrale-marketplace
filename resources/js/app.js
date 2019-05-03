@@ -32,12 +32,15 @@ Vue.component('checkout-component', require('./components/CheckoutComponent.vue'
 Vue.component('carousel-component', require('./components/CarouselComponent.vue').default);
 Vue.component('address-component', require('./components/profile/AddressComponent.vue').default);
 Vue.component('stars-component', require('./components/product/StarsComponent.vue').default);
+Vue.component('add-to-cart-component', require('./components/product/AddToCartComponent.vue').default);
 Vue.component('favorite-component', require('./components/product/FavoriteComponent.vue').default);
 Vue.component('review-component', require('./components/product/ReviewComponent.vue').default);
 Vue.component('product-images-component', require('./components/product/ProductImagesComponent.vue').default);
 Vue.component('search-component', require('./components/search/SearchComponent.vue').default);
 Vue.component('sign-up-component', require('./components/Auth/SignUpComponent.vue').default);
+Vue.component('logout-component', require('./components/Auth/LogoutComponent.vue').default);
 Vue.component('basket-component', require('./components/basket/BasketComponent.vue').default);
+Vue.component('update-quantity-component', require('./components/basket/UpdateQuantityComponent.vue').default);
 Vue.component('discount-component', require('./components/basket/DiscountComponent.vue').default);
 
 /**

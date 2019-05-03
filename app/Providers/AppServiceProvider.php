@@ -44,47 +44,47 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind('GuzzleHttp\Client', function ($app) {
             $config = config('marketplace.http_client');
 
-            $stack = HandlerStack::create();
+            // $stack = HandlerStack::create();
 
             // 10 minutes to keep the cache
             // This value will obviously change as you need
-            $TTL = 600;
+            // $TTL = 600;
 
             // Create Folder GuzzleFileCache inside the providen cache folder path
-            $requestCacheFolderName = 'GuzzleFileCache';
+            // $requestCacheFolderName = 'GuzzleFileCache';
 
             // Retrieve the bootstrap folder path of your Laravel Project
-            $cacheFolderPath = base_path() . "/bootstrap";
+            // $cacheFolderPath = base_path() . "/bootstrap";
             
             // Instantiate the cache storage: a PSR-6 file system cache with
             // a default lifetime of 10 minutes (60 seconds).
-            $cache_storage = new Psr6CacheStorage(
-                new FilesystemAdapter(
-                    $requestCacheFolderName,
-                    $TTL,
-                    $cacheFolderPath
-                )
-            );
+            // $cache_storage = new Psr6CacheStorage(
+            //     new FilesystemAdapter(
+            //         $requestCacheFolderName,
+            //         $TTL,
+            //         $cacheFolderPath
+            //     )
+            // );
             
             // Add this middleware to the top with `push`
-            $stack->push(
-              new CacheMiddleware(
-                new PublicCacheStrategy(
-                    $cache_storage,
-                    $TTL // the TTL in seconds
-                )
-              ),
-              'cache'
-            );
+            // $stack->push(
+            //   new CacheMiddleware(
+            //     new PublicCacheStrategy(
+            //         $cache_storage,
+            //         $TTL // the TTL in seconds
+            //     )
+            //   ),
+            //   'cache'
+            // );
 
-            $config['handler'] = $stack;
+            // $config['handler'] = $stack;
             
             // Initialize the client with the config options
             return new Client($config);
         });
 
-        $this->app->extend(CacheMiddleware::class, function ($service) {
-            return new GuzzleCacheLoggerDecorator($service);
-        });
+        // $this->app->extend(CacheMiddleware::class, function ($service) {
+        //     return new GuzzleCacheLoggerDecorator($service);
+        // });
     }
 }

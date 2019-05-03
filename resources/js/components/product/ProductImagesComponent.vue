@@ -28,7 +28,7 @@
         </div>
 
         <!-- modal -->
-        <modal-component @closeModal="isOpenModal = false" v-if="isOpenModal">
+        <modal-component @closeModal="isOpenModal = false" v-show="isOpenModal">
             <div class="flex items-center justify-center">
                 <a class="prev" @click="plusSlides(-1)">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8">

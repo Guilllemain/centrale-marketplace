@@ -59,14 +59,15 @@
                                             <div class="h-bar"></div>
                                             <a class="block mt-2 flex flex-col items-center" href="{{ route('profile.orders') }}">Mes commandes</a>
                                             <div class="h-bar"></div>
-                                            <a class="flex flex-col items-center" href="{{ route('logout') }}"
+                                            <logout-component></logout-component>
+                                            {{-- <a class="flex flex-col items-center" href="{{ route('logout') }}"
                                                 onclick="event.preventDefault();
                                                              document.getElementById('logout-form').submit();">
                                                 <h4 class="font-normal">{{ __('Me déconnecter') }}</h4>
                                             </a>
                                             <form id="logout-form" class="hidden" action="{{ route('logout') }}" method="POST">
                                                 @csrf
-                                            </form>
+                                            </form> --}}
                                         </div>
                                     </div>
                                 @endguest

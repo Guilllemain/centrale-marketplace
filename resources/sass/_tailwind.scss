@@ -141,7 +141,7 @@ a {
         transition: all .3s;
     }
 
-    &:hover &__content {
+    &:hover &__links {
         visibility: visible;
         opacity: 1;
     }

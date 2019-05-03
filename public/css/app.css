@@ -584,6 +584,7 @@ table {
   border-radius: .25rem;
   letter-spacing: .05em;
   background-color: #de751f;
+  line-height: 1.1;
   transition: all .3s ease-in-out;
 }
 
@@ -741,7 +742,7 @@ a:hover {
   transition: all .3s;
 }
 
-.profile:hover .profile__content {
+.profile:hover .profile__links {
   visibility: visible;
   opacity: 1;
 }

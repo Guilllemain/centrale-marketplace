@@ -45,7 +45,7 @@ Route::get('/searchbox', 'Api\SearchController@searchAlgolia');
 Route::get('/basket', 'BasketController@index');
 Route::post('/basket/add', 'BasketController@addProduct')->name('basket.add');
 Route::get('/checkout', 'BasketController@checkout');
-Route::post('/basket/update/{id}', 'BasketController@updateQuantity')->name('basket.update-qty');
+Route::post('/basket/update', 'BasketController@updateQuantity')->name('basket.update-qty');
 Route::post('/basket/shipping/{id}', 'BasketController@updateShipping')->name('basket.update-shipping');
 Route::delete('/basket/{id}/{declinationId}', 'BasketController@destroy')->name('basket.delete');
 

@@ -22,7 +22,6 @@ class BasketController extends Controller
     public function index()
     {
         $id = session('_basket_id');
-
         if (request()->wantsJson()) {
             if (!$id) {
                 return;
@@ -30,7 +29,6 @@ class BasketController extends Controller
         }
         
         $basket = $this->basketService->getBasket($id);
-
         if (request()->wantsJson()) {
             return $basket->toJson();
         }
@@ -55,12 +53,13 @@ class BasketController extends Controller
         return back()->with('flash', 'Ce produit a été ajouté à votre panier');
     }
 
-    public function updateQuantity(Request $request, $id)
+    public function updateQuantity(Request $request)
     {
+        $basketId = $request->basketId;
         $declinationId = $request->declinationId;
-        $updatedQuantity = $request->item_qty;
-        $this->basketService->updateProductQuantity($id, $declinationId, $updatedQuantity);
-        return back()->with('flash', 'La quantité a bien été modifiée');
+        $updatedQuantity = $request->quantity;
+        $this->basketService->updateProductQuantity($basketId, $declinationId, $updatedQuantity);
+        // return back()->with('flash', 'La quantité a bien été modifiée');
     }
 
     public function destroy($id, $declinationId)

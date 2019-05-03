@@ -3,7 +3,7 @@
         <div class="cursor-pointer flex flex-col items-center" @click="isOpenModal = true">
             <slot></slot>
         </div>
-        <modal-component @closeModal="isOpenModal = false" v-if="isOpenModal" contentWidth="25vw">
+        <modal-component @closeModal="isOpenModal = false" v-show="isOpenModal" contentWidth="25vw">
             <login-component @forgotPassword="activeComponent = 'forgot-pass'" @showRegister="activeComponent = 'register'" v-if="activeComponent === 'login'"></login-component>
             <register-component @showLogin="activeComponent = 'login'" v-if="activeComponent === 'register'"></register-component>
             <forgot-pass-component @showLogin="activeComponent = 'login'" v-if="activeComponent === 'forgot-pass'"></forgot-pass-component>

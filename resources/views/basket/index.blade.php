@@ -37,7 +37,7 @@
                                         </div>
                                         <div class="flex items-center w-1/5">
                                             <span>Quantité :</span>
-                                            <form class="ml-2" id="update-qty-{{$item['declinationId']}}" action="{{ route('basket.update-qty', $basket->id) }}" method="POST">
+                                            {{-- <form class="ml-2" id="update-qty-{{$item['declinationId']}}" action="{{ route('basket.update-qty', $basket->id) }}" method="POST">
                                                 @csrf
                                                 <input type="hidden" name="declinationId" value="{{$item['declinationId']}}">
                                                 <div class="relative">
@@ -57,7 +57,8 @@
                                                         </svg>
                                                     </div>
                                                 </div>
-                                            </form>
+                                            </form> --}}
+                                            <update-quantity-component name="{{$item['productName']}}" :product="{{json_encode($item)}}"></update-quantity-component>
                                         </div>
                                         <div class="w-1/5 text-right font-bold">
                                             <p>Total : {{formatPrice($item['total'])}}</p>

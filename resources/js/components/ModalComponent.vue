@@ -1,5 +1,5 @@
 <template>
-    <transition name="fade" @after-enter="viewContent = true">
+    <transition name="fade" @after-enter="openModal">
         <div class="modal flex items-center justify-center" @click="closeModal">
             <span class="close__icon cursor-pointer">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8">
@@ -29,21 +29,17 @@ export default {
             viewContent: false
         }
     },
-    mounted() {
-        document.body.classList.add('overflow-hidden'); // prevent scrolling in the background
-    },
     methods: {
         openModal() {
-            this.viewModal = true;
+            this.viewContent = true;
+            document.body.classList.add('overflow-hidden'); // prevent scrolling in the background
         },
         closeModal() {
+            document.body.classList.remove('overflow-hidden');
             this.viewContent = false;
             this.$emit('closeModal');
         },
     },
-    beforeDestroy() {
-        document.body.classList.remove('overflow-hidden');
-    }
 }
 </script>
 

@@ -49,7 +49,10 @@ export default {
     methods: {
         async login() {
             try {
-                await axios.post('/login', this.user);
+                const response = await axios.post('/login', this.user);
+                if (response.status === 200) {
+                    this.$store.dispatch('getBasketContent');
+                }
                 location.reload();
             } catch (error) {
                 console.error(error);
